@@ -11,7 +11,7 @@
             <div id="Categories" class="tab-pane fade in active">
                 <div class="row">
                     <div class="col-md-12 text-center form-style" style="overflow: auto">
-                        <p class="small-heading">Published Courses</p>
+                        <p class="small-heading"></p>
                         <form>
                             <table class="table table-striped col-md-12 table-bordered ">
                                 <thead class="thead-dark">
