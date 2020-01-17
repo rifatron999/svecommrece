@@ -62,9 +62,35 @@
 }
 
 .img {
-    width: 20%;
-    position: relative;
+    width: 430px;
+    height: 250px;
+    position: -ms-device-fixed;
 }
+/*image hover*/
+.img_hover {
+    position: relative;
+    width: 90%;
+
+}
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #A8A5A5;
+    width: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
+.img_hover:hover .overlay {
+    opacity: 1;
+}
+/*image hover*/
+
 .hidden{display:none;}
 .binsert
 {
@@ -84,35 +110,4 @@
 .about_us_text{
     font-family: cursive;
 }
-/*  ********** dashboard end ************  */
 
-/*  ********** sales start ************  */
-
-/*  ********** sales end ************  */
-
-/*  ********** purchase start ************  */
-/*  ********** purchase end ************  */
-
-/*  ********** inventory start ************  */
-/*  ********** inventory end  ************  */
-
-/*  ********** inventory new start ************  */
-/*  ********** inventory new end  ************  */
-
-/*  ********** production start ************  */
-/*  ********** production end  ************  */
-
-/*  ********** accounts start ************  */
-/*  ********** accounts end  ************  */
-
-/*  ********** payroll start ************  */
-/*  ********** payroll end  ************  */
-
-/*  ********** crm start ************  */
-/*  ********** crm end  ************  */
-
-/*  ********** fact module start ************  */
-/*  ********** fact module end  ************  */
-
-/*  ********** admin start ************  */
-/*  ********** admin end  ************  */

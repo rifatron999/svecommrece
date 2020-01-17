@@ -10,7 +10,7 @@
                     <!-- footer logo -->
                     <div class="footer-logo">
                         <a class="logo" href="#">
-                            <img src="{{ asset('assets/img/icon/setcolbd.png') }}" alt="">
+                            <img src="{{ asset('assets/img/icon/setcolbd1.png') }}" alt="">
                         </a>
                     </div>
                     <!-- /footer logo -->
@@ -81,7 +81,7 @@
         <!-- row -->
         <div class="row text-center">
             <div class="col-md-12">
-                <img src="{{ asset('assets/img/icon/setcolbd.png') }}" alt="logo">
+                <img src="{{ asset('assets/img/icon/twiter.png') }}" alt="logo">
             </div>
             <div class="col-md-12">
                 <a href="https://www.facebook.com/setcolbd/" target="_blank">
@@ -100,9 +100,9 @@
                     <img style="height: 47px;" src="{{ asset('assets/img/icon/pinterest.png') }}" alt="youtube">
                 </a>
             </div>
-            <div class="col-md-12 text-center about_us_text">
+            {{--<div class="col-md-12 text-center about_us_text">
                 © <script>document.write(new Date().getFullYear());</script> SETCOLBD :: Skies Engineering &amp; Technologies Company Ltd.
-            </div>
+            </div>--}}
         </div>
         <!-- /row -->
     </div>

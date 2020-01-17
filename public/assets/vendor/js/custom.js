@@ -1,5 +1,5 @@
 tinymce.init({
-    selector: "textarea",
+    selector: "#textareatiny",
     plugins: [
         "advlist autolink link autolink preview image imagetools searchreplace table emoticons lists charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
@@ -14,6 +14,21 @@ tinymce.init({
     filemanager_title:"Responsive Filemanager" ,
     external_plugins: { "filemanager" : "filemanager/plugin.min.js"}
 });
+
+//page = vendor>category_management
+function setParentId(parent_id)
+{
+    //alert(parent_id);
+    document.getElementById('categoryAdd_parentId').value = parent_id;
+}
+function setCatUpdate(id,name,description)
+{
+    //alert(parent_id);
+    document.getElementById('cat_update_id').value = id ;
+    document.getElementById('cat_update_name').value = name ;
+    document.getElementById('cat_update_des').value = description ;
+}
+//page = vendor>category_management#
 
 // admin fac assign from P_C status
 $(document).on('change','.status_check',function()

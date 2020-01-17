@@ -30,6 +30,12 @@ Route::get('/vendor','Vendor\vendorController@index');
 /* ======== normalVendor   =================================================================== */
 Route::get('/dashboard','Vendor\normalVendorController@index')->name('nvdashboard');
 Route::get('/category_management','Vendor\normalVendorController@categoryManagementView')->name('categoryManagementView');
+Route::post('/category_management','Vendor\normalVendorController@categoryAdd')->name('categoryAdd');
+Route::get('/category_management/sub/{pid}','Vendor\normalVendorController@subCategoryView')->name('subCategoryView');
+Route::get('/category_management/remove/{id}','Vendor\normalVendorController@categoryRemove')->name('categoryRemove');
+Route::post('/category_management/update','Vendor\normalVendorController@categoryUpdate')->name('categoryUpdate');
+
+
 /* ======== normalVendor #   =================================================================== */
 
 

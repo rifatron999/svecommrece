@@ -50,6 +50,99 @@
                     </div>
             @endif
             <!-- /message -->
+                {{--modal category add--}}
+                <form method="post" enctype="multipart/form-data" action="{{ route('categoryAdd') }}">
+                    @csrf
+                    <div class="modal fade" id="modal_category_add"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"><b>+ Add Category</b></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Name:</label>
+                                        <input name="name" type="text" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Description:</label>
+                                        <textarea name="description" class="form-control" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Image:</label>
+                                        <input name="image" type="file" class="form-control" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Status:</label>
+                                        <select name="status" class="form-control">
+                                            <option value="Active" >Active</option>
+                                            <option value="Deactive" >Deactive</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Parent ID:</label>
+                                        <input name="parent_id" id="categoryAdd_parentId" type="text" class="form-control" readonly >
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">ADD +</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                {{--modal category add #--}}
+                {{--modal category update--}}
+                <form method="post" enctype="multipart/form-data" action="{{ route('categoryUpdate') }}">
+                    @csrf
+                    <div class="modal fade" id="modal_category_update"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><b>Update </b></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Id:</label>
+                                        <input id="cat_update_id" name="id" type="text" class="form-control" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Name:</label>
+                                        <input id="cat_update_name" name="name" type="text" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Description:</label>
+                                        <textarea id="cat_update_des" name="description" class="form-control" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Image:</label>
+                                        <input id="cat_update_img" name="image" type="file" class="form-control" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Status:</label>
+                                        <select name="status" class="form-control">
+                                            <option selected value="Active" >Active</option>
+                                            <option value="Deactive" >Deactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Update </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{--modal category update #--}}
+
             </div>
             @yield('content')
         </section>

@@ -6,7 +6,6 @@
     @include('includes.navbar')
 
     @yield('content')
-
     @include('includes.footer')
     @include('includes.footer_link')
     <script>
