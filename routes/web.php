@@ -40,6 +40,8 @@ Route::post('/category_management/update','Vendor\normalVendorController@categor
 //category managment #
 //brand management
 Route::get('/brand_management','Vendor\normalVendorController@brandManagementView')->name('brandManagementView');
+Route::post('/brand_management','Vendor\normalVendorController@brandAdd')->name('brandAdd');
+
 //brand management #
 //product management
 Route::get('/product_management','Vendor\normalVendorController@productManagementView')->name('productManagementView');

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Vendor;
 
+use App\Brand;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class normalVendorController extends Controller
 {
@@ -16,7 +18,7 @@ class normalVendorController extends Controller
 
     public function categoryManagementView()
     {
-        $categories = Category::whereNull('parent_id')->paginate(10);
+        $categories = Category::whereNull('parent_id')->paginate(6);
         $parent_id = NULL;
         return view('vendor.category_management.index',compact('categories','parent_id'));
     }
@@ -134,7 +136,41 @@ class normalVendorController extends Controller
     //************************ page = brand_management
     public function brandManagementView()
     {
-        return view('vendor.brand_management.index');
+        $brands = Brand::where('vendor_id',Auth::user()->id)->paginate(6);
+        return view('vendor.brand_management.index',compact('brands'));
+    }
+    public function brandAdd(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required|max:50',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+        ]);
+        $image = $request->file('image');
+        if(!empty($image))
+        {
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $image->move('assets/vendor/images/brands/',$image_name);
+
+                Brand::create([
+                    'vendor_id' => Auth::user()->id,
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'status' => $request->status,
+                    'image' => $image_name,
+                ]);
+        }
+        else
+        {
+            Brand::create([
+            'vendor_id' => Auth::user()->id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'status' => $request->status,
+            ]);
+        }
+
+        return back()->with('msg','✔ Brand Added');
     }
     //************************ page = brand_management #
     //************************ page = product_management

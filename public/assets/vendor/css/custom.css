@@ -62,21 +62,21 @@
 }
 
 .img {
-    width: 430px;
+    width: 485px;
     height: 250px;
     position: -ms-device-fixed;
 }
 /*image hover*/
 .img_hover {
     position: relative;
-    width: 90%;
+    width: 100%;
 
 }
 .overlay {
     position: absolute;
     bottom: 0;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    /*background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); !* Black see-through *!*/
     color: #A8A5A5;
     width: 100%;
     transition: .5s ease;

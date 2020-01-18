@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2020 at 10:48 AM
+-- Generation Time: Jan 18, 2020 at 07:48 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -21,6 +21,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `svecommerce`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brands`
+--
+
+CREATE TABLE `brands` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `vendor_id` int(11) NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`id`, `vendor_id`, `name`, `description`, `image`, `status`, `slug`, `created_at`, `updated_at`) VALUES
+(3, 1, 'NOBIN BANGLADESH', '<p>Keep up to date with Nobin Bangladesh brand\'s official electronic products and one stop reliable online store for all Nabin products.</p>', '1579369529.jpg', 'Active', NULL, '2020-01-18 11:45:29', '2020-01-18 11:45:29'),
+(4, 1, 'SAMSUNG', '<p>Explore Best</p>', '1579371851.jpg', 'Active', NULL, '2020-01-18 12:24:11', '2020-01-18 12:24:11'),
+(5, 1, 'NOBIN BANGLADESH', '<p>Keep up to date with Nobin Bangladesh brand\'s official electronic products and one stop reliable online store for all Nabin products.</p>', '1579369529.jpg', 'Active', NULL, '2020-01-18 11:45:29', '2020-01-18 11:45:29'),
+(6, 1, 'SAMSUNG', '<p>Explore Best</p>', '1579371851.jpg', 'Active', NULL, '2020-01-18 12:24:11', '2020-01-18 12:24:11');
 
 -- --------------------------------------------------------
 
@@ -75,7 +103,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2020_01_11_082929_create_vendors_table', 2),
 (4, '2020_01_13_132010_create_categories_table', 3),
-(5, '2020_01_18_092922_create_products_table', 4);
+(5, '2020_01_18_092922_create_products_table', 4),
+(6, '2020_01_18_155809_create_brands_table', 5);
 
 -- --------------------------------------------------------
 
@@ -148,6 +177,12 @@ INSERT INTO `vendors` (`id`, `name`, `email`, `password`, `type`, `status`, `ima
 --
 
 --
+-- Indexes for table `brands`
+--
+ALTER TABLE `brands`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
@@ -183,6 +218,12 @@ ALTER TABLE `vendors`
 --
 
 --
+-- AUTO_INCREMENT for table `brands`
+--
+ALTER TABLE `brands`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -192,7 +233,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products`
