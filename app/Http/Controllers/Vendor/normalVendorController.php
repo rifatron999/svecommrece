@@ -131,4 +131,10 @@ class normalVendorController extends Controller
 
 
     //************************ page = category_management #
+    //************************ page = product_management
+    public function productManagementView()
+    {
+        return view('vendor.product_management.index');
+    }
+    //************************ page = category_management #
 }
