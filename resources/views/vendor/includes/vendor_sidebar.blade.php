@@ -16,6 +16,12 @@
                     <span>Category Management</span>
                 </a>
             </li>
+            <li class="sub-menu">
+                <a class="@yield('Product_management')" href="{{route('productManagementView')}}" >
+                    <i class="fas fa-list-ul"></i>
+                    <span>Product Management</span>
+                </a>
+            </li>
         </ul>
         <!-- sidebar menu end-->
     </div>

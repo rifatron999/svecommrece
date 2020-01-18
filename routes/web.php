@@ -28,12 +28,19 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/vendor','Vendor\vendorController@index');
 /* ======== normalVendor   =================================================================== */
+//dashboard
 Route::get('/dashboard','Vendor\normalVendorController@index')->name('nvdashboard');
+//dashboard #
+//category management
 Route::get('/category_management','Vendor\normalVendorController@categoryManagementView')->name('categoryManagementView');
 Route::post('/category_management','Vendor\normalVendorController@categoryAdd')->name('categoryAdd');
 Route::get('/category_management/sub/{pid}','Vendor\normalVendorController@subCategoryView')->name('subCategoryView');
 Route::get('/category_management/remove/{id}','Vendor\normalVendorController@categoryRemove')->name('categoryRemove');
 Route::post('/category_management/update','Vendor\normalVendorController@categoryUpdate')->name('categoryUpdate');
+//category managment #
+//product management
+Route::get('/product_management','Vendor\normalVendorController@productManagementView')->name('productManagementView');
+//product management #
 
 
 /* ======== normalVendor #   =================================================================== */
