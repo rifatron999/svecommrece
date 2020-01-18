@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2020 at 05:56 PM
+-- Generation Time: Jan 18, 2020 at 10:48 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -45,7 +45,15 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`, `image`, `status`, `parent_id`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'Men', 'origin Men', NULL, 'Active ', NULL, NULL, NULL, NULL);
+(1, 'Men', 'Origin', '1579203705.jpg', 'Active', NULL, NULL, '2020-01-16 13:41:45', '2020-01-16 13:41:45'),
+(2, 'women', 'Origin', '1579203845.jpg', 'Active', NULL, NULL, '2020-01-16 13:44:05', '2020-01-16 13:44:05'),
+(4, 'Electronics', 'Origin', '1579240659.jpg', 'Active', NULL, NULL, '2020-01-16 23:57:39', '2020-01-16 23:57:39'),
+(5, 'Shirt', 'men shirt', '1579245191.jpg', 'Deactive', 1, NULL, '2020-01-17 01:13:11', '2020-01-17 07:13:51'),
+(6, 'Pant', 'men pant', '1579245301.jpeg', 'Active', 1, NULL, '2020-01-17 01:15:01', '2020-01-17 01:15:01'),
+(8, 'Half Sleeve', 'men shirt', '1579245502.jpg', 'Active', 5, NULL, '2020-01-17 01:18:22', '2020-01-17 01:18:22'),
+(9, 'Full Sleeve', 'men shirt', '1579245521.jpg', 'Active', 5, NULL, '2020-01-17 01:18:41', '2020-01-17 01:18:41'),
+(14, 'Kids', 'Origin', '1579264626.jpg', 'Active', NULL, NULL, '2020-01-17 04:49:18', '2020-01-17 06:37:23'),
+(16, 'Toys', 'kids', '1579266781.jpg', 'Active', 14, NULL, '2020-01-17 07:13:01', '2020-01-17 07:13:01');
 
 -- --------------------------------------------------------
 
@@ -66,7 +74,8 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2020_01_11_082929_create_vendors_table', 2),
-(4, '2020_01_13_132010_create_categories_table', 3);
+(4, '2020_01_13_132010_create_categories_table', 3),
+(5, '2020_01_18_092922_create_products_table', 4);
 
 -- --------------------------------------------------------
 
@@ -78,6 +87,32 @@ CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `brand_id` int(11) NOT NULL,
+  `vendor_id` int(11) NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `specification` longtext COLLATE utf8mb4_unicode_ci,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `stock` int(11) DEFAULT NULL,
+  `price` double(8,2) DEFAULT NULL,
+  `offer_price` double(8,2) DEFAULT NULL,
+  `offer_percentage` int(11) DEFAULT NULL,
+  `size` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -131,6 +166,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `vendors`
 --
 ALTER TABLE `vendors`
@@ -145,13 +186,19 @@ ALTER TABLE `vendors`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `vendors`
