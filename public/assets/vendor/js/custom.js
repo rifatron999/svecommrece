@@ -1,5 +1,5 @@
 tinymce.init({
-    selector: "#textareatiny",
+    selector: "textarea#textareatiny",
     plugins: [
         "advlist autolink link autolink preview image imagetools searchreplace table emoticons lists charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
@@ -13,6 +13,25 @@ tinymce.init({
     external_filemanager_path:"filemanager/",
     filemanager_title:"Responsive Filemanager" ,
     external_plugins: { "filemanager" : "filemanager/plugin.min.js"}
+});
+tinymce.init({
+    selector: 'textarea#basic-example',
+    height: 250,
+    menubar: false,
+    plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste code help wordcount'
+    ],
+    toolbar: 'undo redo | formatselect | ' +
+        ' bold italic backcolor forecolor | alignleft aligncenter ' +
+        ' alignright alignjustify | bullist numlist outdent indent |' +
+        ' removeformat | help',
+    branding: false,
+    content_css: [
+        '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+        '//www.tiny.cloud/css/codepen.min.css'
+    ]
 });
 
 //page = vendor>category_management
