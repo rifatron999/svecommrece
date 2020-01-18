@@ -38,6 +38,9 @@ Route::get('/category_management/sub/{pid}','Vendor\normalVendorController@subCa
 Route::get('/category_management/remove/{id}','Vendor\normalVendorController@categoryRemove')->name('categoryRemove');
 Route::post('/category_management/update','Vendor\normalVendorController@categoryUpdate')->name('categoryUpdate');
 //category managment #
+//brand management
+Route::get('/brand_management','Vendor\normalVendorController@brandManagementView')->name('brandManagementView');
+//brand management #
 //product management
 Route::get('/product_management','Vendor\normalVendorController@productManagementView')->name('productManagementView');
 //product management #
