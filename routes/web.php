@@ -41,6 +41,9 @@ Route::post('/category_management/update','Vendor\normalVendorController@categor
 //brand management
 Route::get('/brand_management','Vendor\normalVendorController@brandManagementView')->name('brandManagementView');
 Route::post('/brand_management','Vendor\normalVendorController@brandAdd')->name('brandAdd');
+Route::get('/brand_management/edit/{id}','Vendor\normalVendorController@brandManagementEdit')->name('brandManagementEdit');
+Route::post('/brand_management/update','Vendor\normalVendorController@brandUpdate')->name('brandUpdate');
+Route::get('/brand_management/remove/{id}','Vendor\normalVendorController@brandRemove')->name('brandRemove');
 
 //brand management #
 //product management

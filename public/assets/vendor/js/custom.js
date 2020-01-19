@@ -1,3 +1,4 @@
+//tinymce
 tinymce.init({
     selector: "textarea#textareatiny",
     plugins: [
@@ -33,6 +34,25 @@ tinymce.init({
         '//www.tiny.cloud/css/codepen.min.css'
     ]
 });
+//tinymce #
+//image preview
+function previewImage(event)
+{
+    var reader = new FileReader();
+    var imageField = document.getElementById("image-preview")
+    reader.onload = function()
+    {
+        if(reader.readyState == 2)
+        {
+            imageField.src = reader.result;
+        }
+    }
+    reader.readAsDataURL(event.target.files[0]);
+
+    document.getElementById("image-field").style.visibility = "visible";
+}
+//image preview #
+
 
 //page = vendor>category_management
 function setParentId(parent_id)

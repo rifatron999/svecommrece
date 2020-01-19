@@ -13,6 +13,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center " style="overflow: auto">
                         <p class="small-heading">My Brands </p>
+                        @if($brands->count() !== 0 )
                         @foreach ($brands as $s)
                             <div class="col-md-4 news mb-2 mar-bott">
                                 <div class="head img_hover">
@@ -23,9 +24,9 @@
                                     @endif
 
                                     <div class="overlay">
-                                        <a class="btn btn-danger btn-xs" href="{{--{{route('categoryRemove',$s->id)}}--}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
-                                        <a class="btn btn-success" data-toggle="modal" data-target="#modal_category_update" onclick="setCatUpdate('{{$s->id}}','{{$s->name}}','{{$s->description}}')" data-whatever="@mdo" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <sub>{{$s->status}}</sub>
+                                        <a class="btn btn-danger btn-xs" href="{{route('brandRemove',Crypt::encrypt($s->id))}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-success"  href="{{route('brandManagementEdit',Crypt::encrypt($s->id))}}" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <sub><mark>{{$s->status}}</mark></sub>
                                     </div>
                                 </div>
                                 <div class=" text-center ">
@@ -35,22 +36,30 @@
                             </div>
                         @endforeach
                         {!! $brands->Links() !!}
+                        @else
+                            <h3 >Nothing to show</h3>
+                        @endif
+
                     </div>
 
                 </div>
             </div>
-            <div id="Create" class="tab-pane fade in">
+            <div id="Create" class="tab-pane fade in text-center">
+                @if($brands->count() === 0 )
                 <form method="post" enctype="multipart/form-data" action="{{ route('brandAdd') }}">
                     @csrf
-                    <div class="modal-body">
+                    <div class="modal-body ">
+                        <div class="form-group row">
+                            <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs center-block" alt="" id="image-preview">
+                        </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6">
                                             <label for="recipient-name" class=" label label-primary">Name</label>
-                                            <input name="name" type="text" class="form-control form-control-sm" required>
+                                            <input name="name" type="text" class="form-control form-control-sm" value="{{ old('name') }}" required>
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="recipient-name" class=" label label-primary">Image</label>
-                                            <input name="image" type="file" class="form-control" >
+                                            <input name="image" type="file" class="form-control" onchange="previewImage(event)">
                                         </div>
                                         <div class="col-sm-2">
                                             <label for="recipient-name" class=" label label-primary">Status</label>
@@ -63,7 +72,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label for="message-text" class=" label label-primary">Description</label>
-                                            <textarea id="basic-example" name="description" class="form-control" ></textarea>
+                                            <textarea id="basic-example" name="description" class="form-control" >{{ old('description') }}</textarea>
                                         </div>
 
                                     </div>
@@ -74,6 +83,9 @@
                                     </div>
                     </div>
                 </form>
+                @else
+                    <h3>You Can't Owe more than one brand now</h3>
+                @endif
             </div>
         </div>
     </div>

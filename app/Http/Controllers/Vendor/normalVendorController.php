@@ -7,6 +7,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class normalVendorController extends Controller
 {
@@ -143,7 +144,7 @@ class normalVendorController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required|max:50',
+            'description' => 'required|max:200',
             'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
         ]);
         $image = $request->file('image');
@@ -171,6 +172,58 @@ class normalVendorController extends Controller
         }
 
         return back()->with('msg','✔ Brand Added');
+    }
+    public function brandManagementEdit($id)
+    {
+        $bid = Crypt::decrypt($id);
+        $brand = Brand::where('id',$bid)->first();
+        return view('vendor.brand_management.edit',compact('brand'));
+    }
+    public function brandUpdate(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+        ]);
+        $image = $request->file('image');
+        $update = Brand::find($request->id);
+        if(!empty($image))
+        {
+
+            unlink('assets/vendor/images/brands/'.$update->image);
+
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $image->move('assets/vendor/images/brands/',$image_name);
+            $update->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => $request->status,
+                'image' => $image_name,
+            ]);
+
+
+        }
+        else
+        {
+            $update->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => $request->status,
+            ]);
+
+
+        }
+
+        return back()->with('msg','✔ Brand Updated');
+    }
+    public function brandRemove($id)
+    {
+        $bid = Crypt::decrypt($id);
+        $delete = Brand::find($bid);
+        $delete->delete();
+        if(!empty($delete->image)){unlink('assets/vendor/images/brands/'.$delete->image);}
+        return redirect()->back()->with('msg',"✔ REMOVED");
     }
     //************************ page = brand_management #
     //************************ page = product_management
