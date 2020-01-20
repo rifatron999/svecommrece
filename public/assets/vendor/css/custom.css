@@ -62,9 +62,10 @@
 }
 
 .img {
-    width: 485px;
-    height: 250px;
+    width: 280px;
+    height: 230px;
     position: -ms-device-fixed;
+    border: 2px solid #ddd;
 }
 .imgs {
     width: 15%;

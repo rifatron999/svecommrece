@@ -16,7 +16,7 @@ tinymce.init({
     external_plugins: { "filemanager" : "filemanager/plugin.min.js"}
 });
 tinymce.init({
-    selector: 'textarea#basic-example',
+    selector: 'textarea.basic-example',
     height: 250,
     menubar: false,
     plugins: [

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Brand;
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class normalVendorController extends Controller
 
     public function categoryManagementView()
     {
-        $categories = Category::whereNull('parent_id')->paginate(6);
+        $categories = Category::whereNull('parent_id')->paginate(8);
         $parent_id = NULL;
         return view('vendor.category_management.index',compact('categories','parent_id'));
     }
@@ -229,7 +230,58 @@ class normalVendorController extends Controller
     //************************ page = product_management
     public function productManagementView()
     {
-        return view('vendor.product_management.index');
+        $brands = Brand::where('vendor_id',Auth::user()->id)->get();
+        $categories = Category::all();
+        return view('vendor.product_management.index',compact('brands','categories'));
+    }
+    public function productAdd(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'price' => 'required',
+            'status' => 'required',
+            'description' => 'required|max:200',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+        ]);
+        /*$image = $request->file('image');
+        if(!empty($image))
+        {
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $image->move('assets/vendor/images/brands/',$image_name);
+
+            Brand::create([
+                'vendor_id' => Auth::user()->id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => $request->status,
+                'image' => $image_name,
+            ]);
+        }*/
+       /* else
+        {*/
+            Product::create([
+                'category_id' => $request->category_id,
+                'brand_id' => $request->brand_id,
+                'vendor_id' => Auth::user()->id,
+                'name' => $request->name,
+                'specification' => $request->specification,
+                'description' => $request->description,
+                'stock' => $request->stock,
+               /* 'image' => $request->image,*/
+                'price' => $request->price,
+                'offer_price' => $request->offer_price,
+                'offer_percentage' => $request->offer_percentage,
+                'size_capacity' => $request->size_capacity,
+                'model' => $request->model,
+                'color' => $request->color,
+                'status' => $request->status,
+               /* 'slug' => $request->slug,*/
+            ]);
+       /* }*/
+
+        return back()->with('msg','✔ Product Added');
     }
     //************************ page = product_management #
 }
