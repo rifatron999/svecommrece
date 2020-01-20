@@ -49,10 +49,11 @@
                     @csrf
                     <div class="modal-body ">
                         <div class="form-group row">
-                            <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs center-block" alt="" id="image-preview">
-                            {{--<label for="recipient-name" class=" label label-primary">Image</label>--}}
-                            {{--<input name="image" type="file" class="form-control" onchange="previewImage(event)">--}}
-                        </div>{{--1st row--}}
+                                <div class="col-sm-12 form-style" style="min-height: 150px">
+                                    <label  class=" label label-default">Image Preview</label>
+                                    <div id="preview" class="mar-top"></div>
+                                </div>
+                        </div>{{--1 row--}}
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Name</label>
@@ -82,7 +83,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>{{--2nd row--}}
+                        </div>{{--2 row--}}
                         <div class="form-group row">
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Price</label>
@@ -109,7 +110,7 @@
                                 <label  class=" label label-default">Stock</label>
                                 <input name="stock" type="number" class="form-control form-control-sm" value="{{ old('stock') }}" >
                             </div>
-                        </div>{{--3rd row--}}
+                        </div>{{--3 row--}}
                         <div class="form-group row">
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Color</label>
@@ -131,7 +132,13 @@
                                     <option value="Disable" >Distable</option>
                                 </select>
                             </div>
-                        </div>{{--4th row--}}
+                        </div>{{--4 row--}}
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <label  class=" label label-default">Image</label>
+                                <input type='file' id="image-preview" name="image[]" class="form-control" accept=".png, .jpg, .jpeg" multiple  >
+                            </div>
+                        </div>{{--5 row--}}
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Description</label>
@@ -141,12 +148,12 @@
                                 <label  class=" label label-default">Specification</label>
                                 <textarea id="" name="specification" class="form-control basic-example" >{{ old('specification') }}</textarea>
                             </div>
-                        </div>{{--5th row--}}
+                        </div>{{--6 row--}}
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <button type="submit" class="btn btn-success  center-block">+ Add Product</button>
+                                <button type="submit" class="btn btn-success btn-lg center-block">+ Add Product</button>
                             </div>
-                        </div>{{--6th row--}}
+                        </div>{{--7 row--}}
                     </div>
                 </form>
 

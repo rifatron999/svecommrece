@@ -242,25 +242,46 @@ class normalVendorController extends Controller
             'brand_id' => 'required',
             'price' => 'required',
             'status' => 'required',
-            'description' => 'required|max:200',
-            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+            'description' => 'required|max:2000',
+            'specification' => 'max:5000',
+            'image' => 'required',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        /*$image = $request->file('image');
+
+
+        $image = $request->file('image');
         if(!empty($image))
         {
-            $image_name = time().'.'.$image->getClientOriginalExtension();
-            $image->move('assets/vendor/images/brands/',$image_name);
+            foreach ($image as $files)
+            {
+            $image_name = uniqid().'.'.$files->getClientOriginalExtension();
+            $files->move('assets/vendor/images/products/',$image_name);
+            $insert[]['image'] = "$image_name";
+            }
+            $imageEncode = json_encode($insert);
 
-            Brand::create([
+
+            Product::create([
+                'category_id' => $request->category_id,
+                'brand_id' => $request->brand_id,
                 'vendor_id' => Auth::user()->id,
                 'name' => $request->name,
+                'specification' => $request->specification,
                 'description' => $request->description,
+                'stock' => $request->stock,
+                 'image' => $imageEncode,
+                'price' => $request->price,
+                'offer_price' => $request->offer_price,
+                'offer_percentage' => $request->offer_percentage,
+                'size_capacity' => $request->size_capacity,
+                'model' => $request->model,
+                'color' => $request->color,
                 'status' => $request->status,
-                'image' => $image_name,
+
             ]);
-        }*/
-       /* else
-        {*/
+        }
+        else
+        {
             Product::create([
                 'category_id' => $request->category_id,
                 'brand_id' => $request->brand_id,
@@ -279,7 +300,7 @@ class normalVendorController extends Controller
                 'status' => $request->status,
                /* 'slug' => $request->slug,*/
             ]);
-       /* }*/
+        }
 
         return back()->with('msg','✔ Product Added');
     }
