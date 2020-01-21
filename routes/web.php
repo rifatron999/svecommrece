@@ -49,6 +49,10 @@ Route::get('/brand_management/remove/{id}','Vendor\normalVendorController@brandR
 //product management
 Route::get('/product_management','Vendor\normalVendorController@productManagementView')->name('productManagementView');
 Route::post('/product_management','Vendor\normalVendorController@productAdd')->name('productAdd');
+Route::get('/product_management/edit/{id}','Vendor\normalVendorController@productManagementEdit')->name('productManagementEdit');
+Route::post('/product_management/update','Vendor\normalVendorController@productUpdate')->name('productUpdate');
+
+
 
 //product management #
 

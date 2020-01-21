@@ -231,8 +231,10 @@ class normalVendorController extends Controller
     public function productManagementView()
     {
         $brands = Brand::where('vendor_id',Auth::user()->id)->get();
+        $products = Product::where('vendor_id',Auth::user()->id)->paginate(6);
         $categories = Category::all();
-        return view('vendor.product_management.index',compact('brands','categories'));
+
+        return view('vendor.product_management.index',compact('brands','categories','products'));
     }
     public function productAdd(Request $request)
     {
@@ -303,6 +305,89 @@ class normalVendorController extends Controller
         }
 
         return back()->with('msg','✔ Product Added');
+    }
+    public function productManagementEdit($id)
+    {
+        $pid = Crypt::decrypt($id);
+        $product = Product::where('id',$pid)->first();
+        $imgarray = json_decode($product->image);
+        $brands = Brand::where('vendor_id',Auth::user()->id)->get();
+        $categories = Category::all();
+        return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
+    }
+    public function productUpdate(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'price' => 'required',
+            'status' => 'required',
+            'description' => 'required|max:2000',
+            'specification' => 'max:5000',
+            'image' => 'required',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        $image = $request->file('image');
+        $update = Product::find($request->id);
+
+        if(!empty($image))
+        {
+            $imgarray = json_decode($update->image);
+            foreach ($imgarray as $s)
+            {
+                unlink('assets/vendor/images/products/'.$s->image);
+            }
+            foreach ($image as $files)
+            {
+
+                $image_name = uniqid().'.'.$files->getClientOriginalExtension();
+                $files->move('assets/vendor/images/products/',$image_name);
+                $insert[]['image'] = "$image_name";
+            }
+            $imageEncode = json_encode($insert);
+
+            $update->update([
+                'category_id' => $request->category_id,
+                'brand_id' => $request->brand_id,
+                'name' => $request->name,
+                'specification' => $request->specification,
+                'description' => $request->description,
+                'stock' => $request->stock,
+                'image' => $imageEncode,
+                'price' => $request->price,
+                'offer_price' => $request->offer_price,
+                'offer_percentage' => $request->offer_percentage,
+                'size_capacity' => $request->size_capacity,
+                'model' => $request->model,
+                'color' => $request->color,
+                'status' => $request->status,
+            ]);
+
+
+        }
+        else
+        {
+            $update->update([
+                'category_id' => $request->category_id,
+                'brand_id' => $request->brand_id,
+                'name' => $request->name,
+                'specification' => $request->specification,
+                'description' => $request->description,
+                'stock' => $request->stock,
+                'price' => $request->price,
+                'offer_price' => $request->offer_price,
+                'offer_percentage' => $request->offer_percentage,
+                'size_capacity' => $request->size_capacity,
+                'model' => $request->model,
+                'color' => $request->color,
+                'status' => $request->status,
+            ]);
+
+
+        }
+
+        return back()->with('msg','✔ Product Updated');
     }
     //************************ page = product_management #
 }

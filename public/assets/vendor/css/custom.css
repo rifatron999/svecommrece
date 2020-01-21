@@ -71,6 +71,10 @@
     width: 15%;
     position: -ms-device-fixed;
 }
+.imgss {
+    width: 10%;
+    position: -ms-device-fixed;
+}
 /*image hover*/
 .img_hover {
     position: relative;

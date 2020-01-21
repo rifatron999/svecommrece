@@ -1,64 +1,29 @@
 @extends('vendor.master')
-@section('title','Product Management')
+@section('title','Product Edit Edit')
 @section('Product_management','active')
 @section('content')
     <div class="container-fluid">
-         <ul class="nav nav-tabs">
-            <li class="active " ><a data-toggle="tab" href="#Products">Products</a></li>
-            <li class="" ><a data-toggle="tab" href="#Create">Create</a></li>
-        </ul>
-        <div class="tab-content">
-            <div id="Products" class="tab-pane fade in active">
-
-                <div class="row">
-                    <div class="col-md-12 text-center " style="overflow: auto">
-                        <p class="small-heading">My Products </p>
-                        @if($products->count() !== 0 )
-                        @foreach ($products as $s)
-                            <div class="col-md-4 news mb-2 mar-bott">
-                                <div class="head img_hover">
-                                    {{--@if(empty($s->image))--}}
-                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="img" alt="">
-                                    {{--@else
-                                    <img src="{{ asset('assets/vendor/images/brands/') }}/{{$s->image}}" class="img" alt="">
-                                    @endif--}}
-
-                                    <div class="overlay">
-                                        <sub><mark>{{$s->category_id}}</mark></sub>
-                                        <a class="btn btn-default btn-xs" href="{{--{{route('brandRemove',Crypt::encrypt($s->id))}}--}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
-                                        <a class="btn btn-success"  href="{{route('productManagementEdit',Crypt::encrypt($s->id))}}" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <sub><mark>{{$s->status}}</mark></sub>
-                                    </div>
-                                </div>
-                                <div class=" text-center ">
-                                    <h3><b>{{$s->name}}</b></h3>
-                                    <h5><b>{!! $s->price !!}</b></h5>
-                                </div>
-                            </div>
-                        @endforeach
-                        {!! $products->Links() !!}
-                        @else
-                            <h3 >Nothing to show</h3>
-                        @endif
-
-                    </div>
-
-                </div>
-            </div>
-            <div id="Create" class="tab-pane fade in ">
-                <form method="post" enctype="multipart/form-data" action="{{ route('productAdd') }}">
+                <form method="post" enctype="multipart/form-data" action="{{ route('productUpdate') }}">
                     @csrf
                     <div class="modal-body ">
                         <div class="form-group row">
-                                <div class="col-sm-12 " style="min-height: 150px">
-                                    <label  class=" label label-default">Image Preview</label>
-                                    <div id="preview"></div>
-                                </div>
+                            <div class="col-sm-8 " style="min-height: 150px">
+                                <label  class=" label label-default">Selected Image Preview</label>
+                                <div id="preview"></div>
+                            </div>
+                            <div class="col-sm-4 form-style" style="min-height: 150px">
+                                <label  class=" label label-default">Published Images</label>
+                                <p >
+                                    @foreach($imgarray as $s)
+                                        <img src="{{ asset('assets/vendor/images/products/') }}/{{$s->image}}" class="imgss center-block inline-block"  alt="">
+                                    @endforeach
+                                </p>
+                            </div>
                         </div>{{--1 row--}}
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Name</label>
-                                <input name="name" type="text" class="form-control form-control-sm" value="{{ old('name') }}" required>
+                                <input name="name" type="text" class="form-control form-control-sm" value="{{ old('name') }}{{$product->name}}" required>
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Category</label>
@@ -68,7 +33,11 @@
                                             <optgroup label="{{$s->name}}">
                                                 @foreach($categories as $s2)
                                                     @if($s2->parent_id === $s->id)
-                                                        <option value="{{$s2->id}}">{{$s2->name}}</option>
+                                                        @if($product->category_id === $s2->id)
+                                                            <option value="{{$s2->id}}" selected>{{$s2->name}}</option>
+                                                        @else
+                                                            <option value="{{$s2->id}}" >{{$s2->name}}</option>
+                                                        @endif
                                                     @endif
                                                 @endforeach
                                             </optgroup>
@@ -80,7 +49,12 @@
                                 <label  class=" label label-primary">Brand</label>
                                 <select name="brand_id" class="form-control">
                                     @foreach($brands as $s)
-                                        <option value="{{$s->id}}" >{{$s->name}}</option>
+
+                                        @if($product->vendor_id === $s2->id)
+                                            <option value="{{$s->id}}" selected >{{$s->name}}</option>
+                                        @else
+                                            <option value="{{$s->id}}" >{{$s->name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -89,48 +63,52 @@
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Price</label>
                                 <div class="input-group">
-                                    <input name="price" type="number" class="form-control form-control-sm" value="{{ old('price') }}" required>
+                                    <input name="price" type="number" class="form-control form-control-sm" value="{{ old('price') }}{{$product->price}}" required>
                                     <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Offer Price</label>
                                 <div class="input-group">
-                                    <input name="offer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}" >
+                                    <input name="offer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}{{$product->offer_price}}" >
                                     <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Offer Percentage</label>
                                 <div class="input-group">
-                                    <input name="offer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}" >
+                                    <input name="offer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}{{$product->offer_percentage}}" >
                                     <span class="input-group-addon "> <b>%</b></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Stock</label>
-                                <input name="stock" type="number" class="form-control form-control-sm" value="{{ old('stock') }}" >
+                                <input name="stock" type="number" class="form-control form-control-sm" value="{{ old('stock') }}{{$product->stock}}" >
                             </div>
                         </div>{{--3 row--}}
                         <div class="form-group row">
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Color</label>
-                                <input name="color" type="text" class="form-control form-control-sm" value="{{ old('color') }}" >
+                                <input name="color" type="text" class="form-control form-control-sm" value="{{ old('color') }}{{$product->color}}" >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Capacity/Size</label>
-                                <input name="size_capacity" type="text" class="form-control form-control-sm" value="{{ old('size_capacity') }}" >
+                                <input name="size_capacity" type="text" class="form-control form-control-sm" value="{{ old('size_capacity') }}{{$product->size_capacity}}" >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Model</label>
-                                <input name="model" type="text" class="form-control form-control-sm" value="{{ old('model') }}" >
+                                <input name="model" type="text" class="form-control form-control-sm" value="{{ old('model') }}{{$product->model}}" >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Status</label>
                                 <select name="status" class="form-control" title="Select Status">
-                                    <option value="Available" >Available</option>
-                                    <option value="Out of Stock" >Out of Stock</option>
-                                    <option value="Disable" >Distable</option>
+                                    @if($product->status === 'Available')
+                                        <option value="Available" selected >Available</option>
+                                    @elseif($product->status === 'Out of Stock')
+                                        <option value="Out of Stock" >Out of Stock</option>
+                                    @else
+                                        <option value="Disable"  selected>Distable</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>{{--4 row--}}
@@ -143,22 +121,20 @@
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Description</label>
-                                <textarea  name="description" class="form-control basic-example" >{{ old('description') }}</textarea>
+                                <textarea  name="description" class="form-control basic-example" >{{ old('description') }}{{ $product->description }}</textarea>
                             </div>
                             <div class="col-sm-6">
                                 <label  class=" label label-default">Specification</label>
-                                <textarea id="" name="specification" class="form-control basic-example" >{{ old('specification') }}</textarea>
+                                <textarea id="" name="specification" class="form-control basic-example" >{{ old('specification') }}{{ $product->specification }}</textarea>
                             </div>
                         </div>{{--6 row--}}
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <button type="submit" class="btn btn-success btn-lg center-block">+ Add Product</button>
+                                <input name="id" type="text" value="{{$product->id}}" class="form-control form-control-sm" style="display: none">
+                                <button type="submit" class="btn btn-success  center-block"><i class="far fa-edit"></i>  Update</button>
                             </div>
                         </div>{{--7 row--}}
                     </div>
                 </form>
-
-            </div>
-        </div>
     </div>
 @endsection
