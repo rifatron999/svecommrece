@@ -36,7 +36,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label for="message-text" class=" label label-primary">Description</label>
-                                            <textarea id="basic-example" name="description" class="form-control" >{{$brand->description}}</textarea>
+                                            <textarea  name="description" class="form-control basic-example" >{{$brand->description}}</textarea>
                                         </div>
 
                                     </div>

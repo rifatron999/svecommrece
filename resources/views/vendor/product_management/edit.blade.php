@@ -63,22 +63,22 @@
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Price</label>
                                 <div class="input-group">
-                                    <input name="price" type="number" class="form-control form-control-sm" value="{{ old('price') }}{{$product->price}}" required>
-                                    <span class="input-group-addon "> <b>৳</b></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Offer Price</label>
-                                <div class="input-group">
-                                    <input name="offer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}{{$product->offer_price}}" >
+                                    <input name="price" id="pprice" type="number" class="form-control form-control-sm" value="{{ old('price') }}{{$product->price}}" required>
                                     <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Offer Percentage</label>
                                 <div class="input-group">
-                                    <input name="offer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}{{$product->offer_percentage}}" >
+                                    <input name="offer_percentage" id="poffer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}{{$product->offer_percentage}}" onkeyup="percentage_cal()" >
                                     <span class="input-group-addon "> <b>%</b></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <label  class=" label label-default">Offer Price</label>
+                                <div class="input-group">
+                                    <input name="offer_price" id="poffer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}{{$product->offer_price}}" >
+                                    <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -104,10 +104,16 @@
                                 <select name="status" class="form-control" title="Select Status">
                                     @if($product->status === 'Available')
                                         <option value="Available" selected >Available</option>
+                                        <option value="Out of Stock"  >Out of Stock</option>
+                                        <option value="Disable"  >Distable</option>
                                     @elseif($product->status === 'Out of Stock')
-                                        <option value="Out of Stock" >Out of Stock</option>
+                                        <option value="Available"  >Available</option>
+                                        <option value="Out of Stock"  selected>Out of Stock</option>
+                                        <option value="Disable"  >Distable</option>
                                     @else
-                                        <option value="Disable"  selected>Distable</option>
+                                        <option value="Available"  >Available</option>
+                                        <option value="Out of Stock"  >Out of Stock</option>
+                                        <option value="Disable" selected >Distable</option>
                                     @endif
                                 </select>
                             </div>

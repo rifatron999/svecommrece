@@ -24,7 +24,7 @@
                                     @endif
 
                                     <div class="overlay">
-                                        <a class="btn btn-default btn-xs" href="{{route('brandRemove',Crypt::encrypt($s->id))}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-default btn-xs" href="{{route('productRemove',Crypt::encrypt($s->id))}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
                                         <a class="btn btn-success"  href="{{route('brandManagementEdit',Crypt::encrypt($s->id))}}" title="Edit"><i class="fa fa-edit"></i></a>
                                         <sub><mark>{{$s->status}}</mark></sub>
                                     </div>
@@ -44,7 +44,7 @@
 
                 </div>
             </div>
-            <div id="Create" class="tab-pane fade in text-center">
+            <div id="Create" class="tab-pane fade in ">
                 @if($brands->count() === 0 )
                 <form method="post" enctype="multipart/form-data" action="{{ route('brandAdd') }}">
                     @csrf
@@ -72,7 +72,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label for="message-text" class=" label label-primary">Description</label>
-                                            <textarea id="basic-example" name="description" class="form-control" >{{ old('description') }}</textarea>
+                                            <textarea  name="description" class="form-control basic-example" >{{ old('description') }}</textarea>
                                         </div>
 
                                     </div>

@@ -15,13 +15,16 @@
                         <p class="small-heading">My Products </p>
                         @if($products->count() !== 0 )
                         @foreach ($products as $s)
-                            <div class="col-md-4 news mb-2 mar-bott">
+                            <div class="col-md-3 news mb-2 mar-bott">
                                 <div class="head img_hover">
-                                    {{--@if(empty($s->image))--}}
+                                    @if(empty($s->image))
                                     <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="img" alt="">
-                                    {{--@else
-                                    <img src="{{ asset('assets/vendor/images/brands/') }}/{{$s->image}}" class="img" alt="">
-                                    @endif--}}
+                                    @else
+                                        @php
+                                        $imgarray = json_decode($s->image);
+                                        @endphp
+                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" class="img" alt="">
+                                    @endif
 
                                     <div class="overlay">
                                         <sub><mark>{{$s->category_id}}</mark></sub>
@@ -31,8 +34,8 @@
                                     </div>
                                 </div>
                                 <div class=" text-center ">
-                                    <h3><b>{{$s->name}}</b></h3>
-                                    <h5><b>{!! $s->price !!}</b></h5>
+                                    <h4><b>{{$s->name}}</b></h4>
+                                    <h5><b> ৳ {!! $s->price !!}</b></h5>
                                 </div>
                             </div>
                         @endforeach
@@ -89,22 +92,22 @@
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Price</label>
                                 <div class="input-group">
-                                    <input name="price" type="number" class="form-control form-control-sm" value="{{ old('price') }}" required>
-                                    <span class="input-group-addon "> <b>৳</b></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Offer Price</label>
-                                <div class="input-group">
-                                    <input name="offer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}" >
+                                    <input name="price" id="pprice" type="number" class="form-control form-control-sm" value="{{ old('price') }}" required>
                                     <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Offer Percentage</label>
                                 <div class="input-group">
-                                    <input name="offer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}" >
+                                    <input name="offer_percentage" id="poffer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}" onkeyup="percentage_cal()" >
                                     <span class="input-group-addon "> <b>%</b></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <label  class=" label label-default">Offer Price</label>
+                                <div class="input-group">
+                                    <input name="offer_price" id="poffer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}" >
+                                    <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">

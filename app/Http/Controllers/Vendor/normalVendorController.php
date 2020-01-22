@@ -231,7 +231,7 @@ class normalVendorController extends Controller
     public function productManagementView()
     {
         $brands = Brand::where('vendor_id',Auth::user()->id)->get();
-        $products = Product::where('vendor_id',Auth::user()->id)->paginate(6);
+        $products = Product::where('vendor_id',Auth::user()->id)->paginate(8);
         $categories = Category::all();
 
         return view('vendor.product_management.index',compact('brands','categories','products'));
@@ -325,7 +325,6 @@ class normalVendorController extends Controller
             'status' => 'required',
             'description' => 'required|max:2000',
             'specification' => 'max:5000',
-            'image' => 'required',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         $image = $request->file('image');
@@ -363,8 +362,6 @@ class normalVendorController extends Controller
                 'color' => $request->color,
                 'status' => $request->status,
             ]);
-
-
         }
         else
         {
@@ -383,10 +380,7 @@ class normalVendorController extends Controller
                 'color' => $request->color,
                 'status' => $request->status,
             ]);
-
-
         }
-
         return back()->with('msg','✔ Product Updated');
     }
     //************************ page = product_management #

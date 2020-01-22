@@ -76,11 +76,7 @@ $(function() {
     });
 });
 //multiple preview #
-
-
-//image preview #
-
-
+// image preview #
 //page = vendor>category_management
 function setParentId(parent_id)
 {
@@ -95,6 +91,13 @@ function setCatUpdate(id,name,description)
     document.getElementById('cat_update_des').value = description ;
 }
 //page = vendor>category_management#
+//page = vendor>product_management
+function percentage_cal (){
+let price = document.getElementById('pprice').value;
+let offer_percentage = document.getElementById('poffer_percentage').value;
+document.getElementById('poffer_price').value = parseInt(price - (parseInt(offer_percentage) * parseInt(price))/100);
+}
+//page = vendor>product_management#
 
 // admin fac assign from P_C status
 $(document).on('change','.status_check',function()
