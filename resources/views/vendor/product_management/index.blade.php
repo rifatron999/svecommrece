@@ -27,10 +27,11 @@
                                     @endif
 
                                     <div class="overlay">
-                                        <sub><mark>{{$s->category_id}}</mark></sub>
                                         <a class="btn btn-default btn-xs" href="{{--{{route('brandRemove',Crypt::encrypt($s->id))}}--}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
                                         <a class="btn btn-success"  href="{{route('productManagementEdit',Crypt::encrypt($s->id))}}" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <sub><mark>{{$s->status}}</mark></sub>
+                                        <sub><mark>{{$s->status}}</mark></sub><br>
+                                        <sub><mark>{{$s->id}}</mark></sub>
+
                                     </div>
                                 </div>
                                 <div class=" text-center ">
