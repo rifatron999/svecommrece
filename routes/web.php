@@ -10,11 +10,11 @@
 |
 */
 
-Route::get('/', 'pagesController@home')->name('pages.home');
-Route::get('/products', 'pagesController@products')->name('pages.products');
-Route::get('/single_product', 'pagesController@single_product')->name('pages.single_product');
-Route::get('/checkout', 'pagesController@checkout')->name('pages.checkout');
-Route::get('/single', 'pagesController@single')->name('pages.single');
+Route::get('/', 'Userend\pagesController@home')->name('pages.home');
+Route::get('/products', 'Userend\pagesController@products')->name('pages.products');
+Route::get('/single_product', 'Userend\pagesController@single_product')->name('pages.single_product');
+Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
+Route::get('/single', 'Userend\pagesController@single')->name('pages.single');
 
 
 
@@ -64,5 +64,12 @@ Route::get('/product_management/remove/{id}','Vendor\normalVendorController@prod
 
 
 /* ====================================================== Backend #  =================================================================== */
-
+//  cart
+Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
+Route::get('/cart/add/{id}', 'Userend\CartController@addItem')->name('cart.add');
+Route::get('/cart/delete/{rowId}', 'Userend\CartController@deleteItem')->name('cart.delete');
+Route::post('/cart/update', 'Userend\CartController@updateItem')->name('cart.update');
+Route::get('/cart_destroy',function (){
+    Cart::destroy();
+});
 

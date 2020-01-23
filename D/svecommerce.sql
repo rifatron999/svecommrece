@@ -3,7 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Jan 22, 2020 at 07:26 PM
+=======
+<<<<<<< HEAD
+-- Generation Time: Jan 14, 2020 at 05:56 PM
+=======
+-- Generation Time: Jan 20, 2020 at 10:00 AM
+>>>>>>> 7927f0fc597f9e353f384bc5db3b51c404806393
+>>>>>>> master
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -70,6 +78,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`, `image`, `status`, `parent_id`, `slug`, `created_at`, `updated_at`) VALUES
+<<<<<<< HEAD
+(1, 'Men', 'origin Men', NULL, 'Active ', NULL, NULL, NULL, NULL);
+=======
 (1, 'Refrigerators', 'Origin', '1579506730.jpg', 'Active', NULL, NULL, '2020-01-20 01:52:10', '2020-01-20 01:52:10'),
 (2, 'Deep Freezer', 'Deep Freezer', '1579507262.jpg', 'Active', 1, NULL, '2020-01-20 02:01:02', '2020-01-20 02:01:02'),
 (3, 'Inverter Refrigerator', 'Inverter Refrigerator', '1579507418.jpg', 'Active', 1, NULL, '2020-01-20 02:03:38', '2020-01-20 02:03:38'),
@@ -85,6 +96,7 @@ INSERT INTO `categories` (`id`, `name`, `description`, `image`, `status`, `paren
 (13, 'Blender & Grinder', 'origin', '1579510500.jpg', 'Active', NULL, NULL, '2020-01-20 02:55:00', '2020-01-20 02:55:00'),
 (14, 'Blender', 'Blender', '1579510532.jpg', 'Active', 13, NULL, '2020-01-20 02:55:32', '2020-01-20 02:55:32'),
 (15, 'More', 'Origin', '1579510788.jpg', 'Active', NULL, NULL, '2020-01-20 02:57:28', '2020-01-20 02:59:48');
+>>>>>>> 7927f0fc597f9e353f384bc5db3b51c404806393
 
 -- --------------------------------------------------------
 
@@ -105,9 +117,18 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2020_01_11_082929_create_vendors_table', 2),
+<<<<<<< HEAD
+(4, '2020_01_13_132010_create_categories_table', 3);
+=======
 (4, '2020_01_13_132010_create_categories_table', 3),
+<<<<<<< HEAD
 (7, '2020_01_18_155809_create_brands_table', 5),
 (9, '2020_01_18_092922_create_products_table', 6);
+=======
+(5, '2020_01_18_092922_create_products_table', 4),
+(7, '2020_01_18_155809_create_brands_table', 5);
+>>>>>>> 7927f0fc597f9e353f384bc5db3b51c404806393
+>>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -124,6 +145,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `products`
 --
 
@@ -166,6 +188,8 @@ INSERT INTO `products` (`id`, `category_id`, `brand_id`, `vendor_id`, `name`, `s
 -- --------------------------------------------------------
 
 --
+=======
+>>>>>>> master
 -- Table structure for table `vendors`
 --
 
@@ -220,12 +244,6 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `vendors`
 --
 ALTER TABLE `vendors`
@@ -246,19 +264,35 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
+<<<<<<< HEAD
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+=======
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+>>>>>>> 7927f0fc597f9e353f384bc5db3b51c404806393
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+=======
+<<<<<<< HEAD
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+>>>>>>> master
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
+<<<<<<< HEAD
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+=======
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+>>>>>>> 7927f0fc597f9e353f384bc5db3b51c404806393
+>>>>>>> master
 
 --
 -- AUTO_INCREMENT for table `vendors`

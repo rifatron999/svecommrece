@@ -5,7 +5,7 @@
     <link rel="icon" type="image/jpg" href="{{ asset('assets/img/icon/setcolbd1.png') }}"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>E-SHOP HTML Template</title>
+    <title>Nobin Bangladesh</title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">

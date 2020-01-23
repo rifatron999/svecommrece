@@ -1,18 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Userend;
 
+use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class pagesController extends Controller
 {
     public function home()
     {
-        return view('pages.home');
+//        $categories = Category::all();
+        $products = Product::all();
+        return view('pages.home',compact('products'));
+
     }
 
     public function products()
     {
+        $products = Product::all();
         return view('pages.products');
     }
 

@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 
-    <!-- HOME -->
+    <!-- HOME banner -->
     <div id="home">
         <!-- container -->
         <div class="container">
@@ -48,7 +48,7 @@
     </div>
     <!-- /HOME -->
 
-    <!-- section -->
+    <!-- section 3 short poster -->
     <div class="section">
         <!-- container -->
         <div class="container">
@@ -94,7 +94,7 @@
     </div>
     <!-- /section -->
 
-    <!-- section -->
+    <!-- section (deals of the day timer and non timer) -->
     <div class="section">
         <!-- container -->
         <div class="container">
@@ -273,7 +273,7 @@
                 <!-- section title -->
                 <div class="col-md-12">
                     <div class="section-title">
-                        <h2 class="title">Deals Of The Day</h2>
+                        <h2 class="title">Current Products</h2>
                         <div class="pull-right">
                             <div class="product-slick-dots-2 custom-dots">
                             </div>
@@ -321,6 +321,36 @@
                 <div class="col-md-9 col-sm-6 col-xs-6">
                     <div class="row">
                         <div id="product-slick-2" class="product-slick">
+
+
+                            @foreach($products as $product)
+                                <!-- Product Single -->
+                                <div class="product product-single">
+                                    <div class="product-thumb">
+                                        <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                        <img src="{{ asset('assets/img/product06.jpg') }}" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-price">${{ $product->price }}</h3>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o empty"></i>
+                                        </div>
+                                        <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
+                                        <div class="product-btns">
+                                            <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+                                            <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+                                            <a href="{{ route('cart.add',[$product->id]) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Product Single -->
+                            @endforeach
+
+
                             <!-- Product Single -->
                             <div class="product product-single">
                                 <div class="product-thumb">
@@ -439,7 +469,7 @@
     </div>
     <!-- /section -->
 
-    <!-- section -->
+    <!-- section (3 banner) -->
     <div class="section section-grey">
         <!-- container -->
         <div class="container">
@@ -485,7 +515,7 @@
     </div>
     <!-- /section -->
 
-    <!-- section -->
+    <!-- section (latest) -->
     <div class="section">
         <!-- container -->
         <div class="container">
