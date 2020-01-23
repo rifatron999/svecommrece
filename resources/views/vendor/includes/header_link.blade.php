@@ -35,6 +35,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <script src="{{ asset('assets/vendor/js/tinymce/tinymce.min.js') }}"></script>
+    <script src="https://cdn.tiny.cloud/1/jhv2goycu359q9scua0zdy5ec2pj3r2of9bxt2e09o198xnd/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="{{ asset('assets/vendor/js/custom.js') }}"></script>
 
 

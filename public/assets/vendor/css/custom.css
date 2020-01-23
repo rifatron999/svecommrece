@@ -62,21 +62,30 @@
 }
 
 .img {
-    width: 430px;
-    height: 250px;
+    width: 280px;
+    height: 230px;
+    position: -ms-device-fixed;
+    border: 2px solid #ddd;
+}
+.imgs {
+    width: 15%;
+    position: -ms-device-fixed;
+}
+.imgss {
+    width: 10%;
     position: -ms-device-fixed;
 }
 /*image hover*/
 .img_hover {
     position: relative;
-    width: 90%;
+    width: 100%;
 
 }
 .overlay {
     position: absolute;
     bottom: 0;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    /*background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); !* Black see-through *!*/
     color: #A8A5A5;
     width: 100%;
     transition: .5s ease;
