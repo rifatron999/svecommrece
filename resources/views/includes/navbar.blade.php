@@ -7,59 +7,46 @@
             <div class="category-nav show-on-click">
                 <span class="category-header">Categories <i class="fa fa-list"></i></span>
                 <ul class="category-list">
-                    <li class="dropdown side-dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women’s Clothing <i class="fa fa-angle-right"></i></a>
-                        <div class="custom-menu">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <ul class="list-links">
-                                        <li>
-                                            <h3 class="list-links-title">Clothes</h3></li>
-                                        <li><a href="{{ route('pages.single') }}">Pant</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Skirt</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Jacket</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Salwar</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Kameez</a></li>
-                                    </ul>
-                                    <hr class="hidden-md hidden-lg">
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="list-links">
-                                        <li><h3 class="list-links-title">Bag</h3></li>
-                                        <li><a href="{{ route('pages.single') }}">Cross Body</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Shoulder Bag</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Clutches</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Top-Handle Bag</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Bags & Shoes</a></li>
-                                    </ul>
-                                    <hr class="hidden-md hidden-lg">
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="list-links">
-                                        <li>
-                                            <h3 class="list-links-title">Shoes</h3></li>
-                                        <li><a href="{{ route('pages.single') }}">Flat Sandals</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Heels</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Flat Shoes</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Flip Flops</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="row hidden-sm hidden-xs">
-                                <div class="col-md-12">
-                                    <hr>
-                                    <a class="banner banner-1" href="{{ route('pages.single') }}">
-                                        <img src="{{ asset('assets/img/banner05.jpg') }}" alt="">
-                                        <div class="banner-caption text-center">
-                                            <h2 class="white-color">NEW COLLECTION</h2>
-                                            <h3 class="white-color font-weak">HOT DEAL</h3>
+                    <?php $categories = App\Category::all() ?>
+                    @foreach($categories as $catg)
+                        @if($catg->parent_id == null)
+                        <li class="dropdown side-dropdown">
+
+                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{ $catg->name }} <i class="fa fa-angle-right"></i></a>
+
+                                <?php $subCategories = App\Category::where('parent_id',$catg->id)->get() ?>
+
+                                @if(!is_null($subCategories))
+                                        <div class="custom-menu">
+                                            <div class="row">
+                                                <h3 class="list-links-title">Clothes</h3>
+                                                @foreach($subCategories as $subCatg)
+                                                <div class="col-md-4">
+                                                    <ul class="list-links">
+                                                        <li><a href="#">{{ $subCatg->name }}</a></li>
+                                                    </ul>
+                                                    <hr class="hidden-md hidden-lg">
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                            <div class="row hidden-sm hidden-xs">
+                                                <div class="col-md-12">
+                                                    <hr>
+                                                    <a class="banner banner-1" href="{{ route('pages.single') }}">
+                                                        <img src="{{ asset('assets/img/banner05.jpg') }}" alt="">
+                                                        <div class="banner-caption text-center">
+                                                            <h2 class="white-color">NEW COLLECTION</h2>
+                                                            <h3 class="white-color font-weak">HOT DEAL</h3>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="{{ route('pages.single') }}">Men’s Clothing</a></li>
+                                @endif
+                        </li>
+                        @endif
+
+                    @endforeach
                     <li class="dropdown side-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Phones & Devices <i class="fa fa-angle-right"></i></a>
                         <div class="custom-menu">
                             <div class="row">
@@ -114,10 +101,6 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="{{ route('pages.single') }}">Computer & Office</a></li>
-                    <li><a href="{{ route('pages.single') }}">Consumer Electronics</a></li>
-                    <li><a href="{{ route('pages.single') }}">Jewelry & Watches</a></li>
-                    <li><a href="{{ route('pages.single') }}">Bags & Shoes</a></li>
                     <li><a href="{{ route('pages.single') }}">View All</a></li>
                 </ul>
             </div>

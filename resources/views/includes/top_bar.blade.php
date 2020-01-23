@@ -54,11 +54,11 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <div class="header-btns-icon">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span class="qty">3</span>
+                                <span class="qty">{{ Cart::count() }}</span>
                             </div>
                             <strong class="text-uppercase">My Cart:</strong>
                             <br>
-                            <span>35.20$</span>
+                            <span>{{Cart::total()}}</span>
                         </a>
                         <div class="custom-menu">
                             <div id="shopping-cart">
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                                 <div class="shopping-cart-btns">
-                                    <button class="main-btn">View Cart</button>
+                                    <a href="{{ route('cart.index') }}" class="main-btn">View Cart</a>
                                     <button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
                                 </div>
                             </div>
