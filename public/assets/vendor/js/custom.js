@@ -1,5 +1,6 @@
+//tinymce
 tinymce.init({
-    selector: "#textareatiny",
+    selector: "textarea#textareatiny",
     plugins: [
         "advlist autolink link autolink preview image imagetools searchreplace table emoticons lists charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
@@ -14,7 +15,68 @@ tinymce.init({
     filemanager_title:"Responsive Filemanager" ,
     external_plugins: { "filemanager" : "filemanager/plugin.min.js"}
 });
+tinymce.init({
+    selector: 'textarea.basic-example',
+    height: 250,
+    menubar: false,
+    plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste code help wordcount'
+    ],
+    toolbar: 'undo redo | formatselect | ' +
+        ' bold italic backcolor forecolor | alignleft aligncenter ' +
+        ' alignright alignjustify | bullist numlist outdent indent |' +
+        ' removeformat | help',
+    branding: false,
+    content_css: [
+        '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+        '//www.tiny.cloud/css/codepen.min.css'
+    ]
+});
+//tinymce #
+//image preview
+function previewImage(event)
+{
+    var reader = new FileReader();
+    var imageField = document.getElementById("image-preview")
+    reader.onload = function()
+    {
+        if(reader.readyState == 2)
+        {
+            imageField.src = reader.result;
+        }
+    }
+    reader.readAsDataURL(event.target.files[0]);
 
+    document.getElementById("image-field").style.visibility = "visible";
+}
+//multiple preview
+$(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input) {
+        var $preview = $('#preview').empty();
+        if (input.files) {
+            var filesAmount = input.files.length;
+            if (filesAmount <= 6)
+            {
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+                    $(reader).on("load", function () {
+                        $preview.append($("<img/>", {src: this.result, height: 100}));
+                    });
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+            else{alert('Maximum 6 Picture');}
+        }
+    };
+    $('#image-preview').on('change', function() {
+        imagesPreview(this);
+    });
+});
+//multiple preview #
+// image preview #
 //page = vendor>category_management
 function setParentId(parent_id)
 {
@@ -29,6 +91,13 @@ function setCatUpdate(id,name,description)
     document.getElementById('cat_update_des').value = description ;
 }
 //page = vendor>category_management#
+//page = vendor>product_management
+function percentage_cal (){
+let price = document.getElementById('pprice').value;
+let offer_percentage = document.getElementById('poffer_percentage').value;
+document.getElementById('poffer_price').value = parseInt(price - (parseInt(offer_percentage) * parseInt(price))/100);
+}
+//page = vendor>product_management#
 
 // admin fac assign from P_C status
 $(document).on('change','.status_check',function()

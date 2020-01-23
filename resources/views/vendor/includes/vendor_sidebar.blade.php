@@ -2,12 +2,18 @@
     <div id="sidebar"  class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="profile.html"><img style="background: white;" src="{{asset('assets/vendor/images/profile picture/blankprofilepicture.jpg')}}" class="img-circle" width="60"></a></p>
+            <p class="centered"><a href="profile.html"><img style="background: white;" src="{{asset('assets/vendor/images/profile picture/rifat.jpg')}}" class="img-circle" width="60"></a></p>
             <h5 class="centered">{{ Auth::user()->name }}</h5>
             <li class="sub-menu">
                 <a class="@yield('DashBoard')" href="{{route('nvdashboard')}}" >
                     <i class="fa fa-home"></i>
                     <span>DashBoard</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a class="@yield('Profile')" href="{{--{{route('nvdashboard')}}--}}" >
+                    <i class="fa fa-user"></i>
+                    <span>Profile</span>
                 </a>
             </li>
             <li class="sub-menu">
@@ -17,8 +23,14 @@
                 </a>
             </li>
             <li class="sub-menu">
+                <a class="@yield('Brand_management')" href="{{route('brandManagementView')}}" >
+                    <i class="far fa-copyright"></i>
+                    <span>Brand Management</span>
+                </a>
+            </li>
+            <li class="sub-menu">
                 <a class="@yield('Product_management')" href="{{route('productManagementView')}}" >
-                    <i class="fas fa-list-ul"></i>
+                    <i class="fab fa-product-hunt"></i>
                     <span>Product Management</span>
                 </a>
             </li>
