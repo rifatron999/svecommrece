@@ -7,14 +7,14 @@
             <div class="category-nav show-on-click">
                 <span class="category-header">Categories <i class="fa fa-list"></i></span>
                 <ul class="category-list">
-                    <?php $categories = App\Category::all() ?>
+                    @php $categories = App\Category::all() @endphp
                     @foreach($categories as $catg)
                         @if($catg->parent_id == null)
                         <li class="dropdown side-dropdown">
 
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{ $catg->name }} <i class="fa fa-angle-right"></i></a>
 
-                                <?php $subCategories = App\Category::where('parent_id',$catg->id)->get() ?>
+                                @php $subCategories = App\Category::where('parent_id',$catg->id)->get() @endphp
 
                                 @if(!is_null($subCategories))
                                         <div class="custom-menu">
