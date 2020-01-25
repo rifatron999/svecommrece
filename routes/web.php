@@ -66,7 +66,7 @@ Route::get('/product_management/remove/{id}','Vendor\normalVendorController@prod
 
 
 
-//product management #
+//product management ##
 
 
 /* ======== normalVendor #   =================================================================== */
