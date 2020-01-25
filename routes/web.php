@@ -10,12 +10,21 @@
 |
 */
 
+/* ====================================================== Frontend  ============================================================== */
 Route::get('/', 'Userend\pagesController@home')->name('pages.home');
 Route::get('/products', 'Userend\pagesController@products')->name('pages.products');
 Route::get('/single_product/{id}', 'Userend\pagesController@single_product')->name('pages.single_product');
 Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
 Route::get('/single', 'Userend\pagesController@single')->name('pages.single');
 
+//  cart
+Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
+Route::get('/cart/add/{id}', 'Userend\CartController@addItem')->name('cart.add');
+Route::get('/cart/delete/{rowId}', 'Userend\CartController@deleteItem')->name('cart.delete');
+Route::post('/cart/update', 'Userend\CartController@updateItem')->name('cart.update');
+Route::get('/cart_destroy',function (){
+    Cart::destroy();
+});
 
 
 
@@ -23,6 +32,7 @@ Route::get('/react', function (){
     return view('react');
 });
 
+/* ====================================================== Frontend end   ============================================================== */
 /* ====================================================== Backend   =================================================================== */
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -64,12 +74,5 @@ Route::get('/product_management/remove/{id}','Vendor\normalVendorController@prod
 
 
 /* ====================================================== Backend #  =================================================================== */
-//  cart
-Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
-Route::get('/cart/add/{id}', 'Userend\CartController@addItem')->name('cart.add');
-Route::get('/cart/delete/{rowId}', 'Userend\CartController@deleteItem')->name('cart.delete');
-Route::post('/cart/update', 'Userend\CartController@updateItem')->name('cart.update');
-Route::get('/cart_destroy',function (){
-    Cart::destroy();
-});
+
 
