@@ -47,61 +47,7 @@
                         @endif
 
                     @endforeach
-                    <li class="dropdown side-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Phones & Devices <i class="fa fa-angle-right"></i></a>
-                        <div class="custom-menu">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <ul class="list-links">
-                                        <li>
-                                            <h3 class="list-links-title">Mobiles</h3></li>
-                                        <li><a href="{{ route('pages.single') }}">Xiamoni</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Samsung</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Nokia</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Huawei</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Vivo</a></li>
-                                    </ul>
-                                    <hr>
-                                    <ul class="list-links">
-                                        <li>
-                                            <h3 class="list-links-title">Laptop</h3></li>
-                                        <li><a href="{{ route('pages.single') }}">Asus</a></li>
-                                        <li><a href="{{ route('pages.single') }}">HP</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Samsung</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Dell</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Acer</a></li>
-                                    </ul>
-                                    <hr class="hidden-md hidden-lg">
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="list-links">
-                                        <li>
-                                            <h3 class="list-links-title">Gaming Consoles</h3></li>
-                                        <li><a href="{{ route('pages.single') }}">Playstation console</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Playstation games</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Xbox game</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Playstation controller</a></li>
-                                    </ul>
-                                    <hr>
-                                    <ul class="list-links">
-                                        <li>
-                                            <h3 class="list-links-title">Camera & Lenses</h3></li>
-                                        <li><a href="{{ route('pages.single') }}">DSLR Lens</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Smartphone lens</a></li>
-                                        <li><a href="{{ route('pages.single') }}">Lens Accessories</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4 hidden-sm hidden-xs">
-                                    <a class="banner banner-2" href="#">
-                                        <img src="{{ asset('assets/img/banner04.jpg') }}" alt="">
-                                        <div class="banner-caption">
-                                            <h3 class="white-color">NEW<br>COLLECTION</h3>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="{{ route('pages.single') }}">View All</a></li>
+
                 </ul>
             </div>
             <!-- /category nav -->
@@ -203,7 +149,7 @@
                         <ul class="custom-menu">
                             <li><a href="{{ route('pages.home') }}">Home</a></li>
                             <li><a href="{{ route('pages.products') }}">Products</a></li>
-                            <li><a href="{{ route('pages.single_product') }}">Product Details</a></li>
+{{--                            <li><a href="{{ route('pages.single_product') }}">Product Details</a></li>--}}
                             <li><a href="{{ route('pages.checkout') }}">Checkout</a></li>
                         </ul>
                     </li>

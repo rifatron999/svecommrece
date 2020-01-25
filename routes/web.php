@@ -12,7 +12,7 @@
 
 Route::get('/', 'Userend\pagesController@home')->name('pages.home');
 Route::get('/products', 'Userend\pagesController@products')->name('pages.products');
-Route::get('/single_product', 'Userend\pagesController@single_product')->name('pages.single_product');
+Route::get('/single_product/{id}', 'Userend\pagesController@single_product')->name('pages.single_product');
 Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
 Route::get('/single', 'Userend\pagesController@single')->name('pages.single');
 

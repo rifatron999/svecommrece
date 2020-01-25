@@ -39,15 +39,15 @@
                             @foreach($cart_datas as $cart_data)
 
                                 <tr>
-                                    <td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
+                                    <td class="thumb"><img src="{{ asset('assets/vendor/images/products') }}/{{ $cart_data->options->image }}" alt=""></td>
                                     <td class="details">
-                                        <a href="#">{{ $cart_data->name }}</a>
+                                        <a href="{{ route('pages.single_product',[$cart_data->id]) }}">{{ $cart_data->name }}</a>
                                         <ul>
                                             <li><span>Size: {{ $cart_data->options->size }}</span></li>
-                                            <li><span>Color: Camelot</span></li>
+{{--                                            <li><span>Color: Camelot</span></li>--}}
                                         </ul>
                                     </td>
-                                    <td class="price text-center"><strong>{{$cart_data->price}}</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+                                    <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>
                                     <td class="qty text-center">
                                         <form method="post" action="{{ route('cart.update') }}">
                                             {{ @csrf_field() }}

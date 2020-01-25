@@ -20,12 +20,14 @@ class pagesController extends Controller
     public function products()
     {
         $products = Product::all();
-        return view('pages.products');
+        return view('pages.products',compact('products'));
     }
 
-    public function single_product()
+    public function single_product($id)
     {
-        return view('pages.single_product');
+        $product_single = Product::where('id',$id)->get();
+//        dd($product_single);
+        return view('pages.single_product',compact('product_single'));
     }
 
     public function checkout()
