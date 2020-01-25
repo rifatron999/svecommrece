@@ -19,11 +19,11 @@
                                 @if(!is_null($subCategories))
                                         <div class="custom-menu">
                                             <div class="row">
-                                                <h3 class="list-links-title">Clothes</h3>
+                                                <h3 class="list-links-title" style="padding-left: 10px">Sub Categories</h3>
                                                 @foreach($subCategories as $subCatg)
                                                 <div class="col-md-4">
                                                     <ul class="list-links">
-                                                        <li><a href="#">{{ $subCatg->name }}</a></li>
+                                                        <li><a href="{{ route('pages.subCatgProductSearch',[$subCatg->id]) }}">{{ $subCatg->name }}</a></li>
                                                     </ul>
                                                     <hr class="hidden-md hidden-lg">
                                                 </div>
@@ -32,13 +32,13 @@
                                             <div class="row hidden-sm hidden-xs">
                                                 <div class="col-md-12">
                                                     <hr>
-                                                    <a class="banner banner-1" href="{{ route('pages.single') }}">
-                                                        <img src="{{ asset('assets/img/banner05.jpg') }}" alt="">
-                                                        <div class="banner-caption text-center">
-                                                            <h2 class="white-color">NEW COLLECTION</h2>
-                                                            <h3 class="white-color font-weak">HOT DEAL</h3>
-                                                        </div>
-                                                    </a>
+{{--                                                    <a class="banner banner-1" href="{{ route('pages.single') }}">--}}
+{{--                                                        <img src="{{ asset('assets/vendor/images/categories') }}/{{ $subCatg->image }}" alt="">--}}
+{{--                                                        <div class="banner-caption text-center">--}}
+{{--                                                            <h2 class="white-color">NEW COLLECTION</h2>--}}
+{{--                                                            <h3 class="white-color font-weak">HOT DEAL</h3>--}}
+{{--                                                        </div>--}}
+{{--                                                    </a>--}}
                                                 </div>
                                             </div>
                                         </div>

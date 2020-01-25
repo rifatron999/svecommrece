@@ -39,4 +39,10 @@ class pagesController extends Controller
     {
         return view('pages.tshirt');
     }
+
+    public function subCatgProductSearch($id)
+    {
+        $products = Product::where('category_id',$id)->get();
+        return view('pages.products',compact('products'));
+    }
 }

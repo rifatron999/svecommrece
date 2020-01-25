@@ -16,6 +16,7 @@ Route::get('/products', 'Userend\pagesController@products')->name('pages.product
 Route::get('/single_product/{id}', 'Userend\pagesController@single_product')->name('pages.single_product');
 Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
 Route::get('/single', 'Userend\pagesController@single')->name('pages.single');
+Route::get('/subCatgProductSearch/{id}', 'Userend\pagesController@subCatgProductSearch')->name('pages.subCatgProductSearch');
 
 //  cart
 Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
