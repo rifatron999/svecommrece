@@ -438,7 +438,7 @@ textarea.input {
 ===========================================================*/
 
 #navigation {
-  background-color: #aaaaaa;
+  background-color: #f76464;
 }
 
 #navigation .container {
@@ -458,7 +458,7 @@ textarea.input {
   padding: 15px;
   display: block;
   text-transform: uppercase;
-  background: #2bace2;
+  background: #fe0002;
   color: #FFF;
   font-weight: 700;
 }
@@ -754,6 +754,8 @@ textarea.input {
   position: relative;
   margin-top: 15px;
   margin-bottom: 15px;
+  border: 1px solid black;
+  text-align: center;
 }
 
 .banner>img {
@@ -767,6 +769,9 @@ textarea.input {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+    width: 100%;
+    background: #ff0000a6;
+    padding: 5px;
 }
 
 .banner.banner-2 .banner-caption {
@@ -786,7 +791,7 @@ textarea.input {
 ===========================================================*/
 
 #home .home-wrap {
-  margin-left: 270px;
+  /*margin-left: 270px;*/
 }
 
 #home-slick .banner {
@@ -878,6 +883,7 @@ textarea.input {
 
 .product.product-single .product-thumb>img {
   width: 100%;
+  height: 250px;
 }
 
 .product.product-single .product-thumb:after {

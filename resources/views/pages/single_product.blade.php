@@ -63,7 +63,11 @@
 
                                 </div>
                                 <h2 class="product-name">{{ $single->name }}</h2>
-                                <h3 class="product-price">৳ {{ number_format($single->offer_price) }} <del class="product-old-price">৳ {{ number_format($single->price) }}</del></h3>
+                                @if($single->offer_price != null)
+                                    <h3 class="product-price">৳ {{ number_format($single->offer_price) }} <del class="product-old-price">৳ {{ number_format($single->price) }}</del></h3>
+                                @else
+                                    <h3 class="product-price">৳ {{ number_format($single->price) }}</h3>
+                                @endif
                                 @if($single->stock != null)
                                     <p><strong>Availability:</strong> In Stock</p>
                                 @else

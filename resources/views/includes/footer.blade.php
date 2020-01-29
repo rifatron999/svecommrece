@@ -10,7 +10,7 @@
                     <!-- footer logo -->
                     <div class="footer-logo">
                         <a class="logo" href="#">
-                            <img src="{{ asset('assets/img/icon/setcolbd1.png') }}" alt="">
+                            <img src="{{ asset('assets/img/icon/logo.jpg') }}" alt="">
                         </a>
                     </div>
                     <!-- /footer logo -->

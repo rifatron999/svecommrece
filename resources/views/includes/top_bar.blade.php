@@ -8,7 +8,7 @@
                 <!-- Logo -->
                 <div class="header-logo">
                     <a class="logo" href="#">
-                        <img src="{{ asset('assets/img/icon/setcolbd1.png') }}" alt="">
+                        <img src="{{ asset('assets/img/icon/logo.jpg') }}" alt="">
                     </a>
                 </div>
                 <!-- /Logo -->
@@ -17,11 +17,11 @@
                 <div class="header-search">
                     <form>
                         <input class="input search-input" type="text" placeholder="Enter your keyword">
-                        <select class="input search-categories">
-                            <option value="0">All Categories</option>
-                            <option value="1">Men</option>
-                            <option value="1">Women</option>
-                        </select>
+{{--                        <select class="input search-categories">--}}
+{{--                            <option value="0">All Categories</option>--}}
+{{--                            <option value="1">Men</option>--}}
+{{--                            <option value="1">Women</option>--}}
+{{--                        </select>--}}
                         <button class="search-btn"><i class="fa fa-search"></i></button>
                     </form>
                 </div>

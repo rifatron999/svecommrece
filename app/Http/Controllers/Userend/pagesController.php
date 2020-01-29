@@ -11,9 +11,9 @@ class pagesController extends Controller
 {
     public function home()
     {
-//        $categories = Category::all();
+        $categories = Category::where('parent_id',null)->take(6)->get();
         $products = Product::all();
-        return view('pages.home',compact('products'));
+        return view('pages.home',compact('products','categories'));
 
     }
 
@@ -45,4 +45,5 @@ class pagesController extends Controller
         $products = Product::where('category_id',$id)->get();
         return view('pages.products',compact('products'));
     }
+
 }

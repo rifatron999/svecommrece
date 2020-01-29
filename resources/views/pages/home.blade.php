@@ -11,7 +11,7 @@
                 <div id="home-slick">
                     <!-- banner -->
                     <div class="banner banner-1">
-                        <img src="{{ asset('assets/img/banner01.jpg') }}" alt="">
+                        <img src="{{ asset('assets/img/banners/banner1.jpg') }}" alt="">
                         <div class="banner-caption text-center">
                             <h1>Bags sale</h1>
                             <h3 class="white-color font-weak">Up to 50% Discount</h3>
@@ -22,7 +22,7 @@
 
                     <!-- banner -->
                     <div class="banner banner-1">
-                        <img src="{{ asset('assets/img/banner02.jpg') }}" alt="">
+                        <img src="{{ asset('assets/img/banners/banner2.jpg') }}" alt="">
                         <div class="banner-caption">
                             <h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span></h1>
                             <button class="primary-btn">Shop Now</button>
@@ -32,7 +32,7 @@
 
                     <!-- banner -->
                     <div class="banner banner-1">
-                        <img src="{{ asset('assets/img/banner03.jpg') }}" alt="">
+                        <img src="{{ asset('assets/img/banners/banner2.jpg') }}" alt="">
                         <div class="banner-caption">
                             <h1 class="white-color">New Product <span>Collection</span></h1>
                             <button class="primary-btn">Shop Now</button>
@@ -54,38 +54,19 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-                <!-- banner -->
-                <div class="col-md-4 col-sm-6">
-                    <a class="banner banner-1" href="#">
-                        <img src="{{ asset('assets/img/banner10.jpg') }}" alt="">
-                        <div class="banner-caption text-center">
-                            <h2 class="white-color">NEW COLLECTION</h2>
-                        </div>
-                    </a>
-                </div>
-                <!-- /banner -->
+                @foreach($categories as $category)
+                    <!-- banner -->
+                        <div class="col-md-4 col-sm-6">
+                        <a class="banner banner-1" href="#">
+                            <img style="width: 200px;height: 200px" src="{{ asset('assets/vendor/images/categories') }}/{{ $category->image }}" alt="">
+                            <div class="banner-caption text-center">
+                                <h2 class="white-color">{{ $category->name }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- /banner -->
+                @endforeach
 
-                <!-- banner -->
-                <div class="col-md-4 col-sm-6">
-                    <a class="banner banner-1" href="#">
-                        <img src="{{ asset('assets/img/banner11.jpg') }}" alt="">
-                        <div class="banner-caption text-center">
-                            <h2 class="white-color">NEW COLLECTION</h2>
-                        </div>
-                    </a>
-                </div>
-                <!-- /banner -->
-
-                <!-- banner -->
-                <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3">
-                    <a class="banner banner-1" href="#">
-                        <img src="{{ asset('assets/img/banner12.jpg') }}" alt="">
-                        <div class="banner-caption text-center">
-                            <h2 class="white-color">NEW COLLECTION</h2>
-                        </div>
-                    </a>
-                </div>
-                <!-- /banner -->
 
             </div>
             <!-- /row -->

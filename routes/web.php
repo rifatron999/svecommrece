@@ -10,8 +10,14 @@
 |
 */
 
+/* ======================================== Website  ================================================ */
+Route::get('/','website\websiteController@index')->name('website.home');
+Route::get('/about_us','website\websiteController@about')->name('website.about');
+Route::get('/offers','website\websiteController@offers')->name('website.offers');
+Route::get('/contact_us','website\websiteController@contact_us')->name('website.contact');
+/* ====================================== Website end  ============================================== */
 /* ====================================================== Frontend  ============================================================== */
-Route::get('/', 'Userend\pagesController@home')->name('pages.home');
+Route::get('/ecommerce', 'Userend\pagesController@home')->name('pages.home');
 Route::get('/products', 'Userend\pagesController@products')->name('pages.products');
 Route::get('/single_product/{id}', 'Userend\pagesController@single_product')->name('pages.single_product');
 Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
@@ -67,7 +73,7 @@ Route::get('/product_management/remove/{id}','Vendor\normalVendorController@prod
 
 
 
-//product management #
+//product management ##
 
 
 /* ======== normalVendor #   =================================================================== */
