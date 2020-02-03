@@ -14,11 +14,11 @@
                                         <div class="col-sm-6">
                                             <label for="recipient-name" class=" label label-primary">Name</label>
                                             <input name="name" type="text" value="{{$brand->name}}" class="form-control form-control-sm" required>
-                                            <input name="id" type="text" value="{{$brand->id}}" class="form-control form-control-sm" style="display: none">
+                                            <input name="id" type="text" value="{{$brand->id}}" class="form-control form-control-sm" style="display: none" >
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="recipient-name" class=" label label-primary">Image</label>
-                                            <input name="image" type="file" class="form-control" onchange="previewImage(event)">
+                                            <input name="image" type="file" class="form-control" onchange="previewImage(event)" >
                                         </div>
                                         <div class="col-sm-2">
                                             <label for="recipient-name" class=" label label-primary">Status</label>

@@ -9,7 +9,8 @@
 
 <!--common script for all pages-->
 <script src="{{ asset('assets/vendor/js/common-scripts.js') }}"></script>
-
+<script type="text/javascript" src="{{ asset('assets/vendor/js/gritter/js/jquery.gritter.js') }}"></script> {{--gritter--}}
+<script type="text/javascript" src="{{ asset('assets/vendor/js/gritter-conf.js') }}"></script> {{--gritter--}}
 
 
 <!--script for this page-->

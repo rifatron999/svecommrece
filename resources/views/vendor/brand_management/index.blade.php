@@ -59,7 +59,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="recipient-name" class=" label label-primary">Image</label>
-                                            <input name="image" type="file" class="form-control" onchange="previewImage(event)">
+                                            <input name="image" type="file" class="form-control" onchange="previewImage(event)" onclick="gritter_custom('image upload','Select good resolution images','The image you are going to select should be greater than 700X700 pixels for better quality ')">
                                         </div>
                                         <div class="col-sm-2">
                                             <label for="recipient-name" class=" label label-primary">Status</label>

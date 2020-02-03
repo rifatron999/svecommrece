@@ -24,6 +24,10 @@ Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkou
 Route::get('/single', 'Userend\pagesController@single')->name('pages.single');
 Route::get('/subCatgProductSearch/{id}', 'Userend\pagesController@subCatgProductSearch')->name('pages.subCatgProductSearch');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> rifat01
 //  cart
 Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
 Route::get('/cart/add/{id}', 'Userend\CartController@addItem')->name('cart.add');
