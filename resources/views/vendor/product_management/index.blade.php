@@ -5,7 +5,8 @@
     <div class="container-fluid">
          <ul class="nav nav-tabs">
             <li class="active " ><a data-toggle="tab" href="#Products">Products</a></li>
-            <li class="" ><a data-toggle="tab" href="#Create">Create</a></li>
+            <li class="" ><a  data-toggle="tab" href="#Create"  >Create</a> </li>
+
         </ul>
         <div class="tab-content">
             <div id="Products" class="tab-pane fade in active">
@@ -49,10 +50,10 @@
 
                 </div>
             </div>
-            <div id="Create" class="tab-pane fade in ">
+            <div id="Create" class="tab-pane fade in " >
                 <form method="post" enctype="multipart/form-data" action="{{ route('productAdd') }}">
                     @csrf
-                    <div class="modal-body ">
+                    <div class="modal-body " >
                         <div class="form-group row">
                                 <div class="col-sm-12 " style="min-height: 150px">
                                     <label  class=" label label-default">Image Preview</label>
@@ -62,7 +63,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Name</label>
-                                <input name="name" type="text" class="form-control form-control-sm" value="{{ old('name') }}" required>
+                                <input name="name" type="text" class="form-control form-control-sm" value="{{ old('name') }}" required >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Category</label>
@@ -141,7 +142,7 @@
                         <div class="form-group row">
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Image</label>
-                                <input type='file' id="image-preview" name="image[]" class="form-control" accept=".png, .jpg, .jpeg" multiple title="Choose Image"  >
+                                <input type='file' id="image-preview" name="image[]" class="form-control" accept=".png, .jpg, .jpeg" multiple title="Choose Image" onclick="gritter_custom('image upload','Select good resolution images','The image you are going to select should be greater than 700X700 pixels for better quality ')"  >
                             </div>
                         </div>{{--5 row--}}
                         <div class="form-group row">
@@ -161,7 +162,6 @@
                         </div>{{--7 row--}}
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

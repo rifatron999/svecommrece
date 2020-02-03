@@ -17,6 +17,14 @@ Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkou
 Route::get('/single', 'Userend\pagesController@single')->name('pages.single');
 
 
+//  cart
+Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
+Route::get('/cart/add/{id}', 'Userend\CartController@addItem')->name('cart.add');
+Route::get('/cart/delete/{rowId}', 'Userend\CartController@deleteItem')->name('cart.delete');
+Route::post('/cart/update', 'Userend\CartController@updateItem')->name('cart.update');
+Route::get('/cart_destroy',function (){
+    Cart::destroy();
+});
 
 
 Route::get('/react', function (){
@@ -64,12 +72,5 @@ Route::get('/product_management/remove/{id}','Vendor\normalVendorController@prod
 
 
 /* ====================================================== Backend #  =================================================================== */
-//  cart
-Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
-Route::get('/cart/add/{id}', 'Userend\CartController@addItem')->name('cart.add');
-Route::get('/cart/delete/{rowId}', 'Userend\CartController@deleteItem')->name('cart.delete');
-Route::post('/cart/update', 'Userend\CartController@updateItem')->name('cart.update');
-Route::get('/cart_destroy',function (){
-    Cart::destroy();
-});
+
 

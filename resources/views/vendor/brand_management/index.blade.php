@@ -24,7 +24,7 @@
                                     @endif
 
                                     <div class="overlay">
-                                        <a class="btn btn-default btn-xs" href="{{route('productRemove',Crypt::encrypt($s->id))}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-default btn-xs" href="{{route('brandRemove',Crypt::encrypt($s->id))}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
                                         <a class="btn btn-success"  href="{{route('brandManagementEdit',Crypt::encrypt($s->id))}}" title="Edit"><i class="fa fa-edit"></i></a>
                                         <sub><mark>{{$s->status}}</mark></sub>
                                     </div>
@@ -59,7 +59,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="recipient-name" class=" label label-primary">Image</label>
-                                            <input name="image" type="file" class="form-control" onchange="previewImage(event)">
+                                            <input name="image" type="file" class="form-control" onchange="previewImage(event)" onclick="gritter_custom('image upload','Select good resolution images','The image you are going to select should be greater than 700X700 pixels for better quality ')">
                                         </div>
                                         <div class="col-sm-2">
                                             <label for="recipient-name" class=" label label-primary">Status</label>
