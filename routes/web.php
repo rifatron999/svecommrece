@@ -34,7 +34,6 @@ Route::get('/cart_destroy',function (){
 });
 
 
-
 Route::get('/react', function (){
     return view('react');
 });
