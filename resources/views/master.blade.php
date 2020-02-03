@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     @include('includes.header_link')
-<body>
+    <body>
+    <div id="loader" class="center"><img src="{{ asset('assets/img/icon/loading.gif') }}" alt=""></div>
     @include('includes.top_bar')
     @include('includes.navbar')
 
@@ -9,6 +10,15 @@
     @include('includes.footer')
     @include('includes.footer_link')
     <script>
+        document.onreadystatechange = function() {
+            if (document.readyState !== "complete") {
+                document.querySelector("#loader").style.visibility = "visible";
+                document.querySelector("body").style.visibility = "hidden";
+            } else {
+                document.querySelector("#loader").style.display = "none";
+                document.querySelector("body").style.visibility = "visible";
+            }
+        };
         $(document).ready(function () {
             $("#addCart").click(function () {
                 var price = $(".product-price").text();

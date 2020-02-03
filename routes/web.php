@@ -10,19 +10,35 @@
 |
 */
 
-Route::get('/', 'Userend\pagesController@home')->name('pages.home');
+/* ======================================== Website  ================================================ */
+Route::get('/','website\websiteController@index')->name('website.home');
+Route::get('/about_us','website\websiteController@about')->name('website.about');
+Route::get('/offers','website\websiteController@offers')->name('website.offers');
+Route::get('/contact_us','website\websiteController@contact_us')->name('website.contact');
+/* ====================================== Website end  ============================================== */
+/* ====================================================== Frontend  ============================================================== */
+Route::get('/ecommerce', 'Userend\pagesController@home')->name('pages.home');
 Route::get('/products', 'Userend\pagesController@products')->name('pages.products');
-Route::get('/single_product', 'Userend\pagesController@single_product')->name('pages.single_product');
+Route::get('/single_product/{id}', 'Userend\pagesController@single_product')->name('pages.single_product');
 Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
 Route::get('/single', 'Userend\pagesController@single')->name('pages.single');
+Route::get('/subCatgProductSearch/{id}', 'Userend\pagesController@subCatgProductSearch')->name('pages.subCatgProductSearch');
 
-
+//  cart
+Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
+Route::get('/cart/add/{id}', 'Userend\CartController@addItem')->name('cart.add');
+Route::get('/cart/delete/{rowId}', 'Userend\CartController@deleteItem')->name('cart.delete');
+Route::post('/cart/update', 'Userend\CartController@updateItem')->name('cart.update');
+Route::get('/cart_destroy',function (){
+    Cart::destroy();
+});
 
 
 Route::get('/react', function (){
     return view('react');
 });
 
+/* ====================================================== Frontend end   ============================================================== */
 /* ====================================================== Backend   =================================================================== */
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
@@ -56,7 +72,7 @@ Route::get('/product_management/remove/{id}','Vendor\normalVendorController@prod
 
 
 
-//product management #
+//product management ##
 
 
 /* ======== normalVendor #   =================================================================== */
@@ -64,12 +80,5 @@ Route::get('/product_management/remove/{id}','Vendor\normalVendorController@prod
 
 
 /* ====================================================== Backend #  =================================================================== */
-//  cart
-Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
-Route::get('/cart/add/{id}', 'Userend\CartController@addItem')->name('cart.add');
-Route::get('/cart/delete/{rowId}', 'Userend\CartController@deleteItem')->name('cart.delete');
-Route::post('/cart/update', 'Userend\CartController@updateItem')->name('cart.update');
-Route::get('/cart_destroy',function (){
-    Cart::destroy();
-});
+
 

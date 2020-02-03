@@ -16,7 +16,15 @@ class CartController extends Controller
     }
     public function addItem($id){
         $pro = Product::find($id);
-        Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 550, 'options' => ['size' => $pro->size]]);
+
+        $imgarray = json_decode($pro->image);
+
+        if ($pro->offer_price != null){
+            Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->offer_price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image ]]);
+        }
+        else{
+            Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image ]]);
+        }
         return back();
     }
     public function deleteItem($rowId){

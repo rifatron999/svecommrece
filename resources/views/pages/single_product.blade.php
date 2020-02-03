@@ -13,220 +13,108 @@
     </div>
     <!-- /BREADCRUMB -->
 
-    <!-- section -->
-    <div class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <!--  Product Details -->
-                <div class="product product-details clearfix">
-                    <div class="col-md-6">
-                        <div id="product-main-view">
-                            <div class="product-view">
-                                <img src="{{ asset('assets/img/main-product01.jpg') }}" alt="">
+    @foreach($product_single as $single)
+        <!-- section -->
+        <div class="section">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <!--  Product Details -->
+                    <div class="product product-details clearfix">
+                        <div class="col-md-6">
+                            <div id="product-main-view">
+                                @php
+                                    $images = json_decode($single->image);
+                                @endphp
+                                @for($i = 0; $i < count($images) ; $i++)
+                                    <div class="product-view">
+                                        <img src="{{ asset('assets/vendor/images/products') }}/{{$images[$i]->image}}" alt="">
+                                    </div>
+                                @endfor
                             </div>
-                            <div class="product-view">
-                                <img src="{{ asset('assets/img/main-product02.jpg') }}" alt="">
-                            </div>
-                            <div class="product-view">
-                                <img src="{{ asset('assets/img/main-product03.jpg') }}" alt="">
-                            </div>
-                            <div class="product-view">
-                                <img src="{{ asset('assets/img/main-product04.jpg') }}" alt="">
-                            </div>
-                        </div>
-                        <div id="product-view">
-                            <div class="product-view">
-                                <img src="{{ asset('assets/img/thumb-product01.jpg') }}" alt="">
-                            </div>
-                            <div class="product-view">
-                                <img src="{{ asset('assets/img/thumb-product02.jpg') }}" alt="">
-                            </div>
-                            <div class="product-view">
-                                <img src="{{ asset('assets/img/thumb-product03.jpg') }}" alt="">
-                            </div>
-                            <div class="product-view">
-                                <img src="{{ asset('assets/img/thumb-product04.jpg') }}" alt="">
+                            <div id="product-view">
+                                @php
+                                    $images = json_decode($single->image);
+                                @endphp
+                                @for($i = 0; $i < count($images) ; $i++)
+                                    <div class="product-view">
+                                        <img src="{{ asset('assets/vendor/images/products') }}/{{$images[$i]->image}}" alt="">
+                                    </div>
+                                @endfor
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="product-body">
-                            <div class="product-label">
-                                <span>New</span>
-                                <span class="sale">-20%</span>
-                            </div>
-                            <h2 class="product-name">Product Name Goes Here</h2>
-                            <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                            <div>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o empty"></i>
+                        <div class="col-md-6">
+                            <div class="product-body">
+                                <div class="product-label">
+                                    @php
+                                        date_default_timezone_set("Asia/Dhaka");
+                                        $now = time(); // or your date as well
+                                        $your_date = strtotime( $single->created_at );
+                                        $datediff = $now - $your_date;
+                                        $days_left = round($datediff / (60 * 60 * 24));
+                                    @endphp
+                                    @if($days_left <= 30)
+                                        <span>New</span>
+                                    @endif
+                                    @if($single->offer_percentage != 0)
+                                        <span class="sale">{{$single->offer_percentage}}%</span>
+                                    @endif
+
                                 </div>
-                                <a href="#">3 Review(s) / Add Review</a>
+                                <h2 class="product-name">{{ $single->name }}</h2>
+                                @if($single->offer_price != null)
+                                    <h3 class="product-price">৳ {{ number_format($single->offer_price) }} <del class="product-old-price">৳ {{ number_format($single->price) }}</del></h3>
+                                @else
+                                    <h3 class="product-price">৳ {{ number_format($single->price) }}</h3>
+                                @endif
+                                @if($single->stock != null)
+                                    <p><strong>Availability:</strong> In Stock</p>
+                                @else
+                                    <p style="color: red"><strong>Availability:</strong> Out of Stock</p>
+                                @endif
+
+                                <p><strong>Brand:</strong> {{ $single->brands->name }}</p>
+                                <p>{!! $single->description !!}</p>
+
+
+                                <div class="product-btns">
+                                    @if($single->stock != null)
+                                        <a href="{{ route('cart.add',[$single->id]) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                    @else
+                                        <button class="primary-btn" style="background: #d43f3a;"><i class="fa fa-window-close"></i> Out Of Stock </button>
+                                    @endif
+
+                                </div>
                             </div>
-                            <p><strong>Availability:</strong> In Stock</p>
-                            <p><strong>Brand:</strong> E-SHOP</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <div class="product-options">
-                                <ul class="size-option">
-                                    <li><span class="text-uppercase">Size:</span></li>
-                                    <li class="active"><a href="#">S</a></li>
-                                    <li><a href="#">XL</a></li>
-                                    <li><a href="#">SL</a></li>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="product-tab">
+                                <ul class="tab-nav">
+                                    <li class="active"><a data-toggle="tab" href="#tab1">Specification</a></li>
+                                    <li><a data-toggle="tab" href="#tab2">Description</a></li>
                                 </ul>
-                                <ul class="color-option">
-                                    <li><span class="text-uppercase">Color:</span></li>
-                                    <li class="active"><a href="#" style="background-color:#475984;"></a></li>
-                                    <li><a href="#" style="background-color:#8A2454;"></a></li>
-                                    <li><a href="#" style="background-color:#BF6989;"></a></li>
-                                    <li><a href="#" style="background-color:#9A54D8;"></a></li>
-                                </ul>
-                            </div>
-
-                            <div class="product-btns">
-                                <div class="qty-input">
-                                    <span class="text-uppercase">QTY: </span>
-                                    <input class="input" type="number">
-                                </div>
-                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                <div class="pull-right">
-                                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                    <button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="product-tab">
-                            <ul class="tab-nav">
-                                <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Details</a></li>
-                                <li><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div id="tab1" class="tab-pane fade in active">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div id="tab2" class="tab-pane fade in">
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="product-reviews">
-                                                <div class="single-review">
-                                                    <div class="review-heading">
-                                                        <div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-                                                        <div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
-                                                        <div class="review-rating pull-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o empty"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="review-body">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
-                                                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="single-review">
-                                                    <div class="review-heading">
-                                                        <div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-                                                        <div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
-                                                        <div class="review-rating pull-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o empty"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="review-body">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
-                                                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="single-review">
-                                                    <div class="review-heading">
-                                                        <div><a href="#"><i class="fa fa-user-o"></i> John</a></div>
-                                                        <div><a href="#"><i class="fa fa-clock-o"></i> 27 DEC 2017 / 8:0 PM</a></div>
-                                                        <div class="review-rating pull-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o empty"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="review-body">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute
-                                                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                                    </div>
-                                                </div>
-
-                                                <ul class="reviews-pages">
-                                                    <li class="active">1</li>
-                                                    <li><a href="#">2</a></li>
-                                                    <li><a href="#">3</a></li>
-                                                    <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h4 class="text-uppercase">Write Your Review</h4>
-                                            <p>Your email address will not be published.</p>
-                                            <form class="review-form">
-                                                <div class="form-group">
-                                                    <input class="input" type="text" placeholder="Your Name" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <input class="input" type="email" placeholder="Email Address" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <textarea class="input" placeholder="Your review"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-rating">
-                                                        <strong class="text-uppercase">Your Rating: </strong>
-                                                        <div class="stars">
-                                                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label>
-                                                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4"></label>
-                                                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
-                                                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
-                                                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button class="primary-btn">Submit</button>
-                                            </form>
-                                        </div>
+                                <div class="tab-content">
+                                    <div id="tab1" class="tab-pane fade in active">
+                                        {!! $single->specification !!}
+                                    </div>
+                                    <div id="tab2" class="tab-pane fade in ">
+                                        {!! $single->description !!}
                                     </div>
 
-
-
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
+                    <!-- /Product Details -->
                 </div>
-                <!-- /Product Details -->
+                <!-- /row -->
             </div>
-            <!-- /row -->
+            <!-- /container -->
         </div>
-        <!-- /container -->
-    </div>
-    <!-- /section -->
+        <!-- /section -->
+    @endforeach
 
     <!-- section -->
     <div class="section">

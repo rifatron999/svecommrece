@@ -11,21 +11,23 @@ class pagesController extends Controller
 {
     public function home()
     {
-//        $categories = Category::all();
+        $categories = Category::where('parent_id',null)->take(6)->get();
         $products = Product::all();
-        return view('pages.home',compact('products'));
+        return view('pages.home',compact('products','categories'));
 
     }
 
     public function products()
     {
         $products = Product::all();
-        return view('pages.products');
+        return view('pages.products',compact('products'));
     }
 
-    public function single_product()
+    public function single_product($id)
     {
-        return view('pages.single_product');
+        $product_single = Product::where('id',$id)->get();
+//        dd($product_single);
+        return view('pages.single_product',compact('product_single'));
     }
 
     public function checkout()
@@ -37,4 +39,11 @@ class pagesController extends Controller
     {
         return view('pages.tshirt');
     }
+
+    public function subCatgProductSearch($id)
+    {
+        $products = Product::where('category_id',$id)->get();
+        return view('pages.products',compact('products'));
+    }
+
 }
