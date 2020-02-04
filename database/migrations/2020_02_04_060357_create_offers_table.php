@@ -22,6 +22,7 @@ class CreateOffersTable extends Migration
             $table->longText('free_product_ids')->nullable();
             $table->string('image')->nullable();
             $table->date('enddate')->nullable();
+            $table->string('status')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();
         });

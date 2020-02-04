@@ -9,39 +9,36 @@
 
         </ul>
         <div class="tab-content">
-            {{--<div id="Products" class="tab-pane fade in active">
+            <div id="Products" class="tab-pane fade in active">
 
                 <div class="row">
                     <div class="col-md-12 text-center " style="overflow: auto">
                         <p class="small-heading">Current Offers </p>
-                        @if($products->count() !== 0 )
-                        @foreach ($products as $s)
+                        @if($offers->count() !== 0 )
+                        @foreach ($offers as $s)
                             <div class="col-md-3 news mb-2 mar-bott">
                                 <div class="head img_hover">
                                     @if(empty($s->image))
                                     <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="img" alt="">
                                     @else
-                                        @php
-                                        $imgarray = json_decode($s->image);
-                                        @endphp
-                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" class="img" alt="">
+                                        <img src="{{ asset('assets/vendor/images/offers/') }}/{{$s->image}}" class="img" alt="">
                                     @endif
 
                                     <div class="overlay">
-                                        <a class="btn btn-default btn-xs" href="{{route('brandRemove',Crypt::encrypt($s->id))}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
-                                        <a class="btn btn-success"  href="{{route('productManagementEdit',Crypt::encrypt($s->id))}}" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-default btn-xs" href="{{--{{route('brandRemove',Crypt::encrypt($s->id))}}--}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-success"  href="{{--{{route('productManagementEdit',Crypt::encrypt($s->id))}}--}}" title="Edit"><i class="fa fa-edit"></i></a>
                                         <sub><mark>{{$s->status}}</mark></sub><br>
-                                        <sub><b><mark style="background-color: black;color: white;">{{$s->categories->name}}</mark></b></sub>
+                                        <sub><b><mark style="background-color: black;color: white;">{{$s->enddate}}</mark></b></sub>
 
                                     </div>
                                 </div>
                                 <div class=" text-center ">
-                                    <h4><b>{{$s->name}}</b></h4>
-                                    <h5><b> ৳ {!! $s->price !!}</b></h5>
+                                    <h4><b>{{$s->title}}</b></h4>
+                                    <h5><b>  {{ $s->type }}</b></h5>
                                 </div>
                             </div>
                         @endforeach
-                        {!! $products->Links() !!}
+                        {!! $offers->Links() !!}
                         @else
                             <h3 >Nothing to show</h3>
                         @endif
@@ -49,9 +46,9 @@
                     </div>
 
                 </div>
-            </div>--}}
+            </div>
             <div id="Create" class="tab-pane fade in " >
-                <form method="post" enctype="multipart/form-data" action="{{--{{ route('productAdd') }}--}}">
+                <form method="post" enctype="multipart/form-data" action="{{ route('offerAdd') }}">
                     @csrf
                     <div class="modal-body " >
                         <div class="form-group row">
@@ -92,7 +89,7 @@
                             <div class="col-sm-3" id="offer_percentage_type" style="display:none;">
                                 <label  class=" label label-primary">Offer Percentage</label>
                                 <div class="input-group">
-                                    <input name="offer_percentage"   type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}"  >
+                                    <input name="offer_percentage" id="offer_percentage"   type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}"  >
                                     <span class="input-group-addon "> <b>%</b></span>
                                 </div>
                             </div>
@@ -183,7 +180,7 @@
                                     @foreach($products as $s)
                                         <tr>
                                             <td class="text-center">
-                                                <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}">
+                                                <input class="form-check-input form-inline"  type='radio' name='free_product_ids' id="inlineCheckbox1" value="{{$s->id}}">
                                                 @if(empty($s->image))
                                                     <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
                                                 @else

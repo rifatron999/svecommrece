@@ -122,10 +122,16 @@ $(document).on('change','#offer_type',function()
     if(offer_type.value == 'Buy one get one'){
         free_product_type.style.display = 'block';
         offer_percentage_type.style.display = 'none';
+        document.getElementById('offer_percentage').value = '';
     }
     if(offer_type.value == 'Discount'){
         free_product_type.style.display = 'none';
         offer_percentage_type.style.display = 'block';
+        var items = document.getElementsByName('free_product_ids');
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].type == 'radio')
+                items[i].checked = false;
+        }
     }
 });
 //page = vendor>offer_management#
