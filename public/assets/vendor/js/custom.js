@@ -113,38 +113,26 @@ let offer_percentage = document.getElementById('poffer_percentage').value;
 document.getElementById('poffer_price').value = parseInt(price - (parseInt(offer_percentage) * parseInt(price))/100);
 }
 //page = vendor>product_management#
+//page = vendor>offer_management
+$(document).on('change','#offer_type',function()
+{
+    let offer_type = document.getElementById('offer_type');
+    let free_product_type = document.getElementById('free_product_type');
+    let offer_percentage_type = document.getElementById('offer_percentage_type');
+    if(offer_type.value == 'Buy one get one'){
+        free_product_type.style.display = 'block';
+        offer_percentage_type.style.display = 'none';
+    }
+    if(offer_type.value == 'Discount'){
+        free_product_type.style.display = 'none';
+        offer_percentage_type.style.display = 'block';
+    }
+});
+//page = vendor>offer_management#
 
 // admin fac assign from P_C status
-$(document).on('change','.status_check',function()
-{
-    let status_check = document.getElementById('status_check');
-    let fac = document.getElementById('fac');
-    let schedule = document.getElementById('schedule');
-    if(status_check.value == 'Upcoming'){
-        fac.style.display = 'block';
-        schedule.style.display = 'block';
-    }
-    if(status_check.value == 'Published'){
-        fac.style.display = 'none';
-        schedule.style.display = 'none';
-    }
-});
-// admin fac assign from P_C status #
 
-$(document).on('change','.status_check2',function()
-{
-    let status_check2 = document.getElementById('status_check2');
-    let fac2 = document.getElementById('fac2');
-    let schedule2 = document.getElementById('schedule2');
-    if(status_check2.value == 'Upcoming'){
-        fac2.style.display = 'block';
-        schedule2.style.display = 'block';
-    }
-    if(status_check2.value == 'Published'){
-        fac2.style.display = 'none';
-        schedule2.style.display = 'none';
-    }
-});
+// admin fac assign from P_C status #
 //faculty note / assignment upload
 $(document).on('change','#slide_type',function()
 {

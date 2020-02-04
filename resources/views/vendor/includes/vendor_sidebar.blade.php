@@ -19,19 +19,25 @@
             <li class="sub-menu">
                 <a class="@yield('Category_management')" href="{{route('categoryManagementView')}}" >
                     <i class="fas fa-list-ul"></i>
-                    <span>Category Management</span>
+                    <span>Category </span>
                 </a>
             </li>
             <li class="sub-menu">
                 <a class="@yield('Brand_management')" href="{{route('brandManagementView')}}" >
                     <i class="far fa-copyright"></i>
-                    <span>Brand Management</span>
+                    <span>Brand </span>
                 </a>
             </li>
             <li class="sub-menu">
                 <a class="@yield('Product_management')" href="{{route('productManagementView')}}" >
                     <i class="fab fa-product-hunt"></i>
-                    <span>Product Management</span>
+                    <span>Product </span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a class="@yield('Offer_management')" href="{{route('offerManagementView')}}" >
+                    <i class="fas fa-gift"></i>
+                    <span>Offer</span>
                 </a>
             </li>
         </ul>

@@ -384,4 +384,12 @@ class normalVendorController extends Controller
         return back()->with('msg','✔ Product Updated');
     }
     //************************ page = product_management #
+    //************************ page = offer_management
+    public function offerManagementView()
+    {
+        $products = Product::where('vendor_id',Auth::user()->id)->orderBy('category_id','ASC')->get();
+        $categories = Category::all();
+        return view('vendor.offer_management.index',compact('categories','products'));
+    }
+    //************************ page = offer_management #
 }

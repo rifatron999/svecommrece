@@ -60,7 +60,6 @@ Route::post('/brand_management','Vendor\normalVendorController@brandAdd')->name(
 Route::get('/brand_management/edit/{id}','Vendor\normalVendorController@brandManagementEdit')->name('brandManagementEdit');
 Route::post('/brand_management/update','Vendor\normalVendorController@brandUpdate')->name('brandUpdate');
 Route::get('/brand_management/remove/{id}','Vendor\normalVendorController@brandRemove')->name('brandRemove');
-
 //brand management #
 //product management
 Route::get('/product_management','Vendor\normalVendorController@productManagementView')->name('productManagementView');
@@ -68,11 +67,11 @@ Route::post('/product_management','Vendor\normalVendorController@productAdd')->n
 Route::get('/product_management/edit/{id}','Vendor\normalVendorController@productManagementEdit')->name('productManagementEdit');
 Route::post('/product_management/update','Vendor\normalVendorController@productUpdate')->name('productUpdate');
 Route::get('/product_management/remove/{id}','Vendor\normalVendorController@productRemove')->name('brandRemove');
+//product management #
+//offer management
+Route::get('/offer_management','Vendor\normalVendorController@offerManagementView')->name('offerManagementView');
 
-
-
-
-//product management ##
+//offer management #
 
 
 /* ======== normalVendor #   =================================================================== */
