@@ -1,5 +1,5 @@
 @extends('vendor.master')
-@section('title','Product Edit Edit')
+@section('title','Product Edit')
 @section('Product_management','active')
 @section('content')
     <div class="container-fluid">
@@ -68,36 +68,12 @@
                                 </div>
                             </div>
                             <div class="col-sm-3">
-                                <label  class=" label label-default">Offer Percentage</label>
-                                <div class="input-group">
-                                    <input name="offer_percentage" id="poffer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}{{$product->offer_percentage}}" onkeyup="percentage_cal()" >
-                                    <span class="input-group-addon "> <b>%</b></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Offer Price</label>
-                                <div class="input-group">
-                                    <input name="offer_price" id="poffer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}{{$product->offer_price}}" >
-                                    <span class="input-group-addon "> <b>৳</b></span>
-                                </div>
+                                <label  class=" label label-default">Image</label>
+                                <input type='file' id="image-preview" name="image[]" class="form-control" accept=".png, .jpg, .jpeg" multiple title="Choose Image"  >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Stock</label>
                                 <input name="stock" type="number" class="form-control form-control-sm" value="{{ old('stock') }}{{$product->stock}}" >
-                            </div>
-                        </div>{{--3 row--}}
-                        <div class="form-group row">
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Color</label>
-                                <input name="color" type="text" class="form-control form-control-sm" value="{{ old('color') }}{{$product->color}}" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Capacity/Size</label>
-                                <input name="size_capacity" type="text" class="form-control form-control-sm" value="{{ old('size_capacity') }}{{$product->size_capacity}}" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Model</label>
-                                <input name="model" type="text" class="form-control form-control-sm" value="{{ old('model') }}{{$product->model}}" >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Status</label>
@@ -117,13 +93,40 @@
                                     @endif
                                 </select>
                             </div>
-                        </div>{{--4 row--}}
+                            {{--<div class="col-sm-3">
+                                <label  class=" label label-default">Offer Percentage</label>
+                                <div class="input-group">
+                                    <input name="offer_percentage" id="poffer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}{{$product->offer_percentage}}" onkeyup="percentage_cal()" >
+                                    <span class="input-group-addon "> <b>%</b></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <label  class=" label label-default">Offer Price</label>
+                                <div class="input-group">
+                                    <input name="offer_price" id="poffer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}{{$product->offer_price}}" >
+                                    <span class="input-group-addon "> <b>৳</b></span>
+                                </div>
+                            </div>--}}
+
+                        </div>{{--3 row--}}
                         <div class="form-group row">
                             <div class="col-sm-3">
-                                <label  class=" label label-default">Image</label>
-                                <input type='file' id="image-preview" name="image[]" class="form-control" accept=".png, .jpg, .jpeg" multiple title="Choose Image"  >
+                                <label  class=" label label-default">Color</label>
+                                <input name="color" type="text" class="form-control form-control-sm" value="{{ old('color') }}{{$product->color}}" >
                             </div>
-                        </div>{{--5 row--}}
+                            <div class="col-sm-3">
+                                <label  class=" label label-default">Capacity/Size</label>
+                                <input name="size_capacity" type="text" class="form-control form-control-sm" value="{{ old('size_capacity') }}{{$product->size_capacity}}" >
+                            </div>
+                            <div class="col-sm-3">
+                                <label  class=" label label-default">Model</label>
+                                <input name="model" type="text" class="form-control form-control-sm" value="{{ old('model') }}{{$product->model}}" >
+                            </div>
+
+                        </div>{{--4 row--}}
+                        {{--<div class="form-group row">
+
+                        </div>--}}{{--5 row--}}
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Description</label>

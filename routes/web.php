@@ -31,9 +31,7 @@ Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
 Route::get('/cart/add/{id}', 'Userend\CartController@addItem')->name('cart.add');
 Route::get('/cart/delete/{rowId}', 'Userend\CartController@deleteItem')->name('cart.delete');
 Route::post('/cart/update', 'Userend\CartController@updateItem')->name('cart.update');
-Route::get('/cart_destroy',function (){
-    Cart::destroy();
-});
+Route::get('/cart_destroy',function (){Cart::destroy();});
 
 
 Route::get('/react', function (){

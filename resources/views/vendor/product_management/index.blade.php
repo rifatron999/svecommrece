@@ -98,7 +98,7 @@
                                     <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            {{--<div class="col-sm-3">
                                 <label  class=" label label-default">Offer Percentage</label>
                                 <div class="input-group">
                                     <input name="offer_percentage" id="poffer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}" onkeyup="percentage_cal()" >
@@ -111,10 +111,22 @@
                                     <input name="offer_price" id="poffer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}" >
                                     <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
+                            </div>--}}
+                            <div class="col-sm-3">
+                                <label  class=" label label-default">Image</label>
+                                <input type='file' id="image-preview" name="image[]" class="form-control" accept=".png, .jpg, .jpeg" multiple title="Choose Image" onclick="gritter_custom('image upload','Select good resolution images','The image you are going to select should be greater than 700X700 pixels for better quality ')"  >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Stock</label>
                                 <input name="stock" type="number" class="form-control form-control-sm" value="{{ old('stock') }}" >
+                            </div>
+                            <div class="col-sm-3">
+                                <label  class=" label label-primary">Status</label>
+                                <select name="status" class="form-control" title="Select Status">
+                                    <option value="Available" >Available</option>
+                                    <option value="Out of Stock" >Out of Stock</option>
+                                    <option value="Disable" >Distable</option>
+                                </select>
                             </div>
                         </div>{{--3 row--}}
                         <div class="form-group row">
@@ -130,21 +142,11 @@
                                 <label  class=" label label-default">Model</label>
                                 <input name="model" type="text" class="form-control form-control-sm" value="{{ old('model') }}" >
                             </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-primary">Status</label>
-                                <select name="status" class="form-control" title="Select Status">
-                                    <option value="Available" >Available</option>
-                                    <option value="Out of Stock" >Out of Stock</option>
-                                    <option value="Disable" >Distable</option>
-                                </select>
-                            </div>
+
                         </div>{{--4 row--}}
-                        <div class="form-group row">
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Image</label>
-                                <input type='file' id="image-preview" name="image[]" class="form-control" accept=".png, .jpg, .jpeg" multiple title="Choose Image" onclick="gritter_custom('image upload','Select good resolution images','The image you are going to select should be greater than 700X700 pixels for better quality ')"  >
-                            </div>
-                        </div>{{--5 row--}}
+                        {{--<div class="form-group row">
+
+                        </div>--}}{{--5 row--}}
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Description</label>
