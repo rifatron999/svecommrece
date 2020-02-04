@@ -180,7 +180,7 @@
                                     @foreach($products as $s)
                                         <tr>
                                             <td class="text-center">
-                                                <input class="form-check-input form-inline"  type='radio' name='free_product_ids' id="inlineCheckbox1" value="{{$s->id}}">
+                                                <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}">
                                                 @if(empty($s->image))
                                                     <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
                                                 @else

@@ -405,6 +405,19 @@ class normalVendorController extends Controller
             $insert[]['id'] = $s;
         }
         $product_ids = json_encode($insert);
+        if($request->type == 'Discount')
+        {
+            foreach ($request->free_product_ids as $s)
+            {
+                $insert2[]['id'] = $s;
+            }
+            $free_product_ids = json_encode($insert2);
+        }
+        else
+            {
+                $free_product_ids = '';
+            }
+
         $image = $request->file('image');
         if(!empty($image))
         {
@@ -420,7 +433,7 @@ class normalVendorController extends Controller
                 'enddate' => $request->enddate,
                 'offer_percentage' => $request->offer_percentage,
                 'product_ids' => $product_ids,
-                'free_product_ids' => $request->free_product_ids,
+                'free_product_ids' => $free_product_ids,
             ]);
         }
         else
