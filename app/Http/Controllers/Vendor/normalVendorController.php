@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Brand;
 use App\Category;
+use App\Offer;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -384,4 +385,58 @@ class normalVendorController extends Controller
         return back()->with('msg','✔ Product Updated');
     }
     //************************ page = product_management #
+    //************************ page = offer_management
+    public function offerManagementView()
+    {
+        $products = Product::where('vendor_id',Auth::user()->id)->orderBy('category_id','ASC')->get();
+        $categories = Category::all();
+        $offers = Offer::paginate(8);
+        return view('vendor.offer_management.index',compact('categories','products','offers'));
+    }
+    public function offerAdd(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'product_ids' => 'required',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+        ]);
+        foreach ($request->product_ids as $s)
+        {
+            $insert[]['id'] = $s;
+        }
+        $product_ids = json_encode($insert);
+        $image = $request->file('image');
+        if(!empty($image))
+        {
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $image->move('assets/vendor/images/offers/',$image_name);
+
+
+            Offer::create([
+                'title' => $request->title,
+                'image' => $image_name,
+                'type' => $request->type,
+                'status' => $request->status,
+                'enddate' => $request->enddate,
+                'offer_percentage' => $request->offer_percentage,
+                'product_ids' => $product_ids,
+                'free_product_ids' => $request->free_product_ids,
+            ]);
+        }
+        else
+        {
+            Offer::create([
+                'title' => $request->title,
+                'type' => $request->type,
+                'status' => $request->status,
+                'enddate' => $request->enddate,
+                'offer_percentage' => $request->offer_percentage,
+                '$product_ids' => $product_ids,
+                'free_product_ids' => $request->free_product_ids,
+            ]);
+        }
+
+        return back()->with('msg','✔ Offer Added');
+    }
+    //************************ page = offer_management #
 }
