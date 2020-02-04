@@ -931,6 +931,7 @@ textarea.input {
 
 .product.product-single .product-label>span {
   display: block;
+  text-align: center;
 }
 
 .product.product-single .product-countdown {

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Website;
 
 
 use App\Category;
+use App\Offer;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,6 +20,12 @@ class websiteController extends Controller
     public function about()
     {
         return view('website.pages.about');
+    }
+
+    public function products()
+    {
+        $products = Product::all();
+        return view('website.pages.products',compact('products'));
     }
 
     public function offers()
