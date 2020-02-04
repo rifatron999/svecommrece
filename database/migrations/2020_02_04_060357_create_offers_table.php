@@ -15,10 +15,12 @@ class CreateOffersTable extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
             $table->string('type');
             $table->longText('product_ids')->nullable();
             $table->integer('offer_percentage')->nullable();
             $table->longText('free_product_ids')->nullable();
+            $table->string('image')->nullable();
             $table->date('enddate')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();
