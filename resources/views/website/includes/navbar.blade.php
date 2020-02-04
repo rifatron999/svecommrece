@@ -17,7 +17,7 @@
                 <a class="nav-link nav_item_design" href="{{ route('website.about') }}">About Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav_item_design" href="{{ route('pages.products') }}">Products</a>
+                <a class="nav-link nav_item_design" href="{{ route('website.products') }}">Products</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link nav_item_design" href="{{ route('website.offers') }}">Offers</a>

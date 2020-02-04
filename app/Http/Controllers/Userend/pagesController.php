@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Userend;
 
 use App\Category;
 use App\Product;
+use App\Offer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
