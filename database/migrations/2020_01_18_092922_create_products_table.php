@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->integer('brand_id');
             $table->integer('vendor_id');
-            $table->integer('offer_id');
+            $table->integer('offer_id')->nullable();
             $table->string('name');
             $table->longText('specification')->nullable();
             $table->longText('description')->nullable();

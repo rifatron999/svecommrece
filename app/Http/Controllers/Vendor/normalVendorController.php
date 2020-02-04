@@ -244,8 +244,8 @@ class normalVendorController extends Controller
             'brand_id' => 'required',
             'price' => 'required',
             'status' => 'required',
-            'description' => 'required|max:2000',
-            'specification' => 'max:5000',
+            'description' => 'required|max:10000',
+            'specification' => 'max:100000',
             'image' => 'required',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
@@ -323,8 +323,8 @@ class normalVendorController extends Controller
             'brand_id' => 'required',
             'price' => 'required',
             'status' => 'required',
-            'description' => 'required|max:2000',
-            'specification' => 'max:5000',
+            'description' => 'required|max:10000',
+            'specification' => 'max:100000',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         $image = $request->file('image');
