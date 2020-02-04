@@ -5,7 +5,8 @@
     <div class="container-fluid">
          <ul class="nav nav-tabs">
             <li class="active " ><a data-toggle="tab" href="#Products">Products</a></li>
-            <li class="" ><a data-toggle="tab" href="#Create">Create</a></li>
+            <li class="" ><a  data-toggle="tab" href="#Create"  >Create</a> </li>
+
         </ul>
         <div class="tab-content">
             <div id="Products" class="tab-pane fade in active">
@@ -30,7 +31,7 @@
                                         <a class="btn btn-default btn-xs" href="{{--{{route('brandRemove',Crypt::encrypt($s->id))}}--}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
                                         <a class="btn btn-success"  href="{{route('productManagementEdit',Crypt::encrypt($s->id))}}" title="Edit"><i class="fa fa-edit"></i></a>
                                         <sub><mark>{{$s->status}}</mark></sub><br>
-                                        <sub><mark>{{$s->id}}</mark></sub>
+                                        <sub><b><mark style="background-color: black;color: white;">{{$s->categories->name}}</mark></b></sub>
 
                                     </div>
                                 </div>
@@ -49,10 +50,10 @@
 
                 </div>
             </div>
-            <div id="Create" class="tab-pane fade in ">
+            <div id="Create" class="tab-pane fade in " >
                 <form method="post" enctype="multipart/form-data" action="{{ route('productAdd') }}">
                     @csrf
-                    <div class="modal-body ">
+                    <div class="modal-body " >
                         <div class="form-group row">
                                 <div class="col-sm-12 " style="min-height: 150px">
                                     <label  class=" label label-default">Image Preview</label>
@@ -62,7 +63,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Name</label>
-                                <input name="name" type="text" class="form-control form-control-sm" value="{{ old('name') }}" required>
+                                <input name="name" type="text" class="form-control form-control-sm" value="{{ old('name') }}" required >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Category</label>
@@ -97,7 +98,7 @@
                                     <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            {{--<div class="col-sm-3">
                                 <label  class=" label label-default">Offer Percentage</label>
                                 <div class="input-group">
                                     <input name="offer_percentage" id="poffer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}" onkeyup="percentage_cal()" >
@@ -110,10 +111,22 @@
                                     <input name="offer_price" id="poffer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}" >
                                     <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
+                            </div>--}}
+                            <div class="col-sm-3">
+                                <label  class=" label label-default">Image</label>
+                                <input type='file' id="image-preview" name="image[]" class="form-control" accept=".png, .jpg, .jpeg" multiple title="Choose Image" onclick="gritter_custom('image upload','Select good resolution images','The image you are going to select should be greater than 700X700 pixels for better quality ')"  >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Stock</label>
                                 <input name="stock" type="number" class="form-control form-control-sm" value="{{ old('stock') }}" >
+                            </div>
+                            <div class="col-sm-3">
+                                <label  class=" label label-primary">Status</label>
+                                <select name="status" class="form-control" title="Select Status">
+                                    <option value="Available" >Available</option>
+                                    <option value="Out of Stock" >Out of Stock</option>
+                                    <option value="Disable" >Distable</option>
+                                </select>
                             </div>
                         </div>{{--3 row--}}
                         <div class="form-group row">
@@ -129,21 +142,11 @@
                                 <label  class=" label label-default">Model</label>
                                 <input name="model" type="text" class="form-control form-control-sm" value="{{ old('model') }}" >
                             </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-primary">Status</label>
-                                <select name="status" class="form-control" title="Select Status">
-                                    <option value="Available" >Available</option>
-                                    <option value="Out of Stock" >Out of Stock</option>
-                                    <option value="Disable" >Distable</option>
-                                </select>
-                            </div>
+
                         </div>{{--4 row--}}
-                        <div class="form-group row">
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Image</label>
-                                <input type='file' id="image-preview" name="image[]" class="form-control" accept=".png, .jpg, .jpeg" multiple title="Choose Image"  >
-                            </div>
-                        </div>{{--5 row--}}
+                        {{--<div class="form-group row">
+
+                        </div>--}}{{--5 row--}}
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Description</label>
@@ -161,7 +164,6 @@
                         </div>{{--7 row--}}
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

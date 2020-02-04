@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['category_id','brand_id','vendor_id','name','specification','description','stock','image','price','offer_price','offer_percentage','size_capacity','model','color','status','slug'];
+    protected $fillable = ['category_id','brand_id','vendor_id','offer_id','name','specification','description','stock','image','price','offer_price','size_capacity','model','color','status','slug'];
     protected $table = 'products';
 
     public function categories()
@@ -17,5 +17,10 @@ class Product extends Model
     public function brands()
     {
         return $this->belongsTo(Brand::class,'brand_id');
+    }
+
+    public function offers()
+    {
+        return $this->belongsTo(Offer::class,'offer_id');
     }
 }

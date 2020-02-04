@@ -77,6 +77,21 @@ $(function() {
 });
 //multiple preview #
 // image preview #
+//gritter
+function gritter_custom(gfor,title,text) {
+    if(gfor == 'image upload')
+    {
+    $.gritter.add({
+        // (string | mandatory) the heading of the notification
+        title: title,
+        // (string | mandatory) the text inside the notification
+        text: text,
+        image: 'assets/vendor/images/icon/bell.gif',
+    });
+    }
+    return false;
+}
+//gritter #
 //page = vendor>category_management
 function setParentId(parent_id)
 {

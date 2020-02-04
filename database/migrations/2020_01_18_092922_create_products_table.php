@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->integer('brand_id');
             $table->integer('vendor_id');
+            $table->integer('offer_id')->nullable();
             $table->string('name');
             $table->longText('specification')->nullable();
             $table->longText('description')->nullable();
@@ -25,7 +26,6 @@ class CreateProductsTable extends Migration
             $table->longText('image')->nullable();
             $table->float('price')->nullable();
             $table->float('offer_price')->nullable();
-            $table->integer('offer_percentage')->nullable();
             $table->string('size_capacity')->nullable();
             $table->string('model')->nullable();
             $table->string('color')->nullable();
