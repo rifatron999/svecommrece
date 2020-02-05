@@ -140,21 +140,7 @@
                             </div>
                         </div>
                         <div class="pull-right">
-                            <div class="page-filter">
-                                <span class="text-uppercase">Show:</span>
-                                <select class="input">
-                                    <option value="0">10</option>
-                                    <option value="1">20</option>
-                                    <option value="2">30</option>
-                                </select>
-                            </div>
-                            <ul class="store-pages">
-                                <li><span class="text-uppercase">Page:</span></li>
-                                <li class="active">1</li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-                            </ul>
+                            {{ $products->links() }}
                         </div>
                     </div>
                     <!-- /store top filter -->
@@ -180,15 +166,15 @@
                                                     <span>New</span>
                                                 @endif
                                                 @if($product->offer_id != null && $product->offer_id == $product->offers->id)
-                                                    @if($product->offers->type == "Discount")
-                                                        <span class="sale">{{$product->offers->offer_percentage}}%</span>
-                                                    @elseif($product->offers->type == "Buy one get one")
+                                                    @if($product->offers->type == "discount")
+                                                        <span class="sale">- {{$product->offers->offer_percentage}}%</span>
+                                                    @elseif($product->offers->type == "buy1get1")
                                                         <span class="sale" style="background: red">Buy 1 Get 1</span>
                                                     @endif
                                                 @endif
 
                                             </div>
-                                            <a href="{{ route('pages.single_product',[$product->id]) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> See Details </a>
+                                            <a href="{{ route('pages.single_product',Crypt::encrypt($product->id)  ) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> See Details </a>
                                             @php
                                                 $imgarray = json_decode($product->image);
                                             @endphp
@@ -196,9 +182,9 @@
                                         </div>
                                         <div class="product-body">
                                             @if($product->offer_id != null && $product->offer_id == $product->offers->id)
-                                                @if($product->offers->type == "Discount")
+                                                @if($product->offers->type == "discount")
                                                     <h3 class="product-price">৳ {{ number_format($product->offer_price) }} <del class="product-old-price">৳ {{ number_format($product->price) }}</del></h3>
-                                                @elseif($product->offers->type == "Buy one get one")
+                                                @elseif($product->offers->type == "buy1get1")
                                                     @php
                                                         $main_product_id = json_decode($product->offers->product_ids);
                                                         $free_product_id = json_decode($product->offers->free_product_ids);
@@ -214,20 +200,21 @@
                                                 <h3 class="product-price">৳ {{ number_format($product->price) }}</h3>
                                             @endif
 
-                                            <h2 class="product-name"><a href="{{ route('pages.single_product',[$product->id]) }}">{{ $product->name }}</a></h2>
+                                            <h2 class="product-name"><a href="{{ route('pages.single_product',Crypt::encrypt($product->id) ) }}">{{ $product->name }}</a></h2>
                                             <div class="product-btns text-center">
-                                                @if($product->stock != null)
+                                                @if($product->status == 'Available')
                                                     <a href="{{ route('cart.add',[$product->id]) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
-                                                @else
+                                                @elseif($product->status == 'Out of Stock')
                                                     <button class="primary-btn" style="background: #d43f3a;"><i class="fa fa-window-close"></i> Out Of Stock </button>
                                                 @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                            <!-- /Product Single -->
-                            </div>
+                        @endforeach
+                        <!-- /Product Single -->
+                        </div>
+
                         <!-- /row -->
                     </div>
                     <!-- /STORE -->
@@ -249,21 +236,7 @@
                             </div>
                         </div>
                         <div class="pull-right">
-                            <div class="page-filter">
-                                <span class="text-uppercase">Show:</span>
-                                <select class="input">
-                                    <option value="0">10</option>
-                                    <option value="1">20</option>
-                                    <option value="2">30</option>
-                                </select>
-                            </div>
-                            <ul class="store-pages">
-                                <li><span class="text-uppercase">Page:</span></li>
-                                <li class="active">1</li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-                            </ul>
+                            {{ $products->links() }}
                         </div>
                     </div>
                     <!-- /store bottom filter -->
