@@ -167,7 +167,7 @@
                                                 @endif
                                                 @if($product->offer_id != null && $product->offer_id == $product->offers->id)
                                                     @if($product->offers->type == "discount")
-                                                        <span class="sale">{{$product->offers->offer_percentage}}%</span>
+                                                        <span class="sale">- {{$product->offers->offer_percentage}}%</span>
                                                     @elseif($product->offers->type == "buy1get1")
                                                         <span class="sale" style="background: red">Buy 1 Get 1</span>
                                                     @endif
