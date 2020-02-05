@@ -140,21 +140,7 @@
                             </div>
                         </div>
                         <div class="pull-right">
-                            <div class="page-filter">
-                                <span class="text-uppercase">Show:</span>
-                                <select class="input">
-                                    <option value="0">10</option>
-                                    <option value="1">20</option>
-                                    <option value="2">30</option>
-                                </select>
-                            </div>
-                            <ul class="store-pages">
-                                <li><span class="text-uppercase">Page:</span></li>
-                                <li class="active">1</li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-                            </ul>
+                            {{ $products->links() }}
                         </div>
                     </div>
                     <!-- /store top filter -->
@@ -216,9 +202,9 @@
 
                                             <h2 class="product-name"><a href="{{ route('pages.single_product',Crypt::encrypt($product->id) ) }}">{{ $product->name }}</a></h2>
                                             <div class="product-btns text-center">
-                                                @if($product->stock != null)
+                                                @if($product->status == 'Available')
                                                     <a href="{{ route('cart.add',[$product->id]) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
-                                                @else
+                                                @elseif($product->status == 'Out of Stock')
                                                     <button class="primary-btn" style="background: #d43f3a;"><i class="fa fa-window-close"></i> Out Of Stock </button>
                                                 @endif
                                             </div>
@@ -228,6 +214,7 @@
                         @endforeach
                         <!-- /Product Single -->
                         </div>
+
                         <!-- /row -->
                     </div>
                     <!-- /STORE -->
@@ -249,21 +236,7 @@
                             </div>
                         </div>
                         <div class="pull-right">
-                            <div class="page-filter">
-                                <span class="text-uppercase">Show:</span>
-                                <select class="input">
-                                    <option value="0">10</option>
-                                    <option value="1">20</option>
-                                    <option value="2">30</option>
-                                </select>
-                            </div>
-                            <ul class="store-pages">
-                                <li><span class="text-uppercase">Page:</span></li>
-                                <li class="active">1</li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-                            </ul>
+                            {{ $products->links() }}
                         </div>
                     </div>
                     <!-- /store bottom filter -->

@@ -24,7 +24,7 @@ class websiteController extends Controller
 
     public function products()
     {
-        $products = Product::all();
+        $products = Product::where('status','!=','Disable')->paginate(2);
         return view('website.pages.products',compact('products'));
     }
 

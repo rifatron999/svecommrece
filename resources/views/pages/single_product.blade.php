@@ -68,9 +68,9 @@
                                 @else
                                     <h3 class="product-price">৳ {{ number_format($single->price) }}</h3>
                                 @endif
-                                @if($single->stock != null)
+                                @if($single->status == 'Available')
                                     <p><strong>Availability:</strong> In Stock</p>
-                                @else
+                                @elseif($single->status == 'Out of Stock')
                                     <p style="color: red"><strong>Availability:</strong> Out of Stock</p>
                                 @endif
 
@@ -79,9 +79,9 @@
 
 
                                 <div class="product-btns">
-                                    @if($single->stock != null)
+                                    @if($single->status == 'Available')
                                         <a href="{{ route('cart.add',[$single->id]) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
-                                    @else
+                                    @elseif($single->status == 'Out of Stock')
                                         <button class="primary-btn" style="background: #d43f3a;"><i class="fa fa-window-close"></i> Out Of Stock </button>
                                     @endif
 
