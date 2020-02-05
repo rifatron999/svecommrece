@@ -1,9 +1,9 @@
 @extends('vendor.master')
-@section('title','Product Edit')
-@section('Product_management','active')
+@section('title','Offer Edit')
+@section('Offer_management','active')
 @section('content')
     <div class="container-fluid">
-                <form method="post" enctype="multipart/form-data" action="{{ route('productUpdate') }}">
+                <form method="post" enctype="multipart/form-data" action="{{--{{ route('productUpdate') }}--}}">
                     @csrf
                     <div class="modal-body ">
                         <div class="form-group row">
@@ -14,135 +14,192 @@
                             <div class="col-sm-4 form-style" style="min-height: 150px">
                                 <label  class=" label label-default">Published Images</label>
                                 <p >
-                                    @foreach($imgarray as $s)
-                                        <img src="{{ asset('assets/vendor/images/products/') }}/{{$s->image}}" class="imgss center-block inline-block"  alt="">
-                                    @endforeach
+                                    <img src="{{ asset('assets/vendor/images/offers/') }}/{{$offer->image}}" class="imgss center-block inline-block"  alt="">
                                 </p>
                             </div>
                         </div>{{--1 row--}}
                         <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label  class=" label label-primary">Name</label>
-                                <input name="name" type="text" class="form-control form-control-sm" value="{{ old('name') }}{{$product->name}}" required>
+                            <div class="col-sm-8">
+                                <label  class=" label label-primary">Title</label>
+                                <input name="title" type="text" class="form-control form-control-sm" value="{{ $offer->title }}" required  >
                             </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-primary">Category</label>
-                                <select  title="Choose Category" name="category_id" class="form-control">
-                                    @foreach($categories as $s)
-                                        @if($s->parent_id === NULL)
-                                            <optgroup label="{{$s->name}}">
-                                                @foreach($categories as $s2)
-                                                    @if($s2->parent_id === $s->id)
-                                                        @if($product->category_id === $s2->id)
-                                                            <option value="{{$s2->id}}" selected>{{$s2->name}}</option>
-                                                        @else
-                                                            <option value="{{$s2->id}}" >{{$s2->name}}</option>
-                                                        @endif
-                                                    @endif
-                                                @endforeach
-                                            </optgroup>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-primary">Brand</label>
-                                <select name="brand_id" class="form-control">
-                                    @foreach($brands as $s)
-
-                                        @if($product->vendor_id === $s2->id)
-                                            <option value="{{$s->id}}" selected >{{$s->name}}</option>
-                                        @else
-                                            <option value="{{$s->id}}" >{{$s->name}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
+                            <div class="col-sm-4">
+                                <label  class=" label label-default">Image</label>
+                                <input type='file' id="image-preview" name="image" class="form-control" accept=".png, .jpg, .jpeg, .gif"  title="Choose Image"   >
                             </div>
                         </div>{{--2 row--}}
                         <div class="form-group row">
                             <div class="col-sm-3">
-                                <label  class=" label label-primary">Price</label>
-                                <div class="input-group">
-                                    <input name="price" id="pprice" type="number" class="form-control form-control-sm" value="{{ old('price') }}{{$product->price}}" required>
-                                    <span class="input-group-addon "> <b>৳</b></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Image</label>
-                                <input type='file' id="image-preview" name="image[]" class="form-control" accept=".png, .jpg, .jpeg" multiple title="Choose Image"  >
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Stock</label>
-                                <input name="stock" type="number" class="form-control form-control-sm" value="{{ old('stock') }}{{$product->stock}}" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-primary">Status</label>
-                                <select name="status" class="form-control" title="Select Status">
-                                    @if($product->status === 'Available')
-                                        <option value="Available" selected >Available</option>
-                                        <option value="Out of Stock"  >Out of Stock</option>
-                                        <option value="Disable"  >Distable</option>
-                                    @elseif($product->status === 'Out of Stock')
-                                        <option value="Available"  >Available</option>
-                                        <option value="Out of Stock"  selected>Out of Stock</option>
-                                        <option value="Disable"  >Distable</option>
+                                <label  class=" label label-primary">Type</label>
+                                <select name="type" id="offer_type" class="form-control" title="Select offer type" disabled>
+                                    @if($offer->type === 'Buy one get one')
+                                        <option value="Buy one get one"  selected>Buy one get one</option>
+                                        <option value="Discount" >Discount</option>
                                     @else
-                                        <option value="Available"  >Available</option>
-                                        <option value="Out of Stock"  >Out of Stock</option>
-                                        <option value="Disable" selected >Distable</option>
+                                        <option value="Buy one get one"  >Buy one get one</option>
+                                        <option value="Discount" selected >Discount</option>
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <label  class=" label label-primary">Status</label>
+                                <select name="status" class="form-control" title="Select status">
+                                    @if($offer->status === 'Active')
+                                        <option value="Active" selected>Active</option>
+                                        <option value="Deactive" >Deactive</option>
+                                    @else
+                                        <option value="Active" >Active</option>
+                                        <option value="Deactive" selected>Deactive</option>
                                     @endif
                                 </select>
                             </div>
                             {{--<div class="col-sm-3">
-                                <label  class=" label label-default">Offer Percentage</label>
+                                <label  class=" label label-default">EndDate</label>
+                                <input name="enddate" type="date" class="form-control form-control-sm" value="{{ old('enddate') }}" >
+                            </div>--}}
+                            <div class="col-sm-3" id="offer_percentage_type" @if($offer->type === 'Buy one get one') style="display:none;" @endif>
+                                <label  class=" label label-primary">Offer Percentage</label>
                                 <div class="input-group">
-                                    <input name="offer_percentage" id="poffer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}{{$product->offer_percentage}}" onkeyup="percentage_cal()" >
+                                    <input name="offer_percentage" id="offer_percentage"   type="number" class="form-control form-control-sm" value="{{ $offer->offer_percentage }}"  >
                                     <span class="input-group-addon "> <b>%</b></span>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Offer Price</label>
-                                <div class="input-group">
-                                    <input name="offer_price" id="poffer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}{{$product->offer_price}}" >
-                                    <span class="input-group-addon "> <b>৳</b></span>
-                                </div>
-                            </div>--}}
 
                         </div>{{--3 row--}}
                         <div class="form-group row">
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Color</label>
-                                <input name="color" type="text" class="form-control form-control-sm" value="{{ old('color') }}{{$product->color}}" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Capacity/Size</label>
-                                <input name="size_capacity" type="text" class="form-control form-control-sm" value="{{ old('size_capacity') }}{{$product->size_capacity}}" >
-                            </div>
-                            <div class="col-sm-3">
-                                <label  class=" label label-default">Model</label>
-                                <input name="model" type="text" class="form-control form-control-sm" value="{{ old('model') }}{{$product->model}}" >
-                            </div>
+                            <div class="col-sm-6 "><hr style="border-top: 8px solid #ccc; background: transparent;">
 
+                                <table class="table table-striped table-borderless ">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col"class="text-center">
+                                            <label  class=" label label-primary">Products</label>
+                                            <select  title="Choose Category" name="category_id"  >
+                                                @foreach($categories as $s)
+                                                    @if($s->parent_id === NULL)
+                                                        <optgroup label="{{$s->name}}">
+                                                            @foreach($categories as $s2)
+                                                                @if($s2->parent_id === $s->id)
+                                                                    <option value="{{$s2->id}}">{{$s2->name}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </optgroup>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </th>
+                                        <th scope="col" class="text-center">Name</th>
+                                        <th scope="col"class="text-center">Category</th>
+                                        <th scope="col"class="text-center">Stock</th>
+                                        <th scope="col"class="text-center">Price</th>
+                                        <th scope="col"class="text-center">Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($products as $s)
+                                        <tr>
+                                            <td class="text-center">
+                                                @if(!empty($s->offer_id) and $offer->id === $s->offer_id)
+                                                    @php
+                                                        $product_ids = json_decode($s->offers->product_ids);
+                                                    @endphp
+                                                    @foreach ($product_ids as $pid)
+                                                        @if($s->id === (int)$pid->id)
+                                                            <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked >
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}"  >
+                                                @endif
+                                                @if(empty($s->image))
+                                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
+                                                @else
+                                                    @php
+                                                        $imgarray = json_decode($s->image);
+                                                    @endphp
+                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" class="imgs" alt="">
+                                                @endif
+                                            </td>
+                                            <td class="text-center">{{$s->name}}</td>
+                                            <td class="text-center">{{$s->categories->name}}</td>
+                                            <td class="text-center">{{$s->stock}}</td>
+                                            <td class="text-center">৳ {{ number_format($s->price) }}</td>
+                                            <td class="text-center">{{$s->status}}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-sm-6 " id="free_product_type" @if($offer->type === 'Discount') style="display:none;" @endif ><hr style="border-top: 8px solid #89C0E0; background: transparent;">
+                                <table class="table table-striped table-dark table-borderless">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col"class="text-center">
+                                            <label  class=" label label-primary"><i class="fas fa-gift"></i></label>
+                                            <select  title="Choose Category" name="category_id" >
+                                                @foreach($categories as $s)
+                                                    @if($s->parent_id === NULL)
+                                                        <optgroup label="{{$s->name}}">
+                                                            @foreach($categories as $s2)
+                                                                @if($s2->parent_id === $s->id)
+                                                                    <option value="{{$s2->id}}">{{$s2->name}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </optgroup>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </th>
+                                        <th scope="col" class="text-center">Name</th>
+                                        <th scope="col"class="text-center">Category</th>
+                                        <th scope="col"class="text-center">Stock</th>
+                                        <th scope="col"class="text-center">Price</th>
+                                        <th scope="col"class="text-center">Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($products as $s)
+                                        <tr>
+                                            <td class="text-center">
+                                                @if(!empty($s->offer_id) and $offer->id === $s->offer_id and $offer->type === 'Buy one get one')
+                                                    @php
+                                                        $free_product_ids = json_decode($s->offers->free_product_ids);
+                                                    @endphp
+                                                    @foreach ($free_product_ids as $pid)
+                                                        @if($s->id === (int)$pid->id)
+                                                            <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked>
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}">
+                                                @endif
+                                                @if(empty($s->image))
+                                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
+                                                @else
+                                                    @php
+                                                        $imgarray = json_decode($s->image);
+                                                    @endphp
+                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" class="imgs" alt="">
+                                                @endif
+                                            </td>
+                                            <td class="text-center">{{$s->name}}</td>
+
+                                            <td class="text-center">{{$s->categories->name}}</td>
+                                            <td class="text-center">{{$s->stock}}</td>
+                                            <td class="text-center">{{ number_format($s->price) }}</td>
+                                            <td class="text-center">{{$s->status}}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>{{--4 row--}}
-                        {{--<div class="form-group row">
-
-                        </div>--}}{{--5 row--}}
-                        <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label  class=" label label-primary">Description</label>
-                                <textarea  name="description" class="form-control basic-example" >{{ old('description') }}{{ $product->description }}</textarea>
-                            </div>
-                            <div class="col-sm-6">
-                                <label  class=" label label-default">Specification</label>
-                                <textarea id="" name="specification" class="form-control basic-example" >{{ old('specification') }}{{ $product->specification }}</textarea>
-                            </div>
-                        </div>{{--6 row--}}
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <input name="id" type="text" value="{{$product->id}}" class="form-control form-control-sm" style="display: none">
+                                <input name="id" type="text" value="{{$offer->id}}" class="form-control form-control-sm" style="display: none">
                                 <button type="submit" class="btn btn-success  center-block"><i class="far fa-edit"></i>  Update</button>
                             </div>
-                        </div>{{--7 row--}}
+                        </div>{{--5 row--}}
                     </div>
                 </form>
     </div>

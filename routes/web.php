@@ -72,6 +72,7 @@ Route::get('/product_management/remove/{id}','Vendor\normalVendorController@prod
 //offer management
 Route::get('/offer_management','Vendor\normalVendorController@offerManagementView')->name('offerManagementView');
 Route::post('/offer_management','Vendor\normalVendorController@offerAdd')->name('offerAdd');
+Route::get('/offer_management/edit/{id}','Vendor\normalVendorController@offerManagementEdit')->name('offerManagementEdit');
 
 //offer management #
 

@@ -147,7 +147,8 @@ $(document).on('change','#slide_type',function()
     if(slide_type.value == 'Assignment'){
         type_vis.style.display = 'block';
     }
-    if(slide_type.value == 'Note'){
+    if(slide_type.value == 'Note')
+    {
         type_vis.style.display = 'none';
         document.getElementById('type_deadline').value = '';
         document.getElementById('type_mark').value = '';

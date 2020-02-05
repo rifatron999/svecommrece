@@ -180,9 +180,9 @@
                                                     <span>New</span>
                                                 @endif
                                                 @if($product->offer_id != null && $product->offer_id == $product->offers->id)
-                                                    @if($product->offers->type == "discount")
+                                                    @if($product->offers->type == "Discount")
                                                         <span class="sale">{{$product->offers->offer_percentage}}%</span>
-                                                    @elseif($product->offers->type == "buy1get1")
+                                                    @elseif($product->offers->type == "Buy one get one")
                                                         <span class="sale" style="background: red">Buy 1 Get 1</span>
                                                     @endif
                                                 @endif
@@ -196,9 +196,9 @@
                                         </div>
                                         <div class="product-body">
                                             @if($product->offer_id != null && $product->offer_id == $product->offers->id)
-                                                @if($product->offers->type == "discount")
+                                                @if($product->offers->type == "Discount")
                                                     <h3 class="product-price">৳ {{ number_format($product->offer_price) }} <del class="product-old-price">৳ {{ number_format($product->price) }}</del></h3>
-                                                @elseif($product->offers->type == "buy1get1")
+                                                @elseif($product->offers->type == "Buy one get one")
                                                     @php
                                                         $main_product_id = json_decode($product->offers->product_ids);
                                                         $free_product_id = json_decode($product->offers->free_product_ids);

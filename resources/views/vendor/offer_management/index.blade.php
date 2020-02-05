@@ -4,13 +4,12 @@
 @section('content')
     <div class="container-fluid">
          <ul class="nav nav-tabs">
-            <li class="active " ><a data-toggle="tab" href="#Products">Offers</a></li>
+            <li class="active " ><a data-toggle="tab" href="#Offers">Offers</a></li>
             <li class="" ><a  data-toggle="tab" href="#Create"  >Create</a> </li>
 
         </ul>
         <div class="tab-content">
-            <div id="Products" class="tab-pane fade in active">
-
+            <div id="Offers" class="tab-pane fade in active">
                 <div class="row">
                     <div class="col-md-12 text-center " style="overflow: auto">
                         <p class="small-heading">Current Offers </p>
@@ -26,9 +25,9 @@
 
                                     <div class="overlay">
                                         <a class="btn btn-default btn-xs" href="{{--{{route('brandRemove',Crypt::encrypt($s->id))}}--}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
-                                        <a class="btn btn-success"  href="{{--{{route('productManagementEdit',Crypt::encrypt($s->id))}}--}}" title="Edit"><i class="fa fa-edit"></i></a>
+                                        <a class="btn btn-success"  href="{{route('offerManagementEdit',Crypt::encrypt($s->id))}}" title="Edit"><i class="fa fa-edit"></i></a>
                                         <sub><mark>{{$s->status}}</mark></sub><br>
-                                        <sub><b><mark style="background-color: black;color: white;">{{$s->enddate}}</mark></b></sub>
+                                        {{--<sub><b><mark style="background-color: black;color: white;">{{$s->enddate}}</mark></b></sub>--}}
 
                                     </div>
                                 </div>
@@ -82,10 +81,10 @@
                                     <option value="Deactive" >Deactive</option>
                                 </select>
                             </div>
-                            <div class="col-sm-3">
+                            {{--<div class="col-sm-3">
                                 <label  class=" label label-default">EndDate</label>
                                 <input name="enddate" type="date" class="form-control form-control-sm" value="{{ old('enddate') }}" >
-                            </div>
+                            </div>--}}
                             <div class="col-sm-3" id="offer_percentage_type" style="display:none;">
                                 <label  class=" label label-primary">Offer Percentage</label>
                                 <div class="input-group">
@@ -177,7 +176,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($products as $s)
+                                    @foreach($allProducts as $s)
                                         <tr>
                                             <td class="text-center">
                                                 <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}">
