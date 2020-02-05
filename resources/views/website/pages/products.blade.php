@@ -188,7 +188,7 @@
                                                 @endif
 
                                             </div>
-                                            <a href="{{ route('pages.single_product',[$product->id]) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> See Details </a>
+                                            <a href="{{ route('pages.single_product',Crypt::encrypt($product->id)  ) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> See Details </a>
                                             @php
                                                 $imgarray = json_decode($product->image);
                                             @endphp
@@ -214,7 +214,7 @@
                                                 <h3 class="product-price">৳ {{ number_format($product->price) }}</h3>
                                             @endif
 
-                                            <h2 class="product-name"><a href="{{ route('pages.single_product',[$product->id]) }}">{{ $product->name }}</a></h2>
+                                            <h2 class="product-name"><a href="{{ route('pages.single_product',Crypt::encrypt($product->id) ) }}">{{ $product->name }}</a></h2>
                                             <div class="product-btns text-center">
                                                 @if($product->stock != null)
                                                     <a href="{{ route('cart.add',[$product->id]) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
@@ -225,9 +225,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                            <!-- /Product Single -->
-                            </div>
+                        @endforeach
+                        <!-- /Product Single -->
+                        </div>
                         <!-- /row -->
                     </div>
                     <!-- /STORE -->

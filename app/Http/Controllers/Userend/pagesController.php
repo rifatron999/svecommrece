@@ -7,6 +7,7 @@ use App\Product;
 use App\Offer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
 
 class pagesController extends Controller
 {
@@ -26,7 +27,8 @@ class pagesController extends Controller
 
     public function single_product($id)
     {
-        $product_single = Product::where('id',$id)->get();
+        $single_id = Crypt::decrypt($id);
+        $product_single = Product::where('id',$single_id)->get();
 //        dd($product_single);
         return view('pages.single_product',compact('product_single'));
     }
