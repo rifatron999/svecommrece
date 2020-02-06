@@ -29,7 +29,7 @@ class CartController extends Controller
                 $free_product_id = json_decode($pro->offers->free_product_ids);
                 if($main_product_id[0]->id == $pro->id){
                     $free_product = Product::find($free_product_id[0]->id);
-                    Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image, 'free_product'=>$free_product->name, 'free_product_id'=>$free_product_id ]]);
+                    Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image, 'free_product'=>$free_product->name, 'free_product_id'=>$free_product_id[0]->id ]]);
                 }
             }
         }
