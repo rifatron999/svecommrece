@@ -23,7 +23,7 @@
                                                 @foreach($subCategories as $subCatg)
                                                 <div class="col-md-4">
                                                     <ul class="list-links">
-                                                        <li><a href="{{ route('pages.subCatgProductSearch',[$subCatg->id]) }}">{{ $subCatg->name }}</a></li>
+                                                        <li><a href="{{ route('pages.subCatgProductSearch',Crypt::encrypt($subCatg->id) ) }}">{{ $subCatg->name }}</a></li>
                                                     </ul>
                                                     <hr class="hidden-md hidden-lg">
                                                 </div>

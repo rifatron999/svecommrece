@@ -43,7 +43,13 @@
                                     <td class="details">
                                         <a href="{{ route('pages.single_product',[$cart_data->id]) }}">{{ $cart_data->name }}</a>
                                         <ul>
-                                            <li><span>Size: {{ $cart_data->options->size }}</span></li>
+                                            @if($cart_data->options->free_product == null)
+                                                <li><span><b>Size:</b> {{ $cart_data->options->size }}</span></li>
+                                            @else
+                                                <li><span><b>Size:</b> {{ $cart_data->options->size }}</span></li>
+                                                <li><span><b>Free product:</b> {{ $cart_data->options->free_product }}</span></li>
+                                            @endif
+
 {{--                                            <li><span>Color: Camelot</span></li>--}}
                                         </ul>
                                     </td>

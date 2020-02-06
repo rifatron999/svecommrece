@@ -19,12 +19,24 @@ class CartController extends Controller
 
         $imgarray = json_decode($pro->image);
 
-        if ($pro->offer_price != null){
-            Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->offer_price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image ]]);
+        if($pro->offer_id != null){
+
+            if ($pro->offer_price != null){
+                Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->offer_price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image, 'free_product'=> null, 'free_product_id'=> null ]]);
+            }
+            else{
+                $main_product_id = json_decode($pro->offers->product_ids);
+                $free_product_id = json_decode($pro->offers->free_product_ids);
+                if($main_product_id[0]->id == $pro->id){
+                    $free_product = Product::find($free_product_id[0]->id);
+                    Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image, 'free_product'=>$free_product->name, 'free_product_id'=>$free_product_id ]]);
+                }
+            }
         }
         else{
-            Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image ]]);
+            Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image, 'free_product'=> null, 'free_product_id'=> null ]]);
         }
+
         return back();
     }
     public function deleteItem($rowId){
