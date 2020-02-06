@@ -20,7 +20,7 @@
             <div class="row">
                 @foreach($categories as $category)
                     <div class="col-md-3 mb-3">
-                        <a href="{{ route('pages.subCatgProductSearch',[$category->id]) }}" target="_blank">
+                        <a href="{{ route('pages.subCatgProductSearch',Crypt::encrypt($category->id) ) }}" target="_blank">
                             <div class="card" >
                             <img class="card-img-top p-2" src="{{ asset('assets/vendor/images/categories') }}/{{ $category->image }}" alt="Card image cap">
                             <div class="card-body">
