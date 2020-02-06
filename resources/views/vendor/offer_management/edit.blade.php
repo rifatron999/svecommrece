@@ -108,6 +108,8 @@
                                                             <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked >
                                                         @endif
                                                     @endforeach
+                                                @elseif(!empty($s->offer_id) and $offer->id !== $s->offer_id)
+                                                            <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" disabled title="This Product already has an offer" >
                                                 @else
                                                     <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}"  >
                                                 @endif
@@ -186,7 +188,7 @@
 
                                             <td class="text-center">{{$s->categories->name}}</td>
                                             <td class="text-center">{{$s->stock}}</td>
-                                            <td class="text-center">{{ number_format($s->price) }}</td>
+                                            <td class="text-center">৳ {{ number_format($s->price) }}</td>
                                             <td class="text-center">{{$s->status}}</td>
                                         </tr>
                                     @endforeach
