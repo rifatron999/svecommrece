@@ -233,7 +233,7 @@ class normalVendorController extends Controller
     {
         $brands = Brand::where('vendor_id',Auth::user()->id)->get();
         $products = Product::where('vendor_id',Auth::user()->id)->paginate(8);
-        $categories = Category::all();
+        $categories = Category::where('status','Active')->get();
 
         return view('vendor.product_management.index',compact('brands','categories','products'));
     }
@@ -313,7 +313,7 @@ class normalVendorController extends Controller
         $product = Product::where('id',$pid)->first();
         $imgarray = json_decode($product->image);
         $brands = Brand::where('vendor_id',Auth::user()->id)->get();
-        $categories = Category::all();
+        $categories = Category::where('status','Active')->get();
         return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
     }
     public function productUpdate(Request $request)
@@ -388,10 +388,11 @@ class normalVendorController extends Controller
     //************************ page = offer_management
     public function offerManagementView()
     {
-        $products = Product::where('vendor_id',Auth::user()->id)->orderBy('category_id','ASC')->get();
-        $categories = Category::all();
+        $products = Product::where('vendor_id',Auth::user()->id)->whereNull('offer_id')->orderBy('category_id','ASC')->get();
+        $allProducts = Product::where('vendor_id',Auth::user()->id)->orderBy('category_id','ASC')->get();
+        $categories = Category::where('status','Active')->get();
         $offers = Offer::paginate(8);
-        return view('vendor.offer_management.index',compact('categories','products','offers'));
+        return view('vendor.offer_management.index',compact('categories','products','allProducts','offers'));
     }
     public function offerAdd(Request $request)
     {
@@ -405,6 +406,19 @@ class normalVendorController extends Controller
             $insert[]['id'] = $s;
         }
         $product_ids = json_encode($insert);
+        if($request->type == 'Buy one get one')
+        {
+            foreach ($request->free_product_ids as $s)
+            {
+                $insert2[]['id'] = $s;
+            }
+            $free_product_ids = json_encode($insert2);
+        }
+        else
+            {
+                $free_product_ids = '';
+            }
+
         $image = $request->file('image');
         if(!empty($image))
         {
@@ -412,9 +426,21 @@ class normalVendorController extends Controller
             $image->move('assets/vendor/images/offers/',$image_name);
 
 
-            Offer::create([
+          $offer =  Offer::create([
                 'title' => $request->title,
                 'image' => $image_name,
+                'type' => $request->type,
+                'status' => $request->status,
+                'enddate' => $request->enddate,
+                'offer_percentage' => $request->offer_percentage,
+                'product_ids' => $product_ids,
+                'free_product_ids' => $free_product_ids,
+            ]);
+        }
+        else
+        {
+            $offer =  Offer::create([
+                'title' => $request->title,
                 'type' => $request->type,
                 'status' => $request->status,
                 'enddate' => $request->enddate,
@@ -423,20 +449,34 @@ class normalVendorController extends Controller
                 'free_product_ids' => $request->free_product_ids,
             ]);
         }
-        else
+//for product table update
+        foreach ($request->product_ids as $s)
         {
-            Offer::create([
-                'title' => $request->title,
-                'type' => $request->type,
-                'status' => $request->status,
-                'enddate' => $request->enddate,
-                'offer_percentage' => $request->offer_percentage,
-                '$product_ids' => $product_ids,
-                'free_product_ids' => $request->free_product_ids,
-            ]);
+            $update = Product::find($s);
+            if($request->type == 'Discount')
+            {
+                $offer_price = $update->price - ($update->price*$request->offer_percentage)/100;
+                $update->update([
+                    'offer_id' => $offer->id,
+                    'offer_price' => $offer_price,
+                ]);
+            }
+            elseif ($request->type == 'Buy one get one')
+            {
+                $update->update([
+                    'offer_id' => $offer->id,
+                ]);
+            }
         }
-
         return back()->with('msg','✔ Offer Added');
+    }
+    public function offerManagementEdit($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $offer = Offer::where('id',$oid)->first();
+        $categories = Category::where('status','Active')->get();
+        $products = Product::where('vendor_id',Auth::user()->id)->orderBy('category_id','ASC')->get();
+        return view('vendor.offer_management.edit',compact('offer','categories','products'));
     }
     //************************ page = offer_management #
 }

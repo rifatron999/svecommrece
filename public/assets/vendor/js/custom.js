@@ -127,7 +127,7 @@ $(document).on('change','#offer_type',function()
     if(offer_type.value == 'Discount'){
         free_product_type.style.display = 'none';
         offer_percentage_type.style.display = 'block';
-        var items = document.getElementsByName('free_product_ids');
+        var items = document.getElementsByName('free_product_ids[]');
         for (var i = 0; i < items.length; i++) {
             if (items[i].type == 'radio')
                 items[i].checked = false;
@@ -147,7 +147,8 @@ $(document).on('change','#slide_type',function()
     if(slide_type.value == 'Assignment'){
         type_vis.style.display = 'block';
     }
-    if(slide_type.value == 'Note'){
+    if(slide_type.value == 'Note')
+    {
         type_vis.style.display = 'none';
         document.getElementById('type_deadline').value = '';
         document.getElementById('type_mark').value = '';
