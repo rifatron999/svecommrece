@@ -174,6 +174,7 @@
                                                 @endif
 
                                             </div>
+
                                             <a href="{{ route('pages.single_product',Crypt::encrypt($product->id)  ) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> See Details </a>
                                             @php
                                                 $imgarray = json_decode($product->image);
@@ -248,5 +249,6 @@
         <!-- /container -->
     </div>
     <!-- /section -->
+
 
 @endsection
