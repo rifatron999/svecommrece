@@ -388,8 +388,8 @@ class normalVendorController extends Controller
     //************************ page = offer_management
     public function offerManagementView()
     {
-        $products = Product::where('vendor_id',Auth::user()->id)->whereNull('offer_id')->orderBy('category_id','ASC')->get();
-        $allProducts = Product::where('vendor_id',Auth::user()->id)->orderBy('category_id','ASC')->get();
+        $products = Product::where('vendor_id',Auth::user()->id)->whereNull('offer_id')->where('status','!=','Disable')->orderBy('category_id','ASC')->get();
+        $allProducts = Product::where('vendor_id',Auth::user()->id)->where('status','!=','Disable')->orderBy('category_id','ASC')->get();
         $categories = Category::where('status','Active')->get();
         $offers = Offer::paginate(8);
         return view('vendor.offer_management.index',compact('categories','products','allProducts','offers'));
@@ -446,7 +446,7 @@ class normalVendorController extends Controller
                 'enddate' => $request->enddate,
                 'offer_percentage' => $request->offer_percentage,
                 'product_ids' => $product_ids,
-                'free_product_ids' => $request->free_product_ids,
+                'free_product_ids' => $free_product_ids,
             ]);
         }
 //for product table update
@@ -475,7 +475,7 @@ class normalVendorController extends Controller
         $oid = Crypt::decrypt($id);
         $offer = Offer::where('id',$oid)->first();
         $categories = Category::where('status','Active')->get();
-        $products = Product::where('vendor_id',Auth::user()->id)->orderBy('id','ASC')->get();
+        $products = Product::where('vendor_id',Auth::user()->id)->where('status','!=','Disable')->orderBy('category_id','ASC')->get();
         return view('vendor.offer_management.edit',compact('offer','categories','products'));
     }
     //************************ page = offer_management #
