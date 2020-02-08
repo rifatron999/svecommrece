@@ -81,11 +81,11 @@
                                     @if($product->status === 'Available')
                                         <option value="Available" selected >Available</option>
                                         <option value="Out of Stock"  >Out of Stock</option>
-                                        <option value="Disable"  >Distable</option>
+                                        <option value="Disable"  >Disable</option>
                                     @elseif($product->status === 'Out of Stock')
                                         <option value="Available"  >Available</option>
                                         <option value="Out of Stock"  selected>Out of Stock</option>
-                                        <option value="Disable"  >Distable</option>
+                                        <option value="Disable"  >Disable</option>
                                     @else
                                         <option value="Available"  >Available</option>
                                         <option value="Out of Stock"  >Out of Stock</option>

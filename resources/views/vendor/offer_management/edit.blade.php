@@ -96,23 +96,33 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                      @php
+                                          $product_ids = json_decode($offer->product_ids);
+                                      @endphp
                                     @foreach($products as $s)
                                         <tr>
                                             <td class="text-center">
-                                                @if(!empty($s->offer_id) and $offer->id === $s->offer_id)
-                                                    @php
-                                                        $product_ids = json_decode($s->offers->product_ids);
-                                                    @endphp
-                                                    @foreach ($product_ids as $pid)
-                                                        @if($s->id === (int)$pid->id)
-                                                            <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked >
-                                                        @endif
-                                                    @endforeach
-                                                @elseif(!empty($s->offer_id) and $offer->id !== $s->offer_id)
-                                                            <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" disabled title="This Product already has an offer" >
-                                                @else
-                                                    <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}"  >
-                                                @endif
+                                              @if (!empty($s->offer_id) and $s->offer_id !== $offer->id)
+                                                @php
+                                                  $other_offer_pids = json_decode($s->offers->product_ids)
+                                                @endphp
+                                                @foreach ($other_offer_pids as $pid)
+                                                  @if ($s->id === (int)$pid->id)<i class="fas fa-ban" title="This Product already has an offer" style="color: red"></i>
+                                                    {{-- <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" disabled title="This Product already has an offer" style="border-color: #a77e2d;" > --}}
+                                                  @endif
+                                                @endforeach
+                                              @elseif (!empty($s->offer_id) and $s->offer_id === $offer->id)
+                                                  @php
+                                                    $offer_pids = json_decode($s->offers->product_ids)
+                                                  @endphp
+                                                  @foreach ($offer_pids as $pid)
+                                                    @if ($s->id === (int)$pid->id)
+                                                      <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked  >
+                                                    @endif
+                                                  @endforeach
+                                              @else
+                                                    <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}"   >
+                                              @endif
                                                 @if(empty($s->image))
                                                     <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
                                                 @else

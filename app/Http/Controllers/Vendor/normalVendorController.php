@@ -475,7 +475,7 @@ class normalVendorController extends Controller
         $oid = Crypt::decrypt($id);
         $offer = Offer::where('id',$oid)->first();
         $categories = Category::where('status','Active')->get();
-        $products = Product::where('vendor_id',Auth::user()->id)->orderBy('category_id','ASC')->get();
+        $products = Product::where('vendor_id',Auth::user()->id)->orderBy('id','ASC')->get();
         return view('vendor.offer_management.edit',compact('offer','categories','products'));
     }
     //************************ page = offer_management #

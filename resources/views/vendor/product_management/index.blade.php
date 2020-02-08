@@ -125,7 +125,7 @@
                                 <select name="status" class="form-control" title="Select Status">
                                     <option value="Available" >Available</option>
                                     <option value="Out of Stock" >Out of Stock</option>
-                                    <option value="Disable" >Distable</option>
+                                    <option value="Disable" >Disable</option>
                                 </select>
                             </div>
                         </div>{{--3 row--}}
