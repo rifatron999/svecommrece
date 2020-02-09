@@ -189,13 +189,15 @@
                                     @foreach($products as $s)
                                         <tr>
                                             <td class="text-center">
-                                                @if(!empty($s->offer_id) and $offer->id === $s->offer_id and $offer->type === 'Buy one get one')
+                                                @if($offer->type === 'Buy one get one')
                                                     @php
-                                                        $free_product_ids = json_decode($s->offers->free_product_ids);
+                                                        $free_product_ids = json_decode($offer->free_product_ids);
                                                     @endphp
                                                     @foreach ($free_product_ids as $pid)
                                                         @if($s->id === (int)$pid->id)
                                                             <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked>
+                                                        @else
+                                                          <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" >    
                                                         @endif
                                                     @endforeach
                                                 @else
