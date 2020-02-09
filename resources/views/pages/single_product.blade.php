@@ -57,17 +57,47 @@
                                     @if($days_left <= 30)
                                         <span>New</span>
                                     @endif
-                                    @if($single->offer_percentage != 0)
-                                        <span class="sale">{{$single->offer_percentage}}%</span>
+                                    @if($single->offer_id != null && $single->offer_id == $single->offers->id)
+                                        @if($single->offers->type == "Discount")
+                                            <span class="sale">- {{$single->offers->offer_percentage}}%</span>
+                                        @elseif($single->offers->type == "Buy one get one")
+                                            <span class="sale" style="background: red">Buy 1 Get 1</span>
+                                        @endif
                                     @endif
+
+
 
                                 </div>
                                 <h2 class="product-name">{{ $single->name }}</h2>
-                                @if($single->offer_price != null)
+                                {{-- buy one get one  --}}
+
+                                @if($single->offer_id != null && $single->offer_id == $single->offers->id)
+                                    @if($single->offers->type == "Discount")
+                                        <h3 class="product-price">৳ {{ number_format($single->offer_price) }} <del class="product-old-price">৳ {{ number_format($single->price) }}</del></h3>
+                                    @elseif($single->offers->type == "Buy one get one")
+                                        @php
+                                            $main_product_id = json_decode($single->offers->product_ids);
+                                            $free_product_id = json_decode($single->offers->free_product_ids);
+                                        @endphp
+                                        @if($main_product_id[0]->id == $single->id)
+                                            @php
+                                                $free_product = \App\Product::find($free_product_id[0]->id);
+                                            @endphp
+                                            <h3 class="product-price">৳ {{ number_format($single->price) }} <span class="product-old-price">Get a <a href="{{ route('pages.single_product',Crypt::encrypt($free_product->id)  ) }}"> {{ $free_product->name }} </a> Free</span></h3>
+                                        @endif
+                                    @endif
+                                @elseif($single->offer_id == null)
+                                    <h3 class="product-price">৳ {{ number_format($single->price) }}</h3>
+                                @endif
+
+
+                                {{-- buyone get one --}}
+
+                                {{-- @if($single->offer_price != null)
                                     <h3 class="product-price">৳ {{ number_format($single->offer_price) }} <del class="product-old-price">৳ {{ number_format($single->price) }}</del></h3>
                                 @else
                                     <h3 class="product-price">৳ {{ number_format($single->price) }}</h3>
-                                @endif
+                                @endif --}}
                                 @if($single->status == 'Available')
                                     <p><strong>Availability:</strong> In Stock</p>
                                 @elseif($single->status == 'Out of Stock')
