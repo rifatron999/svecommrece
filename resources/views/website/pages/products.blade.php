@@ -190,12 +190,16 @@
                                                         $main_product_id = json_decode($product->offers->product_ids);
                                                         $free_product_id = json_decode($product->offers->free_product_ids);
                                                     @endphp
-                                                    @if($main_product_id[0]->id == $product->id)
-                                                        @php
-                                                            $free_product = \App\Product::find($free_product_id[0]->id);
-                                                        @endphp
-                                                        <h3 class="product-price">৳ {{ number_format($product->price) }} <span class="product-old-price">Get {{ $free_product->name }} Free</span></h3>
-                                                    @endif
+                                                    @for($i = 0; $i < count($main_product_id) ; $i++)
+                                                        @if($main_product_id[$i]->id == $product->id)
+                                                            @for($j = 0; $j < count($free_product_id) ; $j++)
+                                                                @php
+                                                                    $free_product[$j] = \App\Product::find($free_product_id[$j]->id);
+                                                                @endphp
+                                                                <h3 class="product-price">৳ {{ number_format($product->price) }} <span class="product-old-price">Get {{ $free_product[$j]->name }} Free</span></h3>
+                                                            @endfor
+                                                        @endif
+                                                    @endfor
                                                 @endif
                                             @elseif($product->offer_id == null)
                                                 <h3 class="product-price">৳ {{ number_format($product->price) }}</h3>
