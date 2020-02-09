@@ -3,7 +3,7 @@
 @section('Offer_management','active')
 @section('content')
     <div class="container-fluid">
-                <form method="post" enctype="multipart/form-data" action="{{--{{ route('productUpdate') }}--}}">
+                <form method="post" enctype="multipart/form-data" action="{{ route('offerUpdate') }}">
                     @csrf
                     <div class="modal-body ">
                         <div class="form-group row">
@@ -121,7 +121,23 @@
                                                     @endif
                                                   @endforeach
                                               @else
-                                                    <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}"   >
+
+                                                    @php
+                                                      $offer_pids = json_decode($offer->product_ids)
+                                                    @endphp
+                                                    @foreach ($offer_pids as $value)
+                                                      @php
+                                                        $opids[] = (int)$value->id;
+                                                      @endphp
+                                                    @endforeach
+
+                                                    {{-- @foreach ($offer_pids as $pid) --}}
+                                                      @if (in_array($s->id,$opids))
+                                                        <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked  >
+                                                      @else
+                                                        <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}"   >
+                                                      @endif
+                                                    {{-- @endforeach --}}
                                               @endif
                                                 @if(empty($s->image))
                                                     <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
