@@ -24,7 +24,11 @@
                                     @endif
 
                                     <div class="overlay">
-                                        <a class="btn btn-default btn-xs" href="{{--{{route('brandRemove',Crypt::encrypt($s->id))}}--}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
+                                      @if ($s->status !== 'Active')
+                                        <a class="btn btn-danger btn-xs" href="{{route('offerRemove',Crypt::encrypt($s->id))}}"  title="Remove" onclick="return confirm('Delete this?')"><i class="fa fa-trash"></i></a>
+                                      @else
+                                        <a class="btn btn-default btn-xs"  title="You can't delete an active offer" ><i class="fa fa-trash"></i></a>
+                                      @endif
                                         <a class="btn btn-success"  href="{{route('offerManagementEdit',Crypt::encrypt($s->id))}}" title="Edit"><i class="fa fa-edit"></i></a>
                                         <sub><mark>{{$s->status}}</mark></sub><br>
                                         {{--<sub><b><mark style="background-color: black;color: white;">{{$s->enddate}}</mark></b></sub>--}}
