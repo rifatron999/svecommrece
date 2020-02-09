@@ -866,6 +866,7 @@ textarea.input {
   margin-bottom: 15px;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
+  height: 440px;
 }
 
 .product.product-single:hover {
