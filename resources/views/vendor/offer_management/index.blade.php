@@ -142,7 +142,7 @@
                                             <td class="text-center">{{$s->categories->name}}</td>
                                             <td class="text-center">{{$s->stock}}</td>
                                             <td class="text-center">৳ {{ number_format($s->price) }}</td>
-                                            <td class="text-center">{{$s->status}}</td>
+                                            <td class="text-center">@if($s->status === 'Out of Stock')<b style="color:red">{{$s->status}}</b>@else{{$s->status}}@endif</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -194,7 +194,7 @@
                                             <td class="text-center">{{$s->categories->name}}</td>
                                             <td class="text-center">{{$s->stock}}</td>
                                             <td class="text-center">{{ number_format($s->price) }}</td>
-                                            <td class="text-center">{{$s->status}}</td>
+                                            <td class="text-center">@if($s->status === 'Out of Stock')<b style="color:red">{{$s->status}}</b>@else{{$s->status}}@endif</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

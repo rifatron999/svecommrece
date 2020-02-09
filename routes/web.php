@@ -73,6 +73,8 @@ Route::get('/product_management/remove/{id}','Vendor\normalVendorController@prod
 Route::get('/offer_management','Vendor\normalVendorController@offerManagementView')->name('offerManagementView');
 Route::post('/offer_management','Vendor\normalVendorController@offerAdd')->name('offerAdd');
 Route::get('/offer_management/edit/{id}','Vendor\normalVendorController@offerManagementEdit')->name('offerManagementEdit');
+Route::post('/offer_management/update','Vendor\normalVendorController@offerUpdate')->name('offerUpdate');
+
 
 //offer management #
 
@@ -82,5 +84,3 @@ Route::get('/offer_management/edit/{id}','Vendor\normalVendorController@offerMan
 
 
 /* ====================================================== Backend #  =================================================================== */
-
-

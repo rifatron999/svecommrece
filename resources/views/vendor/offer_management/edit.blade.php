@@ -3,7 +3,7 @@
 @section('Offer_management','active')
 @section('content')
     <div class="container-fluid">
-                <form method="post" enctype="multipart/form-data" action="{{--{{ route('productUpdate') }}--}}">
+                <form method="post" enctype="multipart/form-data" action="{{ route('offerUpdate') }}">
                     @csrf
                     <div class="modal-body ">
                         <div class="form-group row">
@@ -96,23 +96,49 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                      @php
+                                          $product_ids = json_decode($offer->product_ids);
+                                      @endphp
                                     @foreach($products as $s)
                                         <tr>
                                             <td class="text-center">
-                                                @if(!empty($s->offer_id) and $offer->id === $s->offer_id)
+                                              @if (!empty($s->offer_id) and $s->offer_id !== $offer->id)
+                                                @php
+                                                  $other_offer_pids = json_decode($s->offers->product_ids)
+                                                @endphp
+                                                @foreach ($other_offer_pids as $pid)
+                                                  @if ($s->id === (int)$pid->id)<i class="fas fa-ban" title="This Product already has an offer" style="color: red"></i>
+                                                    {{-- <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" disabled title="This Product already has an offer" style="border-color: #a77e2d;" > --}}
+                                                  @endif
+                                                @endforeach
+                                              @elseif (!empty($s->offer_id) and $s->offer_id === $offer->id)
+                                                  @php
+                                                    $offer_pids = json_decode($s->offers->product_ids)
+                                                  @endphp
+                                                  @foreach ($offer_pids as $pid)
+                                                    @if ($s->id === (int)$pid->id)
+                                                      <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked  >
+                                                    @endif
+                                                  @endforeach
+                                              @else
+
                                                     @php
-                                                        $product_ids = json_decode($s->offers->product_ids);
+                                                      $offer_pids = json_decode($offer->product_ids)
                                                     @endphp
-                                                    @foreach ($product_ids as $pid)
-                                                        @if($s->id === (int)$pid->id)
-                                                            <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked >
-                                                        @endif
+                                                    @foreach ($offer_pids as $value)
+                                                      @php
+                                                        $opids[] = (int)$value->id;
+                                                      @endphp
                                                     @endforeach
-                                                @elseif(!empty($s->offer_id) and $offer->id !== $s->offer_id)
-                                                            <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" disabled title="This Product already has an offer" >
-                                                @else
-                                                    <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}"  >
-                                                @endif
+
+                                                    {{-- @foreach ($offer_pids as $pid) --}}
+                                                      @if (in_array($s->id,$opids))
+                                                        <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked  >
+                                                      @else
+                                                        <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}"   >
+                                                      @endif
+                                                    {{-- @endforeach --}}
+                                              @endif
                                                 @if(empty($s->image))
                                                     <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
                                                 @else
@@ -126,7 +152,7 @@
                                             <td class="text-center">{{$s->categories->name}}</td>
                                             <td class="text-center">{{$s->stock}}</td>
                                             <td class="text-center">৳ {{ number_format($s->price) }}</td>
-                                            <td class="text-center">{{$s->status}}</td>
+                                            <td class="text-center">@if($s->status === 'Out of Stock')<b style="color:red">{{$s->status}}</b>@else{{$s->status}}@endif</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -189,7 +215,7 @@
                                             <td class="text-center">{{$s->categories->name}}</td>
                                             <td class="text-center">{{$s->stock}}</td>
                                             <td class="text-center">৳ {{ number_format($s->price) }}</td>
-                                            <td class="text-center">{{$s->status}}</td>
+                                            <td class="text-center">@if($s->status === 'Out of Stock')<b style="color:red">{{$s->status}}</b>@else{{$s->status}}@endif</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

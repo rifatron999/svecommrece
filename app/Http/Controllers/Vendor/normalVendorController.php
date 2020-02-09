@@ -388,8 +388,8 @@ class normalVendorController extends Controller
     //************************ page = offer_management
     public function offerManagementView()
     {
-        $products = Product::where('vendor_id',Auth::user()->id)->whereNull('offer_id')->orderBy('category_id','ASC')->get();
-        $allProducts = Product::where('vendor_id',Auth::user()->id)->orderBy('category_id','ASC')->get();
+        $products = Product::where('vendor_id',Auth::user()->id)->whereNull('offer_id')->where('status','!=','Disable')->orderBy('category_id','ASC')->get();
+        $allProducts = Product::where('vendor_id',Auth::user()->id)->where('status','!=','Disable')->orderBy('category_id','ASC')->get();
         $categories = Category::where('status','Active')->get();
         $offers = Offer::paginate(8);
         return view('vendor.offer_management.index',compact('categories','products','allProducts','offers'));
@@ -446,7 +446,7 @@ class normalVendorController extends Controller
                 'enddate' => $request->enddate,
                 'offer_percentage' => $request->offer_percentage,
                 'product_ids' => $product_ids,
-                'free_product_ids' => $request->free_product_ids,
+                'free_product_ids' => $free_product_ids,
             ]);
         }
 //for product table update
@@ -475,8 +475,152 @@ class normalVendorController extends Controller
         $oid = Crypt::decrypt($id);
         $offer = Offer::where('id',$oid)->first();
         $categories = Category::where('status','Active')->get();
-        $products = Product::where('vendor_id',Auth::user()->id)->orderBy('category_id','ASC')->get();
+        $products = Product::where('vendor_id',Auth::user()->id)->where('status','!=','Disable')->orderBy('category_id','ASC')->get();
         return view('vendor.offer_management.edit',compact('offer','categories','products'));
+    }
+    public function offerUpdate(Request $request)
+    {
+        $request->validate([
+          'title' => 'required',
+          'product_ids' => 'required',
+          'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+        ]);
+        $image = $request->file('image');
+        $update = offer::find($request->id);
+        foreach ($request->product_ids as $s)
+        {
+            $insert[]['id'] = $s;
+        }
+        $product_ids = json_encode($insert);
+
+        if($update->type == 'Buy one get one')
+        {
+            foreach ($request->free_product_ids as $s)
+            {
+                $insert2[]['id'] = $s;
+            }
+            $free_product_ids = json_encode($insert2);
+        }
+        else
+            {
+                $free_product_ids = '';
+            }
+
+        if(!empty($image))
+        {
+            unlink('assets/vendor/images/offers/'.$updare->image);
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $image->move('assets/vendor/images/offers/',$image_name);
+
+            if($update->type == 'Buy one get one')
+            {
+              $update->update([
+                  'title' => $request->title,
+                  'image' => $image_name,
+                  'status' => $request->status,
+                  // 'enddate' => $request->enddate,
+                  'product_ids' => $product_ids,
+                  'free_product_ids' => $free_product_ids,
+              ]);
+            }
+            else
+            {
+              $update->update([
+                  'title' => $request->title,
+                  'image' => $image_name,
+                  'status' => $request->status,
+                  // 'enddate' => $request->enddate,
+                  'offer_percentage' => $request->offer_percentage,
+                  'product_ids' => $product_ids,
+              ]);
+            }
+        }
+        else
+      {
+            if($update->type == 'Buy one get one')
+            {
+              $update->update([
+                'title' => $request->title,
+                'status' => $request->status,
+                // 'enddate' => $request->enddate,
+                'product_ids' => $product_ids,
+                'free_product_ids' => $free_product_ids,
+            ]);
+          }
+          else
+          {
+            $update->update([
+              'title' => $request->title,
+              'status' => $request->status,
+              // 'enddate' => $request->enddate,
+              'offer_percentage' => $request->offer_percentage,
+              'product_ids' => $product_ids,
+          ]);
+        }
+      }
+      //for product table update
+        //alter perv products
+        $prev_pids = json_decode($update->product_ids);
+      foreach ($prev_pids as $s)
+      {
+          $update3 = Product::find($s->id);
+          if($update->type == 'Discount')
+          {
+              $update3->update([
+                  'offer_id' => NULL,
+                  'offer_price' => NULL,
+              ]);
+          }
+          elseif ($update->type == 'Buy one get one')
+          {
+              $update3->update([
+                  'offer_id' => NULL,
+              ]);
+          }
+      }
+      //alter perv products #
+
+      //new calc products
+              foreach ($request->product_ids as $s)
+              {
+                $update2 = Product::find($s);
+                  if($update->type == 'Discount')
+                  {
+                      if($request->status == 'Active')
+                      {
+                        $offer_price = $update2->price - ($update2->price*$request->offer_percentage)/100;
+                      $update2->update([
+                          'offer_id' => $request->id,
+                          'offer_price' => $offer_price,
+                      ]);
+                      }
+                      else
+                      {
+                        $update2->update([
+                            'offer_id' => NULL,
+                            'offer_price' => NULL,
+                        ]);
+                      }
+                  }
+                  elseif ($update->type == 'Buy one get one')
+                  {
+                      if($request->status == 'Active')
+                      {
+                        $update2->update([
+                            'offer_id' => $request->id,
+                        ]);
+                      }
+                      else
+                      {
+                        $update2->update([
+                            'offer_id' => NULL,
+                        ]);
+                      }
+                  }
+              }
+              //new calc products #
+
+        return back()->with('msg','✔ Offer Updated');
     }
     //************************ page = offer_management #
 }
