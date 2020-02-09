@@ -223,8 +223,8 @@ class normalVendorController extends Controller
     {
         $bid = Crypt::decrypt($id);
         $delete = Brand::find($bid);
-        $delete->delete();
         if(!empty($delete->image)){unlink('assets/vendor/images/brands/'.$delete->image);}
+        $delete->delete();
         return redirect()->back()->with('msg',"✔ REMOVED");
     }
     //************************ page = brand_management #
@@ -508,7 +508,7 @@ class normalVendorController extends Controller
 
         if(!empty($image))
         {
-            unlink('assets/vendor/images/offers/'.$updare->image);
+          if(!empty($update->image)){unlink('assets/vendor/images/offers/'.$update->image);}
             $image_name = time().'.'.$image->getClientOriginalExtension();
             $image->move('assets/vendor/images/offers/',$image_name);
 
@@ -621,6 +621,14 @@ class normalVendorController extends Controller
               //new calc products #
 
         return back()->with('msg','✔ Offer Updated');
+    }
+    public function offerRemove($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $delete = Offer::find($oid);
+        if(!empty($delete->image)){unlink('assets/vendor/images/offers/'.$delete->image);}
+        $delete->delete();
+        return redirect()->back()->with('msg',"✔ REMOVED");
     }
     //************************ page = offer_management #
 }
