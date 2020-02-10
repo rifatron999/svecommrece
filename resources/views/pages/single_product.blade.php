@@ -71,6 +71,25 @@
                                 <h2 class="product-name">{{ $single->name }}</h2>
                                 {{-- buy one get one  --}}
 
+{{--                                @if($single->offer_id != null && $single->offer_id == $single->offers->id)--}}
+{{--                                    @if($single->offers->type == "Discount")--}}
+{{--                                        <h3 class="product-price">৳ {{ number_format($single->offer_price) }} <del class="product-old-price">৳ {{ number_format($single->price) }}</del></h3>--}}
+{{--                                    @elseif($single->offers->type == "Buy one get one")--}}
+{{--                                        @php--}}
+{{--                                            $main_product_id = json_decode($single->offers->product_ids);--}}
+{{--                                            $free_product_id = json_decode($single->offers->free_product_ids);--}}
+{{--                                        @endphp--}}
+{{--                                        @if($main_product_id[0]->id == $single->id)--}}
+{{--                                            @php--}}
+{{--                                                $free_product = \App\Product::find($free_product_id[0]->id);--}}
+{{--                                            @endphp--}}
+{{--                                            <h3 class="product-price">৳ {{ number_format($single->price) }} <span class="product-old-price">Get a <a href="{{ route('pages.single_product',Crypt::encrypt($free_product->id)  ) }}"> {{ $free_product->name }} </a> Free</span></h3>--}}
+{{--                                        @endif--}}
+{{--                                    @endif--}}
+{{--                                @elseif($single->offer_id == null)--}}
+{{--                                    <h3 class="product-price">৳ {{ number_format($single->price) }}</h3>--}}
+{{--                                @endif--}}
+
                                 @if($single->offer_id != null && $single->offer_id == $single->offers->id)
                                     @if($single->offers->type == "Discount")
                                         <h3 class="product-price">৳ {{ number_format($single->offer_price) }} <del class="product-old-price">৳ {{ number_format($single->price) }}</del></h3>
@@ -79,12 +98,16 @@
                                             $main_product_id = json_decode($single->offers->product_ids);
                                             $free_product_id = json_decode($single->offers->free_product_ids);
                                         @endphp
-                                        @if($main_product_id[0]->id == $single->id)
-                                            @php
-                                                $free_product = \App\Product::find($free_product_id[0]->id);
-                                            @endphp
-                                            <h3 class="product-price">৳ {{ number_format($single->price) }} <span class="product-old-price">Get a <a href="{{ route('pages.single_product',Crypt::encrypt($free_product->id)  ) }}"> {{ $free_product->name }} </a> Free</span></h3>
-                                        @endif
+                                        @for($i = 0; $i < count($main_product_id) ; $i++)
+                                            @if($main_product_id[$i]->id == $single->id)
+                                                @for($j = 0; $j < count($free_product_id) ; $j++)
+                                                    @php
+                                                        $free_product[$j] = \App\Product::find($free_product_id[$j]->id);
+                                                    @endphp
+                                                    <h3 class="product-price">৳ {{ number_format($single->price) }} <span class="product-old-price">Get a <a href="{{ route('pages.single_product',Crypt::encrypt($free_product[$j]->id)  ) }}">{{ $free_product[$j]->name }} </a> Free</span></h3>
+                                                @endfor
+                                            @endif
+                                        @endfor
                                     @endif
                                 @elseif($single->offer_id == null)
                                     <h3 class="product-price">৳ {{ number_format($single->price) }}</h3>

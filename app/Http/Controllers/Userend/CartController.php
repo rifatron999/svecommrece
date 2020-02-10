@@ -22,19 +22,21 @@ class CartController extends Controller
         if($pro->offer_id != null){
 
             if ($pro->offer_price != null){
-                Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->offer_price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image, 'free_product'=> null, 'free_product_id'=> null ]]);
+                Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->offer_price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity, 'image'=>$imgarray[0]->image, 'offer_type'=> 'Discount', 'offer_percentage'=> $pro->offers->offer_percentage , 'free_product'=> null, 'free_product_id'=> null ]]);
             }
             else{
                 $main_product_id = json_decode($pro->offers->product_ids);
                 $free_product_id = json_decode($pro->offers->free_product_ids);
-                if($main_product_id[0]->id == $pro->id){
-                    $free_product = Product::find($free_product_id[0]->id);
-                    Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image, 'free_product'=>$free_product->name, 'free_product_id'=>$free_product_id[0]->id ]]);
+                for ($i=0; $i<count($main_product_id); $i++){
+                    if($main_product_id[$i]->id == $pro->id){
+                        $free_product = Product::find($free_product_id[0]->id);
+                        Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image, 'offer_type'=> 'Buy one get one', 'offer_percentage'=> null , 'free_product'=>$free_product->name, 'free_product_id'=>$free_product_id[0]->id ]]);
+                    }
                 }
             }
         }
         else{
-            Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image, 'free_product'=> null, 'free_product_id'=> null ]]);
+            Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity,'image'=>$imgarray[0]->image, 'offer_type'=> null, 'offer_percentage'=> null , 'free_product'=> null, 'free_product_id'=> null ]]);
         }
 
         return back();

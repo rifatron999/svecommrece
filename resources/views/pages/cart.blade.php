@@ -41,7 +41,7 @@
                                 <tr>
                                     <td class="thumb"><img src="{{ asset('assets/vendor/images/products') }}/{{ $cart_data->options->image }}" alt=""></td>
                                     <td class="details">
-                                        <a href="{{ route('pages.single_product',[$cart_data->id]) }}">{{ $cart_data->name }}</a>
+                                        <a href="{{ route('pages.single_product',Crypt::encrypt($cart_data->id)  ) }}">{{ $cart_data->name }}</a>
                                         <ul>
                                             @if($cart_data->options->free_product == null)
                                                 <li><span><b>Size:</b> {{ $cart_data->options->size }}</span></li>
@@ -53,7 +53,12 @@
 {{--                                            <li><span>Color: Camelot</span></li>--}}
                                         </ul>
                                     </td>
-                                    <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>
+                                    @if($cart_data->options->offer_percentage != null)
+                                        <td class="price text-center"><strong>{{$cart_data->price}}</strong><span class="primary-color"> -{{ $cart_data->options->offer_percentage }}% </span><br></td>
+                                    @else
+                                        <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>
+                                    @endif
+{{--                                    <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>--}}
                                     <td class="qty text-center">
                                         <form method="post" action="{{ route('cart.update') }}">
                                             {{ @csrf_field() }}
