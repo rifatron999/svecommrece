@@ -37,12 +37,12 @@
                             </div>
                             <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
                         </div>
-                        <a href="/login" class="text-uppercase">Login</a> / <a href="#" class="text-uppercase">Join</a>
+                        <a href="/login" class="text-uppercase">Login</a>
                         <ul class="custom-menu">
                             <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-                            <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
-                            <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
-                            <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>
+{{--                            <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>--}}
+{{--                            <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>--}}
+{{--                            <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>--}}
                             <li><a href="#"><i class="fa fa-unlock-alt"></i> Login</a></li>
                             <li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
                         </ul>
@@ -63,36 +63,36 @@
                         <div class="custom-menu">
                             <div id="shopping-cart">
                                 <div class="shopping-cart-list">
-                                    <div class="product product-widget">
-                                        <div class="product-thumb">
-                                            <img src="{{ asset('assets/img/thumb-product01.jpg') }}" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-                                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                        </div>
-                                        <button class="cancel-btn"><i class="fa fa-trash"></i></button>
-                                    </div>
-                                    <div class="product product-widget">
-                                        <div class="product-thumb">
-                                            <img src="{{ asset('assets/img/thumb-product01.jpg') }}" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price" id="cart_product_price">$32.50 <span class="qty">x3</span></h3>
-                                            <h2 class="product-name" id="cart_product_name"><a href="#">Product Name Goes Here</a></h2>
-                                        </div>
-                                        <button class="cancel-btn"><i class="fa fa-trash"></i></button>
-                                    </div>
-                                    <div class="product product-widget" id="cart_div">
-                                        <div class="product-thumb">
-                                            <img src="{{ asset('assets/img/thumb-product01.jpg') }}" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price" id="cart_product_price">$32.50 <span class="qty">x3</span></h3>
-                                            <h2 class="product-name" id="cart_product_name"><a href="#">Product Name Goes Here</a></h2>
-                                        </div>
-                                        <button class="cancel-btn" id="cancel_cart"><i class="fa fa-trash"></i></button>
-                                    </div>
+{{--                                    <div class="product product-widget">--}}
+{{--                                        <div class="product-thumb">--}}
+{{--                                            <img src="{{ asset('assets/img/thumb-product01.jpg') }}" alt="">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="product-body">--}}
+{{--                                            <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>--}}
+{{--                                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>--}}
+{{--                                        </div>--}}
+{{--                                        <button class="cancel-btn"><i class="fa fa-trash"></i></button>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="product product-widget">--}}
+{{--                                        <div class="product-thumb">--}}
+{{--                                            <img src="{{ asset('assets/img/thumb-product01.jpg') }}" alt="">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="product-body">--}}
+{{--                                            <h3 class="product-price" id="cart_product_price">$32.50 <span class="qty">x3</span></h3>--}}
+{{--                                            <h2 class="product-name" id="cart_product_name"><a href="#">Product Name Goes Here</a></h2>--}}
+{{--                                        </div>--}}
+{{--                                        <button class="cancel-btn"><i class="fa fa-trash"></i></button>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="product product-widget" id="cart_div">--}}
+{{--                                        <div class="product-thumb">--}}
+{{--                                            <img src="{{ asset('assets/img/thumb-product01.jpg') }}" alt="">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="product-body">--}}
+{{--                                            <h3 class="product-price" id="cart_product_price">$32.50 <span class="qty">x3</span></h3>--}}
+{{--                                            <h2 class="product-name" id="cart_product_name"><a href="#">Product Name Goes Here</a></h2>--}}
+{{--                                        </div>--}}
+{{--                                        <button class="cancel-btn" id="cancel_cart"><i class="fa fa-trash"></i></button>--}}
+{{--                                    </div>--}}
                                 </div>
                                 <div class="shopping-cart-btns">
                                     <a href="{{ route('cart.index') }}" class="main-btn">View Cart</a>
