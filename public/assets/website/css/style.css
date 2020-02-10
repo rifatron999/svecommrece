@@ -11,8 +11,19 @@
 #we_deliver{
     background: #fa4a4a;
 }
-nav{
+.top_nav{
     background: #ef5454;
+}
+.navbar-brand{
+    height: 70px;
+}
+.navbar-nav{
+    float: none;
+}
+.menus li a{
+    color:#fff !important;
+    font-size: 18px;
+    font-weight: 700;
 }
 /**************** accordion start *******************  */
 [data-toggle="collapse"] i:before {
