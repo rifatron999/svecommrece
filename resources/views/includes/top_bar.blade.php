@@ -8,7 +8,7 @@
                 <!-- Logo -->
                 <div class="header-logo">
                     <a class="logo" href="#">
-                        <img src="{{ asset('assets/img/icon/logo.jpg') }}" alt="">
+                        <img width="70px" src="{{ asset('assets/img/icon/nobin.png') }}" alt="">
                     </a>
                 </div>
                 <!-- /Logo -->

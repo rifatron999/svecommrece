@@ -140,18 +140,18 @@
                                                     {{-- @endforeach --}}
                                               @endif
                                                 @if(empty($s->image))
-                                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
+                                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}"  width="50px" {{--class="imgs"--}} alt="">
                                                 @else
                                                     @php
                                                         $imgarray = json_decode($s->image);
                                                     @endphp
-                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" class="imgs" alt="">
+                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" width="50px" {{--class="imgs"--}} alt="">
                                                 @endif
                                             </td>
                                             <td class="text-center">{{$s->name}}</td>
                                             <td class="text-center">{{$s->categories->name}}</td>
                                             <td class="text-center">{{$s->stock}}</td>
-                                            <td class="text-center">৳ {{ number_format($s->price) }}</td>
+                                            <td class="text-center" width="110px">৳  @if(!empty($s->offer_price)) <del>{{ number_format($s->price) }} </del>{{ number_format($s->offer_price) }} @else {{ number_format($s->price) }} @endif</td>
                                             <td class="text-center">@if($s->status === 'Out of Stock')<b style="color:red">{{$s->status}}</b>@else{{$s->status}}@endif</td>
                                         </tr>
                                     @endforeach
@@ -197,19 +197,19 @@
                                                         @if($s->id === (int)$pid->id)
                                                             <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" checked>
                                                         @else
-                                                          <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" >    
+                                                          <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}" >
                                                         @endif
                                                     @endforeach
                                                 @else
                                                     <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}">
                                                 @endif
                                                 @if(empty($s->image))
-                                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
+                                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" width="50px" {{--class="imgs"--}} alt="">
                                                 @else
                                                     @php
                                                         $imgarray = json_decode($s->image);
                                                     @endphp
-                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" class="imgs" alt="">
+                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" width="50px" {{--class="imgs"--}} alt="">
                                                 @endif
                                             </td>
                                             <td class="text-center">{{$s->name}}</td>

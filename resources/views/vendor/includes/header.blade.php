@@ -31,6 +31,9 @@
     </div>
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
+            <li><img width="120px" src="{{ asset('assets/img/icon/276.gif') }}" alt=""></li>
+        </ul>
+        <ul class="nav pull-right top-menu">
             <li>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();

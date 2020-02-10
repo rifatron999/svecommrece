@@ -40,6 +40,12 @@
                     <span>Offer</span>
                 </a>
             </li>
+            <li class="sub-menu">
+                <a class="@yield('Inventory_management')" href="{{route('inventoryManagementView')}}" >
+                    <i class="fas fa-store"></i>
+                    <span>Inventory</span>
+                </a>
+            </li>
         </ul>
         <!-- sidebar menu end-->
     </div>
