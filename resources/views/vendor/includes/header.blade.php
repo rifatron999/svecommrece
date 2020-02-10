@@ -3,7 +3,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="index.html" class="logo"><b>E-Commerce Init</b></a>
+    <a href="index.html" class="logo"><b>E-Commerce Init </b> <img width="35px" src="{{ asset('assets/img/icon/home.gif') }}" alt=""></a>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
