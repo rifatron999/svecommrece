@@ -2,7 +2,7 @@
 <html lang="en">
     @include('includes.header_link')
     <body>
-    <div id="loader" class="center"><img src="{{ asset('assets/img/icon/loading.gif') }}" alt=""></div>
+    <div id="loader" class="center"><img src="{{ asset('assets/img/icon/276.gif') }}" alt=""></div>
     @include('includes.top_navbar')
     @include('includes.top_bar')
     @include('includes.navbar')
