@@ -63,6 +63,7 @@
                                     <td class="qty text-center">
                                         <form method="post" action="{{ route('cart.update') }}">
                                             {{ @csrf_field() }}
+                                            <input class="input" type="hidden" name="product_id" value="{{ $cart_data->id }}">
                                             <input class="input" type="number" name="qty" value="{{ $cart_data->qty }}">
                                             <input class="input" type="hidden" name="rowId" value="{{ $cart_data->rowId }}">
                                             <input type="submit" class="btn btn-sm btn-success" value="update">

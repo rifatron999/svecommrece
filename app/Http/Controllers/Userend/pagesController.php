@@ -48,7 +48,7 @@ class pagesController extends Controller
     public function subCatgProductSearch($id)
     {
         $subCatg_id = Crypt::decrypt($id);
-        $products = Product::where('category_id',$subCatg_id)->get();
+        $products = Product::where('category_id',$subCatg_id)->paginate(14);
         return view('pages.products',compact('products'));
     }
 

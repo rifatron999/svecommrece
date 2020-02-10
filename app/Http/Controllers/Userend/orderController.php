@@ -49,6 +49,27 @@ class orderController extends Controller
             'total' => $total
 
         ]);
+
+        $cart_products = Temp_Order::find($temp_order->id);
+
+        $cart_product = json_decode($cart_products->product_ids);
+        for($i = 0; $i < count($cart_product) ; $i++){
+            $pro_id = $cart_product[$i];
+            $qty = $quantities[$i];
+            $update = Product::find($pro_id);
+            $new_stock = $update->stock - $qty;
+            if($new_stock == 0){
+                $update->update([
+                    'stock' => $new_stock,
+                    'status' => "Out of Stock",
+                ]);
+            }elseif ($new_stock > 0){
+                $update->update([
+                    'stock' => $new_stock,
+                ]);
+            }
+        }
+
         Cart::destroy();
         return redirect()->route('pages.products');
 

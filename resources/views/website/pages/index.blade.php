@@ -1,8 +1,8 @@
-@extends('master')
+@extends('website.master')
 @section('content')
     <section id="banner">
         <div class="">
-            <img style="width: 100%" src="{{ asset('assets/website/images/banner.jpg') }}" alt="">
+            <img style="width: 100%" src="{{ asset('assets/website/images/banner3.jpg') }}" alt="">
         </div>
     </section>
     <section id="why_us">

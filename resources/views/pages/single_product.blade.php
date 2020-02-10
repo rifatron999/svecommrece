@@ -128,6 +128,7 @@
                                 @endif
 
                                 <p><strong>Brand:</strong> {{ $single->brands->name }}</p>
+                                <h4><b>Description</b></h4>
                                 <p>{!! $single->description !!}</p>
 
 

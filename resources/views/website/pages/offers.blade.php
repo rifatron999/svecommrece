@@ -1,4 +1,4 @@
-@extends('master')
+@extends('website.master')
 @section('content')
     <div class="container">
         <h1 class="text-center mt-5 mb-5">Grab your offer</h1>

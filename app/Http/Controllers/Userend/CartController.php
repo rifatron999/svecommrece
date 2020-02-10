@@ -57,6 +57,15 @@ class CartController extends Controller
         return back();
     }
     public function updateItem(Request $request){
+
+        $product_id = $request->product_id;
+        $product = Product::find($product_id);
+        $stock =  $product->stock;
+
+        $request->validate([
+            'qty' => 'required|numeric|min:1|max:'.$stock,
+        ]);
+
         $qty = $request->qty;
         $rowId = $request->rowId;
         Cart::update($rowId, $qty);
