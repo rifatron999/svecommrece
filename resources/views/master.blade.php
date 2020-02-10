@@ -3,6 +3,7 @@
     @include('includes.header_link')
     <body>
     <div id="loader" class="center"><img src="{{ asset('assets/img/icon/loading.gif') }}" alt=""></div>
+    @include('includes.top_navbar')
     @include('includes.top_bar')
     @include('includes.navbar')
 
@@ -27,8 +28,6 @@
 
                 $("#cart_product_name").html(productName);
                 $("#cart_product_price").html(price);
-
-
             });
             $("#cancel_cart").click(function () {
                $("#cart_div").remove();
@@ -37,6 +36,9 @@
                 $("#remove").remove();
                 // $("#removeDiv").parent().remove();
             });
+
+
+
         });
     </script>
 </body>

@@ -26,6 +26,8 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 
+    <link rel="stylesheet" href="{{ asset('assets/website/css/style.css') }}"/>
+
 
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
