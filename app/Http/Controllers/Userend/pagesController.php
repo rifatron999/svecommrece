@@ -21,7 +21,7 @@ class pagesController extends Controller
 
     public function products()
     {
-        $products = Product::all();
+        $products = Product::where('status','!=','Disable')->paginate(14);
         return view('pages.products',compact('products'));
     }
 

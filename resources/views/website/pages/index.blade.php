@@ -1,4 +1,4 @@
-@extends('website.master')
+@extends('master')
 @section('content')
     <section id="banner">
         <div class="">

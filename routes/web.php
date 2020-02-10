@@ -19,7 +19,7 @@ Route::get('/contact_us','website\websiteController@contact_us')->name('website.
 /* ====================================== Website end  ============================================== */
 /* ====================================================== Frontend  ============================================================== */
 Route::get('/ecommerce', 'Userend\pagesController@home')->name('pages.home');
-//Route::get('/products', 'Userend\pagesController@products')->name('pages.products');
+Route::get('/products', 'Userend\pagesController@products')->name('pages.products');
 Route::get('/single_product/{id}', 'Userend\pagesController@single_product')->name('pages.single_product');
 Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
 Route::get('/single', 'Userend\pagesController@single')->name('pages.single');

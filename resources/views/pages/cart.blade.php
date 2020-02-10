@@ -13,7 +13,8 @@
 
     <div class="container">
         @if(Cart::count() == 0)
-            <h1 style="padding: 3em">Cart Empty</h1>
+            <h1 style="padding: 1em;text-align: center">Cart Empty</h1>
+            <a href="{{ route('pages.products') }}" style="padding-left:1em"><h2 style="padding-left: 1em; text-align:center;color:#2bace2;">Go to shopping page</h2></a>
         @else
             <div class="row">
                 <div class="col-md-12">
