@@ -56,7 +56,7 @@
             <div class="menu-nav">
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
-                    <li><a href="{{ route('pages.home') }}">Home</a></li>
+                    <li><a href="">Home</a></li>
 {{--                    <li><a href="{{  route('pages.single') }}">Shop</a></li>--}}
 {{--                    <li class="dropdown mega-dropdown full-width"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Life Style <i class="fa fa-caret-down"></i></a>--}}
 {{--                        <div class="custom-menu">--}}
