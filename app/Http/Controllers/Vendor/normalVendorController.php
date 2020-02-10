@@ -18,12 +18,16 @@ class normalVendorController extends Controller
         return view('vendor.dashboard.index');
     }
 //************************ page = category_management
-
     public function categoryManagementView()
     {
         $categories = Category::whereNull('parent_id')->paginate(8);
+        $sub_categories = Category::whereNotNull('parent_id')->get();
+        foreach ($sub_categories as  $value)
+        {
+          $sub[] = $value->parent_id;
+        }
         $parent_id = NULL;
-        return view('vendor.category_management.index',compact('categories','parent_id'));
+        return view('vendor.category_management.index',compact('categories','parent_id','sub'));
     }
 
     public function categoryAdd(Request $request)
@@ -93,7 +97,12 @@ class normalVendorController extends Controller
     {
         $categories = Category::where('parent_id',$pid)->paginate(10);
         $parent_id = $pid;
-        return view('vendor.category_management.index',compact('categories','parent_id'));
+        $products = Product::whereNotNull('category_id')->get();
+        foreach ($products as  $value)
+        {
+          $sub[] = $value->category_id;
+        }
+        return view('vendor.category_management.index',compact('categories','parent_id','sub'));
     }
     public function categoryUpdate(Request $request)
     {
