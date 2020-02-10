@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Userend;
 use App\Category;
 use App\Product;
 use App\Offer;
+use Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
@@ -35,7 +36,8 @@ class pagesController extends Controller
 
     public function checkout()
     {
-        return view('pages.checkout');
+        $cart_datas = Cart::content();
+        return view('pages.checkout',compact('cart_datas'));
     }
 
     public function single()

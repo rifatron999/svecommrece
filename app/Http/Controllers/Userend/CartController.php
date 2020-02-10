@@ -22,7 +22,18 @@ class CartController extends Controller
         if($pro->offer_id != null){
 
             if ($pro->offer_price != null){
-                Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->offer_price, 'weight' => 1, 'options' => ['size' => $pro->size_capacity, 'image'=>$imgarray[0]->image, 'offer_type'=> 'Discount', 'offer_percentage'=> $pro->offers->offer_percentage , 'free_product'=> null, 'free_product_id'=> null ]]);
+                Cart::add(['id' => $pro->id,
+                           'name' => $pro->name,
+                           'qty' => 1,
+                           'price' => $pro->offer_price,
+                           'weight' => 1,
+                           'options' => ['size' => $pro->size_capacity,
+                                         'image'=>$imgarray[0]->image,
+                                         'offer_type'=> "Discount",
+                                         'offer_percentage'=> $pro->offers->offer_percentage ,
+                                         'free_product'=> null,
+                                         'free_product_id'=> null
+                                         ]]);
             }
             else{
                 $main_product_id = json_decode($pro->offers->product_ids);
