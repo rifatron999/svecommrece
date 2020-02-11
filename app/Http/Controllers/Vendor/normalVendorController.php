@@ -496,6 +496,19 @@ class normalVendorController extends Controller
         ]);
         $image = $request->file('image');
         $update = offer::find($request->id);
+        //product offer id and price null
+        $prev_pids = json_decode($update->product_ids);
+        foreach ($prev_pids as $s)
+        {
+            $products = Product::find($s->id);
+            $products->update([
+                'offer_id' => NULL,
+                'offer_price' => NULL,
+            ]);
+        }
+        //product offer id and price null #
+
+
         foreach ($request->product_ids as $s)
         {
             $insert[]['id'] = $s;
@@ -569,8 +582,7 @@ class normalVendorController extends Controller
       }
       //for product table update
         //alter perv products
-        $prev_pids = json_decode($update->product_ids);
-      foreach ($prev_pids as $s)
+        foreach ($prev_pids as $s)
       {
           $update3 = Product::find($s->id);
           if($update->type == 'Discount')
@@ -652,5 +664,28 @@ class normalVendorController extends Controller
         $parent_id = NULL;*/
         return view('vendor.inventory_management.index',compact('sub_categories','products'));
     }
+    public function PendingOrderView()
+    {
+        /*$products = Product::paginate(8);
+        $sub_categories = Category::whereNotNull('parent_id')->get();*/
+        /*foreach ($sub_categories as  $value)
+        {
+            $sub[] = $value->parent_id;
+        }
+        $parent_id = NULL;*/
+        return view('vendor.order_management.pending'/*,compact('sub_categories','products')*/);
+    }
+    public function OrderView()
+    {
+        /*$products = Product::paginate(8);
+        $sub_categories = Category::whereNotNull('parent_id')->get();*/
+        /*foreach ($sub_categories as  $value)
+        {
+            $sub[] = $value->parent_id;
+        }
+        $parent_id = NULL;*/
+        return view('vendor.order_management.order'/*,compact('sub_categories','products')*/);
+    }
+
     //************************ page = inventory_management #
 }

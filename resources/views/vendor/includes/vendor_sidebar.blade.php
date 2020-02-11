@@ -46,7 +46,18 @@
                     <span>Inventory</span>
                 </a>
             </li>
+            <li class="sub-menu">
+                <a href="javascript:;" class="@yield('Order_management')">
+                    <i class="fab fa-accusoft"></i>
+                    <span>Order</span>
+                </a>
+                <ul class="sub" style="display: none;">
+                    <li class="@yield('Pending_Order')" ><a  href="{{ route('PendingOrderView') }}"><i class="fas fa-list-alt"></i> Pending Orders</a></li>
+                    <li class="@yield('Order')" ><a  href="{{ route('OrderView') }}"><i class="fas fa-clipboard-check"></i> Orders</a></li>
+                </ul>
+            </li>
+
         </ul>
-        <!-- sidebar menu end-->
+        <!-- sidebar menu end-->`
     </div>
 </aside>
