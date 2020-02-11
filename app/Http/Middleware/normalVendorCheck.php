@@ -17,13 +17,14 @@ class normalVendorCheck
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->type == 'Normal')
+        if(Auth::user())
         {
             return $next($request);
         }
         else
         {
-            return back()->with('msg','⚠ Invalid Request');
+           /* return back()->with('msg','⚠ Invalid Request');*/
+            return redirect()->route('login')->with('msg','⚠ You Must Login');
         }
     }
 }

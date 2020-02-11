@@ -34,11 +34,11 @@ class pagesController extends Controller
         return view('pages.single_product',compact('product_single'));
     }
 
-    public function checkout()
+    /*public function checkout()
     {
         $cart_datas = Cart::content();
         return view('pages.checkout',compact('cart_datas'));
-    }
+    }*/
 
     public function single()
     {

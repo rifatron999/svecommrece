@@ -13,7 +13,7 @@
 /* ======================================== Website  ================================================ */
 Route::get('/','website\websiteController@index')->name('website.home');
 Route::get('/about_us','website\websiteController@about')->name('website.about');
-Route::get('/products','website\websiteController@products')->name('website.products');
+/*Route::get('/products','website\websiteController@products')->name('website.products');*/
 Route::get('/offers','website\websiteController@offers')->name('website.offers');
 Route::get('/contact_us','website\websiteController@contact_us')->name('website.contact');
 /* ====================================== Website end  ============================================== */
@@ -58,9 +58,10 @@ Route::post('/customer/password/reset', 'CustomerAuth\ResetPasswordController@re
 Route::get('/customer/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm')->name('customer.password.reset');
 
 //xahid
-    Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
+    Route::get('/checkout', 'Userend\customerController@checkout')->name('pages.checkout');
     Route::post('/place_order', 'Userend\orderController@place_order')->name('place_order');
     Route::get('/temp_orders', 'Userend\orderController@temp_orders')->name('temp_orders');
+
 //xahid
 
 

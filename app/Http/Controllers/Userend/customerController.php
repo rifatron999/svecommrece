@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Userend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Cart;
 
 
 class customerController extends Controller
@@ -26,5 +27,10 @@ class customerController extends Controller
     public function index()
     {
         return view('customerAuth.home');
+    }
+    public function checkout()
+    {
+        $cart_datas = Cart::content();
+        return view('pages.checkout',compact('cart_datas'));
     }
 }
