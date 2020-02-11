@@ -11,9 +11,9 @@
                 </a>
             </li>
             <li class="sub-menu">
-                <a class="@yield('Profile')" href="{{--{{route('nvdashboard')}}--}}" >
+                <a class="@yield('Profile')" {{--href="{{route('nvdashboard')}}"--}} title="Restricted">
                     <i class="fa fa-user"></i>
-                    <span>Profile</span>
+                    <span><del>Profile</del></span>
                 </a>
             </li>
             <li class="sub-menu">
