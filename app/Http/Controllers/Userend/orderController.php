@@ -7,6 +7,7 @@ use App\Product;
 use App\Temp_Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class orderController extends Controller
 {
@@ -14,8 +15,8 @@ class orderController extends Controller
     {
         $cart_contents = Cart::content();
 
-//        dd($request);
         foreach ($cart_contents as $cart_content){
+            $cart_ids[] = $cart_content->rowId;
             $pro_ids[] = $cart_content->id;
             $quantity[] = $cart_content->qty;
         }
@@ -24,11 +25,17 @@ class orderController extends Controller
             $pro_id = Product::find($pro_ids[$i]);
             $pro_stock = $pro_id->stock;
 
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,
             ]);
+//            $request->validate([
+//                'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,
+//            ]);
 
-//            dd($pro_id->stock);
+            if ($validator->fails()) {
+                return redirect()->route('cart.delete',$cart_ids[$i]);
+            }
+
 
         }
 
