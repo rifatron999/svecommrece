@@ -78,8 +78,40 @@
 
 
                                 <tbody>
+{{--                                @php--}}
+{{--                                    $product_ids = json_decode($temp_order->product_ids);--}}
+{{--                                @endphp--}}
+{{--                                @for($i=0; $i<count($product_ids); $i++)--}}
+{{--                                    @php $product = App\Product::find($temp_order->product_ids[$i]) @endphp--}}
+{{--                                    <tr>--}}
+{{--                                        <td></td>--}}
+{{--                                        <td class="details">--}}
+{{--                                            <a href="{{ route('pages.single_product',Crypt::encrypt($temp_order->product_ids[$i])  ) }}">{{ $product->name }}</a>--}}
+{{--                                            <ul>--}}
+{{--                                                @if($temp_order->free_product_ids[$i] == null)--}}
+{{--                                                    <li><span><b>Size:</b> {{ $product->size }}</span></li>--}}
+{{--                                                @else--}}
+{{--                                                    @php--}}
+{{--                                                        $free_product = \App\Product::find($temp_order->free_product_ids[$i]);--}}
+{{--                                                    @endphp--}}
+{{--                                                    <li><span><b>Size:</b> </span></li>--}}
+{{--                                                    <li><span><b>Free product:</b> </span></li>--}}
+{{--                                                @endif--}}
 
-                                @foreach($cart_datas as $cart_data)
+
+{{--                                            </ul>--}}
+{{--                                        </td>--}}
+{{--                                        @if($product->offers->offer_percentage != null)--}}
+{{--                                            <td class="price text-center"><strong></strong><span class="primary-color"> -% </span><br></td>--}}
+{{--                                        @else--}}
+{{--                                            <td class="price text-center"><strong>{{$temp_order->selling_price}}</strong><br></td>--}}
+{{--                                        @endif--}}
+
+{{--                                        <td class="qty text-center">{{ $temp_order->quantity }}</td>--}}
+{{--                                        <td class="total text-center"><strong class="primary-color">{{ $temp_order->selling_price * $temp_order->quantity }}</strong></td>--}}
+{{--                                    </tr>--}}
+{{--                                @endfor--}}
+                                    @foreach($cart_datas as $cart_data)
 
                                     <tr>
                                         <td></td>
@@ -93,7 +125,7 @@
                                                     <li><span><b>Free product:</b> {{ $cart_data->options->free_product }}</span></li>
                                                 @endif
 
-                                                {{--                                            <li><span>Color: Camelot</span></li>--}}
+
                                             </ul>
                                         </td>
                                         @if($cart_data->options->offer_percentage != null)
@@ -101,11 +133,11 @@
                                         @else
                                             <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>
                                         @endif
-                                        {{--                                    <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>--}}
+
                                         <td class="qty text-center">{{ $cart_data->qty }}</td>
                                         <td class="total text-center"><strong class="primary-color">{{ $cart_data->price * $cart_data->qty }}</strong></td>
                                     </tr>
-                                @endforeach
+                                    @endforeach
                                 </tbody>
 
 
@@ -118,14 +150,14 @@
                                 <tr>
                                     <th class="empty" colspan="3"></th>
                                     <th>SHIPING</th>
-                                    <td colspan="2">Free Shipping {{ Cart::tax(1) }}</td>
+                                    <td colspan="2">Free Shipping </td>
                                 </tr>
                                 <tr>
                                     <th class="empty" colspan="3"></th>
                                     <th>TOTAL</th>
 <!--                                    --><?php //$total_with_delivery = str_replace(',', '', Cart::total()) + 20;
 //                                    $total = number_format($total_with_delivery,2) ?>
-                                    <th colspan="2" class="total">{{Cart::total()}}</th>
+                                    <th colspan="2" class="total">{{ Cart::total() }}</th>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -169,7 +201,7 @@
                     </div>
 
 {{--                    <input type="submit" value="Confirm payment" class="primary-btn">--}}
-                    <a href="{{ route('temp_orders') }}" class="primary-btn">Place Order</a>
+                    <a href="" class="primary-btn">Place Order</a>
                 </form>
             </div>
             <!-- /row -->

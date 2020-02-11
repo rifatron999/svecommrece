@@ -30,7 +30,8 @@ class websiteController extends Controller
 
     public function offers()
     {
-        return view('website.pages.offers');
+        $offers = Offer::where('status','!=','Deactive')->get();
+        return view('website.pages.offers',compact('offers'));
     }
 
     public function contact_us()

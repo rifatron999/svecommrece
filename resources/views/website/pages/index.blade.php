@@ -1,9 +1,12 @@
 @extends('website.master')
 @section('content')
     <section id="banner">
-        <div class="">
-            <img style="width: 100%" src="{{ asset('assets/website/images/banner3.jpg') }}" alt="">
+        <div class="banner">
+            <div class="">
+                <img style="width: 100%" src="{{ asset('assets/website/images/banner3.jpg') }}" alt="">
+            </div>
         </div>
+
     </section>
     <section id="why_us">
         <div class="container">
@@ -83,4 +86,32 @@
             </div>
         </div>
     </section>
+    <script>
+        $('#carousel02').owlCarousel({
+            rtl:false,
+            loop:true,
+            autoplay: true,
+            dots: false,
+            autoPlay:100,
+            margin:10,
+            nav:false,
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            navText: [
+                "<i class='fa fa-caret-left'></i>",
+                "<i class='fa fa-caret-right'></i>"
+            ],
+            responsive:{
+                0:{
+                    items:2
+                },
+                600:{
+                    items:4
+                },
+                1000:{
+                    items:3
+                }
+            }
+        });
+    </script>
 @endsection

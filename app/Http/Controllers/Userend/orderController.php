@@ -10,6 +10,32 @@ use App\Http\Controllers\Controller;
 
 class orderController extends Controller
 {
+    public function place_order(Request $request)
+    {
+        $cart_contents = Cart::content();
+
+//        dd($request);
+        foreach ($cart_contents as $cart_content){
+            $pro_ids[] = $cart_content->id;
+            $quantity[] = $cart_content->qty;
+        }
+
+        for ($i=0; $i<count($cart_contents); $i++){
+            $pro_id = Product::find($pro_ids[$i]);
+            $pro_stock = $pro_id->stock;
+
+            $request->validate([
+                'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,
+            ]);
+
+//            dd($pro_id->stock);
+
+        }
+
+        return redirect()->route('temp_orders');
+
+
+    }
     public function temp_orders()
     {
         $cart_contents = Cart::content();
@@ -70,8 +96,9 @@ class orderController extends Controller
             }
         }
 
-        Cart::destroy();
-        return redirect()->route('pages.products');
+//        Cart::destroy();
+//        return view('pages.checkout',compact('temp_order'));
+        return redirect()->route('pages.checkout');
 
 //        dd($product_ids,$selling_price,$quantity,$offer_type,$offer_percentage,$free_product_ids,$subtotal,$total,$invoice_id);
     }
