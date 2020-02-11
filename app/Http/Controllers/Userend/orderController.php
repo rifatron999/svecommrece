@@ -19,8 +19,6 @@ class orderController extends Controller
             $pro_ids[] = $cart_content->id;
             $quantity[] = $cart_content->qty;
         }
-        $product_id = $request->pro_id;
-        $quantity = $request->quantity;
 
         for ($i=0; $i<count($cart_contents); $i++){
             $pro_id = Product::find($pro_ids[$i]);
@@ -29,14 +27,14 @@ class orderController extends Controller
             $request->validate([
                 'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,
             ]);
+
 //            dd($pro_id->stock);
 
         }
 
+        return redirect()->route('temp_orders');
 
-//        $request->validate([
-//            'qty' => 'required|numeric|min:1|max:'.$stock,
-//        ]);
+
     }
     public function temp_orders()
     {
@@ -99,8 +97,8 @@ class orderController extends Controller
         }
 
 //        Cart::destroy();
-        return view('pages.checkout',compact('temp_order'));
-//        return redirect()->route('pages.checkout');
+//        return view('pages.checkout',compact('temp_order'));
+        return redirect()->route('pages.checkout');
 
 //        dd($product_ids,$selling_price,$quantity,$offer_type,$offer_percentage,$free_product_ids,$subtotal,$total,$invoice_id);
     }

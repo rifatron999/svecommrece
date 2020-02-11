@@ -108,6 +108,7 @@
                             @foreach($cart_datas as $key=>$cart_data)
                                 <input type="hidden" name="pro_id_{{$i}}" value="{{ $cart_data->id }}"><br>
                                 <input type="hidden" name="quantity_{{$i}}" value="{{ $cart_data->qty }}"><br>
+                                <input type="hidden" name="cart_id_{{$i}}" value="{{ $cart_data->rowId }}">
                                 @php $i++ @endphp
                             @endforeach
                             <div class="pull-right">
