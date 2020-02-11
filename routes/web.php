@@ -99,6 +99,11 @@ Route::get('/offer_management/remove/{id}','Vendor\normalVendorController@offerR
 //inventory management
 Route::get('/inventory_management','Vendor\normalVendorController@inventoryManagementView')->name('inventoryManagementView');
 //inventory management #
+//order management
+Route::get('/pending_orders','Vendor\normalVendorController@PendingOrderView')->name('PendingOrderView');
+Route::get('/orders','Vendor\normalVendorController@OrderView')->name('OrderView');
+
+//order management #
 
 
 /* ======== normalVendor #   =================================================================== */

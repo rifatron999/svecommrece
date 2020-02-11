@@ -652,5 +652,28 @@ class normalVendorController extends Controller
         $parent_id = NULL;*/
         return view('vendor.inventory_management.index',compact('sub_categories','products'));
     }
+    public function PendingOrderView()
+    {
+        /*$products = Product::paginate(8);
+        $sub_categories = Category::whereNotNull('parent_id')->get();*/
+        /*foreach ($sub_categories as  $value)
+        {
+            $sub[] = $value->parent_id;
+        }
+        $parent_id = NULL;*/
+        return view('vendor.order_management.pending'/*,compact('sub_categories','products')*/);
+    }
+    public function OrderView()
+    {
+        /*$products = Product::paginate(8);
+        $sub_categories = Category::whereNotNull('parent_id')->get();*/
+        /*foreach ($sub_categories as  $value)
+        {
+            $sub[] = $value->parent_id;
+        }
+        $parent_id = NULL;*/
+        return view('vendor.order_management.order'/*,compact('sub_categories','products')*/);
+    }
+
     //************************ page = inventory_management #
 }
