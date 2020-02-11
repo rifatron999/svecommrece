@@ -74,7 +74,7 @@ body {
   text-align: left;
   background-color: #f8fafc;
     background-image: url("/assets/img/background/08.jpg");
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -8760,6 +8760,7 @@ button.bg-dark:focus {
 
 .shadow-sm {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    opacity: 0.8;
 }
 
 .shadow {
