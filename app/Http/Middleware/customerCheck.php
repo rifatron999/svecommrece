@@ -17,13 +17,22 @@ class customerCheck
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->type == 'Customer')
+        /*if(Auth::user()->type == 'Customer')
         {
             return $next($request);
         }
         else
         {
-            return back()->with('msg','⚠ Invalid Request');
+            return redirect()->route('customer.login');
+        }*/
+
+        if(Auth::user())
+        {
+            return $next($request);
+        }
+        else
+        {
+            return redirect()->route('customer.login')->with('msg','⚠ You Must Login');
         }
     }
 }

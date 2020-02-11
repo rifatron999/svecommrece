@@ -10,6 +10,10 @@ use App\Http\Controllers\Controller;
 
 class orderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:customer');
+    }
     public function place_order(Request $request)
     {
         $cart_contents = Cart::content();
