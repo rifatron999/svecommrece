@@ -464,7 +464,8 @@ class normalVendorController extends Controller
             $update = Product::find($s);
             if($request->type == 'Discount')
             {
-                $offer_price = $update->price - ($update->price*$request->offer_percentage)/100;
+                $oprice = round($update->price - ($update->price*$request->offer_percentage)/100);
+                $offer_price = round( $oprice);
                 $update->update([
                     'offer_id' => $offer->id,
                     'offer_price' => $offer_price,
@@ -609,7 +610,8 @@ class normalVendorController extends Controller
                   {
                       if($request->status == 'Active')
                       {
-                        $offer_price = $update2->price - ($update2->price*$request->offer_percentage)/100;
+                          $oprice =$update2->price - ($update2->price*$request->offer_percentage)/100;
+                            $offer_price = round($oprice);
                       $update2->update([
                           'offer_id' => $request->id,
                           'offer_price' => $offer_price,

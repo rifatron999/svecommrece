@@ -21,14 +21,12 @@ Route::get('/contact_us','website\websiteController@contact_us')->name('website.
 Route::get('/ecommerce', 'Userend\pagesController@home')->name('pages.home');
 Route::get('/products', 'Userend\pagesController@products')->name('pages.products');
 Route::get('/single_product/{id}', 'Userend\pagesController@single_product')->name('pages.single_product');
-Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
 Route::get('/single', 'Userend\pagesController@single')->name('pages.single');
 Route::get('/subCatgProductSearch/{id}', 'Userend\pagesController@subCatgProductSearch')->name('pages.subCatgProductSearch');
 Route::get('/offerSearchByTitle/{title}', 'Userend\pagesController@offerSearchByTitle')->name('pages.offerSearchByTitle');
 Route::get('/allOfferSearch', 'Userend\pagesController@allOfferSearch')->name('pages.allOfferSearch');
 
-Route::post('/place_order', 'Userend\orderController@place_order')->name('place_order');
-Route::get('/temp_orders', 'Userend\orderController@temp_orders')->name('temp_orders');
+
 
 //  cart
 Route::get('/cart', 'Userend\CartController@index')->name('cart.index');
@@ -58,6 +56,13 @@ Route::post('/customer/password/email', 'CustomerAuth\ForgotPasswordController@s
 Route::get('/customer/password/reset', 'CustomerAuth\ForgotPasswordController@showLinkRequestForm')->name('customer.password.request');
 Route::post('/customer/password/reset', 'CustomerAuth\ResetPasswordController@reset')->name('customer.password.update');
 Route::get('/customer/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm')->name('customer.password.reset');
+
+//xahid
+    Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
+    Route::post('/place_order', 'Userend\orderController@place_order')->name('place_order');
+    Route::get('/temp_orders', 'Userend\orderController@temp_orders')->name('temp_orders');
+//xahid
+
 
 });
 /* ====================================================== customer auth end   ============================================================== */
