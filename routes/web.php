@@ -25,7 +25,7 @@ Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkou
 Route::get('/single', 'Userend\pagesController@single')->name('pages.single');
 Route::get('/subCatgProductSearch/{id}', 'Userend\pagesController@subCatgProductSearch')->name('pages.subCatgProductSearch');
 
-
+Route::get('/temp_orders', 'Userend\orderController@temp_orders')->name('temp_orders');
 
 //  cart
 Route::get('/cart', 'Userend\CartController@index')->name('cart.index');

@@ -63,6 +63,7 @@
                                     <td class="qty text-center">
                                         <form method="post" action="{{ route('cart.update') }}">
                                             {{ @csrf_field() }}
+                                            <input class="input" type="hidden" name="product_id" value="{{ $cart_data->id }}">
                                             <input class="input" type="number" name="qty" value="{{ $cart_data->qty }}">
                                             <input class="input" type="hidden" name="rowId" value="{{ $cart_data->rowId }}">
                                             <input type="submit" class="btn btn-sm btn-success" value="update">
@@ -89,14 +90,14 @@
                             <tr>
                                 <th class="empty" colspan="3"></th>
                                 <th>TOTAL</th>
-                                <?php $total_with_delivery = str_replace(',', '', Cart::total()) + 20;
-                                      $total = number_format($total_with_delivery,2) ?>
-                                <th colspan="2" class="total">{{$total}}</th>
+<!--                                --><?php //$total_with_delivery = str_replace(',', '', Cart::total()) + 20;
+//                                      $total = number_format($total_with_delivery,2) ?>
+                                <th colspan="2" class="total">{{Cart::total()}}</th>
                             </tr>
                             </tfoot>
                         </table>
                         <div class="pull-right">
-                            <button class="primary-btn">Place Order</button>
+                            <a href="{{ route('pages.checkout') }}" class="primary-btn">Place Order</a>
                         </div>
                     </div>
 

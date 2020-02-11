@@ -17,10 +17,10 @@ class CreateTempOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('customer_id');
             $table->integer('shipping_id');
-            $table->integer('vendor_id');
+            $table->integer('vendor_id')->nullable();
             $table->string('invoice_id')->nullable();
             $table->string('product_ids')->nullable();
-            $table->string('selling price')->nullable();
+            $table->string('selling_price')->nullable();
             $table->string('quantity')->nullable();
             $table->string('offer_type')->nullable();
             $table->string('offer_percentage')->nullable();

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('website.master')
 @section('content')
     <div class="container mt-3">
         <div class="row nav-space">
