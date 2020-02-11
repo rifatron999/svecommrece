@@ -73,6 +73,12 @@ body {
   color: #212529;
   text-align: left;
   background-color: #f8fafc;
+    background-image: url("/assets/img/background/08.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -5241,6 +5247,7 @@ input[type=button].btn-block {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+    opacity: 0.8;
 }
 
 .card > hr {
@@ -8753,6 +8760,7 @@ button.bg-dark:focus {
 
 .shadow-sm {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    opacity: 0.8;
 }
 
 .shadow {

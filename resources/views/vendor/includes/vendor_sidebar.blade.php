@@ -11,9 +11,9 @@
                 </a>
             </li>
             <li class="sub-menu">
-                <a class="@yield('Profile')" href="{{--{{route('nvdashboard')}}--}}" >
+                <a class="@yield('Profile')" {{--href="{{route('nvdashboard')}}"--}} title="Restricted">
                     <i class="fa fa-user"></i>
-                    <span>Profile</span>
+                    <span><del>Profile</del></span>
                 </a>
             </li>
             <li class="sub-menu">
@@ -38,6 +38,12 @@
                 <a class="@yield('Offer_management')" href="{{route('offerManagementView')}}" >
                     <i class="fas fa-gift"></i>
                     <span>Offer</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a class="@yield('Inventory_management')" href="{{route('inventoryManagementView')}}" >
+                    <i class="fas fa-store"></i>
+                    <span>Inventory</span>
                 </a>
             </li>
         </ul>

@@ -43,9 +43,29 @@ Route::get('/react', function (){
 });
 
 /* ====================================================== Frontend end   ============================================================== */
+/* ====================================================== customer auth   ============================================================== */
+Route::get('/customer/login', 'CustomerAuth\LoginController@showLoginForm')->name('customer.login');
+Route::post('/customer/login', 'CustomerAuth\LoginController@login');
+Route::get('/customer/register', 'CustomerAuth\RegisterController@showRegistrationForm')->name('customer.register');
+Route::post('/customer/register', 'CustomerAuth\RegisterController@register');
+
+
+
+Route::group(['middleware'=>['customerCheck']], function(){
+Route::get('/customer/home', 'Userend\customerController@index')/*->name('home')*/;
+
+Route::post('/customer/password/email', 'CustomerAuth\ForgotPasswordController@sendResetLinkEmail')->name('customer.password.email');
+Route::get('/customer/password/reset', 'CustomerAuth\ForgotPasswordController@showLinkRequestForm')->name('customer.password.request');
+Route::post('/customer/password/reset', 'CustomerAuth\ResetPasswordController@reset')->name('customer.password.update');
+Route::get('/customer/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm')->name('customer.password.reset');
+
+});
+/* ====================================================== customer auth end   ============================================================== */
 /* ====================================================== Backend   =================================================================== */
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware'=>['normalVendorCheck']], function(){
+    Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/vendor','Vendor\vendorController@index');
 /* ======== normalVendor   =================================================================== */
 //dashboard
@@ -79,10 +99,13 @@ Route::get('/offer_management/edit/{id}','Vendor\normalVendorController@offerMan
 Route::post('/offer_management/update','Vendor\normalVendorController@offerUpdate')->name('offerUpdate');
 Route::get('/offer_management/remove/{id}','Vendor\normalVendorController@offerRemove')->name('offerRemove');
 //offer management #
+//inventory management
+Route::get('/inventory_management','Vendor\normalVendorController@inventoryManagementView')->name('inventoryManagementView');
+//inventory management #
 
 
 /* ======== normalVendor #   =================================================================== */
 
 
-
+});
 /* ====================================================== Backend #  =================================================================== */

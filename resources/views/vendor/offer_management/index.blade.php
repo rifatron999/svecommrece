@@ -133,12 +133,12 @@
                                             <td class="text-center">
                                                 <input class="form-check-input form-inline"  type='checkbox' name='product_ids[]' id="inlineCheckbox1" value="{{$s->id}}">
                                                 @if(empty($s->image))
-                                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
+                                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" width="50px" {{--class="imgs"--}} alt="">
                                                 @else
                                                     @php
                                                         $imgarray = json_decode($s->image);
                                                     @endphp
-                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" class="imgs" alt="">
+                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" width="50px" {{--class="imgs"--}} alt="">
                                                 @endif
                                             </td>
                                             <td class="text-center">{{$s->name}}</td>
@@ -185,12 +185,12 @@
                                             <td class="text-center">
                                                 <input class="form-check-input form-inline"  type='radio' name='free_product_ids[]' id="inlineCheckbox1" value="{{$s->id}}">
                                                 @if(empty($s->image))
-                                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="imgs" alt="">
+                                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" width="50px" {{--class="imgs"--}} alt="">
                                                 @else
                                                     @php
                                                         $imgarray = json_decode($s->image);
                                                     @endphp
-                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" class="imgs" alt="">
+                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" width="50px" {{--class="imgs"--}} alt="">
                                                 @endif
                                             </td>
                                             <td class="text-center">{{$s->name}}</td>

@@ -640,4 +640,17 @@ class normalVendorController extends Controller
         return redirect()->back()->with('msg',"✔ REMOVED");
     }
     //************************ page = offer_management #
+    //************************ page = inventory_management
+    public function inventoryManagementView()
+    {
+        $products = Product::paginate(8);
+        $sub_categories = Category::whereNotNull('parent_id')->get();
+        /*foreach ($sub_categories as  $value)
+        {
+            $sub[] = $value->parent_id;
+        }
+        $parent_id = NULL;*/
+        return view('vendor.inventory_management.index',compact('sub_categories','products'));
+    }
+    //************************ page = inventory_management #
 }

@@ -84,7 +84,7 @@
                     </div>
                 </form>
                 @else
-                    <h3>You Can't Owe more than one brand now</h3>
+                    <h3 class="text-center">You Can't Owe more than one brand now</h3>
                 @endif
             </div>
         </div>

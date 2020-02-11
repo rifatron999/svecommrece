@@ -3,7 +3,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="index.html" class="logo"><b>E-Commerce Init </b> <img width="35px" src="{{ asset('assets/img/icon/home.gif') }}" alt=""></a>
+    <a href="{{ route('nvdashboard') }}" class="logo"><b>nobin bangladesh (u-dev) </b> <img width="40px" src="{{ asset('assets/img/icon/home.gif') }}" alt=""></a>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -30,6 +30,9 @@
         <!--  notification end -->
     </div>
     <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li><img width="120px" src="{{ asset('assets/img/icon/276.gif') }}" alt=""></li>
+        </ul>
         <ul class="nav pull-right top-menu">
             <li>
                 <a class="dropdown-item" href="{{ route('logout') }}"
