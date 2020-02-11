@@ -13,7 +13,7 @@ class CreateTempOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('temp__orders', function (Blueprint $table) {
+        Schema::create('temp_orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('customer_id');
             $table->integer('shipping_id')->nullable();
@@ -41,6 +41,6 @@ class CreateTempOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('temp__orders');
+        Schema::dropIfExists('temp_orders');
     }
 }
