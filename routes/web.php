@@ -43,6 +43,10 @@ Route::get('/react', function (){
 /* ====================================================== customer auth   ============================================================== */
 Route::get('/customer/login', 'CustomerAuth\LoginController@showLoginForm')->name('customer.login');
 Route::post('/customer/login', 'CustomerAuth\LoginController@login');
+Route::get('/customer/register', 'CustomerAuth\RegisterController@showRegistrationForm ')->name('customer.register');
+Route::post('/customer/register', 'CustomerAuth\RegisterController@register ');
+
+
 
 Route::group(['middleware'=>['customerCheck']], function(){
 Route::get('/customer/home', 'Userend\customerController@index')/*->name('home')*/;

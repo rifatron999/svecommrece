@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\CustomerAuth;
 
-use App\Vendor;
+use App\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,12 +54,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Vendor::create([
+        return Customer::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'gender' => $data['gender'],
             'status' => 'Active',
-            'type' => 'Normal',
+            'type' => 'Customer',
             'password' => Hash::make($data['password']),
         ]);
     }
