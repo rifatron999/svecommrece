@@ -37,6 +37,7 @@
 
                             <tbody>
 
+
                             @foreach($cart_datas as $cart_data)
 
                                 <tr>
@@ -53,6 +54,10 @@
 
 {{--                                            <li><span>Color: Camelot</span></li>--}}
                                         </ul>
+                                        @php $product_info = \App\Product::find($cart_data->id) @endphp
+                                        @if($product_info->stock == 0)
+                                            <button class="btn btn-danger">out of stock</button>
+                                        @endif
                                     </td>
                                     @if($cart_data->options->offer_percentage != null)
                                         <td class="price text-center"><strong>{{$cart_data->price}}</strong><span class="primary-color"> -{{ $cart_data->options->offer_percentage }}% </span><br></td>
@@ -73,6 +78,7 @@
                                     <td class="text-right"><a href="{{ route('cart.delete',[$cart_data->rowId])  }}" class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
                                 </tr>
                             @endforeach
+
                             </tbody>
 
 
@@ -96,9 +102,19 @@
                             </tr>
                             </tfoot>
                         </table>
-                        <div class="pull-right">
-                            <a href="{{ route('pages.checkout') }}" class="primary-btn">Place Order</a>
-                        </div>
+                        <form method="post" action="{{ route('place_order') }}">
+                            {{ @csrf_field() }}
+                            @php $i=0 @endphp
+                            @foreach($cart_datas as $key=>$cart_data)
+                                <input type="hidden" name="pro_id_{{$i}}" value="{{ $cart_data->id }}"><br>
+                                <input type="hidden" name="quantity_{{$i}}" value="{{ $cart_data->qty }}"><br>
+                                @php $i++ @endphp
+                            @endforeach
+                            <div class="pull-right">
+                                <input type="submit" value="Place Order" class="primary-btn">
+{{--                                <a href="{{ route('temp_orders') }}" class="primary-btn">Place Order</a>--}}
+                            </div>
+                        </form>
                     </div>
 
                 </div>

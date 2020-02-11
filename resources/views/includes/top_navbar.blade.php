@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('website.home') }}"><img class="logo" style="width: 60px; height: 40px" src="{{ asset('assets/img/icon/logo.jpg') }}" alt="logo"/></a>
+            <a class="navbar-brand" href="{{ route('website.home') }}"><img class="logo" style="width: 120px; height: 40px" src="{{ asset('assets/website/images/logo/nobinLogo.png') }}" alt="logo"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

@@ -78,34 +78,65 @@
 
 
                                 <tbody>
-
-                                @foreach($cart_datas as $cart_data)
-
+                                @php
+                                    $product_ids = json_decode($temp_order->product_ids);
+                                @endphp
+                                @for($i=0; $i<count($product_ids); $i++)
+                                    @php $product = App\Product::find($temp_order->product_ids[$i]) @endphp
                                     <tr>
                                         <td></td>
                                         <td class="details">
-                                            <a href="{{ route('pages.single_product',Crypt::encrypt($cart_data->id)  ) }}">{{ $cart_data->name }}</a>
+                                            <a href="{{ route('pages.single_product',Crypt::encrypt($temp_order->product_ids[$i])  ) }}">{{ $product->name }}</a>
                                             <ul>
-                                                @if($cart_data->options->free_product == null)
-                                                    <li><span><b>Size:</b> {{ $cart_data->options->size }}</span></li>
+                                                @if($temp_order->free_product_ids[$i] == null)
+                                                    <li><span><b>Size:</b> {{ $product->size }}</span></li>
                                                 @else
-                                                    <li><span><b>Size:</b> {{ $cart_data->options->size }}</span></li>
-                                                    <li><span><b>Free product:</b> {{ $cart_data->options->free_product }}</span></li>
+                                                    @php
+                                                        $free_product = \App\Product::find($temp_order->free_product_ids[$i]);
+                                                    @endphp
+                                                    <li><span><b>Size:</b> </span></li>
+                                                    <li><span><b>Free product:</b> </span></li>
                                                 @endif
 
-                                                {{--                                            <li><span>Color: Camelot</span></li>--}}
+
                                             </ul>
                                         </td>
-                                        @if($cart_data->options->offer_percentage != null)
-                                            <td class="price text-center"><strong>{{$cart_data->price}}</strong><span class="primary-color"> -{{ $cart_data->options->offer_percentage }}% </span><br></td>
-                                        @else
-                                            <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>
-                                        @endif
-                                        {{--                                    <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>--}}
-                                        <td class="qty text-center">{{ $cart_data->qty }}</td>
-                                        <td class="total text-center"><strong class="primary-color">{{ $cart_data->price * $cart_data->qty }}</strong></td>
+{{--                                        @if($product->offers->offer_percentage != null)--}}
+{{--                                            <td class="price text-center"><strong></strong><span class="primary-color"> -% </span><br></td>--}}
+{{--                                        @else--}}
+{{--                                            <td class="price text-center"><strong>{{$temp_order->selling_price}}</strong><br></td>--}}
+{{--                                        @endif--}}
+
+                                        <td class="qty text-center">{{ $temp_order->quantity }}</td>
+{{--                                        <td class="total text-center"><strong class="primary-color">{{ $temp_order->selling_price * $temp_order->quantity }}</strong></td>--}}
                                     </tr>
-                                @endforeach
+                                @endfor
+
+{{--                                    <tr>--}}
+{{--                                        <td></td>--}}
+{{--                                        <td class="details">--}}
+{{--                                            <a href="{{ route('pages.single_product',Crypt::encrypt($temp_order->id)  ) }}">{{ $temp_order->name }}</a>--}}
+{{--                                            <ul>--}}
+{{--                                                @if($temp_order->options->free_product == null)--}}
+{{--                                                    <li><span><b>Size:</b> {{ $temp_order->options->size }}</span></li>--}}
+{{--                                                @else--}}
+{{--                                                    <li><span><b>Size:</b> {{ $temp_order->options->size }}</span></li>--}}
+{{--                                                    <li><span><b>Free product:</b> {{ $temp_order->options->free_product }}</span></li>--}}
+{{--                                                @endif--}}
+
+
+{{--                                            </ul>--}}
+{{--                                        </td>--}}
+{{--                                        @if($cart_data->options->offer_percentage != null)--}}
+{{--                                            <td class="price text-center"><strong>{{$temp_order->price}}</strong><span class="primary-color"> -{{ $temp_order->options->offer_percentage }}% </span><br></td>--}}
+{{--                                        @else--}}
+{{--                                            <td class="price text-center"><strong>{{$temp_order->price}}</strong><br></td>--}}
+{{--                                        @endif--}}
+
+{{--                                        <td class="qty text-center">{{ $temp_order->qty }}</td>--}}
+{{--                                        <td class="total text-center"><strong class="primary-color">{{ $temp_order->price * $temp_order->qty }}</strong></td>--}}
+{{--                                    </tr>--}}
+
                                 </tbody>
 
 
@@ -113,19 +144,19 @@
                                 <tr>
                                     <th class="empty" colspan="3"></th>
                                     <th>SUBTOTAL</th>
-                                    <th colspan="2" class="sub-total">{{ Cart::subtotal() }}</th>
+                                    <th colspan="2" class="sub-total">{{ $temp_order->subtotal }}</th>
                                 </tr>
                                 <tr>
                                     <th class="empty" colspan="3"></th>
                                     <th>SHIPING</th>
-                                    <td colspan="2">Free Shipping {{ Cart::tax(1) }}</td>
+                                    <td colspan="2">Free Shipping </td>
                                 </tr>
                                 <tr>
                                     <th class="empty" colspan="3"></th>
                                     <th>TOTAL</th>
 <!--                                    --><?php //$total_with_delivery = str_replace(',', '', Cart::total()) + 20;
 //                                    $total = number_format($total_with_delivery,2) ?>
-                                    <th colspan="2" class="total">{{Cart::total()}}</th>
+                                    <th colspan="2" class="total">{{ $temp_order->total }}</th>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -169,7 +200,7 @@
                     </div>
 
 {{--                    <input type="submit" value="Confirm payment" class="primary-btn">--}}
-                    <a href="{{ route('temp_orders') }}" class="primary-btn">Place Order</a>
+                    <a href="" class="primary-btn">Place Order</a>
                 </form>
             </div>
             <!-- /row -->

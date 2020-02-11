@@ -20,6 +20,7 @@
     <!-- nouislider -->
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/nouislider.min.css') }}" />
 
+
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
 
@@ -29,9 +30,9 @@
     <link rel="stylesheet" href="{{ asset('assets/website/css/style.css') }}"/>
 
 
-
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+{{--        owl carousol  --}}
     <![endif]-->
 
 </head>

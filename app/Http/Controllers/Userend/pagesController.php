@@ -52,4 +52,16 @@ class pagesController extends Controller
         return view('pages.products',compact('products'));
     }
 
+    public function offerSearchByTitle($id)
+    {
+        $offer_id = Crypt::decrypt($id);
+        $products = Product::where('offer_id',$offer_id)->paginate(14);
+        return view('pages.products',compact('products'));
+    }
+
+    public function allOfferSearch()
+    {
+        $products = Product::where('offer_id','!=',null)->paginate(14);
+        return view('pages.products',compact('products'));
+    }
 }

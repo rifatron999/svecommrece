@@ -56,7 +56,7 @@
             <div class="menu-nav">
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
-                    <li><a href="">Home</a></li>
+                    <li><a href="{{ route('pages.allOfferSearch') }}">All Offers</a></li>
 {{--                    <li><a href="{{  route('pages.single') }}">Shop</a></li>--}}
 {{--                    <li class="dropdown mega-dropdown full-width"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Life Style <i class="fa fa-caret-down"></i></a>--}}
 {{--                        <div class="custom-menu">--}}
@@ -144,7 +144,7 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
 {{--                    </li>--}}
-                    <li><a href="{{  route('website.home') }}" target="_blank">Web Page</a></li>
+{{--                    <li><a href="{{  route('website.home') }}" target="_blank">Web Page</a></li>--}}
 {{--                    <li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Pages <i class="fa fa-caret-down"></i></a>--}}
 {{--                        <ul class="custom-menu">--}}
 {{--                            <li><a href="{{ route('pages.home') }}">Home</a></li>--}}

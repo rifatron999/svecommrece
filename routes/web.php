@@ -24,7 +24,10 @@ Route::get('/single_product/{id}', 'Userend\pagesController@single_product')->na
 Route::get('/checkout', 'Userend\pagesController@checkout')->name('pages.checkout');
 Route::get('/single', 'Userend\pagesController@single')->name('pages.single');
 Route::get('/subCatgProductSearch/{id}', 'Userend\pagesController@subCatgProductSearch')->name('pages.subCatgProductSearch');
+Route::get('/offerSearchByTitle/{title}', 'Userend\pagesController@offerSearchByTitle')->name('pages.offerSearchByTitle');
+Route::get('/allOfferSearch', 'Userend\pagesController@allOfferSearch')->name('pages.allOfferSearch');
 
+Route::post('/place_order', 'Userend\orderController@place_order')->name('place_order');
 Route::get('/temp_orders', 'Userend\orderController@temp_orders')->name('temp_orders');
 
 //  cart

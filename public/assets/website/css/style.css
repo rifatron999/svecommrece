@@ -12,7 +12,7 @@
     background: #fa4a4a;
 }
 .top_nav{
-    background: #ef5454;
+    background: linear-gradient(45deg,#fff,#fdcaca,#FF0B0B,#FC0000);
 }
 .navbar-brand{
     height: 70px;
