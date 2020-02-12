@@ -672,6 +672,14 @@ class normalVendorController extends Controller
         $pending_orders = Temp_Order::where('status','Pending')->orderBy('updated_at','DESC')->paginate(8);
         return view('vendor.order_management.pending',compact('pending_orders'));
     }
+    public function orderCancel($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $order = Temp_Order::where('id',$oid)->first();
+        $order->update(['status' => 'Cancel']);
+        return back()->with('msg', "✔ Order Canceled");
+        //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
+    }
     public function OrderView()
     {
 

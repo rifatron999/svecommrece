@@ -111,6 +111,9 @@ Route::get('/inventory_management','Vendor\normalVendorController@inventoryManag
 //order management
 Route::get('/pending_orders','Vendor\normalVendorController@PendingOrderView')->name('PendingOrderView');
 Route::get('/orders','Vendor\normalVendorController@OrderView')->name('OrderView');
+Route::get('/order_management/cancel/{id}','Vendor\normalVendorController@orderCancel')->name('orderCancel');
+
+
 
 //order management #
 

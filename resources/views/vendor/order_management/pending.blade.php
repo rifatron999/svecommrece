@@ -44,10 +44,12 @@
                                 <td class="text-center"><b>৳ {{number_format($s->total)}}</b></td>
                                 <td class="text-center"><b>{{$s->customers->name}}</b></td>
                                 <td class="text-center"><b>{{$s->customers->phone}}</b></td>
-                                <td class="text-center"><b>{{$s->shippings->address}}</b></td>
+                                <td class="text-center"><b>{{$s->shippings->address}} , {{$s->shippings->city}}</b></td>
                                 <td class="text-center">@if($s->status === 'Pending')<span class="label label-warning label-mini">{{$s->status}}</span>{{--@elseif($s->status === 'Available')<span class="label label-success label-mini">{{$s->status}}</span>@else<span class="label label-default label-mini">{{$s->status}}</span> --}}@endif</td>
                                 <td>
-                                    <a href="{{route('productManagementEdit',Crypt::encrypt($s->id))}}" class="btn btn-primary btn-xs"><i class="fas fa-arrow-circle-right"></i> </a>
+                                    <a href="{{--{{route('productManagementEdit',Crypt::encrypt($s->id))}}--}}" title="See Details" class="btn btn-primary btn-xs"><i class="fas fa-arrow-circle-right"></i> </a>
+                                    <a href="{{--{{route('productManagementEdit',Crypt::encrypt($s->id))}}--}}" title="Proceed" class="btn btn-success btn-xs"><i class="fas fa-check"></i> </a>
+                                    <a href="{{route('orderCancel',Crypt::encrypt($s->id))}}" title="Cancel" class="btn btn-danger btn-xs"><i class="fas fa-times"></i> </a>
                                 </td>
                             </tr>
                         @endforeach
