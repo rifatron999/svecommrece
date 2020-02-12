@@ -725,6 +725,11 @@ class normalVendorController extends Controller
         $order->update(['status' => 'Processing']);
         return back()->with('msg', "✔ Order Updated");
     }
+    public function cancelOrderView()
+    {
+        $cancel_orders = Temp_Order::where('status','Cancel')->orderBy('updated_at','DESC')->paginate(14);
+        return view('vendor.order_management.cancel',compact('cancel_orders'));
+    }
 
     //************************ page = inventory_management #
 }
