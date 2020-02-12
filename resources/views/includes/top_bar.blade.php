@@ -8,11 +8,7 @@
                 <!-- Logo -->
                 <div class="header-logo">
                     <a class="logo" href="#">
-<<<<<<< HEAD
 {{--                        <img src="{{ asset('assets/img/icon/logo.jpg') }}" alt="">--}}
-=======
-                        <img width="70px" src="{{ asset('assets/img/icon/nobin.png') }}" alt="">
->>>>>>> e071b1e818d1152c2f42058f7121a370ec175467
                     </a>
                 </div>
                 <!-- /Logo -->
@@ -41,15 +37,31 @@
                             </div>
                             <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
                         </div>
-                        <a href="{{ route('customer.login') }}" class="text-uppercase">Login</a>
-                        <ul class="custom-menu">
-                            <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-{{--                            <li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>--}}
-{{--                            <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>--}}
-{{--                            <li><a href="#"><i class="fa fa-check"></i> Checkout</a></li>--}}
-                            <li><a href="{{ route('customer.login') }}"><i class="fa fa-unlock-alt"></i> Login</a></li>
-                            <li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
-                        </ul>
+                        @if( Auth::check() )
+                            <a href="" class="text-uppercase">{{ Auth::user()->name }}</a>
+                            <ul class="custom-menu">
+                                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-unlock-alt"></i>
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        @else
+                            <a href="{{ route('customer.login') }}" class="text-uppercase">Login</a>
+                            <ul class="custom-menu">
+                                <li><a href="{{ route('customer.login') }}"><i class="fa fa-unlock-alt"></i> Login</a></li>
+                                <li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+                            </ul>
+                        @endif
+
                     </li>
                     <!-- /Account -->
 

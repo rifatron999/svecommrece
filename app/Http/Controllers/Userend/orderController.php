@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Userend;
 
+use App\Order;
+use App\Payment;
+use App\Shipping;
 use Cart;
 use App\Product;
 use App\Temp_Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class orderController extends Controller
 {
@@ -66,16 +71,15 @@ class orderController extends Controller
         $offer_percentage = json_encode($offer_percentages);
         $free_product_ids = json_encode($free_product_id);
 
-        $invoice_id = uniqid();
         $subtotal = str_replace(',', '', Cart::subtotal());
         $total = str_replace(',', '', Cart::total());
 
 
         $temp_order = Temp_Order::create([
-            'customer_id' => 1,
-            'shipping_id' => 1,
+            'customer_id' => Auth::user()->id,
+            'shipping_id' => null,
             'vendor_id' => null,
-            'invoice_id' => $invoice_id,
+            'invoice_id' => null,
             'product_ids' => $product_ids,
             'selling_price' => $selling_price,
             'quantity' => $quantity,
@@ -109,8 +113,42 @@ class orderController extends Controller
 
 //        Cart::destroy();
 //        return view('pages.checkout',compact('temp_order'));
-        return redirect()->route('pages.checkout');
+        return redirect()->route('pages.checkout', Crypt::encrypt($temp_order->id) );
 
 //        dd($product_ids,$selling_price,$quantity,$offer_type,$offer_percentage,$free_product_ids,$subtotal,$total,$invoice_id);
+    }
+
+    public function paymentConfirm(Request $request)
+    {
+        $shipping = Shipping::create([
+            'customer_id' => $request->customer_id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'address' => $request->address,
+            'city' => $request->city,
+            'phone' => $request->phone,
+        ]);
+
+        $payment = Payment::create([
+            'method' => "Manual",
+            'trx_id' => $request->trx_number,
+            'sender_mobile_number' => $request->sender_mbl,
+            'status' => "Paid",
+        ]);
+
+        $update = Temp_Order::find($request->temp_order_id);
+        $invoice_id = uniqid();
+        $update->update([
+            'shipping_id' => $shipping->id,
+            'payment_id' => $payment->id,
+            'invoice_id' => $invoice_id,
+            'trx_id' => $request->trx_number,
+            'sender_mobile_number' => $request->sender_mbl,
+            'status' => "Pending",
+        ]);
+        Cart::destroy();
+        Return redirect()->route('pages.products');
+
+
     }
 }
