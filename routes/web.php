@@ -58,9 +58,11 @@ Route::post('/customer/password/reset', 'CustomerAuth\ResetPasswordController@re
 Route::get('/customer/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm')->name('customer.password.reset');
 
 //xahid
-    Route::get('/checkout', 'Userend\customerController@checkout')->name('pages.checkout');
+    Route::get('/checkout/{id}', 'Userend\customerController@checkout')->name('pages.checkout');
     Route::post('/place_order', 'Userend\orderController@place_order')->name('place_order');
     Route::get('/temp_orders', 'Userend\orderController@temp_orders')->name('temp_orders');
+    Route::post('/paymentConfirm', 'Userend\orderController@paymentConfirm')->name('paymentConfirm');
+
 
 //xahid
 

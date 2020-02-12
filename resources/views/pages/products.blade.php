@@ -129,15 +129,15 @@
 
                                 <a href="#" class="active"><i class="fa fa-bars"></i></a>
                             </div>
-                            <div class="sort-filter">
-                                <span class="text-uppercase">Sort By:</span>
-                                <select class="input">
-                                    <option value="0">Position</option>
-                                    <option value="0">Price</option>
-                                    <option value="0">Rating</option>
-                                </select>
-                                <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
-                            </div>
+{{--                            <div class="sort-filter">--}}
+{{--                                <span class="text-uppercase">Sort By:</span>--}}
+{{--                                <select class="input">--}}
+{{--                                    <option value="0">Position</option>--}}
+{{--                                    <option value="0">Price</option>--}}
+{{--                                    <option value="0">Rating</option>--}}
+{{--                                </select>--}}
+{{--                                <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="pull-right">
                             {{ $products->links() }}
@@ -230,15 +230,15 @@
                             <div class="row-filter">
                                 <a href="#" class="active"><i class="fa fa-bars"></i></a>
                             </div>
-                            <div class="sort-filter">
-                                <span class="text-uppercase">Sort By:</span>
-                                <select class="input">
-                                    <option value="0">Position</option>
-                                    <option value="0">Price</option>
-                                    <option value="0">Rating</option>
-                                </select>
-                                <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
-                            </div>
+{{--                            <div class="sort-filter">--}}
+{{--                                <span class="text-uppercase">Sort By:</span>--}}
+{{--                                <select class="input">--}}
+{{--                                    <option value="0">Position</option>--}}
+{{--                                    <option value="0">Price</option>--}}
+{{--                                    <option value="0">Rating</option>--}}
+{{--                                </select>--}}
+{{--                                <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="pull-right">
                             {{ $products->links() }}
