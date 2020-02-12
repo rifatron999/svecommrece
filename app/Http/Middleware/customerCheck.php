@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class customerCheck
 {
     /**
@@ -17,15 +18,6 @@ class customerCheck
      */
     public function handle($request, Closure $next)
     {
-        /*if(Auth::user()->type == 'Customer')
-        {
-            return $next($request);
-        }
-        else
-        {
-            return redirect()->route('customer.login');
-        }*/
-
         if(Auth::user())
         {
             return $next($request);

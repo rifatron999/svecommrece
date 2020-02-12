@@ -6,6 +6,7 @@ use App\Brand;
 use App\Category;
 use App\Offer;
 use App\Product;
+use App\Temp_Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -668,24 +669,13 @@ class normalVendorController extends Controller
     }
     public function PendingOrderView()
     {
-        /*$products = Product::paginate(8);
-        $sub_categories = Category::whereNotNull('parent_id')->get();*/
-        /*foreach ($sub_categories as  $value)
-        {
-            $sub[] = $value->parent_id;
-        }
-        $parent_id = NULL;*/
-        return view('vendor.order_management.pending'/*,compact('sub_categories','products')*/);
+        $pending_orders = Temp_Order::where('status','Pending')->orderBy('updated_at','DESC')->paginate(8);
+        return view('vendor.order_management.pending',compact('pending_orders'));
     }
     public function OrderView()
     {
-        /*$products = Product::paginate(8);
-        $sub_categories = Category::whereNotNull('parent_id')->get();*/
-        /*foreach ($sub_categories as  $value)
-        {
-            $sub[] = $value->parent_id;
-        }
-        $parent_id = NULL;*/
+
+        //$sub_categories = Category::whereNotNull('parent_id')->get();*/
         return view('vendor.order_management.order'/*,compact('sub_categories','products')*/);
     }
 
