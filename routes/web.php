@@ -35,6 +35,8 @@ Route::get('/cart/delete/{rowId}', 'Userend\CartController@deleteItem')->name('c
 Route::post('/cart/update', 'Userend\CartController@updateItem')->name('cart.update');
 Route::get('/cart_destroy',function (){Cart::destroy();});
 
+Route::get('/paymentSuccess/{id}', 'Userend\pagesController@paymentSuccess')->name('paymentSuccess');
+Route::get('/generatePdf', 'Userend\pagesController@generatePdf')->name('generatePdf');
 
 Route::get('/react', function (){
     return view('react');
