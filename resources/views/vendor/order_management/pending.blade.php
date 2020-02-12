@@ -42,9 +42,9 @@
                                 <td class="text-center"><b>{{$s->trx_id}}</b></td>
                                 <td class="text-center"><b>{{$s->sender_mobile_number}}</b></td>
                                 <td class="text-center"><b>৳ {{number_format($s->total)}}</b></td>
-                                <td class="text-center"><b>{{$s->customer_id}}</b></td>
-                                <td class="text-center"><b>{{$s->customer_id}}</b></td>
-                                <td class="text-center"><b>{{$s->shipping_id}}</b></td>
+                                <td class="text-center"><b>{{$s->customers->name}}</b></td>
+                                <td class="text-center"><b>{{$s->customers->phone}}</b></td>
+                                <td class="text-center"><b>{{$s->shippings->address}}</b></td>
                                 <td class="text-center">@if($s->status === 'Pending')<span class="label label-warning label-mini">{{$s->status}}</span>{{--@elseif($s->status === 'Available')<span class="label label-success label-mini">{{$s->status}}</span>@else<span class="label label-default label-mini">{{$s->status}}</span> --}}@endif</td>
                                 <td>
                                     <a href="{{route('productManagementEdit',Crypt::encrypt($s->id))}}" class="btn btn-primary btn-xs"><i class="fas fa-arrow-circle-right"></i> </a>
