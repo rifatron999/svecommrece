@@ -6,6 +6,8 @@ use App\Brand;
 use App\Category;
 use App\Offer;
 use App\Product;
+use App\Temp_Order;
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -668,25 +670,60 @@ class normalVendorController extends Controller
     }
     public function PendingOrderView()
     {
-        /*$products = Product::paginate(8);
-        $sub_categories = Category::whereNotNull('parent_id')->get();*/
-        /*foreach ($sub_categories as  $value)
-        {
-            $sub[] = $value->parent_id;
-        }
-        $parent_id = NULL;*/
-        return view('vendor.order_management.pending'/*,compact('sub_categories','products')*/);
+        $pending_orders = Temp_Order::where('status','Pending')->orderBy('updated_at','DESC')->paginate(14);
+        return view('vendor.order_management.pending',compact('pending_orders'));
+    }
+    public function orderCancel($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $order = Temp_Order::where('id',$oid)->first();
+        $order->update(['status' => 'Cancel']);
+        return back()->with('msg', "✔ Order Canceled");
+        //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
+    }
+    public function orderProceed($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $temp_order = Temp_Order::where('id',$oid)->first();
+        $order =  Order::create([
+            'customer_id' => $temp_order->customer_id,
+            'shipping_id' => $temp_order->shipping_id,
+            'payment_id' => $temp_order->payment_id,
+            'invoice_id' => $temp_order->invoice_id,
+            'product_ids' => $temp_order->product_ids,
+            'selling_price' => $temp_order->selling_price,
+            'quantity' => $temp_order->quantity,
+            'offer_type' => $temp_order->offer_type,
+            'offer_percentage' => $temp_order->offer_percentage,
+            'free_product_ids' => $temp_order->free_product_ids,
+            'subtotal' => $temp_order->subtotal,
+            'total' => $temp_order->total,
+            'status' => 'Processing',
+            'slug' => $temp_order->slug,
+        ]);
+//delete temp_orders
+        $temp_order->delete();
+        return back()->with('msg', "✔ Order Proceed");
+        //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
     }
     public function OrderView()
     {
-        /*$products = Product::paginate(8);
-        $sub_categories = Category::whereNotNull('parent_id')->get();*/
-        /*foreach ($sub_categories as  $value)
-        {
-            $sub[] = $value->parent_id;
-        }
-        $parent_id = NULL;*/
-        return view('vendor.order_management.order'/*,compact('sub_categories','products')*/);
+        $orders = Order::orderBy('Status','DESC')->paginate(14);
+        return view('vendor.order_management.order',compact('orders'));
+    }
+    public function orderDelivered($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $order = Order::where('id',$oid)->first();
+        $order->update(['status' => 'Delivered']);
+        return back()->with('msg', "✔ Order Delivered");
+    }
+    public function orderProcessiong($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $order = Order::where('id',$oid)->first();
+        $order->update(['status' => 'Processing']);
+        return back()->with('msg', "✔ Order Updated");
     }
 
     //************************ page = inventory_management #

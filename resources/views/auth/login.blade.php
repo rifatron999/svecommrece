@@ -4,6 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <!-- message -->
+            @if(session('msg'))
+                <div class="alert alert-danger alert-dismissable " style="opacity: 0.5">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <p align="center" ><strong >{{session('msg')}}!</strong></p>
+                </div>
+        @endif
+        <!-- /message -->
             <div class="card">
                 <div class="card-header">{{ __('Vendor Login') }}</div>
 
