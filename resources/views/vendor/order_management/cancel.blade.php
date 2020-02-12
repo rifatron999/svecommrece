@@ -4,7 +4,6 @@
 @section('cancel_Order','active')
 @section('content')
     <div class="container-fluid">
-        <div id="Offers" class="tab-pane fade in active">
             <div class="row">
                 {{--<div class="btn-group col-md-12 mar-top">
                     @foreach($sub_categories as $s)
@@ -57,7 +56,5 @@
                     {!! $cancel_orders->links()  !!}
                 </div>
             </div>
-        </div>
-
     </div>
 @endsection

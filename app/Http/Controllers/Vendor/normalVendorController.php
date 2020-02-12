@@ -730,6 +730,14 @@ class normalVendorController extends Controller
         $cancel_orders = Temp_Order::where('status','Cancel')->orderBy('updated_at','DESC')->paginate(14);
         return view('vendor.order_management.cancel',compact('cancel_orders'));
     }
+    public function order_details($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $order = Order::where('id',$oid)->first();
+        /*$categories = Category::where('status','Active')->get();
+        $products = Product::where('vendor_id',Auth::user()->id)->where('status','!=','Disable')->orderBy('category_id','ASC')->get();*/
+        return view('vendor.order_management.order_details',compact('order'/*,'categories','products'*/));
+    }
 
     //************************ page = inventory_management #
 }

@@ -120,6 +120,8 @@ Route::get('/order_management/proceed/{id}','Vendor\normalVendorController@order
 Route::get('/order_management/delivered/{id}','Vendor\normalVendorController@orderDelivered')->name('orderDelivered');
 Route::get('/order_management/processing/{id}','Vendor\normalVendorController@orderProcessiong')->name('orderProcessiong');
 Route::get('/cancel_orders','Vendor\normalVendorController@cancelOrderView')->name('cancelOrderView');
+Route::get('/order_management/order_details/{id}','Vendor\normalVendorController@order_details')->name('order_details');
+
 
 
 

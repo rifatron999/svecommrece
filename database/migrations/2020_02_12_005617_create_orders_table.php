@@ -30,7 +30,6 @@ class CreateOrdersTable extends Migration
             $table->integer('total')->nullable();
             $table->string('status')->nullable();
             $table->string('slug')->nullable();
-
             $table->timestamps();
         });
     }

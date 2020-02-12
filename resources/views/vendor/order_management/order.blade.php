@@ -4,7 +4,6 @@
 @section('Order','active')
 @section('content')
     <div class="container-fluid">
-        <div id="Offers" class="tab-pane fade in active">
             <div class="row">
                 {{--<div class="btn-group col-md-12 mar-top">
                     @foreach($sub_categories as $s)
@@ -47,7 +46,7 @@
                                 <td class="text-center"><b>{{$s->shippings->address}} , {{$s->shippings->city}}</b></td>
                                 <td class="text-center">@if($s->status === 'Processing')<span class="label label-info label-mini">{{$s->status}}</span>@elseif($s->status === 'Delivered')<span class="label label-success label-mini">{{$s->status}}</span>{{--@else<span class="label label-default label-mini">{{$s->status}}</span> --}}@endif</td>
                                 <td>
-                                    <a href="{{--{{route('productManagementEdit',Crypt::encrypt($s->id))}}--}}" title="See Details" class="btn btn-primary btn-xs"><i class="fas fa-arrow-circle-right"></i> </a>
+                                    <a href="{{route('order_details',Crypt::encrypt($s->id))}}" title="See Details" class="btn btn-primary btn-xs"><i class="fas fa-arrow-circle-right"></i> </a>
                                     <a href="{{route('orderDelivered',Crypt::encrypt($s->id))}}" title="Delivered" class="btn btn-success btn-xs" onclick="return confirm('Are you sure that the order is delivered ?')"><i class="fas fa-truck-loading"></i> </a>
                                     <a href="{{route('orderProcessiong',Crypt::encrypt($s->id))}}" title="Undo to processing" class="btn btn-warning btn-xs" onclick="return confirm('Are you sure that the order is still in processing ?')"><i class="fas fa-undo"></i></i> </a>
                                 </td>
@@ -58,7 +57,5 @@
                     {!! $orders->links()  !!}
                 </div>
             </div>
-        </div>
-
     </div>
 @endsection
