@@ -13,4 +13,9 @@ class Shipping extends Model
     {
         return $this->hasOne(Temp_Order::class,'shipping_id');
     }
+
+    public function orders()
+    {
+        return $this->hasOne(Order::class,'shipping_id');
+    }
 }
