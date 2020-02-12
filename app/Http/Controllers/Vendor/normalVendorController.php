@@ -734,9 +734,18 @@ class normalVendorController extends Controller
     {
         $oid = Crypt::decrypt($id);
         $order = Order::where('id',$oid)->first();
-        /*$categories = Category::where('status','Active')->get();
-        $products = Product::where('vendor_id',Auth::user()->id)->where('status','!=','Disable')->orderBy('category_id','ASC')->get();*/
-        return view('vendor.order_management.order_details',compact('order'/*,'categories','products'*/));
+        $product_ids = json_decode($order->product_ids);
+            $products = Product::wherein('id',$product_ids)->get();
+        $selling_price = json_decode($order->selling_price);
+        $quantity = json_decode($order->quantity);
+        $offer_type = json_decode($order->offer_type);
+        $offer_percentage = json_decode($order->offer_percentage);
+        $free_product_ids = json_decode($order->free_product_ids);
+            $free_products = Product::wherein('id',$free_product_ids)->get();
+
+        //print_r($free_product_ids);
+        //echo $selling_price[0] + $selling_price[0] ;
+        return view('vendor.order_management.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
     }
 
     //************************ page = inventory_management #
