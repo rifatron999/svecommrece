@@ -7,9 +7,41 @@
        <div class="row">
            <div class="col-md-12  content-panel mar-top" style="overflow: auto">
                 <div class="col-sm-2 ">
-                    <img src="{{ asset('assets/website/images/logo/nobinLogo.png') }}"width="100%" alt="" title="Click to see Sub-Category">
+                    <table class="table  table-advance table-hover ">
+                        <tbody>
+                        <tr >
+                            <td class="text-center" >
+                                <img src="{{ asset('assets/website/images/logo/nobinLogo.png') }}"width="100%" alt="">
+                            </td>
+                        </tr>
+                        <tr >
+                            <td >
+                                <span class="label label-info label-mini"><i class="fab fa-slack-hash"></i></span> <b> {{$order->invoice_id}}</b>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td >
+                                @php
+                                    $time = date('g:i a,d M,Y',strtotime($order->created_at) + 6 * 3600);
+                                @endphp
+                                <span class="label label-info label-mini"><i class="fas fa-clock"></i></span> <b> {{$time}}</b>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td >
+                                @if($order->status === "Processing")
+                                    <span class="label label-info ">{{$order->status}}</span>
+                                @elseif($order->status === "Delivered")
+                                    <span class="label label-success ">{{$order->status}}</span>
+                                @endif
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-sm-5 form-style"></div>
+                <div class="col-sm-5 ">
+
+                </div>
                 <div class="col-sm-5 ">
                     <table class="table  table-advance table-hover ">
                         <tbody>
@@ -49,5 +81,35 @@
                 </div>
            </div>
        </div>
+        <div class="row">
+            <div class="col-md-12  content-panel mar-top" style="overflow: auto">
+                <table class="table  table-advance table-hover ">
+                    <tbody>
+                    <tr >
+                        <td >
+                            <span class="label label-info label-mini"><i class="fab fa-slack-hash"></i></span> <b> {{$order->invoice_id}}</b>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            @php
+                                $time = date('g:i a,d M,Y',strtotime($order->created_at) + 6 * 3600);
+                            @endphp
+                            <span class="label label-info label-mini"><i class="fas fa-clock"></i></span> <b> {{$time}}</b>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            @if($order->status === "Processing")
+                                <span class="label label-info ">{{$order->status}}</span>
+                            @elseif($order->status === "Delivered")
+                                <span class="label label-success ">{{$order->status}}</span>
+                            @endif
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 @endsection
