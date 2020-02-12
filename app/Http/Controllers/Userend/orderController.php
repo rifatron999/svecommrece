@@ -147,7 +147,8 @@ class orderController extends Controller
             'status' => "Pending",
         ]);
         Cart::destroy();
-        Return redirect()->route('pages.products');
+        $order_id = $request->temp_order_id;
+        Return redirect()->route('paymentSuccess',['$order_id']);
 
 
     }

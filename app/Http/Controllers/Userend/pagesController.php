@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Userend;
 use App\Category;
 use App\Product;
 use App\Offer;
+use App\Temp_Order;
 use Cart;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
@@ -63,5 +65,20 @@ class pagesController extends Controller
     {
         $products = Product::where('offer_id','!=',null)->paginate(14);
         return view('pages.products',compact('products'));
+    }
+
+    public function paymentSuccess($id)
+    {
+        $temp_order = Temp_Order::find($id);
+        return view('pages.successful',compact('temp_order'));
+
+    }
+
+    public function generatePdf()
+    {
+        $product = Product::all();
+        $pdf = PDF::loadView('pdf/pdf', ['product' => $product ]);
+
+        return $pdf->download('nobin.pdf');
     }
 }
