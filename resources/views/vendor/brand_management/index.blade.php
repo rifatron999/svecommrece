@@ -18,9 +18,9 @@
                             <div class="col-md-4 news mb-2 mar-bott">
                                 <div class="head img_hover">
                                     @if(empty($s->image))
-                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" class="img" alt="">
+                                    <img src="{{ asset('assets/vendor/images/icon/no_image.jpg') }}" width="80%" alt="">
                                     @else
-                                    <img src="{{ asset('assets/vendor/images/brands/') }}/{{$s->image}}" class="img" alt="">
+                                    <img src="{{ asset('assets/vendor/images/brands/') }}/{{$s->image}}" width="60%" alt="">
                                     @endif
 
                                     <div class="overlay">
@@ -61,14 +61,28 @@
                                             <label for="recipient-name" class=" label label-primary">Image</label>
                                             <input name="image" type="file" class="form-control" onchange="previewImage(event)" onclick="gritter_custom('image upload','Select good resolution images','The image you are going to select should be greater than 700X700 pixels for better quality ')">
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-2" >
                                             <label for="recipient-name" class=" label label-primary">Status</label>
-                                            <select name="status" class="form-control">
+                                            <select name="status" class="form-control" disabled title="Restricted">
                                                 <option value="Active" >Active</option>
-                                                <option value="Deactive" >Deactive</option>
+                                                <option value="Deactive"  ><>Deactive</option>
                                             </select>
                                         </div>
                                     </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label for="recipient-name" class=" label label-primary">Address</label>
+                                <input name="address" type="text" class="form-control form-control-sm" value="{{ old('address') }}" required>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="recipient-name" class=" label label-primary">Email</label>
+                                <input name="email" type="text" class="form-control form-control-sm" value="{{ old('email') }}" required>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="recipient-name" class=" label label-primary">Phone</label>
+                                <input name="phone" type="text" class="form-control form-control-sm" value="{{ old('phone') }}" required>
+                            </div>
+                        </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label for="message-text" class=" label label-primary">Description</label>

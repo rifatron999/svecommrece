@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class normalVendorController extends Controller
 {
@@ -157,7 +158,10 @@ class normalVendorController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
             'description' => 'required|max:200',
+            'address' => 'required|max:200',
             'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
         ]);
         $image = $request->file('image');
@@ -169,8 +173,11 @@ class normalVendorController extends Controller
                 Brand::create([
                     'vendor_id' => Auth::user()->id,
                     'name' => $request->name,
+                    'address' => $request->address,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
                     'description' => $request->description,
-                    'status' => $request->status,
+                    'status' => /*$request->status*/'Active',
                     'image' => $image_name,
                 ]);
         }
@@ -179,8 +186,11 @@ class normalVendorController extends Controller
             Brand::create([
             'vendor_id' => Auth::user()->id,
             'name' => $request->name,
+            'address' => $request->address,
+            'email' => $request->email,
+            'phone' => $request->phone,
             'description' => $request->description,
-            'status' => $request->status,
+            'status' =>  /*$request->status*/'Active',
             ]);
         }
 
@@ -196,8 +206,11 @@ class normalVendorController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
+             'email' => 'required',
+            'phone' => 'required',
+            'description' => 'required|max:200',
+            'address' => 'required|max:200',
         ]);
         $image = $request->file('image');
         $update = Brand::find($request->id);
@@ -210,8 +223,11 @@ class normalVendorController extends Controller
             $image->move('assets/vendor/images/brands/',$image_name);
             $update->update([
                 'name' => $request->name,
+                'address' => $request->address,
+                'email' => $request->email,
+                'phone' => $request->phone,
                 'description' => $request->description,
-                'status' => $request->status,
+                /*'status' => $request->status,*/
                 'image' => $image_name,
             ]);
 
@@ -221,8 +237,11 @@ class normalVendorController extends Controller
         {
             $update->update([
                 'name' => $request->name,
+                'address' => $request->address,
+                'email' => $request->email,
+                'phone' => $request->phone,
                 'description' => $request->description,
-                'status' => $request->status,
+               /* 'status' => $request->status,*/
             ]);
 
 
@@ -764,6 +783,22 @@ class normalVendorController extends Controller
         //print_r($free_product_ids);
         //echo $selling_price[0] + $selling_price[0] ;
         return view('vendor.order_management.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
+    }
+    public function generateInvoice($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $order = Order::where('id',$oid)->first();
+        $product_ids = json_decode($order->product_ids);
+        $products = Product::wherein('id',$product_ids)->get();
+        $selling_price = json_decode($order->selling_price);
+        $quantity = json_decode($order->quantity);
+        $offer_type = json_decode($order->offer_type);
+        $offer_percentage = json_decode($order->offer_percentage);
+        $free_product_ids = json_decode($order->free_product_ids);
+        $free_products = Product::wherein('id',$free_product_ids)->get();
+        $product = Product::all();
+        $pdf = PDF::loadView('pdf/pdf', compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
+        return $pdf->stream('order :'.$order->invoice_id.'.pdf');
     }
 
     //************************ page = inventory_management #

@@ -1,88 +1,186 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Invoice</title>
-    <style>
-        #customers {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
+    <meta charset="UTF-8">
+    <title>Order : {{$order->invoice_id}}</title>
+
+    <style type="text/css">
+        * {
+            font-family: Verdana, Arial, sans-serif;
+            font-size: 15px;
+        }
+        table{
+            font-size: x-small;
+        }
+        tfoot tr td{
+            font-weight: bold;
+            font-size: x-small;
+        }
+        .gray {
+            background-color: lightgray
+        }
+        img {
+            vertical-align: top;
         }
 
-        #customers td, #customers th {
-            border: 1px solid black;
-            padding: 8px;
-        }
 
-        #customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: white;
-            color: black;
-        }
+
+
+
     </style>
+
 </head>
 <body>
-<div class="container">
-    <div style="width: 100%">
 
-        <p><img src="{{ public_path("assets/website/images/logo/nobinLogo.png") }}" alt="" style="width: 200px;height: 60px"></p>
-        <div style="text-align: center">
-            <h2>Nobin Bangladesh</h2>
-            <p>018574521231</p>
+<table width="100%">
+    <tr >
+        <td valign="left" >
+            <h1> Invoice #{{$order->invoice_id}}</h1>
+            <strong  > Bill to </strong> <br>
+            {{$order->customers->name}} <br>
+            {{$order->customers->phone}}<br>
+            {{$order->customers->email}}
             <br>
-        </div>
-    </div>
+            <br>
+            <hr>
+            <br>
 
-    <div style="width: 100%; height: 150px">
-        <div style="width: 47.5%; float: left;border: 1px solid black; padding: 0 1%">
-            <div>
-                <p><b>Invoice No : </b></p>
-                <p><b>Customer Name</b> Zahid</p>
-                <p><b>Address</b> Banasree Dhaka</p>
-            </div>
-        </div>
-        <div style="width: 48%; float: right; border: 1px solid;padding: 0 1%">
-            <div>
-                <p><b>Ref no</b> 12542121412</p>
-                <p><b>Date</b> 12/08/2019</p>
-                <p><b>Delivery Date</b> 13/05/2019</p>
-            </div>
-        </div>
-    </div>
 
-    <table id="customers">
+            {{--<strong  >{{$req->datex}}:</strong> {{$req->date}} <br>
+            <strong>{{$req->duedatex}}:</strong> {{$req->due_date}} <br>--}}
+        </td>
+        {{--<td align="right">
+            <img  src="assets/img/company_logo/{{session('c_logo')}}" width="100" height="125"    >
+            <pre>
+            {{$req->invoice_from}}
+                {{session('c_address')}}
+                {{session('c_phone')}}
+                {{session('c_email')}}
+            </pre>
+        </td>--}}
+    </tr>
+    {{--<tr>
+        <td>
+
+
+
+        </td>
+
+    </tr>--}}
+
+</table>
+
+{{--
+<table width="100%">
+
+    <tr>
+
+
+        <td align="left" >
+
+
+        </td>
+
+
+
+
+    </tr>
+
+</table>
+
+<br/>
+
+<table width="100%">
+    <thead style="background-color: #464f47; color: #fff;">
+    <tr align="center" >
+
+        <th colspan="2" >ITEM</th>
+        <th>Quantity</th>
+        <th>Unit Price $</th>
+        <th>Total $</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <?php for($x=0;$x<count($req->invoiceItem);$x++)
+    {
+    ?>
+    <tr>
+
+        <td align="center">{{$req->invoiceItem[$x]}}</td>
+        <td style="color: #a0aec0;" align="left" >{{$req->invoiceItemDes[$x]}}</td>
+        <td align="center">{{$req->invoiceQuantity[$x]}}</td>
+        <td align="center">{{$req->invoiceRate[$x]}}</td>
+        <td align="center">{{$req->invoiceAmount[$x]}}</td>
+    </tr>
+
+
+    <?php
+    }
+    ?>
+
+
+    </tbody>
+</table>
+
+<table align="right"  width="30%" >
+
+    <tr>
+
+        <td align="center">{{$req->subTotalx}}</td>
+        <td align="center">{{session('c_currency')}} {{$req->Sub_total}}</td>
+    </tr>
+    <tr>
+
+        <td align="center">{{$req->taxx}}</td>
+        <td align="center">{{$req->tax}}</td>
+    </tr>
+    <tr>
+
+        <td align="center">{{$req->discountx}}</td>
+        <td align="center">{{$req->discount}}</td>
+    </tr>
+    <tr>
+
+        <td align="center">{{$req->shippingx}}</td>
+        <td align="center">{{session('c_currency')}} {{$req->shipping}}</td>
+    </tr>
+
+
+    <tr>
+
+        <td align="center">{{$req->totalx}}</td>
+        <td align="center" class="gray">{{session('c_currency')}} {{$req->total}}</td>
+    </tr>
+    @if($req->invoice_type === 'Invoice')
         <tr>
-            <th>Name</th>
-            <th>Free Product</th>
-            <th>Size</th>
-            <th>Quantity</th>
-            <th>Price</th>
+
+            <td align="center">{{$req->paidx}}</td>
+            <td align="center" class="gray">{{session('c_currency')}} {{$req->amount_paid}}</td>
+        </tr>
+    @endif
+    <hr width="99%" align="left" >
+
+
+
+    <table align="left"  width="70%" style="padding: 50px;
+  " >
+
+
+        <tr>
+
+            <td align="left" width="20%" >{{$req->descriptionx}}: </td>
+            <td align="left" width="50%"  >{{$req->description}}</td>
         </tr>
 
         <tr>
-            <td>HD tv 32"</td>
-            <td>Basic 24"</td>
-            <td>32"</td>
-            <td>5</td>
-            <td>5000</td>
+
+            <td align="left" width="20%" >{{$req->termsx}}: </td>
+            <td align="left" >{{$req->terms}}</td>
         </tr>
-
-
-
     </table>
-    <br>
 
-    <div style="width: 100%">
-        <div style="float: right; width: 50%">
-            <p><b>Total Amount</b></p>
-            <p><b>Vat</b></p>
-            <p><b>Discount</b></p>
-            <p><b>Net Payable amount</b></p>
-        </div>
-    </div>
-</div>
+--}}
 
 </body>
 </html>

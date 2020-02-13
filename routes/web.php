@@ -122,6 +122,8 @@ Route::get('/order_management/processing/{id}','Vendor\normalVendorController@or
 Route::get('/cancel_orders','Vendor\normalVendorController@cancelOrderView')->name('cancelOrderView');
 Route::get('/order_management/order_details/{id}','Vendor\normalVendorController@order_details')->name('order_details');
 Route::get('/order_management/temp_order_details/{id}','Vendor\normalVendorController@temp_order_details')->name('temp_order_details');
+Route::get('/order_management/generateInvoice/{id}', 'Vendor\normalVendorController@generateInvoice')->name('generateInvoice');
+
 
 
 

@@ -26,4 +26,9 @@ class Vendor extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function brands()
+    {
+        return $this->hasMany(Brand::class,'vendor_id');
+    }
+
 }
