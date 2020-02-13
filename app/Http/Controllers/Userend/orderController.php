@@ -35,16 +35,38 @@ class orderController extends Controller
             $pro_id = Product::find($pro_ids[$i]);
             $pro_stock = $pro_id->stock;
 
-            $validator = Validator::make($request->all(), [
-                'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,
-            ]);
-//            $request->validate([
-//                'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,
-//            ]);
 
-            if ($validator->fails()) {
-                return redirect()->route('cart.delete',$cart_ids[$i]);
+            if($pro_ids[$i] == 3 &&  $quantity[$i] > 10){
+                $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:10',],
+                    [
+                        'quantity_'.$i.'.max' => 'You are crossing maximum limit'
+                    ]);
             }
+            elseif ($pro_ids[$i] == 3 &&  $quantity[$i] <= 10 ){
+                $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock, ],
+                    [
+                        'quantity_'.$i.'.max' => 'Stock out of your limit'
+                    ]);
+            }
+            elseif ($pro_ids[$i] == 4 &&  $quantity[$i] > 1){
+                $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:1',],
+                    [
+                        'quantity_'.$i.'.max' => 'You are crossing maximum limit'
+                    ]);
+            }
+            elseif ($pro_ids[$i] == 4 &&  $quantity[$i] <= 1){
+                $request->validate([
+                    'qty' => 'required|numeric|min:1|max:'.$pro_stock,
+                ]);
+            }
+
+
+            $request->validate(
+            [ 'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
+                [
+                    'quantity_'.$i.'.max' => 'Stock out of your limit'
+                ]);
+
 
 
         }

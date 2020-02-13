@@ -66,6 +66,9 @@
                                     @endif
 {{--                                    <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>--}}
                                     <td class="qty text-center">
+                                        @foreach($errors->all() as $error)
+                                            <span style="color:red">{{$error}}</span>
+                                        @endforeach
                                         <form method="post" action="{{ route('cart.update') }}">
                                             {{ @csrf_field() }}
                                             <input class="input" type="hidden" name="product_id" value="{{ $cart_data->id }}">

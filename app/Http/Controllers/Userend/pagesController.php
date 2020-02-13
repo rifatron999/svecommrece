@@ -26,8 +26,9 @@ class pagesController extends Controller
 
     public function products()
     {
+        $cart_datas = Cart::content();
         $products = Product::where('status','!=','Disable')->paginate(14);
-        return view('pages.products',compact('products'));
+        return view('pages.products',compact('products','cart_datas'));
     }
 
     public function single_product($id)
