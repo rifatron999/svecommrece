@@ -673,6 +673,23 @@ class normalVendorController extends Controller
         $pending_orders = Temp_Order::where('status','Pending')->orderBy('updated_at','DESC')->paginate(14);
         return view('vendor.order_management.pending',compact('pending_orders'));
     }
+    public function temp_order_details($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $order = Temp_Order::where('id',$oid)->first();
+        $product_ids = json_decode($order->product_ids);
+        $products = Product::wherein('id',$product_ids)->get();
+        $selling_price = json_decode($order->selling_price);
+        $quantity = json_decode($order->quantity);
+        $offer_type = json_decode($order->offer_type);
+        $offer_percentage = json_decode($order->offer_percentage);
+        $free_product_ids = json_decode($order->free_product_ids);
+        $free_products = Product::wherein('id',$free_product_ids)->get();
+
+        //print_r($free_product_ids);
+        //echo $selling_price[0] + $selling_price[0] ;
+        return view('vendor.order_management.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
+    }
     public function orderCancel($id)
     {
         $oid = Crypt::decrypt($id);

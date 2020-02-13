@@ -13,4 +13,9 @@ class Payment extends Model
     {
         return $this->hasOne(Order::class,'payment_id');
     }
+
+    public function temp_orders()
+    {
+        return $this->hasOne(Temp_Order::class,'payment_id');
+    }
 }

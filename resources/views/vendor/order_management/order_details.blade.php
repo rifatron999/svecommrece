@@ -10,7 +10,7 @@
                     <table class="table  table-advance table-hover ">
                         <tbody>
                         <tr >
-                            <td class="text-center" >
+                            <td  >
                                 <img src="{{ asset('assets/website/images/logo/nobinLogo.png') }}"width="100%" alt="">
                             </td>
                         </tr>
@@ -28,13 +28,15 @@
                             </td>
                         </tr>
                         <tr >
-                            <td >
+                            <td ><h1>
                                 @if($order->status === "Processing")
                                     <span class="label label-info ">{{$order->status}}</span>
                                 @elseif($order->status === "Delivered")
                                     <span class="label label-success ">{{$order->status}}</span>
+                                @elseif($order->status === "Pending")
+                                    <span class="label label-warning ">{{$order->status}}</span>
                                 @endif
-                            </td>
+                                </h1> </td>
                         </tr>
                         </tbody>
                     </table>
@@ -101,27 +103,30 @@
                                     @endphp
                                     <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray[0]->image}}" width="70px" {{--class="imgs"--}} alt="">
                                 </td>
-                                <td class="text-center" ><b> {{$products[$i]->name}}</b></td>
+                                <td class="text-center" ><b> <a   href="{{route('productManagementEdit',Crypt::encrypt($products[$i]->id))}}" title="Click To Edit Product"> {{$products[$i]->name}}</a></b></td>
                                 <td class="text-center" >
-                                    <b>
-                                        @if($offer_type[$i] === 'Discount')
-                                            Actual Price : ৳ {{number_format($products[$i]->price)}} <br>
-                                           Discount : {{$offer_percentage[$i]}} %
-                                        @endif
-                                        @if($offer_type[$i] === 'Buy one get one')
-                                                @if(!empty($free_products[$i]->image))
-                                                    @php
-                                                        $imgarray2 = json_decode($free_products[$i]->image);
-                                                    @endphp
-                                                    <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray2[0]->image}}" width="70px" {{--class="imgs"--}} alt="">
-                                                @endif
-                                                  <br>  Free: {{$free_products[$i]->name}}
-                                        @endif
-                                    </br>
+
+                                        <b>
+                                            @if($offer_type[$i] === 'Discount')
+                                                Actual Price : ৳ {{number_format($products[$i]->price)}} <br>
+                                               Discount : {{$offer_percentage[$i]}} %
+                                            @endif
+                                            @if($offer_type[$i] === 'Buy one get one')
+                                                    @if(!empty($free_products[$i]->image))
+                                                        @php
+                                                            $imgarray2 = json_decode($free_products[$i]->image);
+                                                        @endphp
+                                                        <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray2[0]->image}}" width="70px" {{--class="imgs"--}} alt="">
+                                                    @endif
+                                            <b>  Free: <a   href="{{route('productManagementEdit',Crypt::encrypt($free_products[$i]->id))}}" title="Click To Edit Product">{{$free_products[$i]->name}}</a> </b>
+                                            @endif
+                                        </b>
+
+                                    <br>
                                 </td>
                                 <td class="text-center" ><b>৳ {{number_format($selling_price[$i])}}</b></td>
                                 <td class="text-center" ><b> {{$quantity[$i]}}</b></td>
-                                <td class="text-center" ><b> {{$selling_price[$i] * $quantity[$i]}}</b></td>
+                                <td class="text-center" ><b>৳ {{number_format($selling_price[$i] * $quantity[$i])}}</b></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -130,7 +135,6 @@
         </div>
         <div class="row">
             <div class="col-md-12  content-panel" style="overflow: auto">
-
                 <div class="col-sm-3  "><br><hr style="border-top: 8px solid #89C0E0; background: transparent;"><br>
                     <table class="table table-hover ">
                         <tbody>
