@@ -11,7 +11,7 @@
                         <tbody>
                         <tr >
                             <td  >
-                                <img src="{{ asset('assets/website/images/logo/nobinLogo.png') }}"width="100%" alt="">
+                                <img src="{{ asset('assets/vendor/images/brands/') }}/{{ Auth::user()->brands->image }}"width="100%" alt="">
                             </td>
                         </tr>
                         <tr >
