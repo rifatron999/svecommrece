@@ -77,11 +77,5 @@ class pagesController extends Controller
 
     }
 
-    public function generatePdf()
-    {
-        $product = Product::all();
-        $pdf = PDF::loadView('pdf/pdf', ['product' => $product ]);
 
-        return $pdf->download('nobin.pdf');
-    }
 }

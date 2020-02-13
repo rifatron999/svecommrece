@@ -11,7 +11,7 @@
                         <tbody>
                         <tr >
                             <td  >
-                                <img src="{{ asset('assets/website/images/logo/nobinLogo.png') }}"width="100%" alt="">
+                                <img src="{{ asset('assets/vendor/images/brands/') }}/{{ Auth::user()->brands->image }}"width="100%" alt="">
                             </td>
                         </tr>
                         <tr >
@@ -31,19 +31,20 @@
                             <td ><h1>
                                 @if($order->status === "Processing")
                                     <span class="label label-info ">{{$order->status}}</span>
-                                        <a href="{{route('orderDelivered',Crypt::encrypt($order->id))}}" title="Delivered" class="btn btn-success btn-xs" onclick="return confirm('Are you sure that the order is delivered ?')"><i class="fas fa-truck-loading"></i> </a>
+                                        <a href="{{route('orderDelivered',Crypt::encrypt($order->id))}}" title="Delivered" class="btn btn-success " onclick="return confirm('Are you sure that the order is delivered ?')"><i class="fas fa-truck-loading"></i> </a>
                                 @elseif($order->status === "Delivered")
                                     <span class="label label-success ">{{$order->status}}</span>
-                                        <a href="{{route('orderProcessiong',Crypt::encrypt($order->id))}}" title="Undo to processing" class="btn btn-warning btn-xs" onclick="return confirm('Are you sure that the order is still in processing ?')"><i class="fas fa-undo"></i></i> </a>
+                                        <a href="{{route('orderProcessiong',Crypt::encrypt($order->id))}}" title="Undo to processing" class="btn btn-warning " onclick="return confirm('Are you sure that the order is still in processing ?')"><i class="fas fa-undo"></i></i> </a>
                                     @elseif($order->status === "Pending")
                                     <span class="label label-warning ">{{$order->status}}</span>
-                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success btn-xs" onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
-                                        <a href="{{route('orderCancel',Crypt::encrypt($order->id))}}" title="Cancel" onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-xs"><i class="fas fa-times"></i> </a>
+                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
+                                        <a href="{{route('orderCancel',Crypt::encrypt($order->id))}}" title="Cancel" onclick="return confirm('Are you sure ?')" class="btn btn-danger "><i class="fas fa-times"></i> </a>
                                     @elseif($order->status === "Cancel")
                                     <span class="label label-danger ">{{$order->status}}ed</span>
-                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success btn-xs" onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
+                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
                                 @endif
-                                </h1> </td>
+                                </h1>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -95,9 +96,9 @@
                         <th scope="col"class="text-center"><i class="fab fa-slack-hash"></i></th>
                         <th scope="col" class="text-center"> <i class="fas fa-puzzle-piece"></i> Product</th>
                         <th scope="col" class="text-center"> <i class="fas fa-gift"></i> </th>
-                        <th scope="col"class="text-center"><i class="fas fa-mobile-alt"></i> Selling price</th>
-                        <th scope="col"class="text-center"><i class="fas fa-money-bill-wave"></i> Quantity</th>
-                        <th scope="col"class="text-center"><i class="fas fa-phone-volume"></i></i>Amount</th>
+                        <th scope="col"class="text-center"><i class="fas fa-money-bill-wave"></i> Selling price</th>
+                        <th scope="col"class="text-center"><i class="fas fa-sort-numeric-up"></i> Quantity</th>
+                        <th scope="col"class="text-center"><i class="fas fa-money-bill-wave"></i> Amount</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -116,16 +117,18 @@
                                             @if($offer_type[$i] === 'Discount')
                                                 Actual Price : ৳ {{number_format($products[$i]->price)}} <br>
                                                Discount : {{$offer_percentage[$i]}} %
-                                            @endif
-                                            @if($offer_type[$i] === 'Buy one get one')
+                                            @elseif($offer_type[$i] === 'Buy one get one')
                                                     @if(!empty($free_products[$i]->image))
                                                         @php
                                                             $imgarray2 = json_decode($free_products[$i]->image);
                                                         @endphp
-                                                        <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray2[0]->image}}" width="70px" {{--class="imgs"--}} alt="">
+                                                       {{-- <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray2[0]->image}}" width="70px" --}}{{--class="imgs"--}}{{-- alt="">--}}
                                                     @endif
-                                            <b>  Free: <a   href="{{route('productManagementEdit',Crypt::encrypt($free_products[$i]->id))}}" title="Click To Edit Product">{{$free_products[$i]->name}}</a> </b>
+                                            <b>  Free: <a   href="{{route('productManagementEdit',Crypt::encrypt($free_products[0]->id))}}" title="Click To Edit Product">{{$free_products[0]->name}}</a> </b>
+                                            @else
+                                                empty
                                             @endif
+
                                         </b>
 
                                     <br>

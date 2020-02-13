@@ -17,6 +17,9 @@ class CreateBrandsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('vendor_id');
             $table->string('name');
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->string('status')->nullable();

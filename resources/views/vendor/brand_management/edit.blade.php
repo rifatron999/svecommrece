@@ -22,7 +22,7 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <label for="recipient-name" class=" label label-primary">Status</label>
-                                            <select name="status" class="form-control">
+                                            <select name="status" class="form-control" disabled>
                                                 @if($brand->status === 'Active')
                                                     <option value="Active" selected >Active</option>
                                                     <option value="Deactive" >Deactive</option>
@@ -33,6 +33,22 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label for="recipient-name" class=" label label-primary">Address</label>
+                                <input name="address" type="text" value="{{$brand->address}}" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="recipient-name" class=" label label-primary">Email</label>
+                                <input name="email" type="text" value="{{$brand->email}}" class="form-control form-control-sm" required>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <label for="recipient-name" class=" label label-primary">Phone</label>
+                                <input name="phone" type="text" value="{{$brand->phone}}" class="form-control form-control-sm" required>
+                                </select>
+                            </div>
+                        </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label for="message-text" class=" label label-primary">Description</label>
