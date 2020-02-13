@@ -112,6 +112,7 @@
                                 @php $i++ @endphp
                             @endforeach
                             <div class="pull-right">
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                 <input type="submit" value="Place Order" class="primary-btn">
 {{--                                <a href="{{ route('temp_orders') }}" class="primary-btn">Place Order</a>--}}
                             </div>

@@ -61,8 +61,9 @@ Route::get('/customer/password/reset/{token}', 'CustomerAuth\ResetPasswordContro
 
 //xahid
     Route::get('/checkout/{id}', 'Userend\customerController@checkout')->name('pages.checkout');
+    Route::get('/myOrder/{id}', 'Userend\customerController@myOrder')->name('pages.myOrder');
     Route::post('/place_order', 'Userend\orderController@place_order')->name('place_order');
-    Route::get('/temp_orders', 'Userend\orderController@temp_orders')->name('temp_orders');
+    Route::get('/temp_orders/{id}', 'Userend\orderController@temp_orders')->name('temp_orders');
     Route::post('/paymentConfirm', 'Userend\orderController@paymentConfirm')->name('paymentConfirm');
 
 

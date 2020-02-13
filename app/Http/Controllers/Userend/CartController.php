@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:customer');
+    }
+
     public function index(){
         $cart_datas = Cart::content();
 //        dd($cart_datas);

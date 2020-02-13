@@ -30,19 +30,19 @@
                                 <input type="hidden" name="temp_order_id" value="{{ $temp_orders->id }}">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="name" placeholder="Name" value="{{ Auth::user()->name }}">
+                                <input class="input" type="text" name="name" placeholder="Name" value="{{ Auth::user()->name }}" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="email" name="email" placeholder="Email" value="{{ Auth::user()->email }}">
+                                <input class="input" type="email" name="email" placeholder="Email" value="{{ Auth::user()->email }}" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="address" placeholder="Address" value="{{ Auth::user()->address }}">
+                                <input class="input" type="text" name="address" placeholder="Address" value="{{ Auth::user()->address }}" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="city" placeholder="City" value="{{ Auth::user()->city }}">
+                                <input class="input" type="text" name="city" placeholder="City" value="{{ Auth::user()->city }}" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="tel" name="phone" placeholder="Phone" value="{{ Auth::user()->phone }}">
+                                <input class="input" type="tel" name="phone" placeholder="Phone" value="{{ Auth::user()->phone }}" required>
                             </div>
 
                         </div>
@@ -65,20 +65,21 @@
 
                                 <tbody>
 {{--                                @php--}}
-{{--                                    $product_ids = json_decode($temp_order->product_ids);--}}
+{{--                                    $product_ids = json_decode($temp_orders->product_ids);--}}
 {{--                                @endphp--}}
 {{--                                @for($i=0; $i<count($product_ids); $i++)--}}
-{{--                                    @php $product = App\Product::find($temp_order->product_ids[$i]) @endphp--}}
+{{--                                    @php $product = App\Product::find($product_ids[$i]) @endphp--}}
 {{--                                    <tr>--}}
 {{--                                        <td></td>--}}
 {{--                                        <td class="details">--}}
-{{--                                            <a href="{{ route('pages.single_product',Crypt::encrypt($temp_order->product_ids[$i])  ) }}">{{ $product->name }}</a>--}}
+{{--                                            <a href="{{ route('pages.single_product',Crypt::encrypt($temp_orders->product_ids[$i])  ) }}">--}}
+{{--                                                {{ $product->name }}</a>--}}
 {{--                                            <ul>--}}
-{{--                                                @if($temp_order->free_product_ids[$i] == null)--}}
+{{--                                                @if($temp_orders->free_product_ids[$i] == null)--}}
 {{--                                                    <li><span><b>Size:</b> {{ $product->size }}</span></li>--}}
 {{--                                                @else--}}
 {{--                                                    @php--}}
-{{--                                                        $free_product = \App\Product::find($temp_order->free_product_ids[$i]);--}}
+{{--                                                        $free_product = \App\Product::find($temp_orders->free_product_ids[$i]);--}}
 {{--                                                    @endphp--}}
 {{--                                                    <li><span><b>Size:</b> </span></li>--}}
 {{--                                                    <li><span><b>Free product:</b> </span></li>--}}
@@ -90,40 +91,13 @@
 {{--                                        @if($product->offers->offer_percentage != null)--}}
 {{--                                            <td class="price text-center"><strong></strong><span class="primary-color"> -% </span><br></td>--}}
 {{--                                        @else--}}
-{{--                                            <td class="price text-center"><strong>{{$temp_order->selling_price}}</strong><br></td>--}}
+{{--                                            <td class="price text-center"><strong>{{$temp_orders->selling_price}}</strong><br></td>--}}
 {{--                                        @endif--}}
 
-{{--                                        <td class="qty text-center">{{ $temp_order->quantity }}</td>--}}
-{{--                                        <td class="total text-center"><strong class="primary-color">{{ $temp_order->selling_price * $temp_order->quantity }}</strong></td>--}}
+{{--                                        <td class="qty text-center">{{ $temp_orders->quantity }}</td>--}}
+{{--                                        <td class="total text-center"><strong class="primary-color">{{ $temp_orders->selling_price * $temp_orders->quantity }}</strong></td>--}}
 {{--                                    </tr>--}}
 {{--                                @endfor--}}
-                                    @foreach($cart_datas as $cart_data)
-
-                                    <tr>
-                                        <td></td>
-                                        <td class="details">
-                                            <a href="{{ route('pages.single_product',Crypt::encrypt($cart_data->id)  ) }}">{{ $cart_data->name }}</a>
-                                            <ul>
-                                                @if($cart_data->options->free_product == null)
-                                                    <li><span><b>Size:</b> {{ $cart_data->options->size }}</span></li>
-                                                @else
-                                                    <li><span><b>Size:</b> {{ $cart_data->options->size }}</span></li>
-                                                    <li><span><b>Free product:</b> {{ $cart_data->options->free_product }}</span></li>
-                                                @endif
-
-
-                                            </ul>
-                                        </td>
-                                        @if($cart_data->options->offer_percentage != null)
-                                            <td class="price text-center"><strong>{{$cart_data->price}}</strong><span class="primary-color"> -{{ $cart_data->options->offer_percentage }}% </span><br></td>
-                                        @else
-                                            <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>
-                                        @endif
-
-                                        <td class="qty text-center">{{ $cart_data->qty }}</td>
-                                        <td class="total text-center"><strong class="primary-color">{{ $cart_data->price * $cart_data->qty }}</strong></td>
-                                    </tr>
-                                    @endforeach
                                 </tbody>
 
 
@@ -168,10 +142,10 @@
                                 <h4 class="title">Payments Methods</h4>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="tel" name="sender_mbl" placeholder="Sender Number">
+                                <input class="input" type="tel" name="sender_mbl" placeholder="Sender Number" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="trx_number" placeholder="Trx Number">
+                                <input class="input" type="text" name="trx_number" placeholder="Trx Number" required>
                             </div>
                         </div>
                     </div>

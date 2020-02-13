@@ -37,10 +37,10 @@
                             </div>
                             <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
                         </div>
-                        @if( Auth::check() )
+                        @if( Auth::user() )
                             <a href="" class="text-uppercase">{{ Auth::user()->name }}</a>
                             <ul class="custom-menu">
-                                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                                <li><a href="{{ route('pages.myOrder',Auth::user()->id ) }}"><i class="fa fa-user-o"></i> My Orders</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
