@@ -670,7 +670,7 @@ class normalVendorController extends Controller
     }
     public function PendingOrderView()
     {
-        $pending_orders = Temp_Order::where('status','Pending')->orderBy('updated_at','DESC')->paginate(14);
+        $pending_orders = Temp_Order::where('status','Pending')->orderBy('updated_at','DESC')->paginate(18);
         return view('vendor.order_management.pending',compact('pending_orders'));
     }
     public function temp_order_details($id)
@@ -726,7 +726,7 @@ class normalVendorController extends Controller
     }
     public function OrderView()
     {
-        $orders = Order::orderBy('Status','DESC')->paginate(14);
+        $orders = Order::orderBy('Status','DESC')->paginate(18);
         return view('vendor.order_management.order',compact('orders'));
     }
     public function orderDelivered($id)
@@ -745,7 +745,7 @@ class normalVendorController extends Controller
     }
     public function cancelOrderView()
     {
-        $cancel_orders = Temp_Order::where('status','Cancel')->orderBy('updated_at','DESC')->paginate(14);
+        $cancel_orders = Temp_Order::where('status','Cancel')->orderBy('updated_at','DESC')->paginate(18);
         return view('vendor.order_management.cancel',compact('cancel_orders'));
     }
     public function order_details($id)
