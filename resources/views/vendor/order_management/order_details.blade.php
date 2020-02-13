@@ -31,10 +31,17 @@
                             <td ><h1>
                                 @if($order->status === "Processing")
                                     <span class="label label-info ">{{$order->status}}</span>
+                                        <a href="{{route('orderDelivered',Crypt::encrypt($order->id))}}" title="Delivered" class="btn btn-success btn-xs" onclick="return confirm('Are you sure that the order is delivered ?')"><i class="fas fa-truck-loading"></i> </a>
                                 @elseif($order->status === "Delivered")
                                     <span class="label label-success ">{{$order->status}}</span>
-                                @elseif($order->status === "Pending")
+                                        <a href="{{route('orderProcessiong',Crypt::encrypt($order->id))}}" title="Undo to processing" class="btn btn-warning btn-xs" onclick="return confirm('Are you sure that the order is still in processing ?')"><i class="fas fa-undo"></i></i> </a>
+                                    @elseif($order->status === "Pending")
                                     <span class="label label-warning ">{{$order->status}}</span>
+                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success btn-xs" onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
+                                        <a href="{{route('orderCancel',Crypt::encrypt($order->id))}}" title="Cancel" onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-xs"><i class="fas fa-times"></i> </a>
+                                    @elseif($order->status === "Cancel")
+                                    <span class="label label-danger ">{{$order->status}}ed</span>
+                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success btn-xs" onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
                                 @endif
                                 </h1> </td>
                         </tr>
@@ -48,14 +55,18 @@
                     <table class="table  table-advance table-hover ">
                         <tbody>
                             <tr>
-                                <td >
+                                <td class="text-center" colspan="2">
                                     <span class="label label-success label-mini"><b>Customer's Information</b></span>
-                                </td>
-                                <td >
-                                    <span class="label label-info label-mini"><i class="fas fa-signature"></i></span> <b>{{$order->customers->name}}</b><br><br>
                                 </td>
                             </tr>
                             <tr >
+                                <td >
+                                    <span class="label label-info label-mini"><i class="fas fa-signature"></i></span> <b>{{$order->customers->name}}</b><br><br>
+
+                                    <span class="label label-info label-mini"><i class="fas fa-venus-mars"></i></span> <b>{{$order->customers->gender}}</b><br><br>
+                                    <span class="label label-info label-mini"><i class="fas fa-phone-volume"></i></span> <b>{{$order->customers->phone}}</b><br><br>
+                                    <span class="label label-info label-mini"><i class="fas fa-envelope"></i></span> <b>{{$order->customers->email}}</b>
+                                </td>
                                 <td class="text-center" width="60%" >
                                     @if(empty($order->customers->image))
                                         <img class="img-circle" src="{{ asset('assets/vendor/images/profile picture/empty.jpg') }}"width="20%" alt="" title="Unavailable">
@@ -63,15 +74,10 @@
                                         <img class="img-circle" src="{{ asset('assets/vendor/images/profile picture/') }}/{{$order->customers->image}}" width="20%" alt="" >
                                     @endif
                                 </td>
-                                <td >
-                                    <span class="label label-info label-mini"><i class="fas fa-venus-mars"></i></span> <b>{{$order->customers->gender}}</b><br><br>
-                                    <span class="label label-info label-mini"><i class="fas fa-phone-volume"></i></span> <b>{{$order->customers->phone}}</b><br><br>
-                                    <span class="label label-info label-mini"><i class="fas fa-envelope"></i></span> <b>{{$order->customers->email}}</b>
-                                </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <span class="label label-info label-mini"><i class="fas fa-envelope"></i></span> <b>{{$order->customers->address}}</b><b class="mark">{{$order->customers->city}}</b>
+                                    <span class="label label-info label-mini"><i class="fas fa-home"></i></span> <b>{{$order->customers->address}}</b><b class="mark">{{$order->customers->city}}</b>
                                 </td>
 
                             </tr>

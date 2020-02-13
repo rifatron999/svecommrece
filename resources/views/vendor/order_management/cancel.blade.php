@@ -44,9 +44,9 @@
                                 <td class="text-center"><b>{{$s->customers->name}}</b></td>
                                 <td class="text-center"><b>{{$s->customers->phone}}</b></td>
                                 <td class="text-center"><b>{{$s->shippings->address}} , {{$s->shippings->city}}</b></td>
-                                <td class="text-center">@if($s->status === 'Cancel')<span class="label label-danger label-mini">{{$s->status}}</span>{{--@elseif($s->status === 'Available')<span class="label label-success label-mini">{{$s->status}}</span>@else<span class="label label-default label-mini">{{$s->status}}</span> --}}@endif</td>
+                                <td class="text-center">@if($s->status === 'Cancel')<span class="label label-danger label-mini">{{$s->status}}ed</span>{{--@elseif($s->status === 'Available')<span class="label label-success label-mini">{{$s->status}}</span>@else<span class="label label-default label-mini">{{$s->status}}</span> --}}@endif</td>
                                 <td>
-                                    <a href="{{--{{route('productManagementEdit',Crypt::encrypt($s->id))}}--}}" title="See Details" class="btn btn-primary btn-xs"><i class="fas fa-arrow-circle-right"></i> </a>
+                                    <a href="{{route('temp_order_details',Crypt::encrypt($s->id))}}" title="See Details" class="btn btn-primary btn-xs"><i class="fas fa-arrow-circle-right"></i> </a>
                                     <a href="{{route('orderProceed',Crypt::encrypt($s->id))}}" title="Proceed" class="btn btn-success btn-xs" onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
                                 </td>
                             </tr>

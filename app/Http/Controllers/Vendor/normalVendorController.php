@@ -720,7 +720,8 @@ class normalVendorController extends Controller
         ]);
 //delete temp_orders
         $temp_order->delete();
-        return back()->with('msg', "✔ Order Proceed");
+        return redirect()->route('PendingOrderView')->with('msg', "✔ Order Proceed");
+
         //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
     }
     public function OrderView()
