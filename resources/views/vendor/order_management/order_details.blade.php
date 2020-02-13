@@ -117,8 +117,7 @@
                                             @if($offer_type[$i] === 'Discount')
                                                 Actual Price : ৳ {{number_format($products[$i]->price)}} <br>
                                                Discount : {{$offer_percentage[$i]}} %
-                                            @endif
-                                            @if($offer_type[$i] === 'Buy one get one')
+                                            @elseif($offer_type[$i] === 'Buy one get one')
                                                     @if(!empty($free_products[$i]->image))
                                                         @php
                                                             $imgarray2 = json_decode($free_products[$i]->image);
@@ -126,7 +125,10 @@
                                                         <img src="{{ asset('assets/vendor/images/products/') }}/{{$imgarray2[0]->image}}" width="70px" {{--class="imgs"--}} alt="">
                                                     @endif
                                             <b>  Free: <a   href="{{route('productManagementEdit',Crypt::encrypt($free_products[$i]->id))}}" title="Click To Edit Product">{{$free_products[$i]->name}}</a> </b>
+                                            @else
+                                                empty
                                             @endif
+
                                         </b>
 
                                     <br>
