@@ -26,6 +26,7 @@ class normalVendorController extends Controller
     {
         $categories = Category::whereNull('parent_id')->paginate(8);
         $sub_categories = Category::whereNotNull('parent_id')->get();
+        $sub = [];
         foreach ($sub_categories as  $value)
         {
           $sub[] = $value->parent_id;
@@ -102,6 +103,7 @@ class normalVendorController extends Controller
         $categories = Category::where('parent_id',$pid)->paginate(10);
         $parent_id = $pid;
         $products = Product::whereNotNull('category_id')->get();
+        $sub = [];
         foreach ($products as  $value)
         {
           $sub[] = $value->category_id;
@@ -140,8 +142,6 @@ class normalVendorController extends Controller
                     'description' => $request->description,
                     'status' => $request->status,
             ]);
-
-
         }
 
         return back()->with('msg','✔ Category Updated');
