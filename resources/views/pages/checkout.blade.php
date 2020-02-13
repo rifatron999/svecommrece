@@ -141,6 +141,7 @@
                             <div class="section-title">
                                 <h4 class="title">Payments Methods</h4>
                             </div>
+                            <p>Merchant Number <b>01521434248</b> </p>
                             <div class="form-group">
                                 <input class="input" type="tel" name="sender_mbl" placeholder="Sender Number" required>
                             </div>

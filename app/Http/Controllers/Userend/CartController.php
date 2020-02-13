@@ -63,16 +63,38 @@ class CartController extends Controller
     }
     public function updateItem(Request $request){
 
+        $qty = $request->qty;
+        $rowId = $request->rowId;
         $product_id = $request->product_id;
         $product = Product::find($product_id);
         $stock =  $product->stock;
 
-        $request->validate([
-            'qty' => 'required|numeric|min:1|max:'.$stock,
-        ]);
+        if($product_id == 3 &&  $qty > 10){
+            $request->validate([ 'qty' => 'required|numeric|min:1|max:10',],
+                [
+                    'qty.max' => 'You are crossing maximum limit'
+                ]);
+        }
+        elseif ($product_id == 3 &&  $qty <= 10 ){
+            $request->validate([ 'qty' => 'required|numeric|min:1|max:'.$stock, ],
+                [
+                    'qty.max' => 'Stock out of your limit'
+                ]);
+        }
+        elseif ($product_id == 4 &&  $qty > 1){
+            $request->validate([ 'qty' => 'required|numeric|min:1|max:1',],
+                [
+                    'qty.max' => 'You are crossing maximum limit'
+                ]);
+        }
+        elseif ($product_id == 4 &&  $qty <= 1){
+            $request->validate([
+                'qty' => 'required|numeric|min:1|max:'.$stock,
+            ]);
+        }
 
-        $qty = $request->qty;
-        $rowId = $request->rowId;
+
+
         Cart::update($rowId, $qty);
 
         return redirect()->route('cart.index');

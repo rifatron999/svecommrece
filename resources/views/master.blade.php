@@ -9,17 +9,7 @@
 
     @yield('content')
 
-    <!-- validation -->
-    @if(count($errors) > 0)
-        <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <p align="center" ><marquee direction="up" behavior = "slide" width="350px"><strong >
-                        @foreach($errors->all() as $err)
-                            ⚠️{{$err}} <br>
-                        @endforeach</strong></marquee></p>
-        </div>
-    @endif
-    <!-- /validation -->
+
 
     @include('includes.footer')
     @include('includes.footer_link')
