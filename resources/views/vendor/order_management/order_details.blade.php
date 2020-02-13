@@ -80,7 +80,7 @@
            </div>
        </div>
         <div class="row">
-            <div class="col-md-12  content-panel mar-top" style="overflow: auto">
+            <div class="col-md-12  content-panel " style="overflow: auto"><hr style="border-top: 8px solid #ccc; background: transparent;"><br>
                 <table class="table  table-advance table-hover ">
                     <thead class="thead-dark">
                     <tr>
@@ -129,7 +129,88 @@
             </div>
         </div>
         <div class="row">
-            
+            <div class="col-md-12  content-panel" style="overflow: auto">
+
+                <div class="col-sm-3  "><br><hr style="border-top: 8px solid #89C0E0; background: transparent;"><br>
+                    <table class="table table-hover ">
+                        <tbody>
+                        <tr>
+                            <td >
+                                <span class="label label-success label-mini"><b>Delivery Information</b></span>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td >
+                                <span class="label label-warning label-mini"><i class="fas fa-signature"></i></span> <b>{{$order->shippings->name}}</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="label label-warning label-mini"><i class="fas fa-phone-volume"></i></span> <b>{{$order->shippings->phone}}</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="label label-warning label-mini"><i class="fas fa-envelope"></i></span> <b>{{$order->shippings->email}}</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <span class="label label-warning label-mini"><i class="fas fa-dolly-flatbed"></i></span> <b>{{$order->shippings->address}}</b><b class="mark">{{$order->customers->city}}</b>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-4 ">
+
+                </div>
+                <div class="col-sm-3 ">
+                    <table class="table table-hover ">
+                        <tbody>
+                        <tr >
+                            <td >
+                                <span class="label label-default label-mini"> Sub-Total  </span>
+                            </td>
+                            <td><b> ৳  {{number_format($order->subtotal)}}</b></td>
+                        </tr>
+                        <tr >
+                            <td >
+                                <span class="label label-default label-mini"> Delivery Charge </span>
+                            </td>
+                            <td><b> ৳  {{number_format($order->total - $order->subtotal)}}</b></td>
+                        </tr>
+                        <tr >
+                            <td >
+                                <span class="label label-default label-mini"> Paid-Total  </span>
+                            </td>
+                            <td><b> ৳  {{number_format($order->total)}}</b></td>
+                        </tr>
+                        <tr >
+                            <td class="text-center" colspan="2">
+                                <span class="label label-danger label-mini"><b>Payment Details</b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="label label-primary label-mini">Method  </span> <b> &nbsp;Bkash-{{$order->payments->method}}</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="label label-primary label-mini">Trx Id  </span> <b> &nbsp;{{$order->payments->trx_id}}</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="label label-primary label-mini">Bkash Number  </span> <b> &nbsp;{{$order->payments->sender_mobile_number}}</b>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
