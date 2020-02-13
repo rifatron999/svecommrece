@@ -30,19 +30,19 @@
                                 <input type="hidden" name="temp_order_id" value="{{ $temp_orders->id }}">
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="name" placeholder="Name" value="{{ Auth::user()->name }}">
+                                <input class="input" type="text" name="name" placeholder="Name" value="{{ Auth::user()->name }}" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="email" name="email" placeholder="Email" value="{{ Auth::user()->email }}">
+                                <input class="input" type="email" name="email" placeholder="Email" value="{{ Auth::user()->email }}" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="address" placeholder="Address" value="{{ Auth::user()->address }}">
+                                <input class="input" type="text" name="address" placeholder="Address" value="{{ Auth::user()->address }}" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="city" placeholder="City" value="{{ Auth::user()->city }}">
+                                <input class="input" type="text" name="city" placeholder="City" value="{{ Auth::user()->city }}" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="tel" name="phone" placeholder="Phone" value="{{ Auth::user()->phone }}">
+                                <input class="input" type="tel" name="phone" placeholder="Phone" value="{{ Auth::user()->phone }}" required>
                             </div>
 
                         </div>
@@ -168,10 +168,10 @@
                                 <h4 class="title">Payments Methods</h4>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="tel" name="sender_mbl" placeholder="Sender Number">
+                                <input class="input" type="tel" name="sender_mbl" placeholder="Sender Number" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="trx_number" placeholder="Trx Number">
+                                <input class="input" type="text" name="trx_number" placeholder="Trx Number" required>
                             </div>
                         </div>
                     </div>
