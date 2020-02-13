@@ -1,9 +1,9 @@
 @extends('website.master')
 @section('content')
     <div class="container mt-3">
-        <div class="row nav-space">
+        <div class="row nav-space" style="margin: 50px 0">
             <div class="col-md-6">
-                <img src="{{ asset('assets/img/icon/logo.jpg') }}" width="100%" alt="">
+                <img src="{{ asset('assets/website/images/logo/nobinLogo.png') }}" width="100%" alt="">
             </div>
             <div class="col-md-6">
                 {{--        /**************** accordion start *******************  */ --}}

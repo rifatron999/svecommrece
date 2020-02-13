@@ -15,7 +15,7 @@
                     </div>
                     <!-- /footer logo -->
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+                    <p>This is a brand of Bangladesh. Be the witness of excellence </p>
 
                     <!-- footer social -->
                     <ul class="footer-social">
@@ -35,11 +35,8 @@
                 <div class="footer">
                     <h3 class="footer-header">My Account</h3>
                     <ul class="list-links">
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">Compare</a></li>
-                        <li><a href="#">Checkout</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="{{ route('pages.products') }}">Products</a></li>
+                        <li><a href="{{ route('customer.login') }}">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -52,10 +49,8 @@
                 <div class="footer">
                     <h3 class="footer-header">Customer Service</h3>
                     <ul class="list-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Shiping & Return</a></li>
-                        <li><a href="#">Shiping Guide</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="{{ route('website.about') }}">About Us</a></li>
+                        <li><a href="{{ route('website.contact') }}">Contact us</a></li>
                     </ul>
                 </div>
             </div>
@@ -78,33 +73,7 @@
         </div>
         <!-- /row -->
         <hr>
-        <!-- row -->
-        <div class="row text-center">
-            <div class="col-md-12">
-                <img src="{{ asset('assets/img/icon/twiter.png') }}" alt="logo">
-            </div>
-            <div class="col-md-12">
-                <a href="https://www.facebook.com/setcolbd/" target="_blank">
-                    <img style="height: 47px;" src="{{ asset('assets/img/icon/facebook.png') }}" alt="facebook">
-                </a>
-                <a href="https://www.instagram.com/setcolbd/" target="_blank">
-                    <img style="height: 47px;" src="{{ asset('assets/img/icon/instagram.png') }}" alt="instagram">
-                </a>
-                <a href="https://www.linkedin.com/company/setcolbd/" target="_blank">
-                    <img style="height: 47px;" src="{{ asset('assets/img/icon/linkedin.png') }}" alt="linkedin">
-                </a>
-                <a href="https://www.twitter.com/setcolbd/" target="_blank">
-                    <img style="height: 47px;" src="{{ asset('assets/img/icon/twiter.png') }}" alt="twiter">
-                </a>
-                <a href="https://www.pinterest.com/setcolbd/" target="_blank">
-                    <img style="height: 47px;" src="{{ asset('assets/img/icon/pinterest.png') }}" alt="youtube">
-                </a>
-            </div>
-            {{--<div class="col-md-12 text-center about_us_text">
-                © <script>document.write(new Date().getFullYear());</script> SETCOLBD :: Skies Engineering &amp; Technologies Company Ltd.
-            </div>--}}
-        </div>
-        <!-- /row -->
+
     </div>
     <!-- /container -->
 </footer>
