@@ -94,7 +94,7 @@
                             <tr>
                                 <th class="empty" colspan="3"></th>
                                 <th>SHIPING</th>
-                                <td colspan="2">Free Shipping {{ Cart::tax(1) }}</td>
+                                <td colspan="2">Shipping by Customer {{ Cart::tax(1) }}</td>
                             </tr>
                             <tr>
                                 <th class="empty" colspan="3"></th>

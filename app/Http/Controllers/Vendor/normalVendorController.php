@@ -800,6 +800,5 @@ class normalVendorController extends Controller
         $pdf = PDF::loadView('pdf/pdf', compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products','address'));
         return $pdf->stream('order :'.$order->invoice_id.'.pdf');
     }
-
     //************************ page = inventory_management #
 }
