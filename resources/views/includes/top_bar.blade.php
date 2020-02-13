@@ -58,7 +58,7 @@
                             <a href="{{ route('customer.login') }}" class="text-uppercase">Login</a>
                             <ul class="custom-menu">
                                 <li><a href="{{ route('customer.login') }}"><i class="fa fa-unlock-alt"></i> Login</a></li>
-                                <li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+                                <li><a href="{{ route('customer.register') }}"><i class="fa fa-user-plus"></i> Create An Account</a></li>
                             </ul>
                         @endif
 

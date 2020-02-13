@@ -8,7 +8,7 @@
         </div>
 
     </section>
-    <section id="why_us">
+    <section id="why_us" style="margin: 50px 0">
         <div class="container">
             <h1 class="text-center mt-5 mb-3">Why us</h1>
             <p class="text-center">Nobin Bangladesh is an online shop in Dhaka, Bangladesh. We believe time is valuable to our fellow
@@ -17,12 +17,12 @@
                 at your door-step and at no additional cost.</p>
         </div>
     </section>
-    <section id="we_have">
+    <section id="we_have" style="margin: 50px 0">
         <div class="container">
             <h1 class="text-center mt-5 mb-3">Products We Have</h1>
             <div class="row">
                 @foreach($categories as $category)
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 mb-3">
                         <a href="{{ route('pages.subCatgProductSearch',Crypt::encrypt($category->id) ) }}" target="_blank">
                             <div class="card" >
                             <img class="card-img-top p-2" src="{{ asset('assets/vendor/images/categories') }}/{{ $category->image }}" alt="Card image cap">
@@ -34,21 +34,21 @@
                     </div>
                 @endforeach
             </div>
-            <a href="{{route('pages.home')}}" class="btn btn-success text-center">See more Products</a>
+
         </div>
     </section>
     <section id="we_deliver" class="mt-5 mb-3">
         <div class="row">
             <div class="col-md-6">
                 <div class="map-img text-center">
-                    <img src="{{ asset('assets/website/images/map.png') }}" class="p-3" style="width: 300px;height: 300px" alt="">
+                    <img src="{{ asset('assets/website/images/loader.gif') }}" class="p-3" style="width: 300px;height: 300px" alt="">
                 </div>
             </div>
             <div class="col-md-6 p-5">
                 <div class="map-text">
-                    <h5>We Deliver</h5>
-                    <h5>All Over</h5>
-                    <h1 style="color: blue">Bangladesh</h1>
+                    <h1 style="margin-top: 50px">We Deliver</h1>
+                    <h1>All Over</h1>
+                    <h1 style="color: #ffffff">Bangladesh</h1>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="people_icon text-center p-3">
-                        <i class="fa fa-user-clock fa-3x"></i>
+                        <i class="fa fa-user-circle fa-3x"></i>
                     </div>
                     <div class="people_title text-center">
                         <h2>24 hr service</h2>
