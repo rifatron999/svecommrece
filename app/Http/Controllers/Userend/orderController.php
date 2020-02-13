@@ -22,6 +22,7 @@ class orderController extends Controller
     }
     public function place_order(Request $request)
     {
+        $user_id = $request->user_id;
         $cart_contents = Cart::content();
 
         foreach ($cart_contents as $cart_content){
@@ -48,13 +49,48 @@ class orderController extends Controller
 
         }
 
-        return redirect()->route('temp_orders');
+        return redirect()->route('temp_orders',$user_id);
 
 
     }
-    public function temp_orders()
+    public function temp_orders($user_id)
     {
+        //        previous due payment order delete
+        $previous_orders = Temp_Order::where ('customer_id',$user_id)
+                                    ->where('status','Due')
+                                    ->get();
+
+
+        if(!$previous_orders->isEmpty()){
+            foreach($previous_orders as $previous_order){
+                $cart_products = Temp_Order::find($previous_order->id);
+
+                $cart_product = json_decode($cart_products->product_ids);
+                $quantity = json_decode($cart_products->quantity);
+                for($i = 0; $i < count($cart_product) ; $i++){
+                    $pro_id = $cart_product[$i];
+                    $quanty = $quantity[$i];
+                    $updates = Product::find($pro_id);
+                    $new_stock = $updates->stock + $quanty;
+                    if($updates->stock == 0){
+                        $updates->update([
+                            'stock' => $new_stock,
+                            'status' => "Available",
+                        ]);
+                    }elseif ($updates->stock > 0){
+                        $updates->update([
+                            'stock' => $new_stock,
+                        ]);
+                    }
+                }
+                Temp_Order::destroy($previous_order->id);
+            }
+        }
+
+//        previous due payment order delete
+
         $cart_contents = Cart::content();
+
 
         foreach ($cart_contents as $cart_content){
             $product_id[] = $cart_content->id;
@@ -63,6 +99,7 @@ class orderController extends Controller
             $offer_types[] = $cart_content->options->offer_type;
             $offer_percentages[] = $cart_content->options->offer_percentage;
             $free_product_id[] = $cart_content->options->free_product_id;
+
         }
         $product_ids = json_encode($product_id);
         $selling_price = json_encode($selling_prices);
@@ -70,6 +107,7 @@ class orderController extends Controller
         $offer_type = json_encode($offer_types);
         $offer_percentage = json_encode($offer_percentages);
         $free_product_ids = json_encode($free_product_id);
+
 
         $subtotal = str_replace(',', '', Cart::subtotal());
         $total = str_replace(',', '', Cart::total());
@@ -86,10 +124,13 @@ class orderController extends Controller
             'offer_type' => $offer_type,
             'offer_percentage' => $offer_percentage,
             'free_product_ids' => $free_product_ids,
+            'status' => 'Due',
             'subtotal' => $subtotal,
             'total' => $total
 
         ]);
+
+
 
         $cart_products = Temp_Order::find($temp_order->id);
 
@@ -110,6 +151,7 @@ class orderController extends Controller
                 ]);
             }
         }
+
 
 //        Cart::destroy();
 //        return view('pages.checkout',compact('temp_order'));
