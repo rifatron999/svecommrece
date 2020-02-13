@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use test\Mockery\HasUnknownClassAsTypeHintOnMethod;
 
+
 class Vendor extends Authenticatable
 {
     use Notifiable;
@@ -28,7 +29,7 @@ class Vendor extends Authenticatable
 
     public function brands()
     {
-        return $this->hasMany(Brand::class,'vendor_id');
+        return $this->hasOne(Brand::class,'vendor_id');
     }
 
 }

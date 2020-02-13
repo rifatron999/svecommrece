@@ -8,6 +8,7 @@ use App\Offer;
 use App\Product;
 use App\Temp_Order;
 use App\Order;
+use App\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -246,7 +247,6 @@ class normalVendorController extends Controller
 
 
         }
-
         return back()->with('msg','✔ Brand Updated');
     }
     public function brandRemove($id)
@@ -796,8 +796,8 @@ class normalVendorController extends Controller
         $offer_percentage = json_decode($order->offer_percentage);
         $free_product_ids = json_decode($order->free_product_ids);
         $free_products = Product::wherein('id',$free_product_ids)->get();
-        $product = Product::all();
-        $pdf = PDF::loadView('pdf/pdf', compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
+
+        $pdf = PDF::loadView('pdf/pdf', compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products','address'));
         return $pdf->stream('order :'.$order->invoice_id.'.pdf');
     }
 
