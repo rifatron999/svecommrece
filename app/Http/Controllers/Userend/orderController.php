@@ -36,36 +36,38 @@ class orderController extends Controller
             $pro_stock = $pro_id->stock;
 
 
-            if($pro_ids[$i] == 3 &&  $quantity[$i] > 10){
+            if($pro_ids[$i] == 2 &&  $quantity[$i] > 10){
                 $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:10',],
                     [
                         'quantity_'.$i.'.max' => 'You are crossing maximum limit'
                     ]);
             }
-            elseif ($pro_ids[$i] == 3 &&  $quantity[$i] <= 10 ){
+            elseif ($pro_ids[$i] == 2 &&  $quantity[$i] <= 10 ){
                 $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock, ],
                     [
                         'quantity_'.$i.'.max' => 'Stock out of your limit'
                     ]);
             }
-            elseif ($pro_ids[$i] == 4 &&  $quantity[$i] > 1){
+            elseif ($pro_ids[$i] == 1 &&  $quantity[$i] > 1){
                 $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:1',],
                     [
                         'quantity_'.$i.'.max' => 'You are crossing maximum limit'
                     ]);
             }
-            elseif ($pro_ids[$i] == 4 &&  $quantity[$i] <= 1){
-                $request->validate([
-                    'qty' => 'required|numeric|min:1|max:'.$pro_stock,
-                ]);
+            elseif ($pro_ids[$i] == 1 &&  $quantity[$i] <= 1){
+                $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
+                    [
+                        'quantity_'.$i.'.max' => 'Stock out of your limit'
+                    ]);
             }
 
 
-            $request->validate(
-            [ 'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
-                [
-                    'quantity_'.$i.'.max' => 'Stock out of your limit'
-                ]);
+
+//            $request->validate(
+//            [ 'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
+//                [
+//                    'quantity_'.$i.'.max' => 'Stock out of your limit'
+//                ]);
 
 
 
@@ -201,7 +203,7 @@ class orderController extends Controller
         ]);
 
         $update = Temp_Order::find($request->temp_order_id);
-        $invoice_id = uniqid();
+        $invoice_id = "NB".uniqid();
         $update->update([
             'shipping_id' => $shipping->id,
             'payment_id' => $payment->id,
