@@ -32,8 +32,8 @@
                                         @if($s->parent_id === NULL)
                                             <optgroup label="{{$s->name}}">
                                                 @foreach($categories as $s2)
-                                                    @if($s2->parent_id === $s->id)
-                                                        @if($product->category_id === $s2->id)
+                                                    @if($s2->parent_id == $s->id)
+                                                        @if($product->category_id == $s2->id)
                                                             <option value="{{$s2->id}}" selected>{{$s2->name}}</option>
                                                         @else
                                                             <option value="{{$s2->id}}" >{{$s2->name}}</option>

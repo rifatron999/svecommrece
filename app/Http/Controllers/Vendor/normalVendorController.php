@@ -429,7 +429,7 @@ class normalVendorController extends Controller
         $request->validate([
             'title' => 'required',
             'product_ids' => 'required',
-            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:6144'
         ]);
         foreach ($request->product_ids as $s)
         {

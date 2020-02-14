@@ -69,10 +69,10 @@
                                 <label  class=" label label-primary">Category</label>
                                 <select  title="Choose Category" name="category_id" class="form-control">
                                     @foreach($categories as $s)
-                                        @if($s->parent_id === NULL)
+                                        @if(empty($s->parent_id))
                                             <optgroup label="{{$s->name}}">
                                                 @foreach($categories as $s2)
-                                                    @if($s2->parent_id === $s->id)
+                                                    @if($s2->parent_id == $s->id)
                                                         <option value="{{$s2->id}}">{{$s2->name}}</option>
                                                     @endif
                                                 @endforeach
