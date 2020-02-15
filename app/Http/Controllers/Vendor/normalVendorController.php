@@ -121,9 +121,10 @@ class normalVendorController extends Controller
         $update = Category::find($request->id);
         if(!empty($image))
         {
-
-            unlink('assets/vendor/images/categories/'.$update->image);
-
+            if(!empty($update->image))
+            {
+                unlink('assets/vendor/images/categories/'.$update->image);
+            }
             $image_name = time().'.'.$image->getClientOriginalExtension();
             $image->move('assets/vendor/images/categories/',$image_name);
             $update->update([
@@ -132,8 +133,6 @@ class normalVendorController extends Controller
                     'status' => $request->status,
                     'image' => $image_name,
             ]);
-
-
         }
         else
         {
@@ -143,7 +142,6 @@ class normalVendorController extends Controller
                     'status' => $request->status,
             ]);
         }
-
         return back()->with('msg','✔ Category Updated');
     }
 

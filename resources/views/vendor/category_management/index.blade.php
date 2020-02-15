@@ -7,7 +7,7 @@
 
                 <div class="row">
                     <div class="col-md-12 text-center" style="overflow: auto">
-                        @if($categories->count() === 0 or $categories->count() === 1  )
+                        @if($categories->count() == 0 or $categories->count() == 1  )
                             @if(is_null($parent_id))
                                 <p class="small-heading"><a class="btn btn-success" data-toggle="modal" data-target="#modal_category_add" onclick="setParentId({{$parent_id}})" data-whatever="@mdo"><i class="fas fa-plus"> Add Category</i></a></p>
                             @else
@@ -21,7 +21,6 @@
                             @endif
                         @endif
                             @foreach ($categories as $s)
-
                             <div class="col-md-3 news mb-2 mar-bott">
                                 <div class="head img_hover">
                                     @if(is_null($parent_id))
