@@ -49,7 +49,6 @@
                                 <label  class=" label label-primary">Brand</label>
                                 <select name="brand_id" class="form-control">
                                     @foreach($brands as $s)
-
                                         @if($product->vendor_id === $s2->id)
                                             <option value="{{$s->id}}" selected >{{$s->name}}</option>
                                         @else
