@@ -111,8 +111,8 @@
 {{--                                    </div>--}}
                                 </div>
                                 <div class="shopping-cart-btns">
-                                    <a href="{{ route('cart.index') }}" class="main-btn">View Cart</a>
-                                    <button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+                                    <a href="{{ route('cart.index') }}" class="main-btn" style="width:100%;text-align: center;">View Cart</a>
+{{--                                    <button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>--}}
                                 </div>
                             </div>
                         </div>
