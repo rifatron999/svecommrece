@@ -157,6 +157,14 @@
             </div>
             <!-- menu nav -->
         </div>
+        <!-- message -->
+        @if(session('msg'))
+            <div class=" col-sm-8 alert alert-danger alert-dismissable">
+                <button type="button" class="close " data-dismiss="alert" aria-hidden="true">&times;</button>
+                <p align="center" ><marquee  behavior = "alternate" height="20px" width="450px"><strong >{{session('msg')}}!</strong></marquee></p>
+            </div>
+    @endif
+    <!-- /message -->
     </div>
     <!-- /container -->
 </div>
