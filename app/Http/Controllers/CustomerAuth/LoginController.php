@@ -41,7 +41,16 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('CustomerAuth.login');
+        if(Auth::check())
+        {
+            return view('pages.products');
+
+        }
+        else
+        {
+            return view('CustomerAuth.login');
+        }
+
     }
 
     protected function guard()

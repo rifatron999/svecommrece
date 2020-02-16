@@ -22,8 +22,8 @@ class RedirectIfAuthenticated
             case 'customer':
                 if (Auth::guard($guard)->check())
                 {
-                   /* return redirect('/customer/home');*/
-                    return $next($request);
+                    return redirect('/products');
+                    //return $next($request);
                 }
                 break;
             default :
