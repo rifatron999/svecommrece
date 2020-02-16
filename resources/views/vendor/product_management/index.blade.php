@@ -138,9 +138,17 @@
                                 <label  class=" label label-default">Capacity/Size</label>
                                 <input name="size_capacity" type="text" class="form-control form-control-sm" value="{{ old('size_capacity') }}" >
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <label  class=" label label-default">Model</label>
                                 <input name="model" type="text" class="form-control form-control-sm" value="{{ old('model') }}" >
+                            </div>
+                            <div class="col-sm-2">
+                                <label  class=" label label-default">Offer Price</label>
+                                <input name="offer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}" >
+                            </div>
+                            <div class="col-sm-2">
+                                <label  class=" label label-default">Offer Limit</label>
+                                <input name="offer_limit" type="number" class="form-control form-control-sm" value="{{ old('offer_limit') }}" >
                             </div>
 
                         </div>{{--4 row--}}

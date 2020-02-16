@@ -28,6 +28,8 @@ class CreateProductsTable extends Migration
             $table->float('offer_price')->nullable();
             $table->string('size_capacity')->nullable();
             $table->string('model')->nullable();
+            $table->integer('offer_limit')->nullable();
+            $table->string('model')->nullable();
             $table->string('color')->nullable();
             $table->string('status')->nullable();
             $table->string('slug')->nullable();

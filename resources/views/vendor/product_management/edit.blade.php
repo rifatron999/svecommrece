@@ -23,7 +23,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Name</label>
-                                <input name="name" type="text" class="form-control form-control-sm" value="{{ old('name') }}{{$product->name}}" required>
+                                <input name="name" type="text" class="form-control form-control-sm" value="{{$product->name}}" required>
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Category</label>
@@ -62,7 +62,7 @@
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Price</label>
                                 <div class="input-group">
-                                    <input name="price" id="pprice" type="number" class="form-control form-control-sm" value="{{ old('price') }}{{$product->price}}" required>
+                                    <input name="price" id="pprice" type="number" class="form-control form-control-sm" value="{{$product->price}}" required>
                                     <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Stock</label>
-                                <input name="stock" type="number" class="form-control form-control-sm" value="{{ old('stock') }}{{$product->stock}}" >
+                                <input name="stock" type="number" class="form-control form-control-sm" value="{{$product->stock}}" >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-primary">Status</label>
@@ -95,14 +95,14 @@
                             {{--<div class="col-sm-3">
                                 <label  class=" label label-default">Offer Percentage</label>
                                 <div class="input-group">
-                                    <input name="offer_percentage" id="poffer_percentage" type="number" class="form-control form-control-sm" value="{{ old('offer_percentage') }}{{$product->offer_percentage}}" onkeyup="percentage_cal()" >
+                                    <input name="offer_percentage" id="poffer_percentage" type="number" class="form-control form-control-sm" value="{{$product->offer_percentage}}" onkeyup="percentage_cal()" >
                                     <span class="input-group-addon "> <b>%</b></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Offer Price</label>
                                 <div class="input-group">
-                                    <input name="offer_price" id="poffer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}{{$product->offer_price}}" >
+                                    <input name="offer_price" id="poffer_price" type="number" class="form-control form-control-sm" value="{{$product->offer_price}}" >
                                     <span class="input-group-addon "> <b>৳</b></span>
                                 </div>
                             </div>--}}
@@ -111,15 +111,23 @@
                         <div class="form-group row">
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Color</label>
-                                <input name="color" type="text" class="form-control form-control-sm" value="{{ old('color') }}{{$product->color}}" >
+                                <input name="color" type="text" class="form-control form-control-sm" value="{{$product->color}}" >
                             </div>
                             <div class="col-sm-3">
                                 <label  class=" label label-default">Capacity/Size</label>
-                                <input name="size_capacity" type="text" class="form-control form-control-sm" value="{{ old('size_capacity') }}{{$product->size_capacity}}" >
+                                <input name="size_capacity" type="text" class="form-control form-control-sm" value="{{$product->size_capacity}}" >
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <label  class=" label label-default">Model</label>
-                                <input name="model" type="text" class="form-control form-control-sm" value="{{ old('model') }}{{$product->model}}" >
+                                <input name="model" type="text" class="form-control form-control-sm" value="{{$product->model}}" >
+                            </div>
+                            <div class="col-sm-2">
+                                <label  class=" label label-default">Offer Price</label>
+                                <input name="offer_price" type="number" class="form-control form-control-sm" value="{{$product->offer_price}}" >
+                            </div>
+                            <div class="col-sm-2">
+                                <label  class=" label label-default">Offer Limit</label>
+                                <input name="offer_limit" type="number" class="form-control form-control-sm" value="{{$product->offer_limit}}" >
                             </div>
 
                         </div>{{--4 row--}}
@@ -129,11 +137,11 @@
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label  class=" label label-primary">Description</label>
-                                <textarea  name="description" class="form-control basic-example" >{{ old('description') }}{{ $product->description }}</textarea>
+                                <textarea  name="description" class="form-control basic-example" >{{ $product->description }}</textarea>
                             </div>
                             <div class="col-sm-6">
                                 <label  class=" label label-default">Specification</label>
-                                <textarea id="" name="specification" class="form-control basic-example" >{{ old('specification') }}{{ $product->specification }}</textarea>
+                                <textarea id="" name="specification" class="form-control basic-example" >{{ $product->specification }}</textarea>
                             </div>
                         </div>{{--6 row--}}
                         <div class="form-group row">

@@ -306,6 +306,8 @@ class normalVendorController extends Controller
                 'offer_percentage' => $request->offer_percentage,
                 'size_capacity' => $request->size_capacity,
                 'model' => $request->model,
+                'offer_price' => $request->offer_price,
+                'offer_limit' => $request->offer_limit,
                 'color' => $request->color,
                 'status' => $request->status,
 
@@ -327,6 +329,8 @@ class normalVendorController extends Controller
                 'offer_percentage' => $request->offer_percentage,
                 'size_capacity' => $request->size_capacity,
                 'model' => $request->model,
+                'offer_price' => $request->offer_price,
+                'offer_limit' => $request->offer_limit,
                 'color' => $request->color,
                 'status' => $request->status,
                /* 'slug' => $request->slug,*/
