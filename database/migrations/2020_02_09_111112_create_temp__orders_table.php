@@ -29,6 +29,7 @@ class CreateTempOrdersTable extends Migration
             $table->string('trx_id')->nullable();
             $table->string('sender_mobile_number')->nullable();
             $table->string('status')->nullable();
+            $table->string('reason')->nullable();
             $table->integer('subtotal')->nullable();
             $table->integer('total')->nullable();
             $table->timestamps();

@@ -32,6 +32,7 @@
                             <th scope="col"class="text-center"><i class="fas fa-phone-volume"></i></i> Customer Phone</th>
                             <th scope="col"class="text-center"><i class="fas fa-map-marker-alt"></i></i> Shipping</th>
                             <th scope="col"class="text-center"><i class=" fa fa-edit"></i> Status</th>
+                            <th scope="col"class="text-center" style="width: 250px "><i class="fas fa-journal-whills"></i> For</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -45,9 +46,13 @@
                                 <td class="text-center"><b>{{$s->customers->phone}}</b></td>
                                 <td class="text-center"><b>{{$s->shippings->address}} , {{$s->shippings->city}}</b></td>
                                 <td class="text-center">@if($s->status === 'Cancel')<span class="label label-danger label-mini">{{$s->status}}ed</span>{{--@elseif($s->status === 'Available')<span class="label label-success label-mini">{{$s->status}}</span>@else<span class="label label-default label-mini">{{$s->status}}</span> --}}@endif</td>
+                                <td class="text-center"><b>{{$s->reason}}</b></td>
+
                                 <td>
                                     <a href="{{route('temp_order_details',Crypt::encrypt($s->id))}}" title="See Details" class="btn btn-primary "><i class="fas fa-arrow-circle-right"></i> </a>
                                     <a href="{{route('orderProceed',Crypt::encrypt($s->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
+                                    <a href="{{route('dueOrderRemove',Crypt::encrypt($s->id))}}" title="Remove" onclick="return confirm('Are you sure ?')" class="btn btn-danger "><i class="fas fa-trash"></i> </a>
+
                                 </td>
                             </tr>
                         @endforeach

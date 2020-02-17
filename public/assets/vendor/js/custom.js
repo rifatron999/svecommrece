@@ -135,6 +135,12 @@ $(document).on('change','#offer_type',function()
     }
 });
 //page = vendor>offer_management#
+//page = vendor>order_management
+function setCancelOrderId(id)
+{
+    document.getElementById('order_cancel_id').value = id ;
+}
+//page = vendor>offer_management#
 
 // admin fac assign from P_C status
 

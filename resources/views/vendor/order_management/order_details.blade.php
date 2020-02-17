@@ -42,6 +42,8 @@
                                 @elseif($order->status === "Cancel")
                                     <span class="label label-danger ">{{$order->status}}ed</span>
                                         <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
+                                        <a href="{{route('dueOrderRemove',Crypt::encrypt($order->id))}}" title="Remove" onclick="return confirm('Are you sure ?')" class="btn btn-danger mar-top"><i class="fas fa-trash"></i> </a>
+                                        <b style="font-size: xx-small ">{{$order->reason}}</b>
                                     @elseif($order->status === "Due")
                                         <span class="label label-default ">{{$order->status}}</span>
                                         <a href="{{route('dueOrderRemove',Crypt::encrypt($order->id))}}" title="Remove" onclick="return confirm('Are you sure ?')" class="btn btn-danger "><i class="fas fa-trash"></i> </a>

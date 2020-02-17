@@ -724,7 +724,7 @@ class normalVendorController extends Controller
             }
         }
         $delete->delete();
-        return redirect()->back()->with('msg',"✔ REMOVED");
+        return redirect()->route('dueOrderView')->with('msg',"✔ REMOVED");
     }
     public function temp_order_details($id)
     {
@@ -743,11 +743,14 @@ class normalVendorController extends Controller
         //echo $selling_price[0] + $selling_price[0] ;
         return view('vendor.order_management.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
     }
-    public function orderCancel($id)
+    public function orderCancel(Request $request)
     {
-        $oid = Crypt::decrypt($id);
+        $oid = $request->id;
         $order = Temp_Order::where('id',$oid)->first();
-        $order->update(['status' => 'Cancel']);
+        $order->update([
+            'status' => 'Cancel',
+            'reason' => $request->name.': '.$request->reason,
+        ]);
         return back()->with('msg', "✔ Order Canceled");
         //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
     }

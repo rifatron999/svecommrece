@@ -116,7 +116,7 @@ Route::get('/inventory_management','Vendor\normalVendorController@inventoryManag
 //order management
 Route::get('/pending_orders','Vendor\normalVendorController@pendingOrderView')->name('pendingOrderView');
 Route::get('/orders','Vendor\normalVendorController@OrderView')->name('OrderView');
-Route::get('/order_management/cancel/{id}','Vendor\normalVendorController@orderCancel')->name('orderCancel');
+Route::post('/order_management/cancel','Vendor\normalVendorController@orderCancel')->name('orderCancel');
 Route::get('/order_management/proceed/{id}','Vendor\normalVendorController@orderProceed')->name('orderProceed');
 Route::get('/order_management/delivered/{id}','Vendor\normalVendorController@orderDelivered')->name('orderDelivered');
 Route::get('/order_management/processing/{id}','Vendor\normalVendorController@orderProcessiong')->name('orderProcessiong');
