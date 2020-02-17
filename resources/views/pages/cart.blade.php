@@ -22,6 +22,9 @@
                         <div class="section-title">
                             <h3 class="title">Order Review</h3>
                         </div>
+                        @if( $errors->has('qty') )
+                            <span style="color:red">{{ $errors->first('qty') }}</span>
+                        @endif
                         <table class="shopping-cart-table table">
                             <thead>
                             <tr>
@@ -37,7 +40,7 @@
 
                             <tbody>
 
-
+                            @php $i=0 @endphp
                             @foreach($cart_datas as $cart_data)
 
                                 <tr>
@@ -66,20 +69,26 @@
                                     @endif
 {{--                                    <td class="price text-center"><strong>{{$cart_data->price}}</strong><br></td>--}}
                                     <td class="qty text-center">
-                                        @foreach($errors->all() as $error)
-                                            <span style="color:red">{{$error}}</span>
-                                        @endforeach
                                         <form method="post" action="{{ route('cart.update') }}">
                                             {{ @csrf_field() }}
-                                            <input class="input" type="hidden" name="product_id" value="{{ $cart_data->id }}">
-                                            <input class="input" type="number" name="qty" value="{{ $cart_data->qty }}">
-                                            <input class="input" type="hidden" name="rowId" value="{{ $cart_data->rowId }}">
+                                            <div class="">
+                                                <input class="input" type="hidden" name="product_id" id="Pro_id{{ $i }}" value="{{ $cart_data->id }}">
+                                                <input class="input" type="number" name="qty" id="qty{{ $i }}" value="{{ $cart_data->qty }}">
+                                                <input class="input" type="hidden" name="rowId" id="cart_id{{ $i }}" value="{{ $cart_data->rowId }}">
+                                            </div>
+                                            <div class ="form-group{{ $errors->has('quantity.'.$i) ? 'has-error' : '' }}">
+                                                <input class="hidden" type="number" name="quantity[]" id="quantity{{ $i }}" value="{{ $cart_data->qty }}">
+                                                @if( $errors->has('quantity.'.$i) )
+                                                    <span style="color:red">{{ $errors->first('quantity.'.$i) }}</span>
+                                                @endif
+                                            </div>
                                             <input type="submit" class="btn btn-sm btn-success" value="update">
                                         </form>
                                     </td>
                                     <td class="total text-center"><strong class="primary-color">{{ $cart_data->price * $cart_data->qty }}</strong></td>
                                     <td class="text-right"><a href="{{ route('cart.delete',[$cart_data->rowId])  }}" class="main-btn icon-btn"><i class="fa fa-close"></i></a></td>
                                 </tr>
+                                @php $i++ @endphp
                             @endforeach
 
                             </tbody>
@@ -108,11 +117,17 @@
 
                         <form method="post" action="{{ route('place_order') }}">
                             {{ @csrf_field() }}
+
                             @php $i=0 @endphp
                             @foreach($cart_datas as $key=>$cart_data)
-                                <input type="hidden" name="pro_id_{{$i}}" value="{{ $cart_data->id }}"><br>
-                                <input type="hidden" name="quantity_{{$i}}" value="{{ $cart_data->qty }}"><br>
-                                <input type="hidden" name="cart_id_{{$i}}" value="{{ $cart_data->rowId }}">
+                                <div class="form-group{{ $errors->has('quantity.'.$i) ? 'has-error' : '' }}">
+                                    <input type="text" name="pro_id_{{$i}}" id="Pro_id{{ $i }}" value="{{ $cart_data->id }}"><br>
+                                    <input type="number" name="quantity[]" id="quantity{{ $i }}" value="{{ $cart_data->qty }}"><br>
+                                    <input type="text" name="cart_id_{{$i}}" id="cart_id{{ $i }}" value="{{ $cart_data->rowId }}">
+                                    @if( $errors->has('quantity.'.$i) )
+                                        <span style="color:red">{{ $errors->first('quantity.'.$i) }}</span>
+                                    @endif
+                                </div>
                                 @php $i++ @endphp
                             @endforeach
                             <div class="pull-right">

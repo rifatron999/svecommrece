@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Crypt;
 
 class pagesController extends Controller
 {
-
-
     public function home()
     {
         $categories = Category::where('parent_id',null)->take(6)->get();

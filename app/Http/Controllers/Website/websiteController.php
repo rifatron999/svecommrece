@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 class websiteController extends Controller
 {
+
     public function index()
     {
         $categories = Category::where('parent_id','!=', null)->take(8)->get();
@@ -22,11 +23,11 @@ class websiteController extends Controller
         return view('website.pages.about');
     }
 
-    public function products()
-    {
-        $products = Product::where('status','!=','Disable')->paginate(14);
-        return view('pages.products',compact('products'));
-    }
+//    public function products()
+//    {
+//        $products = Product::where('status','!=','Disable')->paginate(14);
+//        return view('pages.products',compact('products'));
+//    }
 
     public function offers()
     {
