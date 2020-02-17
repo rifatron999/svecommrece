@@ -69,11 +69,23 @@ class CartController extends Controller
         $product = Product::find($product_id);
         $stock =  $product->stock;
 
+        if ($qty > 10){
+            $request->validate([ 'qty' => 'required|numeric|min:1|max:5', ],
+                [
+                    'qty.max' => 'Stock out of your limit'
+                ]);
+        }
+        else{
+            $request->validate([ 'qty' => 'required|numeric|min:1|max:'.$stock, ],
+                [
+                    'qty.max' => 'Stock out of your limit'
+                ]);
+        }
 
-        $request->validate([ 'qty' => 'required|numeric|min:1|max:'.$stock, ],
-            [
-                'qty.max' => 'Stock out of your limit'
-            ]);
+//        $request->validate([ 'qty' => 'required|numeric|min:1|max:'.$stock, ],
+//            [
+//                'qty.max' => 'Stock out of your limit'
+//            ]);
 
 
         Cart::update($rowId, $qty);

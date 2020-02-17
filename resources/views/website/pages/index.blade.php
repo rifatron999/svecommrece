@@ -1,12 +1,16 @@
 @extends('website.master')
 @section('content')
     <section id="banner">
-        <div class="banner">
-            <div class="">
-                <img style="width: 100%" src="{{ asset('assets/website/images/banner3.jpg') }}" alt="">
-            </div>
+        <div class="single-item banner">
+            <div><img style="width: 100%" src="{{ asset('assets/website/images/banner3.jpg') }}" alt=""></div>
+            <div><img style="width: 100%" src="{{ asset('assets/website/images/banner4.jpg') }}" alt=""></div>
+            <div><img style="width: 100%" src="{{ asset('assets/website/images/banner6.jpg') }}" alt=""></div>
+            <div> <video width="100%" height="680" autoplay loop>
+                    <source src="{{ asset('assets/website/images/banner5.mp4') }}" type="video/mp4">
+{{--                    <source src="movie.ogg" type="video/ogg">--}}
+                    Your browser does not support the video tag.
+                </video> </div>
         </div>
-
     </section>
     <section id="why_us" style="margin: 50px 0">
         <div class="container">
@@ -114,4 +118,5 @@
             }
         });
     </script>
+
 @endsection

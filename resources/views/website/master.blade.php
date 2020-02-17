@@ -39,6 +39,11 @@
 
     });
 </script>
+<script type="text/javascript">
+    $('.single-item').slick({
+
+    });
+</script>
 </body>
 
 </html>
