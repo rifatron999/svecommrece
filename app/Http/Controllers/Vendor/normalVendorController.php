@@ -121,9 +121,10 @@ class normalVendorController extends Controller
         $update = Category::find($request->id);
         if(!empty($image))
         {
-
-            unlink('assets/vendor/images/categories/'.$update->image);
-
+            if(!empty($update->image))
+            {
+                unlink('assets/vendor/images/categories/'.$update->image);
+            }
             $image_name = time().'.'.$image->getClientOriginalExtension();
             $image->move('assets/vendor/images/categories/',$image_name);
             $update->update([
@@ -132,8 +133,6 @@ class normalVendorController extends Controller
                     'status' => $request->status,
                     'image' => $image_name,
             ]);
-
-
         }
         else
         {
@@ -143,7 +142,6 @@ class normalVendorController extends Controller
                     'status' => $request->status,
             ]);
         }
-
         return back()->with('msg','✔ Category Updated');
     }
 
@@ -308,6 +306,7 @@ class normalVendorController extends Controller
                 'offer_percentage' => $request->offer_percentage,
                 'size_capacity' => $request->size_capacity,
                 'model' => $request->model,
+                'offer_limit' => $request->offer_limit,
                 'color' => $request->color,
                 'status' => $request->status,
 
@@ -329,6 +328,7 @@ class normalVendorController extends Controller
                 'offer_percentage' => $request->offer_percentage,
                 'size_capacity' => $request->size_capacity,
                 'model' => $request->model,
+                'offer_limit' => $request->offer_limit,
                 'color' => $request->color,
                 'status' => $request->status,
                /* 'slug' => $request->slug,*/
@@ -390,6 +390,7 @@ class normalVendorController extends Controller
                 'offer_percentage' => $request->offer_percentage,
                 'size_capacity' => $request->size_capacity,
                 'model' => $request->model,
+                'offer_limit' => $request->offer_limit,
                 'color' => $request->color,
                 'status' => $request->status,
             ]);
@@ -408,6 +409,7 @@ class normalVendorController extends Controller
                 'offer_percentage' => $request->offer_percentage,
                 'size_capacity' => $request->size_capacity,
                 'model' => $request->model,
+                'offer_limit' => $request->offer_limit,
                 'color' => $request->color,
                 'status' => $request->status,
             ]);
@@ -429,7 +431,7 @@ class normalVendorController extends Controller
         $request->validate([
             'title' => 'required',
             'product_ids' => 'required',
-            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:6144'
         ]);
         foreach ($request->product_ids as $s)
         {

@@ -92,9 +92,9 @@
                     <?php
                         $imgarray2 = json_decode($free_products[$i]->image);
                         ?>
-                        Free  {{--<img  src="assets/vendor/images/products/{{$imgarray2[0]->image}}" width="33" height="25"    >--}}
+                          {{--<img  src="assets/vendor/images/products/{{$imgarray2[0]->image}}" width="33" height="25"    >--}}
                 @endif
-                <b>   <a   href="{{route('productManagementEdit',Crypt::encrypt($free_products[0]->id))}}" title="Click To Edit Product">{{$free_products[0]->name}}</a> </b>
+                <b>   Free   <a   href="{{route('productManagementEdit',Crypt::encrypt($free_products[0]->id))}}" title="Click To Edit Product">{{$free_products[0]->name}}</a> </b>
             @endif
         </td>
         <td align="center">
