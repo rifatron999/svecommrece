@@ -123,7 +123,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <label  class=" label label-default">Offer Price</label>
-                                <input name="offer_price" type="number" class="form-control form-control-sm" value="{{$product->offer_price}}" >
+                                <input name="offer_price" type="number" class="form-control form-control-sm" value="{{$product->offer_price}}" readonly >
                             </div>
                             <div class="col-sm-2">
                                 <label  class=" label label-default">Offer Limit</label>

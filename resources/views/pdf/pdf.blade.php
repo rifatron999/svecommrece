@@ -116,16 +116,16 @@
 
 <table align="right"  width="30%" >
     <tr>
-        <td align="center"><span  class="bfont">Sub-Total</span></td>
-        <td align="center"><span  class="bfont">{{number_format($order->subtotal)}} BDT</span></td>
+        <td ><span  class="bfont">Sub-Total</span></td>
+        <td ><span  class="bfont">{{number_format($order->subtotal)}} BDT</span></td>
     </tr>
     <tr>
-        <td align="center"><span  class="bfont">Delivery Charge</span></td>
-        <td align="center"><span  class="bfont">{{number_format($order->total - $order->subtotal)}}</span></td>
+        <td ><span  class="bfont">Delivery Charge</span></td>
+        <td ><span  class="bfont">{{number_format($order->total - $order->subtotal)}} BDT</span></td>
     </tr>
     <tr>
-        <td align="center"><span  class="bfont">Paid-Total</span></td>
-        <td align="center" class="gray"><span  class="bfont">{{number_format($order->total)}}</span></td>
+        <td ><span  class="bfont">Paid-Total</span></td>
+        <td  class="gray"><span  class="bfont">{{number_format($order->total)}} BDT</span></td>
     </tr>
     <hr width="99%" align="left" >
 </table>
@@ -142,7 +142,7 @@
                 <td align="left" width="50%"  ><b> &nbsp;{{$order->payments->trx_id}}</b></td>
             </tr>
             <tr>
-                <td align="left" width="20%" >Trx Id</td>
+                <td align="left" width="20%" >Bkash Number</td>
                 <td align="left" width="50%"  ><b> &nbsp;{{$order->payments->sender_mobile_number}}</b></td>
             </tr>
         </table>
