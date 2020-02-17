@@ -1,6 +1,6 @@
 @extends('website.master')
 @section('content')
-    <section id="banner">
+    <section id="banner" class="banner-bg">
         <div class="single-item banner">
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner3.jpg') }}" alt=""></div>
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner4.jpg') }}" alt=""></div>

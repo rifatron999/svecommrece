@@ -34,16 +34,17 @@ class orderController extends Controller
         for ($i=0; $i<count($cart_contents); $i++){
             $pro_id = Product::find($pro_ids[$i]);
             $pro_stock = $pro_id->stock;
+            $pro_limit = $pro_id->offer_limit;
 
-            if ($request->quantity[$i] > 10){
+            if ($request->quantity[$i] > $pro_limit){
                 $request->validate(
-                    [ 'quantity.*' => 'required|numeric|min:1|max:10',],
-                    [ 'quantity.*.max' => 'Stock out of your limit'  ]);
+                    [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_limit,],
+                    [ 'quantity.'.$i.'.max' => 'Cant buy more than '.$pro_limit.' at a time '  ]);
             }
-            else{
+            elseif ($request->quantity[$i] <= $pro_limit){
                 $request->validate(
-                    [ 'quantity.*' => 'required|numeric|min:1|max:'.$pro_stock,],
-                    [ 'quantity.*.max' => 'Stock out of your limit'  ]);
+                    [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
+                    [ 'quantity.'.$i.'.max' => 'Required quantity '.$request->quantity[$i].' is not available in stock'  ]);
             }
 
 //            $request->validate(
