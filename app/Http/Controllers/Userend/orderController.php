@@ -34,39 +34,22 @@ class orderController extends Controller
         for ($i=0; $i<count($cart_contents); $i++){
             $pro_id = Product::find($pro_ids[$i]);
             $pro_stock = $pro_id->stock;
+            $pro_limit = $pro_id->offer_limit;
 
+            if ($request->quantity[$i] > $pro_limit){
+                $request->validate(
+                    [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_limit,],
+                    [ 'quantity.'.$i.'.max' => 'Cant buy more than '.$pro_limit.' at a time '  ]);
+            }
+            elseif ($request->quantity[$i] <= $pro_limit){
+                $request->validate(
+                    [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
+                    [ 'quantity.'.$i.'.max' => 'Required quantity '.$request->quantity[$i].' is not available in stock'  ]);
+            }
 
-//            if($pro_ids[$i] == 2 &&  $quantity[$i] > 10){
-//                $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:10',],
-//                    [
-//                        'quantity_'.$i.'.max' => 'You are crossing maximum limit'
-//                    ]);
-//            }
-//            elseif ($pro_ids[$i] == 2 &&  $quantity[$i] <= 10 ){
-//                $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock, ],
-//                    [
-//                        'quantity_'.$i.'.max' => 'Stock out of your limit'
-//                    ]);
-//            }
-//            elseif ($pro_ids[$i] == 1 &&  $quantity[$i] > 1){
-//                $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:1',],
-//                    [
-//                        'quantity_'.$i.'.max' => 'You are crossing maximum limit'
-//                    ]);
-//            }
-//            elseif ($pro_ids[$i] == 1 &&  $quantity[$i] <= 1){
-//                $request->validate([ 'quantity_'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
-//                    [
-//                        'quantity_'.$i.'.max' => 'Stock out of your limit'
-//                    ]);
-//            }
-
-//            dd($request->quantity_.$i);
-
-
-            $request->validate(
-                [ 'quantity.*' => 'required|numeric|min:1|max:'.$pro_stock,],
-                [ 'quantity.*.max' => 'Stock out of your limit'  ]);
+//            $request->validate(
+//                [ 'quantity.*' => 'required|numeric|min:1|max:'.$pro_stock,],
+//                [ 'quantity.*.max' => 'Stock out of your limit'  ]);
 
 
 
