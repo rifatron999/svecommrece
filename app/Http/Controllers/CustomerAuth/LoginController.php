@@ -48,7 +48,7 @@ class LoginController extends Controller
         }
         else
         {
-            return view('CustomerAuth.login');
+            return view('customerAuth.login');
         }
 
     }

@@ -13,6 +13,8 @@ class Customer extends Authenticatable
     use Notifiable;
     protected $fillable = ['name','email','image','type','address','city','password','phone','gender','slug'];
     protected $table = 'customers';
+    protected $guard = 'customer';
+
 
     protected $hidden = [
         'password', 'remember_token',

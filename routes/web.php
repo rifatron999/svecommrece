@@ -77,7 +77,7 @@ Auth::routes();
 
 Route::group(['middleware'=>['normalVendorCheck']], function(){
     Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/vendor','Vendor\vendorController@index');
+Route::get('/vendors','Vendor\vendorController@index');
 /* ======== normalVendor   =================================================================== */
 //dashboard
 Route::get('/dashboard','Vendor\normalVendorController@index')->name('nvdashboard');

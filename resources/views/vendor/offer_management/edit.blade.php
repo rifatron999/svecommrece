@@ -102,7 +102,7 @@
                                     @foreach($products as $s)
                                         <tr>
                                             <td class="text-center">
-                                              @if (!empty($s->offer_id) and $s->offer_id !== $offer->id)
+                                              @if (!empty($s->offer_id) and $s->offer_id != $offer->id) {{--  @if (empty($s->offer_id) AND $s->offer_id === $offer->id)  --}}
                                                 @php
                                                   $other_offer_pids = json_decode($s->offers->product_ids)
                                                 @endphp
