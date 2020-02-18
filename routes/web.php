@@ -114,9 +114,9 @@ Route::get('/offer_management/remove/{id}','Vendor\normalVendorController@offerR
 Route::get('/inventory_management','Vendor\normalVendorController@inventoryManagementView')->name('inventoryManagementView');
 //inventory management #
 //order management
-Route::get('/pending_orders','Vendor\normalVendorController@PendingOrderView')->name('PendingOrderView');
+Route::get('/pending_orders','Vendor\normalVendorController@pendingOrderView')->name('pendingOrderView');
 Route::get('/orders','Vendor\normalVendorController@OrderView')->name('OrderView');
-Route::get('/order_management/cancel/{id}','Vendor\normalVendorController@orderCancel')->name('orderCancel');
+Route::post('/order_management/cancel','Vendor\normalVendorController@orderCancel')->name('orderCancel');
 Route::get('/order_management/proceed/{id}','Vendor\normalVendorController@orderProceed')->name('orderProceed');
 Route::get('/order_management/delivered/{id}','Vendor\normalVendorController@orderDelivered')->name('orderDelivered');
 Route::get('/order_management/processing/{id}','Vendor\normalVendorController@orderProcessiong')->name('orderProcessiong');
@@ -124,6 +124,12 @@ Route::get('/cancel_orders','Vendor\normalVendorController@cancelOrderView')->na
 Route::get('/order_management/order_details/{id}','Vendor\normalVendorController@order_details')->name('order_details');
 Route::get('/order_management/temp_order_details/{id}','Vendor\normalVendorController@temp_order_details')->name('temp_order_details');
 Route::get('/order_management/generateInvoice/{id}', 'Vendor\normalVendorController@generateInvoice')->name('generateInvoice');
+Route::get('/due_orders','Vendor\normalVendorController@dueOrderView')->name('dueOrderView');
+Route::get('/due_orders/remove/{id}','Vendor\normalVendorController@dueOrderRemove')->name('dueOrderRemove');
+Route::post('/order_management/updatePayment','Vendor\normalVendorController@updatePayment')->name('updatePayment');
+
+
+
 
 
 

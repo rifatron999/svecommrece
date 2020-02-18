@@ -142,7 +142,7 @@
                                 <label  class=" label label-default">Model</label>
                                 <input name="model" type="text" class="form-control form-control-sm" value="{{ old('model') }}" >
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-2" style="display: none">
                                 <label  class=" label label-default">Offer Price</label>
                                 <input name="offer_price" type="number" class="form-control form-control-sm" value="{{ old('offer_price') }}" >
                             </div>

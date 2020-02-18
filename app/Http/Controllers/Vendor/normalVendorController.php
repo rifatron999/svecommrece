@@ -689,10 +689,42 @@ class normalVendorController extends Controller
         $parent_id = NULL;*/
         return view('vendor.inventory_management.index',compact('sub_categories','products'));
     }
-    public function PendingOrderView()
+    //************************ page = inventory_management #
+    //************************ page = oder_management
+    public function pendingOrderView()
     {
         $pending_orders = Temp_Order::where('status','Pending')->orderBy('updated_at','DESC')->paginate(18);
         return view('vendor.order_management.pending',compact('pending_orders'));
+    }
+    public function dueOrderView()
+    {
+        $due_orders = Temp_Order::where('status','Due')->orderBy('updated_at','DESC')->paginate(18);
+        return view('vendor.order_management.due',compact('due_orders'));
+    }
+    public function dueOrderRemove($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $delete = Temp_Order::find($oid);
+        //work for stock update
+        $products = json_decode($delete->product_ids);
+        $qty = json_decode($delete->quantity);
+        foreach($products as $i=>$s)
+        {
+            $update = Product::find($s);
+            $new_stock = $update->stock + $qty[$i];
+            if($update->stock == 0){
+                $update->update([
+                    'stock' => $new_stock,
+                    'status' => "Available",
+                ]);
+            }elseif ($new_stock > 0){
+                $update->update([
+                    'stock' => $new_stock,
+                ]);
+            }
+        }
+        $delete->delete();
+        return redirect()->route('dueOrderView')->with('msg',"✔ REMOVED");
     }
     public function temp_order_details($id)
     {
@@ -711,11 +743,14 @@ class normalVendorController extends Controller
         //echo $selling_price[0] + $selling_price[0] ;
         return view('vendor.order_management.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
     }
-    public function orderCancel($id)
+    public function orderCancel(Request $request)
     {
-        $oid = Crypt::decrypt($id);
+        $oid = $request->id;
         $order = Temp_Order::where('id',$oid)->first();
-        $order->update(['status' => 'Cancel']);
+        $order->update([
+            'status' => 'Cancel',
+            'reason' => $request->name.': '.$request->reason,
+        ]);
         return back()->with('msg', "✔ Order Canceled");
         //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
     }
@@ -741,7 +776,7 @@ class normalVendorController extends Controller
         ]);
 //delete temp_orders
         $temp_order->delete();
-        return redirect()->route('PendingOrderView')->with('msg', "✔ Order Proceed");
+        return redirect()->route('pendingOrderView')->with('msg', "✔ Order Proceed");
 
         //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
     }
@@ -786,6 +821,18 @@ class normalVendorController extends Controller
         //echo $selling_price[0] + $selling_price[0] ;
         return view('vendor.order_management.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
     }
+
+    public function updatePayment(Request $request)
+    {
+        $oid = $request->id;
+        $order = Temp_Order::where('id',$oid)->first();
+        $order->update([
+            'trx_id' => $request->trx_id,
+            'sender_mobile_number' => $request->sender_mobile_number,
+        ]);
+        return back()->with('msg', "✔ Payment Updated for ".$order->invoice_id);
+        //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
+    }
     public function generateInvoice($id)
     {
         $oid = Crypt::decrypt($id);
@@ -802,5 +849,7 @@ class normalVendorController extends Controller
         $pdf = PDF::loadView('pdf/pdf', compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products','address'));
         return $pdf->stream('order :'.$order->invoice_id.'.pdf');
     }
-    //************************ page = inventory_management #
+
+
+    //************************ page = oder_management #
 }
