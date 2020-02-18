@@ -47,12 +47,11 @@
                                 <td class="text-center"><b>{{$s->shippings->address}} , {{$s->shippings->city}}</b></td>
                                 <td class="text-center">@if($s->status === 'Cancel')<span class="label label-danger label-mini">{{$s->status}}ed</span>{{--@elseif($s->status === 'Available')<span class="label label-success label-mini">{{$s->status}}</span>@else<span class="label label-default label-mini">{{$s->status}}</span> --}}@endif</td>
                                 <td class="text-center"><b>{{$s->reason}}</b></td>
-
                                 <td>
                                     <a href="{{route('temp_order_details',Crypt::encrypt($s->id))}}" title="See Details" class="btn btn-primary "><i class="fas fa-arrow-circle-right"></i> </a>
                                     <a href="{{route('orderProceed',Crypt::encrypt($s->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
+                                    <a class="btn btn-warning " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$s->id}}','{{$s->trx_id}}','{{$s->sender_mobile_number}}')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
                                     <a href="{{route('dueOrderRemove',Crypt::encrypt($s->id))}}" title="Remove" onclick="return confirm('Are you sure ?')" class="btn btn-danger "><i class="fas fa-trash"></i> </a>
-
                                 </td>
                             </tr>
                         @endforeach

@@ -821,6 +821,18 @@ class normalVendorController extends Controller
         //echo $selling_price[0] + $selling_price[0] ;
         return view('vendor.order_management.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
     }
+
+    public function updatePayment(Request $request)
+    {
+        $oid = $request->id;
+        $order = Temp_Order::where('id',$oid)->first();
+        $order->update([
+            'trx_id' => $request->trx_id,
+            'sender_mobile_number' => $request->sender_mobile_number,
+        ]);
+        return back()->with('msg', "✔ Payment Updated for ".$order->invoice_id);
+        //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
+    }
     public function generateInvoice($id)
     {
         $oid = Crypt::decrypt($id);

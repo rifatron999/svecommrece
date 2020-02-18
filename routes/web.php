@@ -126,6 +126,8 @@ Route::get('/order_management/temp_order_details/{id}','Vendor\normalVendorContr
 Route::get('/order_management/generateInvoice/{id}', 'Vendor\normalVendorController@generateInvoice')->name('generateInvoice');
 Route::get('/due_orders','Vendor\normalVendorController@dueOrderView')->name('dueOrderView');
 Route::get('/due_orders/remove/{id}','Vendor\normalVendorController@dueOrderRemove')->name('dueOrderRemove');
+Route::post('/order_management/updatePayment','Vendor\normalVendorController@updatePayment')->name('updatePayment');
+
 
 
 
