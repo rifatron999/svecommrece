@@ -38,7 +38,7 @@
                                 @elseif($order->status === "Pending")
                                     <span class="label label-warning ">{{$order->status}}</span>
                                         <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
-                                        <a href="{{route('orderCancel',Crypt::encrypt($order->id))}}" title="Cancel" onclick="return confirm('Are you sure ?')" class="btn btn-danger "><i class="fas fa-times"></i> </a>
+                                        <a class="btn btn-danger " data-toggle="modal" data-target="#modal_order_cancel_reason" onclick="setCancelOrderId('{{$order->id}}')" data-whatever="@mdo" title="Cancel"><i class="fas fa-times"></i></a>
                                 @elseif($order->status === "Cancel")
                                     <span class="label label-danger ">{{$order->status}}ed</span>
                                         <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
