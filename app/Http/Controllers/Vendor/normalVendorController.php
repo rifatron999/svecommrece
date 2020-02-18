@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Vendor;
 use App\Brand;
 use App\Category;
 use App\Offer;
+use App\Payment;
 use App\Product;
 use App\Temp_Order;
 use App\Order;
@@ -772,6 +773,7 @@ class normalVendorController extends Controller
             'subtotal' => $temp_order->subtotal,
             'total' => $temp_order->total,
             'status' => 'Processing',
+            'reason' => $temp_order->reason,
             'slug' => $temp_order->slug,
         ]);
 //delete temp_orders
@@ -826,7 +828,12 @@ class normalVendorController extends Controller
     {
         $oid = $request->id;
         $order = Temp_Order::where('id',$oid)->first();
+        $payment = Payment::where('id',$order->payment_id);
         $order->update([
+            'trx_id' => $request->trx_id,
+            'sender_mobile_number' => $request->sender_mobile_number,
+        ]);
+        $payment->update([
             'trx_id' => $request->trx_id,
             'sender_mobile_number' => $request->sender_mobile_number,
         ]);

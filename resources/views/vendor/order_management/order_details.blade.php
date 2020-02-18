@@ -213,7 +213,7 @@
                             <td class="text-center" colspan="2">
                                 <span class="label label-danger label-mini"><b>Payment Details</b></span>
                                 @if($order->status === "Pending" OR $order->status === "Cancel")
-                                <a class="btn btn-warning " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$order->id}}','{{$order->trx_id}}','{{$order->sender_mobile_number}}')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
+                                <a class="btn btn-warning btn-xs " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$order->id}}','{{$order->trx_id}}','{{$order->sender_mobile_number}}')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
                             @endif
                             </td>
                         </tr>
