@@ -14,8 +14,9 @@ class websiteController extends Controller
 
     public function index()
     {
+        $offers = Offer::where('status','!=','Deactive')->get();
         $categories = Category::where('parent_id','!=', null)->take(8)->get();
-        return view('website.pages.index',compact('categories'));
+        return view('website.pages.index',compact('categories','offers'));
     }
 
     public function about()

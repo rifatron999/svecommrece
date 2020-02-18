@@ -121,9 +121,9 @@
                             @php $i=0 @endphp
                             @foreach($cart_datas as $key=>$cart_data)
                                 <div class="form-group{{ $errors->has('quantity.'.$i) ? 'has-error' : '' }}">
-                                    <input type="text" name="pro_id_{{$i}}" id="Pro_id{{ $i }}" value="{{ $cart_data->id }}"><br>
-                                    <input type="number" name="quantity[]" id="quantity{{ $i }}" value="{{ $cart_data->qty }}"><br>
-                                    <input type="text" name="cart_id_{{$i}}" id="cart_id{{ $i }}" value="{{ $cart_data->rowId }}">
+                                    <input type="hidden" name="pro_id_{{$i}}" id="Pro_id{{ $i }}" value="{{ $cart_data->id }}"><br>
+                                    <input type="hidden" name="quantity[]" id="quantity{{ $i }}" value="{{ $cart_data->qty }}"><br>
+                                    <input type="hidden" name="cart_id_{{$i}}" id="cart_id{{ $i }}" value="{{ $cart_data->rowId }}">
                                     @if( $errors->has('quantity.'.$i) )
                                         <span style="color:red">{{ $errors->first('quantity.'.$i) }}</span>
                                     @endif

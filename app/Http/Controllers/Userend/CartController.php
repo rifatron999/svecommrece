@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Userend;
 
+use App\Temp_Order;
 use Cart;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -15,6 +17,39 @@ class CartController extends Controller
     }
 
     public function index(){
+
+        $previous_orders = Temp_Order::where ('customer_id',Auth::user()->id)
+            ->where('status','Due')
+            ->get();
+
+
+        if(!$previous_orders->isEmpty()){
+            foreach($previous_orders as $previous_order){
+                $cart_products = Temp_Order::find($previous_order->id);
+
+                $cart_product = json_decode($cart_products->product_ids);
+                $quantity = json_decode($cart_products->quantity);
+
+                for($i = 0; $i < count($cart_product) ; $i++){
+                    $pro_id = $cart_product[$i];
+                    $quanty = $quantity[$i];
+                    $updates = Product::find($pro_id);
+                    $new_stock = $updates->stock + $quanty;
+                    if($updates->stock == 0){
+                        $updates->update([
+                            'stock' => $new_stock,
+                            'status' => "Available",
+                        ]);
+                    }elseif ($updates->stock > 0){
+                        $updates->update([
+                            'stock' => $new_stock,
+                        ]);
+                    }
+                }
+                Temp_Order::destroy($previous_order->id);
+            }
+        }
+
         $cart_datas = Cart::content();
 //        dd($cart_datas);
         return view('pages.cart',compact('cart_datas'));

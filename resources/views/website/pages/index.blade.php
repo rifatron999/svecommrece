@@ -5,7 +5,7 @@
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner3.jpg') }}" alt=""></div>
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner4.jpg') }}" alt=""></div>
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner6.jpg') }}" alt=""></div>
-            <div> <video width="100%" height="680" autoplay loop>
+            <div> <video width="100%" height="710" autoplay loop>
                     <source src="{{ asset('assets/website/images/banner5.mp4') }}" type="video/mp4">
 {{--                    <source src="movie.ogg" type="video/ogg">--}}
                     Your browser does not support the video tag.
@@ -41,6 +41,35 @@
 
         </div>
     </section>
+    <section>
+        <div class="row">
+            <div class="col-md-12">
+                <img width="100%" height="600px" src="{{ asset('assets/website/images/image_wall.jpg') }}" alt="">
+            </div>
+        </div>
+    </section>
+    @if(!$offers->isEmpty())
+        <section id="we_have" style="margin: 50px 0">
+            <div class="container">
+                <h1 class="text-center mt-5 mb-3">Latest Offers</h1>
+                <div class="row">
+                    @foreach($offers as $offer)
+                        <div class="col-md-4 mb-3">
+                            <a href="{{ route('pages.subCatgProductSearch',Crypt::encrypt($offer->id) ) }}" target="_blank">
+                                <div class="card" >
+                                    <img class="card-img-top p-2" src="{{ asset('assets/vendor/images/categories') }}/{{ $offer->image }}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-text text-center"><b>{{ $offer->title }}</b></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+
+            </div>
+        </section>
+    @endif
     <section id="we_deliver" class="mt-5 mb-3">
         <div class="row">
             <div class="col-md-6">

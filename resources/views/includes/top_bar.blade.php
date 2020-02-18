@@ -40,7 +40,7 @@
                         @if( Auth::user() )
                             <a href="" class="text-uppercase">{{ Auth::user()->name }}</a>
                             <ul class="custom-menu">
-                                <li><a href="{{ route('pages.myOrder',Auth::user()->id ) }}"><i class="fa fa-user-o"></i> My Orders</a></li>
+                                <li><a href="{{ route('pages.myOrder',Crypt::encrypt(Auth::user()->id)  ) }}"><i class="fa fa-user-o"></i> My Orders</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -55,7 +55,7 @@
                                 </li>
                             </ul>
                         @else
-                            <a href="{{ route('customer.login') }}" class="text-uppercase">Login</a>
+                            <a href="{{ route('customer.login') }}" class="text-uppercase">My orders</a>
                             <ul class="custom-menu">
                                 <li><a href="{{ route('customer.login') }}"><i class="fa fa-unlock-alt"></i> Login</a></li>
                                 <li><a href="{{ route('customer.register') }}"><i class="fa fa-user-plus"></i> Create An Account</a></li>
@@ -66,8 +66,8 @@
                     <!-- /Account -->
 
                     <!-- Cart -->
-                    <li class="header-cart dropdown default-dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                    <li class="header-cart">
+                        <a href="{{ route('cart.index') }}">
                             <div class="header-btns-icon">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="qty">{{ Cart::count() }}</span>
@@ -76,46 +76,6 @@
                             <br>
                             <span>{{Cart::total()}}</span>
                         </a>
-                        <div class="custom-menu">
-                            <div id="shopping-cart">
-                                <div class="shopping-cart-list">
-{{--                                    <div class="product product-widget">--}}
-{{--                                        <div class="product-thumb">--}}
-{{--                                            <img src="{{ asset('assets/img/thumb-product01.jpg') }}" alt="">--}}
-{{--                                        </div>--}}
-{{--                                        <div class="product-body">--}}
-{{--                                            <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>--}}
-{{--                                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>--}}
-{{--                                        </div>--}}
-{{--                                        <button class="cancel-btn"><i class="fa fa-trash"></i></button>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="product product-widget">--}}
-{{--                                        <div class="product-thumb">--}}
-{{--                                            <img src="{{ asset('assets/img/thumb-product01.jpg') }}" alt="">--}}
-{{--                                        </div>--}}
-{{--                                        <div class="product-body">--}}
-{{--                                            <h3 class="product-price" id="cart_product_price">$32.50 <span class="qty">x3</span></h3>--}}
-{{--                                            <h2 class="product-name" id="cart_product_name"><a href="#">Product Name Goes Here</a></h2>--}}
-{{--                                        </div>--}}
-{{--                                        <button class="cancel-btn"><i class="fa fa-trash"></i></button>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="product product-widget" id="cart_div">--}}
-{{--                                        <div class="product-thumb">--}}
-{{--                                            <img src="{{ asset('assets/img/thumb-product01.jpg') }}" alt="">--}}
-{{--                                        </div>--}}
-{{--                                        <div class="product-body">--}}
-{{--                                            <h3 class="product-price" id="cart_product_price">$32.50 <span class="qty">x3</span></h3>--}}
-{{--                                            <h2 class="product-name" id="cart_product_name"><a href="#">Product Name Goes Here</a></h2>--}}
-{{--                                        </div>--}}
-{{--                                        <button class="cancel-btn" id="cancel_cart"><i class="fa fa-trash"></i></button>--}}
-{{--                                    </div>--}}
-                                </div>
-                                <div class="shopping-cart-btns">
-                                    <a href="{{ route('cart.index') }}" class="main-btn" style="width:100%;text-align: center;">View Cart</a>
-{{--                                    <button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>--}}
-                                </div>
-                            </div>
-                        </div>
                     </li>
                     <!-- /Cart -->
                     <!-- Mobile nav toggle-->
