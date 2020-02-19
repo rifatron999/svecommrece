@@ -5,11 +5,13 @@
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner3.jpg') }}" alt=""></div>
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner4.jpg') }}" alt=""></div>
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner6.jpg') }}" alt=""></div>
-            <div> <video width="100%" height="710" autoplay loop>
+            <div><img style="width: 100%" src="{{ asset('assets/website/images/image_wall.jpg') }}" alt=""></div>
+            <div>
+                <video width="100%"  height="490px" autoplay loop>
                     <source src="{{ asset('assets/website/images/banner5.mp4') }}" type="video/mp4">
-{{--                    <source src="movie.ogg" type="video/ogg">--}}
                     Your browser does not support the video tag.
-                </video> </div>
+                </video>
+            </div>
         </div>
     </section>
     <section id="why_us" style="margin: 50px 0">
@@ -55,9 +57,9 @@
                 <div class="row">
                     @foreach($offers as $offer)
                         <div class="col-md-4 mb-3">
-                            <a href="{{ route('pages.subCatgProductSearch',Crypt::encrypt($offer->id) ) }}" target="_blank">
+                            <a href="{{ route('pages.offerSearchByTitle',Crypt::encrypt($offer->id) ) }}" target="_blank">
                                 <div class="card" >
-                                    <img class="card-img-top p-2" src="{{ asset('assets/vendor/images/categories') }}/{{ $offer->image }}" alt="Card image cap">
+                                    <img class="card-img-top p-2" src="{{ asset('assets/vendor/images/offers') }}/{{$offer->image}}" alt="Card image cap">
                                     <div class="card-body">
                                         <p class="card-text text-center"><b>{{ $offer->title }}</b></p>
                                     </div>
@@ -70,7 +72,7 @@
             </div>
         </section>
     @endif
-    <section id="we_deliver" class="mt-5 mb-3">
+    <section id="we_deliver" style="margin: 50px 0">
         <div class="row">
             <div class="col-md-6">
                 <div class="map-img text-center">
@@ -78,7 +80,7 @@
                 </div>
             </div>
             <div class="col-md-6 p-5">
-                <div class="map-text">
+                <div class="map-text" style="text-align: center">
                     <h1 style="margin-top: 50px">We Deliver</h1>
                     <h1>All Over</h1>
                     <h1 style="color: #ffffff">Bangladesh</h1>
@@ -86,12 +88,12 @@
             </div>
         </div>
     </section>
-    <section id="people_love_us" class="mt-5">
+    <section id="people_love_us" style="margin: 70px 0">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
                     <div class="people_icon text-center p-3">
-                        <i class="fa fa-truck fa-3x"></i>
+                        <i class="fa fa-truck fa-5x"></i>
                     </div>
                     <div class="people_title text-center">
                         <h2>Fast Delivery</h2>
@@ -100,7 +102,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="people_icon text-center p-3">
-                        <i class="fa fa-user-circle fa-3x"></i>
+                        <i class="fa fa-user-circle fa-5x"></i>
                     </div>
                     <div class="people_title text-center">
                         <h2>24 hr service</h2>
@@ -109,7 +111,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="people_icon text-center p-3">
-                        <i class="fa fa-shopping-bag fa-3x"></i>
+                        <i class="fa fa-shopping-bag fa-5x"></i>
                     </div>
                     <div class="people_title text-center">
                         <h2>Best Quality Product</h2>
@@ -147,5 +149,4 @@
             }
         });
     </script>
-
 @endsection

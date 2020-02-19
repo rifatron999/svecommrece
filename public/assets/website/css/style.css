@@ -1,12 +1,18 @@
 .banner-bg{
     background: black;
 }
+.navbar-inverse {
+    border-color: #fd0303;
+}
+.navbar {
+    border-radius: 0px;
+}
 .slick-slide img{
-    height: 717px;
+    height: 500px;
 }
 .card-img-top{
     width: 100%;
-    height: 170px;
+    height: 250px;
 }
 .card-body{
     background: #fa4a4a;
@@ -171,4 +177,13 @@ textarea {
     color: #fe0002;
     padding: 6px;
     text-shadow: 1px 1px 1px #000000;
+}
+
+/* ecom myprofile */
+.myProfile span{
+    font-size: 20px;
+}
+.profile_image img{
+    width: 250px;
+    height: 250px;
 }

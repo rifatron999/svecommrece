@@ -41,6 +41,7 @@
                             <a href="" class="text-uppercase">{{ Auth::user()->name }}</a>
                             <ul class="custom-menu">
                                 <li><a href="{{ route('pages.myOrder',Crypt::encrypt(Auth::user()->id)  ) }}"><i class="fa fa-user-o"></i> My Orders</a></li>
+                                <li><a href="{{ route('pages.myProfile') }}"><i class="fa fa-user-o"></i> My Profile</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
