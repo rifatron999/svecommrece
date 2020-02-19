@@ -36,16 +36,25 @@ class orderController extends Controller
             $pro_stock = $pro_id->stock;
             $pro_limit = $pro_id->offer_limit;
 
-            if ($request->quantity[$i] > $pro_limit){
-                $request->validate(
-                    [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_limit,],
-                    [ 'quantity.'.$i.'.max' => 'Cant buy more than '.$pro_limit.' at a time '  ]);
+            if($pro_id->offer_id != null){
+                if ($request->quantity[$i] > $pro_limit){
+                    $request->validate(
+                        [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_limit,],
+                        [ 'quantity.'.$i.'.max' => 'Cant buy more than '.$pro_limit.' at a time '  ]);
+                }
+                elseif ($request->quantity[$i] <= $pro_limit){
+                    $request->validate(
+                        [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
+                        [ 'quantity.'.$i.'.max' => 'Required quantity '.$request->quantity[$i].' is not available in stock'  ]);
+                }
             }
-            elseif ($request->quantity[$i] <= $pro_limit){
+            else{
                 $request->validate(
                     [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
                     [ 'quantity.'.$i.'.max' => 'Required quantity '.$request->quantity[$i].' is not available in stock'  ]);
             }
+
+
 
 //            $request->validate(
 //                [ 'quantity.*' => 'required|numeric|min:1|max:'.$pro_stock,],
@@ -198,6 +207,13 @@ class orderController extends Controller
         $order_id = $request->temp_order_id;
         Return redirect()->route('paymentSuccess',['$order_id']);
 
+
+    }
+
+    public function paymentSuccess($id)
+    {
+        $temp_order = Temp_Order::find($id);
+        return view('pages.successful',compact('temp_order'));
 
     }
 }

@@ -68,12 +68,6 @@ class pagesController extends Controller
         return view('pages.products',compact('products'));
     }
 
-    public function paymentSuccess($id)
-    {
-        $temp_order = Temp_Order::find($id);
-        return view('pages.successful',compact('temp_order'));
-
-    }
 
 
 }

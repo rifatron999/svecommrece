@@ -106,11 +106,19 @@ class CartController extends Controller
         $stock =  $product->stock;
         $limit =  $product->offer_limit;
 
-        if ($qty > $limit){
-            $request->validate([ 'qty' => 'required|numeric|min:1|max:'.$limit, ],
-                [
-                    'qty.max' => 'Cant buy '.$product_name.' more than '.$limit.' at a time '
-                ]);
+        if($product->offer_id != null){
+            if ($qty > $limit){
+                $request->validate([ 'qty' => 'required|numeric|min:1|max:'.$limit, ],
+                    [
+                        'qty.max' => 'Cant buy '.$product_name.' more than '.$limit.' at a time '
+                    ]);
+            }
+            else{
+                $request->validate([ 'qty' => 'required|numeric|min:1|max:'.$stock, ],
+                    [
+                        'qty.max' => 'Required quantity '.$qty.' for '.$product_name.' is not available in stock'
+                    ]);
+            }
         }
         else{
             $request->validate([ 'qty' => 'required|numeric|min:1|max:'.$stock, ],
@@ -118,6 +126,8 @@ class CartController extends Controller
                     'qty.max' => 'Required quantity '.$qty.' for '.$product_name.' is not available in stock'
                 ]);
         }
+
+
 
 //        $request->validate([ 'qty' => 'required|numeric|min:1|max:'.$stock, ],
 //            [

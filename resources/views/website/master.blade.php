@@ -41,7 +41,11 @@
 </script>
 <script type="text/javascript">
     $('.single-item').slick({
-
+        autoplay: true,
+        autoplaySpeed: 4000,
+        pauseOnFocus: false,
+        pauseOnHover: false,
+        pauseOnDotsHover: false,
     });
 </script>
 </body>

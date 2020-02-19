@@ -35,7 +35,6 @@ Route::get('/cart/delete/{rowId}', 'Userend\CartController@deleteItem')->name('c
 Route::post('/cart/update', 'Userend\CartController@updateItem')->name('cart.update');
 Route::get('/cart_destroy',function (){Cart::destroy();});
 
-Route::get('/paymentSuccess/{id}', 'Userend\pagesController@paymentSuccess')->name('paymentSuccess');
 Route::get('/generatePdf', 'Userend\pagesController@generatePdf')->name('generatePdf');
 
 Route::get('/react', function (){
@@ -62,9 +61,13 @@ Route::get('/customer/password/reset/{token}', 'CustomerAuth\ResetPasswordContro
 //xahid
     Route::get('/checkout/{id}', 'Userend\customerController@checkout')->name('pages.checkout');
     Route::get('/myOrder/{id}', 'Userend\customerController@myOrder')->name('pages.myOrder');
+    Route::get('/myProfile', 'Userend\customerController@myProfile')->name('pages.myProfile');
+    Route::get('/myProfile/edit/{id}', 'Userend\customerController@editMyProfile')->name('pages.editMyProfile');
+    Route::post('/myProfile/edit', 'Userend\customerController@profile_edit')->name('pages.profile_edit');
     Route::post('/place_order', 'Userend\orderController@place_order')->name('place_order');
     Route::get('/temp_orders/{id}', 'Userend\orderController@temp_orders')->name('temp_orders');
     Route::post('/paymentConfirm', 'Userend\orderController@paymentConfirm')->name('paymentConfirm');
+    Route::get('/paymentSuccess/{id}', 'Userend\orderController@paymentSuccess')->name('paymentSuccess');
 
 
 //xahid
