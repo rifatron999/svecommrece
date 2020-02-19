@@ -7,6 +7,7 @@ use App\Category;
 use App\Offer;
 use App\Payment;
 use App\Product;
+use App\Shipping;
 use App\Temp_Order;
 use App\Order;
 use App\Vendor;
@@ -754,6 +755,21 @@ class normalVendorController extends Controller
         ]);
         return back()->with('msg', "✔ Order Canceled");
         //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
+    }
+    public function orderShipping(Request $request)
+    {
+        $oid = $request->id;
+        $order = Order::where('id',$oid)->first();
+        $shipping = Shipping::where('id',$order->shipping_id)->first();
+        $order->update([
+            'status' => 'Shipping',
+        ]);
+        $shipping->update([
+            'shipping_tracking_number' => $request->shipping_tracking_number,
+            'courier_name' => $request->courier_name,
+            'shipping_date' => $request->shipping_date,
+        ]);
+        return back()->with('msg', "✔ ".$request->order_id." Updated ");
     }
     public function orderProceed($id)
     {

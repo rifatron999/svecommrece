@@ -145,6 +145,15 @@ function setOrderPayment(id,trx,number)
     document.getElementById('order_payment_id').value = id ;
     document.getElementById('order_payment_trx').value = trx ;
     document.getElementById('order_payment_number').value = number ;
+
+}
+function setOrderShipping(id,orderid,cn,courirer,date)
+{
+    document.getElementById('order_shipping_order_id').value = orderid ;
+    document.getElementById('order_shippment_id').value = id ;
+    document.getElementById('order_shipment_cn').value = cn ;
+    document.getElementById('order_shipment_courier').value = courirer ;
+    document.getElementById('order_shipment_date').value = date ;
 }
 //page = vendor>offer_management#
 

@@ -32,6 +32,7 @@
                             <th scope="col"class="text-center"><i class="fas fa-phone-volume"></i></i> Customer Phone</th>
                             <th scope="col"class="text-center"><i class="fas fa-map-marker-alt"></i></i> Shipping</th>
                             <th scope="col"class="text-center"><i class=" fa fa-edit"></i> Status</th>
+                            <th scope="col"class="text-center"> </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -44,12 +45,16 @@
                                 <td class="text-center"><b>{{$s->customers->name}}</b></td>
                                 <td class="text-center"><b>{{$s->customers->phone}}</b></td>
                                 <td class="text-center"><b>{{$s->shippings->address}} , {{$s->shippings->city}}</b></td>
-                                <td class="text-center">@if($s->status === 'Processing')<span class="label label-info label-mini">{{$s->status}}</span>@elseif($s->status === 'Delivered')<span class="label label-success label-mini">{{$s->status}}</span>{{--@else<span class="label label-default label-mini">{{$s->status}}</span> --}}@endif</td>
-                                <td>
+                                <td class="text-center">@if($s->status === 'Processing')<span class="label label-info label-mini">{{$s->status}}</span>@elseif($s->status === 'Delivered')<span class="label label-success label-mini">{{$s->status}}</span>@else<span class="label label-primary label-mini">{{$s->status}}</span> @endif</td>
+                                <td class="text-left">
                                     <a href="{{route('generateInvoice',Crypt::encrypt($s->id))}}" title="Generate Invoice" class="btn btn-default "><i class="fas fa-file-invoice-dollar"></i> </a>
                                     <a href="{{route('order_details',Crypt::encrypt($s->id))}}" title="See Details" class="btn btn-primary "><i class="fas fa-arrow-circle-right"></i> </a>
                                     @if($s->status === "Processing")
+                                        <a class="btn btn-info " data-toggle="modal" data-target="#modal_order_shipping" onclick="setOrderShipping('{{$s->id}}','{{$s->invoice_id}}','{{$s->shippings->shipping_tracking_number}}','{{$s->shippings->courier_name}}','{{$s->shippings->shipping_date}}')" data-whatever="@mdo" title="Shipping"><i class="fas fa-truck"></i></a>
                                         <a href="{{route('orderDelivered',Crypt::encrypt($s->id))}}" title="Delivered" class="btn btn-success " onclick="return confirm('Are you sure that the order is delivered ?')"><i class="fas fa-truck-loading"></i> </a>
+                                    @elseif($s->status === "Shipping")
+                                        <a href="{{route('orderDelivered',Crypt::encrypt($s->id))}}" title="Delivered" class="btn btn-success " onclick="return confirm('Are you sure that the order is delivered ?')"><i class="fas fa-truck-loading"></i> </a>
+                                        <a href="{{route('orderProcessiong',Crypt::encrypt($s->id))}}" title="Undo to processing" class="btn btn-warning " onclick="return confirm('Are you sure that the order is still in processing ?')"><i class="fas fa-undo"></i></i> </a>
                                     @elseif($s->status === "Delivered")
                                         <a href="{{route('orderProcessiong',Crypt::encrypt($s->id))}}" title="Undo to processing" class="btn btn-warning " onclick="return confirm('Are you sure that the order is still in processing ?')"><i class="fas fa-undo"></i></i> </a>
                                     @endif

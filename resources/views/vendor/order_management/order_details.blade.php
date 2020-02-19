@@ -31,22 +31,27 @@
                             <td ><h1>
                                 @if($order->status === "Processing")
                                     <span class="label label-info ">{{$order->status}}</span>
+                                        <a class="btn btn-info " data-toggle="modal" data-target="#modal_order_shipping" onclick="setOrderShipping('{{$order->id}}','{{$order->invoice_id}}','{{$order->shippings->shipping_tracking_number}}','{{$order->shippings->courier_name}}','{{$order->shippings->shipping_date}}')" data-whatever="@mdo" title="Shipping"><i class="fas fa-truck"></i></a><br><br>
                                         <a href="{{route('orderDelivered',Crypt::encrypt($order->id))}}" title="Delivered" class="btn btn-success " onclick="return confirm('Are you sure that the order is delivered ?')"><i class="fas fa-truck-loading"></i> </a>
                                 @elseif($order->status === "Delivered")
                                     <span class="label label-success ">{{$order->status}}</span>
                                         <a href="{{route('orderProcessiong',Crypt::encrypt($order->id))}}" title="Undo to processing" class="btn btn-warning " onclick="return confirm('Are you sure that the order is still in processing ?')"><i class="fas fa-undo"></i></i> </a>
                                 @elseif($order->status === "Pending")
                                     <span class="label label-warning ">{{$order->status}}</span>
-                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
+                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a><br><br>
                                         <a class="btn btn-danger " data-toggle="modal" data-target="#modal_order_cancel_reason" onclick="setCancelOrderId('{{$order->id}}')" data-whatever="@mdo" title="Cancel"><i class="fas fa-times"></i></a>
                                 @elseif($order->status === "Cancel")
                                     <span class="label label-danger ">{{$order->status}}ed</span>
-                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
+                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a><br><br>
                                         <a href="{{route('dueOrderRemove',Crypt::encrypt($order->id))}}" title="Remove" onclick="return confirm('Are you sure ?')" class="btn btn-danger mar-top"><i class="fas fa-trash"></i> </a>
                                         <b style="font-size: xx-small ">{{$order->reason}}</b>
                                     @elseif($order->status === "Due")
                                         <span class="label label-default ">{{$order->status}}</span>
                                         <a href="{{route('dueOrderRemove',Crypt::encrypt($order->id))}}" title="Remove" onclick="return confirm('Are you sure ?')" class="btn btn-danger "><i class="fas fa-trash"></i> </a>
+                                    @elseif($order->status === "Shipping")
+                                        <span class="label label-default ">{{$order->status}}</span>
+                                        <a href="{{route('orderDelivered',Crypt::encrypt($order->id))}}" title="Delivered" class="btn btn-success " onclick="return confirm('Are you sure that the order is delivered ?')"><i class="fas fa-truck-loading"></i> </a><br><br>
+                                        <a href="{{route('orderProcessiong',Crypt::encrypt($order->id))}}" title="Undo to processing" class="btn btn-warning " onclick="return confirm('Are you sure that the order is still in processing ?')"><i class="fas fa-undo"></i></i> </a>
                                     @endif
                                 </h1>
                             </td>
@@ -157,6 +162,9 @@
                         <tr>
                             <td >
                                 <span class="label label-success label-mini"><b>Delivery Information</b></span>
+                                @if($order->status === "Shipping" OR $order->status === "Processing")
+                                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal_order_shipping" onclick="setOrderShipping('{{$order->id}}','{{$order->invoice_id}}','{{$order->shippings->shipping_tracking_number}}','{{$order->shippings->courier_name}}','{{$order->shippings->shipping_date}}')" data-whatever="@mdo" title="Shipping"><i class="fas fa-truck"></i></a>
+                                @endif
                             </td>
                         </tr>
                         <tr >
@@ -180,9 +188,25 @@
                             </td>
                         </tr>
 
+                        <tr>
+                            <td >
+                                <span class="label label-warning label-mini">C/N</span> <b>{{$order->shippings->shipping_tracking_number}}</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <span class="label label-warning label-mini"><i class="fas fa-dolly-flatbed"></i></span> <b>{{$order->shippings->courier_name}}</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <span class="label label-warning label-mini"><i class="fas fa-dolly-flatbed"></i></span> <b>{{$order->shippings->shipping_date}}</b>
+                            </td>
+                        </tr>
+                    @endif
+
                         </tbody>
                     </table>
-                    @endif
                 </div>
                 <div class="col-sm-4 ">
 

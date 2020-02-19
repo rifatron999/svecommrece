@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shipping extends Model
 {
-    protected $fillable = ['customer_id','name','email','address','city','phone','slug'];
+    protected $fillable = ['customer_id','name','email','address','city','phone','shipping_tracking_number','courier_name','shipping_date','slug'];
     protected $table = 'shippings';
 
     public function temp_orders()
