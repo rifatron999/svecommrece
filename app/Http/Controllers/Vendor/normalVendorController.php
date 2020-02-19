@@ -707,6 +707,9 @@ class normalVendorController extends Controller
     {
         $oid = Crypt::decrypt($id);
         $delete = Temp_Order::find($oid);
+        $deletePayment = Payment::find($delete->payment_id);
+        $deleteShipping = Shipping::find($delete->shipping_id);
+        $delete = Temp_Order::find($oid);
         //work for stock update
         $products = json_decode($delete->product_ids);
         $qty = json_decode($delete->quantity);
@@ -726,6 +729,11 @@ class normalVendorController extends Controller
             }
         }
         $delete->delete();
+        if($delete->status == 'Cancel')
+        {
+            $deletePayment->delete();
+            $deleteShipping->delete();
+        }
         return redirect()->route('dueOrderView')->with('msg',"✔ REMOVED");
     }
     public function temp_order_details($id)
