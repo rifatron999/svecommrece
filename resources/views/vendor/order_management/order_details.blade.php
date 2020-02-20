@@ -80,9 +80,9 @@
                                 </td>
                                 <td class="text-center" width="60%" >
                                     @if(empty($order->customers->image))
-                                        <img class="img-circle" src="{{ asset('assets/vendor/images/profile picture/empty.jpg') }}"width="20%" alt="" title="Unavailable">
+                                        <img class="img-circle" src="{{ asset('assets/vendor/images/profile_picture/empty.jpg') }}"width="20%" alt="" title="Unavailable">
                                     @else
-                                        <img class="img-circle" src="{{ asset('assets/vendor/images/profile picture/') }}/{{$order->customers->image}}" width="20%" alt="" >
+                                        <img class="img-circle" src="{{ asset('assets/vendor/images/profile_picture/') }}/{{$order->customers->image}}" width="20%" alt="" >
                                     @endif
                                 </td>
                             </tr>
