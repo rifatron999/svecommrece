@@ -203,7 +203,8 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Id</label>
-                                        <input id="order_cancel_id" name="id" type="number" class="form-control" readonly>
+                                        <input id="order_cancel_id" name="id" type="number" class="form-control" readonly style="display:none;">
+                                        <input id="order_cancel_order_id" name="order_id" type="text" class="form-control" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Cancel By</label>
@@ -238,7 +239,8 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">OrderId</label>
-                                        <input id="order_payment_id" name="id" type="number" class="form-control" readonly>
+                                        <input id="order_payment_id" name="id" type="number" class="form-control" readonly style="display:none;">
+                                        <input id="order_payment_order_id" name="order_id" type="text" class="form-control" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">TrxID</label>

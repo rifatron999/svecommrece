@@ -31,7 +31,7 @@
                             <td ><span>
                                 @if($order->status === "Processing")
                                     <span class="label label-info ">{{$order->status}}</span>
-                                        <a class="btn btn-info " data-toggle="modal" data-target="#modal_order_shipping" onclick="setOrderShipping('{{$order->id}}','{{$order->invoice_id}}','{{$order->shippings->shipping_tracking_number}}','{{$order->shippings->courier_name}}','{{$order->shippings->shipping_date}}')" data-whatever="@mdo" title="Shipping"><i class="fas fa-truck"></i></a>
+                                        <a class="btn btn-info  " data-toggle="modal" data-target="#modal_order_shipping" onclick="setOrderShipping('{{$order->id}}','{{$order->invoice_id}}','{{$order->shippings->shipping_tracking_number}}','{{$order->shippings->courier_name}}','{{$order->shippings->shipping_date}}')" data-whatever="@mdo" title="Shipping"><i class="fas fa-truck"></i></a>
                                         <a href="{{route('orderDelivered',Crypt::encrypt($order->id))}}" title="Delivered" class="btn btn-success " onclick="return confirm('Are you sure that the order is delivered ?')"><i class="fas fa-truck-loading"></i> </a>
                                 @elseif($order->status === "Delivered")
                                     <span class="label label-success ">{{$order->status}}</span>
@@ -39,12 +39,12 @@
                                 @elseif($order->status === "Pending")
                                     <span class="label label-warning ">{{$order->status}}</span>
                                         <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
-                                        <a class="btn btn-danger " data-toggle="modal" data-target="#modal_order_cancel_reason" onclick="setCancelOrderId('{{$order->id}}')" data-whatever="@mdo" title="Cancel"><i class="fas fa-times"></i></a>
+                                        <a class="btn btn-danger " data-toggle="modal" data-target="#modal_order_cancel_reason" onclick="setCancelOrderId('{{$order->id}}','{{$order->invoice_id}}')" data-whatever="@mdo" title="Cancel"><i class="fas fa-times"></i></a>
                                 @elseif($order->status === "Cancel")
                                     <span class="label label-danger ">{{$order->status}}ed</span>
-                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
-                                        <a href="{{route('dueOrderRemove',Crypt::encrypt($order->id))}}" title="Remove" onclick="return confirm('Are you sure ?')" class="btn btn-danger mar-top"><i class="fas fa-trash"></i> </a>
-                                        <b style="font-size: xx-small ">{{$order->reason}}</b>
+                                        <a href="{{route('orderProceed',Crypt::encrypt($order->id))}}" title="Proceed" class="btn btn-success  " onclick="return confirm('Received the money ?')"><i class="fas fa-check"></i> </a>
+                                        <a href="{{route('dueOrderRemove',Crypt::encrypt($order->id))}}" title="Remove" onclick="return confirm('Are you sure ?')" class="btn btn-danger "><i class="fas fa-trash"></i> </a>
+                                      <br>  <b style="font-size: xx-small ">{{$order->reason}}</b>
                                     @elseif($order->status === "Due")
                                         <span class="label label-default ">{{$order->status}}</span>
                                         <a href="{{route('dueOrderRemove',Crypt::encrypt($order->id))}}" title="Remove" onclick="return confirm('Are you sure ?')" class="btn btn-danger "><i class="fas fa-trash"></i> </a>
@@ -237,7 +237,7 @@
                             <td class="text-center" colspan="2">
                                 <span class="label label-danger label-mini"><b>Payment Details</b></span>
                                 @if($order->status === "Pending" OR $order->status === "Cancel" OR $order->status === "Processing")
-                                <a class="btn btn-warning btn-xs " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$order->id}}','{{$order->trx_id}}','{{$order->sender_mobile_number}}')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
+                                <a class="btn btn-warning btn-xs " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$order->id}}','{{$order->trx_id}}','{{$order->sender_mobile_number}}','{{$order->invoice_id}}')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
                             @endif
                             </td>
                         </tr>

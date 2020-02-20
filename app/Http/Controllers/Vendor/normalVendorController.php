@@ -435,11 +435,17 @@ class normalVendorController extends Controller
             'product_ids' => 'required',
             'image' => 'image|mimes:jpeg,jpg,png,gif|max:6144'
         ]);
-        foreach ($request->product_ids as $s)
+        foreach ($request->product_ids as $p => $s)
         {
             $insert[]['id'] = $s;
+            $limit[] = $request->limit[$p];
         }
+        /*foreach ($request->limit as $s2)
+        {
+            $limit[] = $s2;
+        }*/
         $product_ids = json_encode($insert);
+        $offer_limit = json_encode($limit);
         if($request->type == 'Buy one get one')
         {
             foreach ($request->free_product_ids as $s)
@@ -469,7 +475,9 @@ class normalVendorController extends Controller
                 'offer_percentage' => $request->offer_percentage,
                 'product_ids' => $product_ids,
                 'free_product_ids' => $free_product_ids,
-            ]);
+                /*'offer_limit' => $offer_limit,*/
+
+          ]);
         }
         else
         {
@@ -481,10 +489,12 @@ class normalVendorController extends Controller
                 'offer_percentage' => $request->offer_percentage,
                 'product_ids' => $product_ids,
                 'free_product_ids' => $free_product_ids,
+                /*'offer_limit' => $offer_limit,*/
+
             ]);
         }
 //for product table update
-        foreach ($request->product_ids as $s)
+        foreach ($request->product_ids as $p => $s)
         {
             $update = Product::find($s);
             if($request->type == 'Discount')
@@ -494,12 +504,14 @@ class normalVendorController extends Controller
                 $update->update([
                     'offer_id' => $offer->id,
                     'offer_price' => $offer_price,
+                    /*'offer_limit' => $request->limit[$p],*/
                 ]);
             }
             elseif ($request->type == 'Buy one get one')
             {
                 $update->update([
                     'offer_id' => $offer->id,
+                    /*'offer_limit' => $request->limit[$p],*/
                 ]);
             }
         }

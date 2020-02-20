@@ -125,6 +125,7 @@
                                         <th scope="col"class="text-center">Stock</th>
                                         <th scope="col"class="text-center">Price</th>
                                         <th scope="col"class="text-center">Status</th>
+                                        {{--<th scope="col"class="text-center">Limit</th>--}}
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -147,6 +148,8 @@
                                             <td class="text-center">{{$s->stock}}</td>
                                             <td class="text-center">৳ {{ number_format($s->price) }}</td>
                                             <td class="text-center">@if($s->status === 'Out of Stock')<b style="color:red">{{$s->status}}</b>@else{{$s->status}}@endif</td>
+                                            {{--<td class="text-center" width="100px"><input name="limit[]" type="number" class="form-control form-control-sm" value="{{ old('limit') }}"  >--}}
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
