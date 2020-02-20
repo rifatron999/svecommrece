@@ -1,5 +1,5 @@
 @extends('vendor.master')
-@section('title','Pending Orders')
+@section('title','Due Orders')
 @section('Order_management','active')
 @section('Due_Order','active')
 @section('content')
