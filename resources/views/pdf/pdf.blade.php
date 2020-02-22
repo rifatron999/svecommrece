@@ -36,7 +36,7 @@
             <?php
             $time = date('d M,Y,g:i a',strtotime($order->created_at) + 6 * 3600);
             ?>
-            <b style="color: #a0aec0;"> {{$time}}</b><br><br>
+            <b style={{--"color: #a0aec0;"--}}> {{$time}}</b><br><br>
             <strong  > Bill to </strong> <br>
             {{$order->customers->name}} <br>
             {{$order->customers->phone}}<br>
@@ -49,7 +49,7 @@
             <br>
         </td>
         <td align="right">
-            <img  src="assets/vendor/images/brands/{{ Auth::user()->brands->image }}" width="130" height="100"    >
+            <img  src="assets/vendor/images/brands/{{ Auth::user()->brands->image }}" width="90" height="50"    >
             <br><br>
             {{ Auth::user()->brands->name }}  <br>
             {{ Auth::user()->brands->address }}  <br>
@@ -82,7 +82,7 @@
             @endif
             {{$products[$i]->name}}
         </td>
-        <td style="color: #a0aec0;" align="center" >
+        <td {{--style="color: #a0aec0;"--}} align="center" >
             @if($offer_type[$i] === 'Discount')
                {{-- Actual Price : ৳ {{number_format($products[$i]->price)}} <br>--}}
                 Discount : {{$offer_percentage[$i]}} %
