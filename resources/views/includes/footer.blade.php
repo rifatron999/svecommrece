@@ -19,7 +19,7 @@
 
                     <!-- footer social -->
                     <ul class="footer-social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://www.facebook.com/groups/782832885406032/" target="_blank"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -60,13 +60,14 @@
             <div class="col-md-3 col-sm-6 col-xs-6">
                 <div class="footer">
                     <h3 class="footer-header">Stay Connected</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-                    <form>
-                        <div class="form-group">
-                            <input class="input" placeholder="Enter Email Address">
-                        </div>
-                        <button class="primary-btn">Join Newslatter</button>
-                    </form>
+                    <p>For any type of problems and questions you may call us anytime. We are at your service 24hr.</p>
+{{--                    <form>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <input class="input" placeholder="Enter Email Address">--}}
+{{--                        </div>--}}
+{{--                        <button class="primary-btn">Join Newslatter</button>--}}
+{{--                    </form>--}}
+                    <span style="font-size: 20px"><b>Mobile :</b> 01877717404 </span>
                 </div>
             </div>
             <!-- /footer subscribe -->

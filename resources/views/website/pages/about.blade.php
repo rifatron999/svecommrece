@@ -16,7 +16,7 @@
                         <div id="collapse-240" class="collapse " aria-labelledby="heading-240" data-parent="#accordion">
                             <div class="card-body accordion-body">
                                 <div class="row">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                                    <p>Under Construction </p>
                                 </div>
 
                             </div>
@@ -29,7 +29,7 @@
                         <div id="collapse-241" class="collapse " aria-labelledby="heading-241" data-parent="#accordion">
                             <div class="card-body accordion-body">
                                 <div class="row">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                                    <p>Under Construction </p>
                                 </div>
 
                             </div>
@@ -42,7 +42,7 @@
                         <div id="collapse-242" class="collapse " aria-labelledby="heading-242" data-parent="#accordion">
                             <div class="card-body accordion-body">
                                 <div class="row">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                                    <p>Under Construction , </p>
                                 </div>
 
                             </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div id="collapse-243" class="collapse " aria-labelledby="heading-243" data-parent="#accordion">
                             <div class="card-body accordion-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                                <p>Under Construction </p>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                         </div>
                         <div id="collapse-244" class="collapse " aria-labelledby="heading-244" data-parent="#accordion">
                             <div class="card-body accordion-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                                <p>Under Construction</p>
                             </div>
                         </div>
                     </div>
