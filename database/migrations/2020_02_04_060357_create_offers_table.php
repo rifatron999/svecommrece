@@ -20,6 +20,7 @@ class CreateOffersTable extends Migration
             $table->longText('product_ids')->nullable();
             $table->integer('offer_percentage')->nullable();
             $table->longText('free_product_ids')->nullable();
+            $table->longText('offer_limit')->nullable();
             $table->string('image')->nullable();
             $table->date('enddate')->nullable();
             $table->string('status')->nullable();

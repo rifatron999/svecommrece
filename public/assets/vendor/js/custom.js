@@ -136,15 +136,17 @@ $(document).on('change','#offer_type',function()
 });
 //page = vendor>offer_management#
 //page = vendor>order_management
-function setCancelOrderId(id)
+function setCancelOrderId(id,orderid)
 {
     document.getElementById('order_cancel_id').value = id ;
+    document.getElementById('order_cancel_order_id').value = orderid ;
 }
-function setOrderPayment(id,trx,number)
+function setOrderPayment(id,trx,number,orderid)
 {
     document.getElementById('order_payment_id').value = id ;
     document.getElementById('order_payment_trx').value = trx ;
     document.getElementById('order_payment_number').value = number ;
+    document.getElementById('order_payment_order_id').value = orderid ;
 
 }
 function setOrderShipping(id,orderid,cn,courirer,date)
@@ -156,12 +158,3 @@ function setOrderShipping(id,orderid,cn,courirer,date)
     document.getElementById('order_shipment_date').value = date ;
 }
 //page = vendor>offer_management#
-
-
-
-
-
-
-
-
-
