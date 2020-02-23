@@ -883,7 +883,6 @@ class normalVendorController extends Controller
         $product_ids = json_decode($order->product_ids);
         $products = Product::wherein('id',$product_ids)->get();
         $selling_price = json_decode($order->selling_price);
-        $quantity = json_decode($order->quantity);
         $offer_type = json_decode($order->offer_type);
         $offer_percentage = json_decode($order->offer_percentage);
         $free_product_ids = json_decode($order->free_product_ids);
@@ -891,6 +890,49 @@ class normalVendorController extends Controller
 
         $pdf = PDF::loadView('pdf/pdf', compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products','address'));
         return $pdf->stream('order :'.$order->invoice_id.'.pdf');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $_GET['search'];
+        $type = $_GET['type'];
+        if($type == 'temp')
+        {
+            if(!empty($search))
+            {
+                $search_result = Temp_Order::where('invoice_id','LIKE','%'.$search.'%')->orWhere('trx_id','LIKE','%'.$search.'%')->orWhere('sender_mobile_number','LIKE','%'.$search.'%')->orWhere('status','LIKE','%'.$search.'%')->get();
+                $search_count = $search_result->count();
+                $count = $search_count.' records found';
+            }
+            else
+            {
+                $search_result = Temp_Order::whereIn('status',['Pending','Cancel'])->orderBy('updated_at','DESC')->get();
+                $search_count = $search_result->count();
+                $count = '';
+            }
+        }
+        elseif($type == 'main')
+        {
+            if(!empty($search))
+            {
+                $search_result = Order::where('invoice_id','LIKE','%'.$search.'%')->orWhere('status','LIKE','%'.$search.'%')->get();
+                $search_count = $search_result->count();
+                $count = $search_count.' records found';
+            }
+            else
+            {
+                $search_result = Order::whereIn('status',['Delivered','Shipping','Processing'])->orderBy('updated_at','DESC')->get();
+                $search_count = $search_result->count();
+                $count = '';
+            }
+        }
+
+        $returnHTML = view('vendor.order_management.search')->with('search_result', $search_result)->with('search_count', $search_count)->render();
+        return response()->json(array('success' => true, 'table_data'=>$returnHTML,'total_data'=>$count));
+    }
+    public function allOrders()
+    {
+        return view('vendor.order_management.index');
     }
 
 

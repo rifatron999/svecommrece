@@ -131,6 +131,9 @@ Route::get('/order_management/generateInvoice/{id}', 'Vendor\normalVendorControl
 Route::get('/due_orders','Vendor\normalVendorController@dueOrderView')->name('dueOrderView');
 Route::get('/due_orders/remove/{id}','Vendor\normalVendorController@dueOrderRemove')->name('dueOrderRemove');
 Route::post('/order_management/updatePayment','Vendor\normalVendorController@updatePayment')->name('updatePayment');
+Route::get('/order_management/search', 'Vendor\normalVendorController@search')->name('search');//ajax
+Route::get('/order_management/allorders','Vendor\normalVendorController@allOrders')->name('allOrders');
+
 
 
 

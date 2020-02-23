@@ -47,11 +47,12 @@
                 </a>
             </li>
             <li class="sub-menu">
-                <a href="javascript:;" class="@yield('Order_management')">
+                <a class="@yield('Order_management')" >
                     <i class="fab fa-accusoft"></i>
                     <span>Order</span>
                 </a>
                 <ul class="sub" style="display: none;">
+                    <li class="@yield('all_order')" ><a  href="{{route('allOrders')}}"><i class="fas fa-globe"></i> All</a></li>
                     <li class="@yield('Order')" ><a  href="{{ route('OrderView') }}"><i class="fas fa-clipboard-check"></i> Orders</a></li>
                     <li class="@yield('cancel_Order')" ><a  href="{{ route('cancelOrderView') }}"><i class="fas fa-list-alt"></i> Canceled Orders</a></li>
                     <li class="@yield('Pending_Order')" ><a  href="{{ route('pendingOrderView') }}"><i class="fas fa-list-alt"></i> Pending Orders</a></li>
