@@ -767,6 +767,10 @@ class normalVendorController extends Controller
     }
     public function orderCancel(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:15',
+            'reason' => 'required|max:175',
+        ]);
         $oid = $request->id;
         $order = Temp_Order::where('id',$oid)->first();
         $order->update([
@@ -778,6 +782,11 @@ class normalVendorController extends Controller
     }
     public function orderShipping(Request $request)
     {
+        $request->validate([
+            'shipping_tracking_number' => 'required|max:15',
+            'courier_name' => 'required|max:150',
+            'shipping_date' => 'required',
+        ]);
         $oid = $request->id;
         $order = Order::where('id',$oid)->first();
         $shipping = Shipping::where('id',$order->shipping_id)->first();
@@ -862,6 +871,10 @@ class normalVendorController extends Controller
 
     public function updatePayment(Request $request)
     {
+        $request->validate([
+            'trx_id' => 'required|max:20',
+            'sender_mobile_number' => 'required|max:15',
+        ]);
         $oid = $request->id;
         $order = Temp_Order::where('id',$oid)->first();
         $payment = Payment::where('id',$order->payment_id);

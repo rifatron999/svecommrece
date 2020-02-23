@@ -96,7 +96,7 @@
                 </div>
                 </form>
                 {{--modal category add #--}}
-                {{--modal category update--}}
+                {{--modal category update--}}{{--
                 <form method="post" enctype="multipart/form-data" action="{{ route('categoryUpdate') }}">
                     @csrf
                     <div class="modal fade" id="modal_category_update"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                 </form>
-                {{--modal category update #--}}
+                --}}{{--modal category update #--}}
                 {{--modal category update--}}
                 <form method="post" enctype="multipart/form-data" action="{{ route('categoryUpdate') }}">
                     @csrf
