@@ -5,22 +5,20 @@
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner3.jpg') }}" alt=""></div>
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner4.jpg') }}" alt=""></div>
             <div><img style="width: 100%" src="{{ asset('assets/website/images/banner6.jpg') }}" alt=""></div>
+            <div><img style="width: 100%" src="{{ asset('assets/website/images/banner5.jpg') }}" alt=""></div>
             <div><img style="width: 100%" src="{{ asset('assets/website/images/image_wall.jpg') }}" alt=""></div>
-            <div>
-                <video width="100%"  height="490px" autoplay loop>
-                    <source src="{{ asset('assets/website/images/banner5.mp4') }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+{{--            <div>--}}
+{{--                <video width="100%"  height="490px" autoplay loop>--}}
+{{--                    <source src="{{ asset('assets/website/images/banner5.mp4') }}" type="video/mp4">--}}
+{{--                    Your browser does not support the video tag.--}}
+{{--                </video>--}}
+{{--            </div>--}}
         </div>
     </section>
     <section id="why_us" style="margin: 50px 0">
         <div class="container">
-            <h1 class="text-center mt-5 mb-3">Why us</h1>
-            <p class="text-center">Nobin Bangladesh is an online shop in Dhaka, Bangladesh. We believe time is valuable to our fellow
-                Dhaka residents, and that they should not have to waste hours in traffic, brave bad weather and wait in
-                line just to buy basic necessities like eggs! This is why Nobin Bangladesh delivers everything you need right
-                at your door-step and at no additional cost.</p>
+            <h1 class="text-center mt-5 mb-3">Our Achievements</h1>
+            <p class="text-center">Nobin Bangladesh was established by Mr. Anamul Hasan in 2001, is a fast growing Mobile Phone brand in Bangladesh and has been operating its business successfully for 19 years in the name of MOHAMMADIA TELECOM.in recent we have now NOBIN BANGLADESH is a sister concern of MOHAMMADIA TELECOM and workforce of  more than 50. Main products of Nobin Bangladesh are Television, Cellular Phone, Watch, Electrical Fan, LED Bulb. Nobin Bangladesh is the manufacturer and seller in the relevant industry and has gained high reputation in terms of its unbeatable capability for producing Electrical and Electronics goods in the most competitive way in aspect of quality, cost, design and innovation.</p>
         </div>
     </section>
     <section id="we_have" style="margin: 50px 0">
@@ -43,13 +41,7 @@
 
         </div>
     </section>
-    <section>
-        <div class="row">
-            <div class="col-md-12">
-                <img width="100%" height="600px" src="{{ asset('assets/website/images/image_wall.jpg') }}" alt="">
-            </div>
-        </div>
-    </section>
+
     @if(!$offers->isEmpty())
         <section id="we_have" style="margin: 50px 0">
             <div class="container">

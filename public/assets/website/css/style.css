@@ -8,7 +8,11 @@
     border-radius: 0px;
 }
 .slick-slide img{
+<<<<<<< HEAD
     /*height: 550px;*/
+=======
+    /*height: 500px;*/
+>>>>>>> master
 }
 .card-img-top{
     width: 100%;

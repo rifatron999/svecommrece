@@ -56,9 +56,25 @@ class orderController extends Controller
 
 
 
-//            $request->validate(
-//                [ 'quantity.*' => 'required|numeric|min:1|max:'.$pro_stock,],
-//                [ 'quantity.*.max' => 'Stock out of your limit'  ]);
+//            testing###########################
+                $product_id = $pro_ids[$i];
+                $product_qty = $quantity[$i];
+                $update = Product::find($product_id);
+                $new_stock = $update->stock - $product_qty;
+                if($new_stock == 0){
+                    $update->update([
+                        'stock' => $new_stock,
+                        'status' => "Out of Stock",
+                    ]);
+                }elseif ($new_stock > 0){
+                    $update->update([
+                        'stock' => $new_stock,
+                    ]);
+                }elseif ($new_stock < 0){
+                    Cart::remove($cart_ids[$i]);
+                    return redirect()->route('cart.index');
+                }
+//                Testing##########################
 
 
 
@@ -147,25 +163,25 @@ class orderController extends Controller
 
 
 
-        $cart_products = Temp_Order::find($temp_order->id);
-
-        $cart_product = json_decode($cart_products->product_ids);
-        for($i = 0; $i < count($cart_product) ; $i++){
-            $pro_id = $cart_product[$i];
-            $qty = $quantities[$i];
-            $update = Product::find($pro_id);
-            $new_stock = $update->stock - $qty;
-            if($new_stock == 0){
-                $update->update([
-                    'stock' => $new_stock,
-                    'status' => "Out of Stock",
-                ]);
-            }elseif ($new_stock > 0){
-                $update->update([
-                    'stock' => $new_stock,
-                ]);
-            }
-        }
+//        $cart_products = Temp_Order::find($temp_order->id);
+//
+//        $cart_product = json_decode($cart_products->product_ids);
+//        for($i = 0; $i < count($cart_product) ; $i++){
+//            $pro_id = $cart_product[$i];
+//            $qty = $quantities[$i];
+//            $update = Product::find($pro_id);
+//            $new_stock = $update->stock - $qty;
+//            if($new_stock == 0){
+//                $update->update([
+//                    'stock' => $new_stock,
+//                    'status' => "Out of Stock",
+//                ]);
+//            }elseif ($new_stock > 0){
+//                $update->update([
+//                    'stock' => $new_stock,
+//                ]);
+//            }
+//        }
 
 
 //        Cart::destroy();
@@ -174,7 +190,6 @@ class orderController extends Controller
 
 //        dd($product_ids,$selling_price,$quantity,$offer_type,$offer_percentage,$free_product_ids,$subtotal,$total,$invoice_id);
     }
-
     public function paymentConfirm(Request $request)
     {
         $shipping = Shipping::create([
@@ -209,11 +224,46 @@ class orderController extends Controller
 
 
     }
-
     public function paymentSuccess($id)
     {
         $temp_order = Temp_Order::find($id);
         return view('pages.successful',compact('temp_order'));
 
+    }
+
+    public function pendingOrderDetails($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $order = Temp_Order::where('id',$oid)->first();
+        $product_ids = json_decode($order->product_ids);
+        $products = Product::wherein('id',$product_ids)->get();
+        $selling_price = json_decode($order->selling_price);
+        $quantity = json_decode($order->quantity);
+        $offer_type = json_decode($order->offer_type);
+        $offer_percentage = json_decode($order->offer_percentage);
+        $free_product_ids = json_decode($order->free_product_ids);
+        $free_products = Product::wherein('id',$free_product_ids)->get();
+
+        //print_r($free_product_ids);
+        //echo $selling_price[0] + $selling_price[0] ;
+        return view('pages.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
+    }
+
+    public function confirmedOrderDetails($id)
+    {
+        $oid = Crypt::decrypt($id);
+        $order = Order::where('id',$oid)->first();
+        $product_ids = json_decode($order->product_ids);
+        $products = Product::wherein('id',$product_ids)->get();
+        $selling_price = json_decode($order->selling_price);
+        $quantity = json_decode($order->quantity);
+        $offer_type = json_decode($order->offer_type);
+        $offer_percentage = json_decode($order->offer_percentage);
+        $free_product_ids = json_decode($order->free_product_ids);
+        $free_products = Product::wherein('id',$free_product_ids)->get();
+
+        //print_r($free_product_ids);
+        //echo $selling_price[0] + $selling_price[0] ;
+        return view('pages.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
     }
 }
