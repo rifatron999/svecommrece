@@ -119,5 +119,11 @@
 .about_us_text{
     font-family: cursive;
 }
+/* media for doughnut*/
+@media only screen and (max-width: 800px) {
+    #doughnut {
+        display: none;
+    }
+}
 
 

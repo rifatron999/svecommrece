@@ -16,6 +16,9 @@
 <!--script for this page-->
 <script src="{{ asset('assets/vendor/js/sparkline-chart.js') }}"></script>
 <script src="{{ asset('assets/vendor/js/zabuto_calendar.js') }}"></script>
+<script src="{{ asset('assets/vendor/js/chart-master/Chart.js') }}"></script> {{--chart--}}
+<script src="{{ asset('assets/vendor/js/chartjs-conf.js') }}"></script> {{--chart--}}
+
 
 
 <script type="application/javascript">

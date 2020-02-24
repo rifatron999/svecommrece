@@ -21,7 +21,14 @@ class normalVendorController extends Controller
 {
     public function index()
     {
-        return view('vendor.dashboard.index');
+        $temp_due = Temp_Order::where('status','Due')->count();
+        $temp_cancel = Temp_Order::where('status','Cancel')->count();
+        $temp_pending = Temp_Order::where('status','Pending')->count();
+
+        $order_processing = Order::where('status','Processing')->count();
+        $order_shipping = Order::where('status','Shipping')->count();
+        $order_delivered = Order::where('status','Delivered')->count();
+        return view('vendor.dashboard.index',compact('temp_due','temp_cancel','temp_pending','order_processing','order_shipping','order_delivered'));
     }
 //************************ page = category_management
     public function categoryManagementView()
@@ -896,6 +903,7 @@ class normalVendorController extends Controller
         $product_ids = json_decode($order->product_ids);
         $products = Product::wherein('id',$product_ids)->get();
         $selling_price = json_decode($order->selling_price);
+        $quantity = json_decode($order->quantity);
         $offer_type = json_decode($order->offer_type);
         $offer_percentage = json_decode($order->offer_percentage);
         $free_product_ids = json_decode($order->free_product_ids);
