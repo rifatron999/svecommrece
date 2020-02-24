@@ -2,8 +2,8 @@
     @foreach($search_result as $s)
         <tr >
             <td class="text-center"><b>{{$s->invoice_id}}</b></td>
-            <td class="text-center"><b>{{$s->trx_id}}</b></td>
-            <td class="text-center"><b>{{$s->sender_mobile_number}}</b></td>
+            <td class="text-center"><b>{{$s->payments->trx_id}}</b></td>
+            <td class="text-center"><b>{{$s->payments->sender_mobile_number}}</b></td>
             <td class="text-center"><b>৳ {{number_format($s->total)}}</b></td>
             <td class="text-center"><b>{{$s->customers->name}}</b></td>
             <td class="text-center"><b>{{$s->customers->phone}}</b></td>
