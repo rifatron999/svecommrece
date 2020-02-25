@@ -871,8 +871,6 @@ class normalVendorController extends Controller
         $free_product_ids = json_decode($order->free_product_ids);
             $free_products = Product::wherein('id',$free_product_ids)->get();
 
-        //print_r($free_product_ids);
-        //echo $selling_price[0] + $selling_price[0] ;
         return view('vendor.order_management.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
     }
 
@@ -947,7 +945,6 @@ class normalVendorController extends Controller
                 $count = '';
             }
         }
-
         $returnHTML = view('vendor.order_management.search')->with('search_result', $search_result)->with('search_count', $search_count)->render();
         return response()->json(array('success' => true, 'table_data'=>$returnHTML,'total_data'=>$count));
     }
