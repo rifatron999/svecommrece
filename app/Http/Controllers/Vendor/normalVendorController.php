@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Brand;
 use App\Category;
+use App\Customer;
 use App\Offer;
 use App\Payment;
 use App\Product;
@@ -881,17 +882,34 @@ class normalVendorController extends Controller
             'sender_mobile_number' => 'required|max:15',
         ]);
         $oid = $request->id;
-        $order = Temp_Order::where('id',$oid)->first();
-        $payment = Payment::where('id',$order->payment_id);
-        $order->update([
-            'trx_id' => $request->trx_id,
-            'sender_mobile_number' => $request->sender_mobile_number,
-        ]);
-        $payment->update([
-            'trx_id' => $request->trx_id,
-            'sender_mobile_number' => $request->sender_mobile_number,
-        ]);
-        return back()->with('msg', "✔ Payment Updated for ".$order->invoice_id);
+        if($request->orderfor == 'temp')
+        {
+            $order = Temp_Order::where('id',$oid)->first();
+            $payment = Payment::where('id',$order->payment_id);
+            $order->update([
+                'trx_id' => $request->trx_id,
+                'sender_mobile_number' => $request->sender_mobile_number,
+            ]);
+            $payment->update([
+                'trx_id' => $request->trx_id,
+                'sender_mobile_number' => $request->sender_mobile_number,
+            ]);
+        }
+        elseif($request->orderfor == 'main')
+        {
+            $order = Order::where('id',$oid)->first();
+            $payment = Payment::where('id',$order->payment_id);
+            $order->update([
+                'trx_id' => $request->trx_id,
+                'sender_mobile_number' => $request->sender_mobile_number,
+            ]);
+            $payment->update([
+                'trx_id' => $request->trx_id,
+                'sender_mobile_number' => $request->sender_mobile_number,
+            ]);
+        }
+
+        return back()->with('msg', "✔ Payment Updated for ");
         //return view('vendor.product_management.edit',compact('product','imgarray','brands','categories'));
     }
     public function generateInvoice($id)
@@ -955,4 +973,20 @@ class normalVendorController extends Controller
 
 
     //************************ page = oder_management #
+    //************************ page = customer_management
+    public function customerList()
+    {
+        $customerList = Customer::get();
+
+        return view('vendor.customer_management.index',compact('customerList'));
+    }
+    public function customer_details($id)
+    {
+        $cid = Crypt::decrypt($id);
+        $customer = Customer::where('id',$cid)->first();
+        $temp_orders = Temp_Order::where('customer_id',$customer->id)->get();
+        $orders = Order::where('customer_id',$customer->id)->get();
+        return view('vendor.customer_management.customer_details',compact('customer','temp_orders','orders'));
+    }
+    //************************ page = customer_management #
 }

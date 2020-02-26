@@ -141,12 +141,13 @@ function setCancelOrderId(id,orderid)
     document.getElementById('order_cancel_id').value = id ;
     document.getElementById('order_cancel_order_id').value = orderid ;
 }
-function setOrderPayment(id,trx,number,orderid)
+function setOrderPayment(id,trx,number,orderid,orderfor)
 {
     document.getElementById('order_payment_id').value = id ;
     document.getElementById('order_payment_trx').value = trx ;
     document.getElementById('order_payment_number').value = number ;
     document.getElementById('order_payment_order_id').value = orderid ;
+    document.getElementById('order_payment_for').value = orderfor ;
 
 }
 function setOrderShipping(id,orderid,cn,courirer,date)

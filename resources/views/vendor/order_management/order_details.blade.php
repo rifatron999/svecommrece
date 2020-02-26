@@ -236,9 +236,12 @@
                         <tr >
                             <td class="text-center" colspan="2">
                                 <span class="label label-danger label-mini"><b>Payment Details</b></span>
-                                @if($order->status === "Pending" OR $order->status === "Cancel" OR $order->status === "Processing")
-                                <a class="btn btn-warning btn-xs " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$order->id}}','{{$order->trx_id}}','{{$order->sender_mobile_number}}','{{$order->invoice_id}}')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
-                            @endif
+                                @if($order->status === "Pending" OR $order->status === "Cancel"  )
+                                    <a class="btn btn-warning btn-xs " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$order->id}}','{{$order->trx_id}}','{{$order->sender_mobile_number}}','{{$order->invoice_id}}','temp')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
+                                @elseif($order->status === "Processing")
+                                    <a class="btn btn-warning btn-xs " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$order->id}}','{{$order->payments->trx_id}}','{{$order->payments->sender_mobile_number}}','{{$order->invoice_id}}','main')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
+
+                                @endif
                             </td>
                         </tr>
                         <tr>
