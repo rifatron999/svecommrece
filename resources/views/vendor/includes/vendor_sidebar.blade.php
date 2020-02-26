@@ -58,6 +58,12 @@
                     <li class="@yield('Due_Order')" ><a  href="{{ route('dueOrderView') }}"><i class="fas fa-skull"></i> Due Orders</a></li>
                 </ul>
             </li>
+            <li class="sub-menu">
+                <a class="@yield('Contact_management')" href="{{route('contact_management')}}" >
+                    <i class="fas fa-store"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
 
         </ul>
         <!-- sidebar menu end-->`

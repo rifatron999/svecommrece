@@ -16,6 +16,7 @@ Route::get('/about_us','website\websiteController@about')->name('website.about')
 /*Route::get('/products','website\websiteController@products')->name('website.products');*/
 Route::get('/offers','website\websiteController@offers')->name('website.offers');
 Route::get('/contact_us','website\websiteController@contact_us')->name('website.contact');
+Route::post('/submitContact','website\websiteController@submitContact')->name('website.submitContact');
 /* ====================================== Website end  ============================================== */
 /* ====================================================== Frontend  ============================================================== */
 Route::get('/ecommerce', 'Userend\pagesController@home')->name('pages.home');
@@ -133,8 +134,13 @@ Route::get('/order_management/generateInvoice/{id}', 'Vendor\normalVendorControl
 Route::get('/due_orders','Vendor\normalVendorController@dueOrderView')->name('dueOrderView');
 Route::get('/due_orders/remove/{id}','Vendor\normalVendorController@dueOrderRemove')->name('dueOrderRemove');
 Route::post('/order_management/updatePayment','Vendor\normalVendorController@updatePayment')->name('updatePayment');
-
-
+//contact management
+Route::get('/contact_management','Vendor\normalVendorController@contact_management')->name('contact_management');
+Route::get('/contact_details/{id}','Vendor\normalVendorController@contact_details')->name('contact_details');
+Route::get('/contact_delete/{id}','Vendor\normalVendorController@contact_delete')->name('contact_delete');
+Route::get('/contact_processing/{id}','Vendor\normalVendorController@contact_processing')->name('contact_processing');
+Route::get('/contact_solved/{id}','Vendor\normalVendorController@contact_solved')->name('contact_solved');
+Route::get('/contact_cancel/{id}','Vendor\normalVendorController@contact_cancel')->name('contact_cancel');
 
 
 

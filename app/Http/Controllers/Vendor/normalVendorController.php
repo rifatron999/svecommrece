@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Brand;
 use App\Category;
+use App\Contact;
 use App\Offer;
 use App\Payment;
 use App\Product;
@@ -895,4 +896,53 @@ class normalVendorController extends Controller
 
 
     //************************ page = oder_management #
+
+    public function contact_management()
+    {
+        $ask_a_question = Contact::where('type','ask_a_question')->orderByDesc("status")->get();
+        $complain = Contact::where('type','complain')->get();
+        $suggestion = Contact::where('type','suggestion')->get();
+        $contact = Contact::where('type','contact')->get();
+        return view('vendor.contact_management.index',compact('ask_a_question','complain','suggestion','contact'));
+    }
+
+    public function contact_details($id)
+    {
+        $contact = Contact::find(Crypt::decrypt($id));
+        return view('vendor.contact_management.details',compact('contact'));
+    }
+
+    public function contact_delete($id)
+    {
+        Contact::find(Crypt::decrypt($id))->delete();
+        return redirect()->back();
+    }
+
+    public function contact_processing($id)
+    {
+        $update = Contact::find(Crypt::decrypt($id));
+        $update->update([
+            'status' => 'Processing',
+        ]);
+        return redirect()->back();
+    }
+
+    public function contact_solved($id)
+    {
+        $update = Contact::find(Crypt::decrypt($id));
+        $update->update([
+            'status' => 'Solved',
+        ]);
+        return redirect()->back();
+    }
+
+    public function contact_cancel($id)
+    {
+        $update = Contact::find(Crypt::decrypt($id));
+        $update->update([
+            'status' => 'Cancelled',
+        ]);
+        return redirect()->back();
+    }
+
 }
