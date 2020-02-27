@@ -44,7 +44,6 @@ class normalVendorController extends Controller
         $parent_id = NULL;
         return view('vendor.category_management.index',compact('categories','parent_id','sub'));
     }
-
     public function categoryAdd(Request $request)
     {
         $request->validate([
@@ -107,7 +106,6 @@ class normalVendorController extends Controller
         if(!empty($delete->image)){unlink('assets/vendor/images/categories/'.$delete->image);}
         return redirect()->back()->with('msg',"✔ REMOVED");
     }
-
     public function subCategoryView($pid)
     {
         $categories = Category::where('parent_id',$pid)->paginate(10);
@@ -154,8 +152,6 @@ class normalVendorController extends Controller
         }
         return back()->with('msg','✔ Category Updated');
     }
-
-
     //************************ page = category_management #
     //************************ page = brand_management
     public function brandManagementView()
@@ -874,7 +870,6 @@ class normalVendorController extends Controller
 
         return view('vendor.order_management.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
     }
-
     public function updatePayment(Request $request)
     {
         $request->validate([
@@ -928,7 +923,6 @@ class normalVendorController extends Controller
         $pdf = PDF::loadView('pdf/pdf', compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products','address'));
         return $pdf->stream('order :'.$order->invoice_id.'.pdf');
     }
-
     public function search(Request $request)
     {
         $search = $_GET['search'];
@@ -970,14 +964,11 @@ class normalVendorController extends Controller
     {
         return view('vendor.order_management.index');
     }
-
-
     //************************ page = oder_management #
     //************************ page = customer_management
     public function customerList()
     {
         $customerList = Customer::get();
-
         return view('vendor.customer_management.index',compact('customerList'));
     }
     public function customer_details($id)
