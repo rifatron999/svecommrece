@@ -1,26 +1,36 @@
 var Script = function () {
 
+    var due = parseInt(document.getElementById('doughnut_due').value) ;
+    var cancel = parseInt(document.getElementById('doughnut_cancel').value) ;
+    var pending = parseInt(document.getElementById('doughnut_pending').value) ;
+    var processing = parseInt(document.getElementById('doughnut_processing').value) ;
+    var shipping = parseInt(document.getElementById('doughnut_shipping').value) ;
+    var delivered = parseInt(document.getElementById('doughnut_delivered').value) ;
 
     var doughnutData = [
         {
-            value: 30,
-            color:"#1abc9c"
+            value: due,
+            color:"#d9534f"
         },
         {
-            value : 50,
-            color : "#2ecc71"
+            value : cancel,
+            color : "#777"
         },
         {
-            value : 100,
-            color : "#3498db"
+            value : pending,
+            color : "#f0ad4e"
         },
         {
-            value : 40,
-            color : "#9b59b6"
+            value : processing,
+            color : "#5bc0de"
         },
         {
-            value : 120,
-            color : "#34495e"
+            value : shipping,
+            color : "#428bca"
+        },
+        {
+            value : delivered,
+            color : "#5cb85c"
         }
 
     ];

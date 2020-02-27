@@ -2,7 +2,7 @@
     <div id="sidebar"  class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="profile.html"><img style="background: white;" src="{{asset('assets/vendor/images/profilePicture/nobin.jpg')}}" class="img-circle" width="60"></a></p>
+            <p class="centered"><a href="profile.html"><img style="background: white;" src="{{asset('assets/vendor/images/brands/logo.jpg')}}" class="img-circle" width="60"></a></p>
             <h5 class="centered">{{ Auth::user()->name }}</h5>
             <li class="sub-menu">
                 <a class="@yield('DashBoard')" href="{{route('nvdashboard')}}" >
@@ -47,11 +47,12 @@
                 </a>
             </li>
             <li class="sub-menu">
-                <a href="javascript:;" class="@yield('Order_management')">
+                <a class="@yield('Order_management')" >
                     <i class="fab fa-accusoft"></i>
                     <span>Order</span>
                 </a>
                 <ul class="sub" style="display: none;">
+                    <li class="@yield('all_order')" ><a  href="{{route('allOrders')}}"><i class="fas fa-globe"></i> All</a></li>
                     <li class="@yield('Order')" ><a  href="{{ route('OrderView') }}"><i class="fas fa-clipboard-check"></i> Orders</a></li>
                     <li class="@yield('cancel_Order')" ><a  href="{{ route('cancelOrderView') }}"><i class="fas fa-list-alt"></i> Canceled Orders</a></li>
                     <li class="@yield('Pending_Order')" ><a  href="{{ route('pendingOrderView') }}"><i class="fas fa-list-alt"></i> Pending Orders</a></li>
@@ -62,6 +63,12 @@
                 <a class="@yield('Contact_management')" href="{{route('contact_management')}}" >
                     <i class="fas fa-store"></i>
                     <span>Contact</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a class="@yield('customer_management')" href="{{route('customerList')}}" >
+                    <i class="fas fa-people-carry"></i>
+                    <span>Customers</span>
                 </a>
             </li>
 

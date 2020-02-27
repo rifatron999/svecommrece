@@ -141,12 +141,13 @@ function setCancelOrderId(id,orderid)
     document.getElementById('order_cancel_id').value = id ;
     document.getElementById('order_cancel_order_id').value = orderid ;
 }
-function setOrderPayment(id,trx,number,orderid)
+function setOrderPayment(id,trx,number,orderid,orderfor)
 {
     document.getElementById('order_payment_id').value = id ;
     document.getElementById('order_payment_trx').value = trx ;
     document.getElementById('order_payment_number').value = number ;
     document.getElementById('order_payment_order_id').value = orderid ;
+    document.getElementById('order_payment_for').value = orderfor ;
 
 }
 function setOrderShipping(id,orderid,cn,courirer,date)
@@ -157,4 +158,61 @@ function setOrderShipping(id,orderid,cn,courirer,date)
     document.getElementById('order_shipment_courier').value = courirer ;
     document.getElementById('order_shipment_date').value = date ;
 }
-//page = vendor>offer_management#
+function getSearch(type)
+{
+    if(type === 'temp')
+    {
+        var search = document.getElementById('search_temp').value;
+    }
+    else if(type === 'main')
+    {
+        var search = document.getElementById('search_main').value;
+    }
+    $.ajax({
+        url: "/order_management/search",
+        method: "GET",
+        data: {search: search,type: type},
+        dataType:'json',
+        success: function(data)
+        {
+            $("#search_table").html(data.table_data);
+            $("#search_total_record").html(data.total_data);
+            // console.log(data.table_data);
+            console.log(data.total_data);
+        }
+    });
+}
+
+function printDiv(divName)
+{
+    var nonp = document.getElementsByClassName('print_hide');
+
+    for(var i = 0; i < nonp.length; i++)
+    {
+        nonp[i].style.visibility = "hidden";
+    }
+    var printContents = document.getElementById(divName).innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+    for(var i = 0; i < nonp.length; i++)
+    {
+        nonp[i].style.visibility = "visible";
+    }
+}
+$(document).on('change','#search_type',function()
+{
+    let search_type = document.getElementById('search_type');
+    let search_temp = document.getElementById('search_temp');
+    let search_main = document.getElementById('search_main');
+    if(search_type.value === 'main'){
+        search_temp.style.display = 'none';
+        search_main.style.display = 'block';
+    }
+   else if(search_type.value === 'temp'){
+        search_temp.style.display = 'block';
+        search_main.style.display = 'none';
+    }
+});
+//page = vendor>order_management#

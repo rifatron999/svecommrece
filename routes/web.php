@@ -75,7 +75,6 @@ Route::get('/customer/password/reset/{token}', 'CustomerAuth\ResetPasswordContro
 
 //xahid
 
-
 });
 /* ====================================================== customer auth end   ============================================================== */
 /* ====================================================== Backend   =================================================================== */
@@ -110,7 +109,7 @@ Route::post('/product_management/update','Vendor\normalVendorController@productU
 Route::get('/product_management/remove/{id}','Vendor\normalVendorController@productRemove')->name('brandRemove');
 //product management #
 //offer management
-Route::get('/offer_management','Vendor\normalVendorController@offerManagementView')->name('offerManagementView');
+Route::get('/offer_emanagement','Vendor\normalVendorController@offerManagementView')->name('offerManagementView');
 Route::post('/offer_management','Vendor\normalVendorController@offerAdd')->name('offerAdd');
 Route::get('/offer_management/edit/{id}','Vendor\normalVendorController@offerManagementEdit')->name('offerManagementEdit');
 Route::post('/offer_management/update','Vendor\normalVendorController@offerUpdate')->name('offerUpdate');
@@ -134,6 +133,16 @@ Route::get('/order_management/generateInvoice/{id}', 'Vendor\normalVendorControl
 Route::get('/due_orders','Vendor\normalVendorController@dueOrderView')->name('dueOrderView');
 Route::get('/due_orders/remove/{id}','Vendor\normalVendorController@dueOrderRemove')->name('dueOrderRemove');
 Route::post('/order_management/updatePayment','Vendor\normalVendorController@updatePayment')->name('updatePayment');
+Route::get('/order_management/search', 'Vendor\normalVendorController@search')->name('search');//ajax
+Route::get('/order_management/allorders','Vendor\normalVendorController@allOrders')->name('allOrders');
+
+//order management #
+//customer_management
+Route::get('/customer_management','Vendor\normalVendorController@customerList')->name('customerList');
+Route::get('/customer_management/details/{id}','Vendor\normalVendorController@customer_details')->name('customer_details');
+
+//customer_management #
+
 //contact management
 Route::get('/contact_management','Vendor\normalVendorController@contact_management')->name('contact_management');
 Route::get('/contact_details/{id}','Vendor\normalVendorController@contact_details')->name('contact_details');
@@ -141,18 +150,8 @@ Route::get('/contact_delete/{id}','Vendor\normalVendorController@contact_delete'
 Route::get('/contact_processing/{id}','Vendor\normalVendorController@contact_processing')->name('contact_processing');
 Route::get('/contact_solved/{id}','Vendor\normalVendorController@contact_solved')->name('contact_solved');
 Route::get('/contact_cancel/{id}','Vendor\normalVendorController@contact_cancel')->name('contact_cancel');
-
-
-
-
-
-
-
-
-//order management #
-
-
-/* ======== normalVendor #   =================================================================== */
+//contact management #
+///* ======== normalVendor #   =================================================================== */
 
 
 });

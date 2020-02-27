@@ -114,7 +114,6 @@ hr {
   background-color: #FFF;
   -webkit-box-shadow: 0px 0px 0px 1px #DADADA inset, 0px 0px 0px 6px transparent;
   box-shadow: 0px 0px 0px 1px #DADADA inset, 0px 0px 0px 6px transparent;
-
 }
 
 .main-btn:hover, .main-btn:focus {
@@ -423,7 +422,7 @@ textarea.input {
   max-height: 260px;
   margin-bottom: 15px;
   overflow-y: scroll;
-    display:none;
+  display: none;
 }
 
 #shopping-cart .shopping-cart-list .product.product-widget:first-child {

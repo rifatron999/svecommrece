@@ -80,9 +80,9 @@
                                 </td>
                                 <td class="text-center" width="60%" >
                                     @if(empty($order->customers->image))
-                                        <img class="img-circle" src="{{ asset('assets/vendor/images/profile picture/empty.jpg') }}"width="20%" alt="" title="Unavailable">
+                                        <img class="img-circle" src="{{ asset('assets/vendor/images/profile_picture/empty.jpg') }}"width="20%" alt="" title="Unavailable">
                                     @else
-                                        <img class="img-circle" src="{{ asset('assets/vendor/images/profile picture/') }}/{{$order->customers->image}}" width="20%" alt="" >
+                                        <img class="img-circle" src="{{ asset('assets/vendor/images/profile_picture/') }}/{{$order->customers->image}}" width="20%" alt="" >
                                     @endif
                                 </td>
                             </tr>
@@ -236,9 +236,12 @@
                         <tr >
                             <td class="text-center" colspan="2">
                                 <span class="label label-danger label-mini"><b>Payment Details</b></span>
-                                @if($order->status === "Pending" OR $order->status === "Cancel" OR $order->status === "Processing")
-                                <a class="btn btn-warning btn-xs " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$order->id}}','{{$order->trx_id}}','{{$order->sender_mobile_number}}','{{$order->invoice_id}}')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
-                            @endif
+                                @if($order->status === "Pending" OR $order->status === "Cancel"  )
+                                    <a class="btn btn-warning btn-xs " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$order->id}}','{{$order->trx_id}}','{{$order->sender_mobile_number}}','{{$order->invoice_id}}','temp')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
+                                @elseif($order->status === "Processing")
+                                    <a class="btn btn-warning btn-xs " data-toggle="modal" data-target="#modal_order_payment_update" onclick="setOrderPayment('{{$order->id}}','{{$order->payments->trx_id}}','{{$order->payments->sender_mobile_number}}','{{$order->invoice_id}}','main')" data-whatever="@mdo" title="Edit Payment"><i class="fas fa-pen-nib"></i></a>
+
+                                @endif
                             </td>
                         </tr>
                         <tr>
