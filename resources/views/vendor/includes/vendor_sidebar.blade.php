@@ -71,6 +71,12 @@
                     <span>Customers</span>
                 </a>
             </li>
+            <li class="sub-menu">
+                <a class="@yield('sales_management')" href="{{route('sales')}}" >
+                    <i class="fas fa-hand-pointer"></i>
+                    <span>Sales</span>
+                </a>
+            </li>
 
         </ul>
         <!-- sidebar menu end-->`

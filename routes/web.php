@@ -151,6 +151,9 @@ Route::get('/contact_processing/{id}','Vendor\normalVendorController@contact_pro
 Route::get('/contact_solved/{id}','Vendor\normalVendorController@contact_solved')->name('contact_solved');
 Route::get('/contact_cancel/{id}','Vendor\normalVendorController@contact_cancel')->name('contact_cancel');
 //contact management #
+//sales management
+Route::get('/sales_management','Vendor\normalVendorController@sales')->name('sales');
+//sales management #
 ///* ======== normalVendor #   =================================================================== */
 
 
