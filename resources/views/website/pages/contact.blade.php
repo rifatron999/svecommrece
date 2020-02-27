@@ -23,8 +23,8 @@
                             <input name="name" type="text" class="feedback-input form-control" value="{{ old('name') }}" required />
                         </div>
                         <div class="form-group">
-                            <label for="">Email</label>
-                            <input name="email" type="email" class="feedback-input form-control" value="{{ old('email') }}" />
+                            <label for="">Email (Must be filled)</label>
+                            <input name="email" type="email" class="feedback-input form-control" value="{{ old('email') }}" required/>
                         </div>
                         <div class="form-group">
                             <label for="">Phone (Must be filled)</label>

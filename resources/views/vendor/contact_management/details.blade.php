@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h1 class="text-center">Contact Details </h1>
+            <h1 class="text-center"  style="margin-bottom: 2em">Contact Details </h1>
             <div class="col-md-6">
                 @if($contact->status == "Pending")
                     <span class="label label-info">{{ $contact->status }}</span>
@@ -38,7 +38,7 @@
                 <p><b>Message : </b></p>
                 <h2>{{ $contact->message }}</h2>
             </div>
-            <div class="col-md-12 text-center">
+            <div class="col-md-12">
                 <p><b><u>Note</u></b></p>
                 <form method="post" action="{{ route('contact_note_update') }}">
                     @csrf
