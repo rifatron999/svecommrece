@@ -1048,4 +1048,19 @@ class normalVendorController extends Controller
         ]);
         return redirect()->back();
     }
+
+    public function contact_search()
+    {
+        $search = $_GET['search'];
+        $search_contact = Contact::where('name','LIKE','%'.$search.'%')
+                                 ->orWhere('email','LIKE','%'.$search.'%')
+                                 ->orWhere('phone','LIKE','%'.$search.'%')
+                                 ->orWhere('address','LIKE','%'.$search.'%')
+                                 ->orWhere('type','LIKE','%'.$search.'%')
+                                 ->orWhere('message','LIKE','%'.$search.'%')
+                                 ->orWhere('status','LIKE','%'.$search.'%')
+                                 ->get();
+        $returnHTML = view('vendor.contact_management.search_table')->with('search_contacts', $search_contact)->render();
+        return response()->json(array('success' => true, 'search_contact'=> $returnHTML ));
+    }
 }

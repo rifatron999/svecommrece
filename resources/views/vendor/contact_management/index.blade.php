@@ -8,6 +8,7 @@
             <li class="" ><a  data-toggle="tab" href="#complain"> Complain </a> </li>
             <li class="" ><a  data-toggle="tab" href="#suggestion"> Suggestion </a> </li>
             <li class="" ><a  data-toggle="tab" href="#contact"> Contact </a> </li>
+            <li class="" ><a  data-toggle="tab" href="#search"> Search </a> </li>
 
         </ul>
         <div class="tab-content">
@@ -23,7 +24,9 @@
                                 <th scope="col">Phone</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Message</th>
+                                <th scope="col">Note</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Actions</th>
                             </tr>
                             </thead>
@@ -37,6 +40,7 @@
                                     <td>{{ $a_question->phone }}</td>
                                     <td>{{ $a_question->address }}</td>
                                     <td>{{ Str::limit($a_question->message, 50) }}</td>
+                                    <td> <span style="color: red">{{ Str::limit($a_question->note, 20) }}</span></td>
                                     <td>
                                         @if($a_question->status == "Pending")
                                             <span class="label label-info">{{ $a_question->status }}</span>
@@ -48,6 +52,7 @@
                                             <span class="label label-primary">{{ $a_question->status }}</span>
                                         @endif
                                     </td>
+                                    <td>{{ $a_question->created_at }}</td>
                                     <td class="text-left">
                                         <a href="{{ route('contact_details',Crypt::encrypt($a_question->id) ) }}" title="Details" class="btn btn-primary"> <i class="fas fa-arrow-circle-right"></i></a>
                                         <a href="{{ route('contact_delete',Crypt::encrypt($a_question->id) ) }}" title="Delete" onclick="return confirm('Are you sure ?')" class="btn btn-danger"> <i class="fa fa-trash"></i></a>
@@ -60,7 +65,7 @@
                     @endif
                 </div>
             </div>
-            <div id="complain" class="tab-pane fade in " >
+            <div id="complain" class="tab-pane fade in" >
                 <div class="row">
                     @if(!$complain->isEmpty())
                         <table class="table table-hover">
@@ -72,7 +77,9 @@
                                 <th scope="col">Phone</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Message</th>
+                                <th scope="col">Note</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Actions</th>
                             </tr>
                             </thead>
@@ -86,6 +93,7 @@
                                     <td>{{ $a_question->phone }}</td>
                                     <td>{{ $a_question->address }}</td>
                                     <td>{{ Str::limit($a_question->message, 50) }}</td>
+                                    <td><span style="color: red">{{ Str::limit($a_question->note, 20) }}</span></td>
                                     <td>
                                         @if($a_question->status == "Pending")
                                             <span class="label label-info">{{ $a_question->status }}</span>
@@ -97,6 +105,7 @@
                                             <span class="label label-primary">{{ $a_question->status }}</span>
                                         @endif
                                     </td>
+                                    <td>{{ $a_question->created_at }}</td>
                                     <td class="text-left">
                                         <a href="{{ route('contact_details',Crypt::encrypt($a_question->id) ) }}" title="Details" class="btn btn-primary"> <i class="fas fa-arrow-circle-right"></i></a>
                                         <a href="{{ route('contact_delete',Crypt::encrypt($a_question->id) ) }}" title="Delete" onclick="return confirm('Are you sure ?')" class="btn btn-danger"> <i class="fa fa-trash"></i></a>
@@ -121,7 +130,9 @@
                                 <th scope="col">Phone</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Message</th>
+                                <th scope="col">Note</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Actions</th>
                             </tr>
                             </thead>
@@ -135,6 +146,7 @@
                                     <td>{{ $a_question->phone }}</td>
                                     <td>{{ $a_question->address }}</td>
                                     <td>{{ Str::limit($a_question->message, 50) }}</td>
+                                    <td> <span style="color: red">{{ Str::limit($a_question->note, 20) }}</span></td>
                                     <td>
                                         @if($a_question->status == "Pending")
                                             <span class="label label-info">{{ $a_question->status }}</span>
@@ -146,6 +158,7 @@
                                             <span class="label label-primary">{{ $a_question->status }}</span>
                                         @endif
                                     </td>
+                                    <td>{{ $a_question->created_at }}</td>
                                     <td class="text-left">
                                         <a href="{{ route('contact_details',Crypt::encrypt($a_question->id) ) }}" title="Details" class="btn btn-primary"> <i class="fas fa-arrow-circle-right"></i></a>
                                         <a href="{{ route('contact_delete',Crypt::encrypt($a_question->id) ) }}" title="Delete" onclick="return confirm('Are you sure ?')" class="btn btn-danger"> <i class="fa fa-trash"></i></a>
@@ -170,7 +183,9 @@
                                 <th scope="col">Phone</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Message</th>
+                                <th scope="col">Note</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Actions</th>
                             </tr>
                             </thead>
@@ -184,6 +199,7 @@
                                     <td>{{ $a_question->phone }}</td>
                                     <td>{{ $a_question->address }}</td>
                                     <td>{{ Str::limit($a_question->message, 50) }}</td>
+                                    <td>{{ Str::limit($a_question->message, 50) }}</td>
                                     <td>
                                         @if($a_question->status == "Pending")
                                             <span class="label label-info">{{ $a_question->status }}</span>
@@ -195,6 +211,7 @@
                                             <span class="label label-primary">{{ $a_question->status }}</span>
                                         @endif
                                     </td>
+                                    <td>{{ $a_question->created_at }}</td>
                                     <td class="text-left">
                                         <a href="{{ route('contact_details',Crypt::encrypt($a_question->id) ) }}" title="Details" class="btn btn-primary"> <i class="fas fa-arrow-circle-right"></i></a>
                                         <a href="{{ route('contact_delete',Crypt::encrypt($a_question->id) ) }}" title="Delete" onclick="return confirm('Are you sure ?')" class="btn btn-danger"> <i class="fa fa-trash"></i></a>
@@ -207,6 +224,38 @@
                     @endif
                 </div>
             </div>
+            <div id="search" class="tab-pane fade in">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Search</h1>
+                        <div class="form-group">
+                            <input type="search" id="search" name="search" onkeyup="search()" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="success"></div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function search(){
+            var search = $("input[name=search]").val();
+            $.ajax({
+               type: "GET",
+                url: '{{ route('contact_search') }}',
+                data:{
+                    search : search,
+                },
+                datatype: 'json',
+                success: function (data) {
+                    $("#success").html(data.search_contact);
+                    console.log(data.search_contact);
+                }
+            });
+        }
+    </script>
 @endsection
