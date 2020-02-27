@@ -60,6 +60,12 @@
                 </ul>
             </li>
             <li class="sub-menu">
+                <a class="@yield('Contact_management')" href="{{route('contact_management')}}" >
+                    <i class="fas fa-store"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li class="sub-menu">
                 <a class="@yield('customer_management')" href="{{route('customerList')}}" >
                     <i class="fas fa-people-carry"></i>
                     <span>Customers</span>

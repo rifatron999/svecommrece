@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 
 use App\Category;
+use App\Contact;
 use App\Offer;
 use App\Product;
 use Illuminate\Http\Request;
@@ -34,5 +35,26 @@ class websiteController extends Controller
     public function contact_us()
     {
         return view('website.pages.contact');
+    }
+
+    public function submitContact(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'message' => 'required'
+        ]);
+
+        Contact::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'type' => $request->type,
+            'message' => $request->message,
+            'status' => 'Pending',
+        ]);
+
+        return back()->with('msg','✔ Form Submitted');
     }
 }
