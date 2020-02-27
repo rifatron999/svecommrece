@@ -1038,4 +1038,14 @@ class normalVendorController extends Controller
         ]);
         return redirect()->back();
     }
+
+    public function contact_note_update(Request $request)
+    {
+        $id = $request->id;
+        $update = Contact::find($id);
+        $update->update([
+            'note' => $request->note
+        ]);
+        return redirect()->back();
+    }
 }

@@ -55,6 +55,6 @@ class websiteController extends Controller
             'status' => 'Pending',
         ]);
 
-        return back()->with('msg','✔ Form Submitted');
+        return back()->with('msg','✔ We will contact though your Phone or Email');
     }
 }
