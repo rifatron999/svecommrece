@@ -964,15 +964,35 @@ class normalVendorController extends Controller
                 $count = '';
             }
         }
+        elseif($type == 'product')
+        {
+            if (!empty($search)) {
+                $search_product = Product::where('name', 'LIKE', '%' . $search . '%')->get();
+                foreach ($search_product as $p) {
+                    $product_array[] = $p->id;
+                }
+                $orders = Order::get();
+                $search_result = [];
+                foreach ($orders as $o)
+                {
+                    $order_pid = json_decode($o->product_ids);
+                    $result = array_intersect($order_pid, $product_array);
+                    if (!empty($result))
+                    {
+                        $search_result[] = $o;
+                    }
+                }
+                $search_count = count($search_result);
+                $count = $search_count . ' records found';
+            }
+        }
         $returnHTML = view('vendor.order_management.search')->with('search_result', $search_result)->with('search_count', $search_count)->render();
         return response()->json(array('success' => true, 'table_data'=>$returnHTML,'total_data'=>$count));
     }
     public function allOrders()
     {
         return view('vendor.order_management.index');
-    }
-
-    //************************ page = oder_management #
+    }//************************ page = oder_management #
 
     //************************ page = customer_management
     public function customerList()
@@ -1077,5 +1097,6 @@ class normalVendorController extends Controller
         return view('vendor.sales_management.index',compact('products','productSoldTotal','productAmountTotal','OfferProductSoldTotal','OfferProductAmountTotal'));
     }
     //************************ page = sales_management #
+
 
 }

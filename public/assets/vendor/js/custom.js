@@ -168,6 +168,10 @@ function getSearch(type)
     {
         var search = document.getElementById('search_main').value;
     }
+    else if(type === 'product')
+    {
+        var search = document.getElementById('search_product').value;
+    }
     $.ajax({
         url: "/order_management/search",
         method: "GET",
@@ -206,13 +210,26 @@ $(document).on('change','#search_type',function()
     let search_type = document.getElementById('search_type');
     let search_temp = document.getElementById('search_temp');
     let search_main = document.getElementById('search_main');
-    if(search_type.value === 'main'){
+    let search_product = document.getElementById('search_product');
+    if(search_type.value === 'main')
+    {
         search_temp.style.display = 'none';
         search_main.style.display = 'block';
+        search_product.style.display = 'none';
     }
-   else if(search_type.value === 'temp'){
+   else if(search_type.value === 'temp')
+   {
         search_temp.style.display = 'block';
         search_main.style.display = 'none';
-    }
+        search_product.style.display = 'none';
+
+   }
+   else if(search_type.value === 'product')
+   {
+        search_temp.style.display = 'none';
+        search_main.style.display = 'none';
+       search_product.style.display = 'block';
+
+   }
 });
 //page = vendor>order_management#
