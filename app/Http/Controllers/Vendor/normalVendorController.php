@@ -971,7 +971,7 @@ class normalVendorController extends Controller
                 foreach ($search_product as $p) {
                     $product_array[] = $p->id;
                 }
-                $orders = Order::get();
+                $orders = Order::orderBy('status','DESC')->get();
                 $search_result = [];
                 foreach ($orders as $o)
                 {
