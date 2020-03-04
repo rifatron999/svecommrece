@@ -233,3 +233,22 @@ $(document).on('change','#search_type',function()
    }
 });
 //page = vendor>order_management#
+//page = vendor>customer_management
+function getSearchCustomer()
+{
+    var search = document.getElementById('search_customer').value;
+    $.ajax({
+        url: "/customer_management/search",
+        method: "GET",
+        data: {search: search},
+        dataType:'json',
+        success: function(data)
+        {
+            $("#search_customer_table").html(data.table_data);
+            $("#search_customer_total_record").html(data.total_data);
+            // console.log(data.table_data);
+            console.log(data.total_data);
+        }
+    });
+}
+//page = vendor>customer_management#

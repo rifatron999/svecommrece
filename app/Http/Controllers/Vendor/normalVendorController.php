@@ -1009,6 +1009,24 @@ class normalVendorController extends Controller
         $orders = Order::where('customer_id',$customer->id)->get();
         return view('vendor.customer_management.customer_details',compact('customer','temp_orders','orders'));
     }
+    public function searchCustomer(Request $request)
+    {
+        $search = $_GET['search'];
+            if(!empty($search))
+            {
+                $search_result = Customer::where('name','LIKE','%'.$search.'%')->orWhere('email','LIKE','%'.$search.'%')->orWhere('address','LIKE','%'.$search.'%')->orWhere('city','LIKE','%'.$search.'%')->orWhere('phone','LIKE','%'.$search.'%')->get();
+                $search_count = $search_result->count();
+                $count = $search_count.' records found';
+            }
+            else
+            {
+                $search_result = Customer::orderBy('id','ASC')->get();
+                $search_count = $search_result->count();
+                $count = '';
+            }
+        $returnHTML = view('vendor.customer_management.search')->with('search_result', $search_result)->with('search_count', $search_count)->render();
+        return response()->json(array('success' => true, 'table_data'=>$returnHTML,'total_data'=>$count));
+    }
     //************************ page = customer_management #
     //************************ page = contact_management
     public function contact_management()

@@ -3,8 +3,16 @@
 @section('customer_management','active')
 @section('content')
     <div class="container-fluid">
+        <div class="row mar-top">
+            <div class="col-md-8">
+                <label  class=" label label-primary">Search</label>
+                <input name="search" type="text" id="search_customer"  onKeyUp="getSearchCustomer()" placeholder="Write here to search customer" class="form-control form-control-sm " >
+            </div>
+            <div class="col-md-4">
+                <b><span id="search_customer_total_record" style="color: #0BBA8B"></span></b>
+            </div>
+        </div>
             <div class="row">
-
                 <div class="col-md-12 text-center content-panel mar-top" style="overflow: auto">
                     <table class="table  table-advance table-hover ">
                         <thead class="thead-dark">
@@ -18,7 +26,7 @@
                             <th scope="col"class="text-center"> </th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="search_customer_table">
                         @foreach($customerList as $s)
                             <tr >
                                 <td class="text-center" width="20%" >
@@ -40,7 +48,6 @@
                         @endforeach
                         </tbody>
                     </table>
-                 {{--   {!! $cancel_orders->links()  !!}--}}
                 </div>
             </div>
     </div>

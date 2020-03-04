@@ -139,7 +139,7 @@ Route::get('/order_management/allorders','Vendor\normalVendorController@allOrder
 //customer_management
 Route::get('/customer_management','Vendor\normalVendorController@customerList')->name('customerList');
 Route::get('/customer_management/details/{id}','Vendor\normalVendorController@customer_details')->name('customer_details');
-
+Route::get('/customer_management/search', 'Vendor\normalVendorController@searchCustomer')->name('searchCustomer');//ajax
 //customer_management #
 
 //contact management
