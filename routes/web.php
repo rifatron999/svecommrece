@@ -135,6 +135,8 @@ Route::get('/due_orders/remove/{id}','Vendor\normalVendorController@dueOrderRemo
 Route::post('/order_management/updatePayment','Vendor\normalVendorController@updatePayment')->name('updatePayment');
 Route::get('/order_management/search', 'Vendor\normalVendorController@search')->name('search');//ajax
 Route::get('/order_management/allorders','Vendor\normalVendorController@allOrders')->name('allOrders');
+Route::post('/order_management/daterange','Vendor\normalVendorController@orderReport')->name('orderReport');
+
 //order management #
 //customer_management
 Route::get('/customer_management','Vendor\normalVendorController@customerList')->name('customerList');

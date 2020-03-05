@@ -234,16 +234,14 @@ $(document).on('change','#search_type',function()
 });
 //page = vendor>order_management#
 //page = vendor>sales_management
-$(function() {
-
+$(function() {//date range picker
     var start = moment().subtract(29, 'days');
     var end = moment();
-
-    function cb(start, end) {
+    function cb(start, end)
+    {
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         document.getElementById('daterange').value = start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY');
     }
-
     $('#reportrange').daterangepicker({
         startDate: start,
         endDate: end,
@@ -258,7 +256,6 @@ $(function() {
     }, cb);
 
     cb(start, end);
-
 });
 //page = vendor>sales_management#
 //page = vendor>customer_management

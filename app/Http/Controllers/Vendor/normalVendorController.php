@@ -992,7 +992,17 @@ class normalVendorController extends Controller
     public function allOrders()
     {
         return view('vendor.order_management.index');
-    }//************************ page = oder_management #
+    }
+    public function orderReport(Request $request)
+    {
+        $dateRange = $request->daterange;
+        $date = explode('-', $dateRange);
+        $from = date('Y-m-d', strtotime($date[0]));
+        $to = date('Y-m-d', strtotime($date[1]));
+        $orders = Order::whereBetween('created_at', [$from, $to])->orderBy('Status','DESC')->paginate(18);;
+        return view('vendor.order_management.order',compact('orders'));
+    }
+    //************************ page = oder_management #
 
     //************************ page = customer_management
     public function customerList()
