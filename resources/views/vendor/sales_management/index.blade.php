@@ -34,9 +34,19 @@
                                     <b>{{$s->name}}</b>
                                 </td>
                                 <td class="text-center"><b>{{$productSoldTotal[$i]}} pc</b></td>
-                                <td class="text-center"><b>৳ {{ number_format($productAmountTotal[$i])}}</b></td>
+                                <td class="text-center">
+                                    <b>৳ {{ number_format($productAmountTotal[$i])}}</b>
+                                </td>
                             </tr>
                         @endforeach
+                        <tr>
+                            <td class="text-center" colspan="3">
+                                @php
+                                    $total = array_sum($productAmountTotal)
+                                @endphp
+                               <h3 ><kbd>৳ {{ number_format($total)}}</kbd> </h3>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -70,6 +80,14 @@
                                 <td class="text-center"><b>৳ {{ number_format($OfferProductAmountTotal[$i])}}</b></td>
                             </tr>
                         @endforeach
+                        <tr>
+                            <td class="text-center" colspan="3">
+                                @php
+                                    $total_offer = array_sum($OfferProductAmountTotal)
+                                @endphp
+                                <h3 ><kbd>৳ {{ number_format($total_offer)}}</kbd> </h3>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -103,6 +121,14 @@
                                 <td class="text-center"><b>৳ {{ number_format($productAmountTotal[$i] - $OfferProductAmountTotal[$i])}}</b></td>
                             </tr>
                         @endforeach
+                        <tr>
+                            <td class="text-center" colspan="3">
+                                @php
+                                    $total_normal = $total - $total_offer
+                                @endphp
+                                <h3 ><kbd>৳ {{ number_format($total_normal)}}</kbd> </h3>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
