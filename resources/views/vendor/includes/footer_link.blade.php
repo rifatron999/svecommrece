@@ -19,6 +19,11 @@
 <script src="{{ asset('assets/vendor/js/chart-master/Chart.js') }}"></script> {{--chart--}}
 <script src="{{ asset('assets/vendor/js/chartjs-conf.js') }}"></script> {{--chart--}}
 
+{{--date range picker--}}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+{{--date range picker--}}
+
 
 
 <script type="application/javascript">

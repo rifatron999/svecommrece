@@ -6,7 +6,7 @@
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>@yield('title')</title>
     <link rel="icon" type="image/jpg" href="{{ asset('assets/img/icon/nobin.png') }}"/>
 
@@ -26,6 +26,8 @@
     <link href="{{ asset('assets/vendor/css/custom.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />{{--date range picker--}}
+
     <script src="{{ asset('assets/vendor/js/chart-master/Chart.js') }}"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>{{--ajax cdn--}}
@@ -38,6 +40,9 @@
     <script src="{{ asset('assets/vendor/js/tinymce/tinymce.min.js') }}"></script> {{--tinymce--}}
     <script src="https://cdn.tiny.cloud/1/jhv2goycu359q9scua0zdy5ec2pj3r2of9bxt2e09o198xnd/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> {{--tinymce--}}
     <script src="{{ asset('assets/vendor/js/custom.js') }}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>{{--date rang epicker--}}
+
+
 
 
 

@@ -1114,6 +1114,47 @@ class normalVendorController extends Controller
         }
         return view('vendor.sales_management.index',compact('products','productSoldTotal','productAmountTotal','OfferProductSoldTotal','OfferProductAmountTotal'));
     }
+    public function salesReport(Request $request)
+    {
+        $dateRange = $request->daterange;
+        $date = explode('-',$dateRange);
+
+        $from = date('Y-m-d', strtotime($date[0]));
+        $to = date('Y-m-d', strtotime($date[1]));
+        $products = Product::orderby('category_id','ASC')->get();
+        $orders = Order::whereBetween('created_at', [$from, $to])->get();
+        foreach($products as $pi => $p)
+        {//products
+            $soldTotal=0;$amountTotal=0; $OffersoldTotal=0;$OfferamountTotal=0;
+            foreach ($orders as $o)
+            {//orders
+                $pid = json_decode($o->product_ids);
+                foreach($pid as $i => $pid)
+                {//product_ids
+                    if($p->id == $pid)
+                    {
+                        $spelling_price = json_decode($o->selling_price);
+                        $quantity = json_decode($o->quantity);
+                        $offer_type = json_decode($o->offer_type);
+                        $offer_percentage = json_decode($o->offer_percentage);
+                        $soldTotal +=  (int)$quantity[$i];
+                        $amountTotal +=  (int)$spelling_price[$i] * $quantity[$i];
+                        if($offer_type[$i] != NULL)
+                        {
+                            $OffersoldTotal +=  (int)$quantity[$i];
+                            $OfferamountTotal +=  (int)$spelling_price[$i] * $quantity[$i];
+                        }
+                        //echo $$soldTotal;
+                    }
+                }
+            }
+            $productSoldTotal[] = $soldTotal;
+            $productAmountTotal[] = $amountTotal;
+            $OfferProductSoldTotal[] = $OffersoldTotal;
+            $OfferProductAmountTotal[] = $OfferamountTotal;
+        }
+        return view('vendor.sales_management.index',compact('products','productSoldTotal','productAmountTotal','OfferProductSoldTotal','OfferProductAmountTotal'));
+    }
     //************************ page = sales_management #
 
 

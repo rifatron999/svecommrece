@@ -152,6 +152,8 @@ Route::get('/contact_cancel/{id}','Vendor\normalVendorController@contact_cancel'
 //contact management #
 //sales management
 Route::get('/sales_management','Vendor\normalVendorController@sales')->name('sales');
+Route::post('/sales_management','Vendor\normalVendorController@salesReport')->name('salesReport');
+
 //sales management #
 ///* ======== normalVendor #   =================================================================== */
 
