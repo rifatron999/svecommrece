@@ -1086,7 +1086,6 @@ class normalVendorController extends Controller
         ]);
         return redirect()->back();
     }
-<<<<<<< HEAD
 
     public function contact_note_update(Request $request)
     {
@@ -1112,8 +1111,7 @@ class normalVendorController extends Controller
         $returnHTML = view('vendor.contact_management.search_table')->with('search_contacts', $search_contact)->render();
         return response()->json(array('success' => true, 'search_contact'=> $returnHTML ));
     }
-=======
-    //************************ page = contact_management #
+     //************************ page = contact_management #
     //************************ page = sales_management
     public function sales()
     {
@@ -1194,6 +1192,4 @@ class normalVendorController extends Controller
     }
     //************************ page = sales_management #
 
-
->>>>>>> rifat01
 }
