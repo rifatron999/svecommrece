@@ -4,6 +4,22 @@
 @section('Order','active')
 @section('content')
     <div class="container-fluid">
+        <div class="row">
+            <form method="post" enctype="multipart/form-data" action="{{ route('orderReport') }}">
+                @csrf
+                <div class="col-md-4 mar-top">
+                    <label for="recipient-name" class=" label label-success"> Select Report Range</label>
+                    <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                        <i class="fa fa-calendar"></i>&nbsp;
+                        <span></span> <i class="fa fa-caret-down"></i>
+                    </div>
+                    <input type="text" id="daterange" name="daterange"  class="form-control form-control-sm" style="display: none"/>
+                </div>
+                <div class="col-md-8 mar-top text-left">
+                    <button type="submit" class="btn btn-success" style="margin-top: 22px;">Submit</button>
+                </div>
+            </form>
+        </div>
             <div class="row">
                 {{--<div class="btn-group col-md-12 mar-top">
                     @foreach($sub_categories as $s)

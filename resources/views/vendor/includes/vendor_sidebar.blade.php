@@ -52,7 +52,7 @@
                     <span>Order</span>
                 </a>
                 <ul class="sub" style="display: none;">
-                    <li class="@yield('all_order')" ><a  href="{{route('allOrders')}}"><i class="fas fa-globe"></i> All</a></li>
+                    <li class="@yield('all_order')" ><a  href="{{route('allOrders')}}"><i class="fas fa-search"></i> Search</a></li>
                     <li class="@yield('Order')" ><a  href="{{ route('OrderView') }}"><i class="fas fa-clipboard-check"></i> Orders</a></li>
                     <li class="@yield('cancel_Order')" ><a  href="{{ route('cancelOrderView') }}"><i class="fas fa-list-alt"></i> Canceled Orders</a></li>
                     <li class="@yield('Pending_Order')" ><a  href="{{ route('pendingOrderView') }}"><i class="fas fa-list-alt"></i> Pending Orders</a></li>
@@ -69,6 +69,12 @@
                 <a class="@yield('customer_management')" href="{{route('customerList')}}" >
                     <i class="fas fa-people-carry"></i>
                     <span>Customers</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a class="@yield('sales_management')" href="{{route('sales')}}" >
+                    <i class="fas fa-hand-pointer"></i>
+                    <span>Sales</span>
                 </a>
             </li>
 

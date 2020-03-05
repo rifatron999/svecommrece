@@ -1,23 +1,24 @@
 @extends('vendor.master')
-@section('title','All Orders')
+@section('title','Search Orders')
 @section('Order_management','active')
 @section('all_order','active')
 @section('content')
     <div class="container-fluid">
         <div class="row">
-
             <div class="col-md-12  mar-top" style="overflow: auto">
                 <div class="col-sm-2">
                     <label  class=" label label-primary">Search For</label>
                     <select name="search" id="search_type" class="form-control">
                         <option value="temp" >Unconfirmed</option>
                         <option value="main" >Confirmed</option>
+                        <option value="product" >Product</option>
                     </select>
                 </div>
                 <div class="col-sm-6">
                     <label  class=" label label-primary">Search</label>
                     <input name="search" type="text" id="search_temp" onKeyUp="getSearch('temp')" placeholder="Write here to search from unconfirmed orders" class="form-control form-control-sm " >
                     <input name="search" type="text" id="search_main" onKeyUp="getSearch('main')" placeholder="Write here to search anything confirmed orders" class="form-control form-control-sm " style="display: none">
+                    <input name="search" type="text" id="search_product" onKeyUp="getSearch('product')" placeholder="Enter product name to search anything confirmed orders" class="form-control form-control-sm " style="display: none">
                 </div>
                 <div class="col-sm-2 mar-top">
                     <b><span id="search_total_record" style="color: #0BBA8B"></span></b>

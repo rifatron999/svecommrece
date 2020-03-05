@@ -135,12 +135,13 @@ Route::get('/due_orders/remove/{id}','Vendor\normalVendorController@dueOrderRemo
 Route::post('/order_management/updatePayment','Vendor\normalVendorController@updatePayment')->name('updatePayment');
 Route::get('/order_management/search', 'Vendor\normalVendorController@search')->name('search');//ajax
 Route::get('/order_management/allorders','Vendor\normalVendorController@allOrders')->name('allOrders');
+Route::post('/order_management/daterange','Vendor\normalVendorController@orderReport')->name('orderReport');
 
 //order management #
 //customer_management
 Route::get('/customer_management','Vendor\normalVendorController@customerList')->name('customerList');
 Route::get('/customer_management/details/{id}','Vendor\normalVendorController@customer_details')->name('customer_details');
-
+Route::get('/customer_management/search', 'Vendor\normalVendorController@searchCustomer')->name('searchCustomer');//ajax
 //customer_management #
 
 //contact management
@@ -153,6 +154,11 @@ Route::get('/contact_cancel/{id}','Vendor\normalVendorController@contact_cancel'
 Route::post('/contact_note_update','Vendor\normalVendorController@contact_note_update')->name('contact_note_update');
 Route::get('/contact_search','Vendor\normalVendorController@contact_search')->name('contact_search');
 //contact management #
+//sales management
+Route::get('/sales_management','Vendor\normalVendorController@sales')->name('sales');
+Route::post('/sales_management','Vendor\normalVendorController@salesReport')->name('salesReport');
+
+//sales management #
 ///* ======== normalVendor #   =================================================================== */
 
 

@@ -168,6 +168,10 @@ function getSearch(type)
     {
         var search = document.getElementById('search_main').value;
     }
+    else if(type === 'product')
+    {
+        var search = document.getElementById('search_product').value;
+    }
     $.ajax({
         url: "/order_management/search",
         method: "GET",
@@ -206,13 +210,70 @@ $(document).on('change','#search_type',function()
     let search_type = document.getElementById('search_type');
     let search_temp = document.getElementById('search_temp');
     let search_main = document.getElementById('search_main');
-    if(search_type.value === 'main'){
+    let search_product = document.getElementById('search_product');
+    if(search_type.value === 'main')
+    {
         search_temp.style.display = 'none';
         search_main.style.display = 'block';
+        search_product.style.display = 'none';
     }
-   else if(search_type.value === 'temp'){
+   else if(search_type.value === 'temp')
+   {
         search_temp.style.display = 'block';
         search_main.style.display = 'none';
-    }
+        search_product.style.display = 'none';
+
+   }
+   else if(search_type.value === 'product')
+   {
+        search_temp.style.display = 'none';
+        search_main.style.display = 'none';
+       search_product.style.display = 'block';
+
+   }
 });
 //page = vendor>order_management#
+//page = vendor>sales_management
+$(function() {//date range picker
+    var start = moment().subtract(29, 'days');
+    var end = moment();
+    function cb(start, end)
+    {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        document.getElementById('daterange').value = start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY');
+    }
+    $('#reportrange').daterangepicker({
+        startDate: start,
+        endDate: end,
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }, cb);
+
+    cb(start, end);
+});
+//page = vendor>sales_management#
+//page = vendor>customer_management
+function getSearchCustomer()
+{
+    var search = document.getElementById('search_customer').value;
+    $.ajax({
+        url: "/customer_management/search",
+        method: "GET",
+        data: {search: search},
+        dataType:'json',
+        success: function(data)
+        {
+            $("#search_customer_table").html(data.table_data);
+            $("#search_customer_total_record").html(data.total_data);
+            // console.log(data.table_data);
+            console.log(data.total_data);
+        }
+    });
+}
+//page = vendor>customer_management#

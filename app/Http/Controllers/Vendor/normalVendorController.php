@@ -40,7 +40,7 @@ class normalVendorController extends Controller
         $sub = [];
         foreach ($sub_categories as  $value)
         {
-          $sub[] = $value->parent_id;
+            $sub[] = $value->parent_id;
         }
         $parent_id = NULL;
         return view('vendor.category_management.index',compact('categories','parent_id','sub'));
@@ -56,48 +56,48 @@ class normalVendorController extends Controller
         $image = $request->file('image');
         if(!empty($image))
         {
-        $image_name = time().'.'.$image->getClientOriginalExtension();
+            $image_name = time().'.'.$image->getClientOriginalExtension();
             $image->move('assets/vendor/images/categories/',$image_name);
             if($request->parent_id == "undefined")
-        {
-            Category::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'status' => $request->status,
-                'image' => $image_name,
-            ]);
-        }
-        else
-        {
-            Category::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'status' => $request->status,
-                'image' => $image_name,
-                'parent_id' => $request->parent_id,
-            ]);
-        }
-        }
-        else
             {
-                if($request->parent_id == "undefined")
-                {
-                    Category::create([
-                        'name' => $request->name,
-                        'description' => $request->description,
-                        'status' => $request->status,
-                    ]);
-                }
-                else
-                {
-                    Category::create([
-                        'name' => $request->name,
-                        'description' => $request->description,
-                        'status' => $request->status,
-                        'parent_id' => $request->parent_id,
-                    ]);
-                }
+                Category::create([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'status' => $request->status,
+                    'image' => $image_name,
+                ]);
             }
+            else
+            {
+                Category::create([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'status' => $request->status,
+                    'image' => $image_name,
+                    'parent_id' => $request->parent_id,
+                ]);
+            }
+        }
+        else
+        {
+            if($request->parent_id == "undefined")
+            {
+                Category::create([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'status' => $request->status,
+                ]);
+            }
+            else
+            {
+                Category::create([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'status' => $request->status,
+                    'parent_id' => $request->parent_id,
+                ]);
+            }
+        }
 
         return back()->with('msg','✔ Category Added');
     }
@@ -117,7 +117,7 @@ class normalVendorController extends Controller
         $sub = [];
         foreach ($products as  $value)
         {
-          $sub[] = $value->category_id;
+            $sub[] = $value->category_id;
         }
         return view('vendor.category_management.index',compact('categories','parent_id','sub'));
     }
@@ -139,18 +139,18 @@ class normalVendorController extends Controller
             $image_name = time().'.'.$image->getClientOriginalExtension();
             $image->move('assets/vendor/images/categories/',$image_name);
             $update->update([
-                    'name' => $request->name,
-                    'description' => $request->description,
-                    'status' => $request->status,
-                    'image' => $image_name,
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => $request->status,
+                'image' => $image_name,
             ]);
         }
         else
         {
             $update->update([
-                    'name' => $request->name,
-                    'description' => $request->description,
-                    'status' => $request->status,
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => $request->status,
             ]);
         }
         return back()->with('msg','✔ Category Updated');
@@ -180,27 +180,27 @@ class normalVendorController extends Controller
             $image_name = time().'.'.$image->getClientOriginalExtension();
             $image->move('assets/vendor/images/brands/',$image_name);
 
-                Brand::create([
-                    'vendor_id' => Auth::user()->id,
-                    'name' => $request->name,
-                    'address' => $request->address,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
-                    'description' => $request->description,
-                    'status' => /*$request->status*/'Active',
-                    'image' => $image_name,
-                ]);
+            Brand::create([
+                'vendor_id' => Auth::user()->id,
+                'name' => $request->name,
+                'address' => $request->address,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'description' => $request->description,
+                'status' => /*$request->status*/'Active',
+                'image' => $image_name,
+            ]);
         }
         else
         {
             Brand::create([
-            'vendor_id' => Auth::user()->id,
-            'name' => $request->name,
-            'address' => $request->address,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'description' => $request->description,
-            'status' =>  /*$request->status*/'Active',
+                'vendor_id' => Auth::user()->id,
+                'name' => $request->name,
+                'address' => $request->address,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'description' => $request->description,
+                'status' =>  /*$request->status*/'Active',
             ]);
         }
 
@@ -217,7 +217,7 @@ class normalVendorController extends Controller
         $request->validate([
             'name' => 'required',
             'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048',
-             'email' => 'required',
+            'email' => 'required',
             'phone' => 'required',
             'description' => 'required|max:200',
             'address' => 'required|max:200',
@@ -251,7 +251,7 @@ class normalVendorController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'description' => $request->description,
-               /* 'status' => $request->status,*/
+                /* 'status' => $request->status,*/
             ]);
 
 
@@ -296,9 +296,9 @@ class normalVendorController extends Controller
         {
             foreach ($image as $files)
             {
-            $image_name = uniqid().'.'.$files->getClientOriginalExtension();
-            $files->move('assets/vendor/images/products/',$image_name);
-            $insert[]['image'] = "$image_name";
+                $image_name = uniqid().'.'.$files->getClientOriginalExtension();
+                $files->move('assets/vendor/images/products/',$image_name);
+                $insert[]['image'] = "$image_name";
             }
             $imageEncode = json_encode($insert);
 
@@ -311,7 +311,7 @@ class normalVendorController extends Controller
                 'specification' => $request->specification,
                 'description' => $request->description,
                 'stock' => $request->stock,
-                 'image' => $imageEncode,
+                'image' => $imageEncode,
                 'price' => $request->price,
                 'offer_price' => $request->offer_price,
                 'offer_percentage' => $request->offer_percentage,
@@ -333,7 +333,7 @@ class normalVendorController extends Controller
                 'specification' => $request->specification,
                 'description' => $request->description,
                 'stock' => $request->stock,
-               /* 'image' => $request->image,*/
+                /* 'image' => $request->image,*/
                 'price' => $request->price,
                 'offer_price' => $request->offer_price,
                 'offer_percentage' => $request->offer_percentage,
@@ -342,7 +342,7 @@ class normalVendorController extends Controller
                 'offer_limit' => $request->offer_limit,
                 'color' => $request->color,
                 'status' => $request->status,
-               /* 'slug' => $request->slug,*/
+                /* 'slug' => $request->slug,*/
             ]);
         }
 
@@ -464,9 +464,9 @@ class normalVendorController extends Controller
             $free_product_ids = json_encode($insert2);
         }
         else
-            {
-                $free_product_ids = '';
-            }
+        {
+            $free_product_ids = '';
+        }
 
         $image = $request->file('image');
         if(!empty($image))
@@ -475,7 +475,7 @@ class normalVendorController extends Controller
             $image->move('assets/vendor/images/offers/',$image_name);
 
 
-          $offer =  Offer::create([
+            $offer =  Offer::create([
                 'title' => $request->title,
                 'image' => $image_name,
                 'type' => $request->type,
@@ -486,7 +486,7 @@ class normalVendorController extends Controller
                 'free_product_ids' => $free_product_ids,
                 /*'offer_limit' => $offer_limit,*/
 
-          ]);
+            ]);
         }
         else
         {
@@ -537,9 +537,9 @@ class normalVendorController extends Controller
     public function offerUpdate(Request $request)
     {
         $request->validate([
-          'title' => 'required',
-          'product_ids' => 'required',
-          'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
+            'title' => 'required',
+            'product_ids' => 'required',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048'
         ]);
         $image = $request->file('image');
         $update = offer::find($request->id);
@@ -571,123 +571,123 @@ class normalVendorController extends Controller
             $free_product_ids = json_encode($insert2);
         }
         else
-            {
-                $free_product_ids = '';
-            }
+        {
+            $free_product_ids = '';
+        }
 
         if(!empty($image))
         {
-          if(!empty($update->image)){unlink('assets/vendor/images/offers/'.$update->image);}
+            if(!empty($update->image)){unlink('assets/vendor/images/offers/'.$update->image);}
             $image_name = time().'.'.$image->getClientOriginalExtension();
             $image->move('assets/vendor/images/offers/',$image_name);
 
             if($update->type == 'Buy one get one')
             {
-              $update->update([
-                  'title' => $request->title,
-                  'image' => $image_name,
-                  'status' => $request->status,
-                  // 'enddate' => $request->enddate,
-                  'product_ids' => $product_ids,
-                  'free_product_ids' => $free_product_ids,
-              ]);
+                $update->update([
+                    'title' => $request->title,
+                    'image' => $image_name,
+                    'status' => $request->status,
+                    // 'enddate' => $request->enddate,
+                    'product_ids' => $product_ids,
+                    'free_product_ids' => $free_product_ids,
+                ]);
             }
             else
             {
-              $update->update([
-                  'title' => $request->title,
-                  'image' => $image_name,
-                  'status' => $request->status,
-                  // 'enddate' => $request->enddate,
-                  'offer_percentage' => $request->offer_percentage,
-                  'product_ids' => $product_ids,
-              ]);
+                $update->update([
+                    'title' => $request->title,
+                    'image' => $image_name,
+                    'status' => $request->status,
+                    // 'enddate' => $request->enddate,
+                    'offer_percentage' => $request->offer_percentage,
+                    'product_ids' => $product_ids,
+                ]);
             }
         }
         else
-      {
+        {
             if($update->type == 'Buy one get one')
             {
-              $update->update([
-                'title' => $request->title,
-                'status' => $request->status,
-                // 'enddate' => $request->enddate,
-                'product_ids' => $product_ids,
-                'free_product_ids' => $free_product_ids,
-            ]);
-          }
-          else
-          {
-            $update->update([
-              'title' => $request->title,
-              'status' => $request->status,
-              // 'enddate' => $request->enddate,
-              'offer_percentage' => $request->offer_percentage,
-              'product_ids' => $product_ids,
-          ]);
+                $update->update([
+                    'title' => $request->title,
+                    'status' => $request->status,
+                    // 'enddate' => $request->enddate,
+                    'product_ids' => $product_ids,
+                    'free_product_ids' => $free_product_ids,
+                ]);
+            }
+            else
+            {
+                $update->update([
+                    'title' => $request->title,
+                    'status' => $request->status,
+                    // 'enddate' => $request->enddate,
+                    'offer_percentage' => $request->offer_percentage,
+                    'product_ids' => $product_ids,
+                ]);
+            }
         }
-      }
-      //for product table update
+        //for product table update
         //alter perv products
         foreach ($prev_pids as $s)
-      {
-          $update3 = Product::find($s->id);
-          if($update->type == 'Discount')
-          {
-              $update3->update([
-                  'offer_id' => NULL,
-                  'offer_price' => NULL,
-              ]);
-          }
-          elseif ($update->type == 'Buy one get one')
-          {
-              $update3->update([
-                  'offer_id' => NULL,
-              ]);
-          }
-      }
-      //alter perv products #
+        {
+            $update3 = Product::find($s->id);
+            if($update->type == 'Discount')
+            {
+                $update3->update([
+                    'offer_id' => NULL,
+                    'offer_price' => NULL,
+                ]);
+            }
+            elseif ($update->type == 'Buy one get one')
+            {
+                $update3->update([
+                    'offer_id' => NULL,
+                ]);
+            }
+        }
+        //alter perv products #
 
-      //new calc products
-              foreach ($request->product_ids as $s)
-              {
-                $update2 = Product::find($s);
-                  if($update->type == 'Discount')
-                  {
-                      if($request->status == 'Active')
-                      {
-                          $oprice =$update2->price - ($update2->price*$request->offer_percentage)/100;
-                            $offer_price = round($oprice);
-                      $update2->update([
-                          'offer_id' => $request->id,
-                          'offer_price' => $offer_price,
-                      ]);
-                      }
-                      else
-                      {
-                        $update2->update([
-                            'offer_id' => NULL,
-                            'offer_price' => NULL,
-                        ]);
-                      }
-                  }
-                  elseif ($update->type == 'Buy one get one')
-                  {
-                      if($request->status == 'Active')
-                      {
-                        $update2->update([
-                            'offer_id' => $request->id,
-                        ]);
-                      }
-                      else
-                      {
-                        $update2->update([
-                            'offer_id' => NULL,
-                        ]);
-                      }
-                  }
-              }
-              //new calc products #
+        //new calc products
+        foreach ($request->product_ids as $s)
+        {
+            $update2 = Product::find($s);
+            if($update->type == 'Discount')
+            {
+                if($request->status == 'Active')
+                {
+                    $oprice =$update2->price - ($update2->price*$request->offer_percentage)/100;
+                    $offer_price = round($oprice);
+                    $update2->update([
+                        'offer_id' => $request->id,
+                        'offer_price' => $offer_price,
+                    ]);
+                }
+                else
+                {
+                    $update2->update([
+                        'offer_id' => NULL,
+                        'offer_price' => NULL,
+                    ]);
+                }
+            }
+            elseif ($update->type == 'Buy one get one')
+            {
+                if($request->status == 'Active')
+                {
+                    $update2->update([
+                        'offer_id' => $request->id,
+                    ]);
+                }
+                else
+                {
+                    $update2->update([
+                        'offer_id' => NULL,
+                    ]);
+                }
+            }
+        }
+        //new calc products #
 
         return back()->with('msg','✔ Offer Updated');
     }
@@ -865,13 +865,13 @@ class normalVendorController extends Controller
         $oid = Crypt::decrypt($id);
         $order = Order::where('id',$oid)->first();
         $product_ids = json_decode($order->product_ids);
-            $products = Product::wherein('id',$product_ids)->get();
+        $products = Product::wherein('id',$product_ids)->get();
         $selling_price = json_decode($order->selling_price);
         $quantity = json_decode($order->quantity);
         $offer_type = json_decode($order->offer_type);
         $offer_percentage = json_decode($order->offer_percentage);
         $free_product_ids = json_decode($order->free_product_ids);
-            $free_products = Product::wherein('id',$free_product_ids)->get();
+        $free_products = Product::wherein('id',$free_product_ids)->get();
 
         return view('vendor.order_management.order_details',compact('order','products','selling_price','quantity','offer_type','offer_percentage','free_products'));
     }
@@ -964,6 +964,28 @@ class normalVendorController extends Controller
                 $count = '';
             }
         }
+        elseif($type == 'product')
+        {
+            if (!empty($search)) {
+                $search_product = Product::where('name', 'LIKE', '%' . $search . '%')->get();
+                foreach ($search_product as $p) {
+                    $product_array[] = $p->id;
+                }
+                $orders = Order::orderBy('status','DESC')->get();
+                $search_result = [];
+                foreach ($orders as $o)
+                {
+                    $order_pid = json_decode($o->product_ids);
+                    $result = array_intersect($order_pid, $product_array);
+                    if (!empty($result))
+                    {
+                        $search_result[] = $o;
+                    }
+                }
+                $search_count = count($search_result);
+                $count = $search_count . ' records found';
+            }
+        }
         $returnHTML = view('vendor.order_management.search')->with('search_result', $search_result)->with('search_count', $search_count)->render();
         return response()->json(array('success' => true, 'table_data'=>$returnHTML,'total_data'=>$count));
     }
@@ -971,7 +993,15 @@ class normalVendorController extends Controller
     {
         return view('vendor.order_management.index');
     }
-
+    public function orderReport(Request $request)
+    {
+        $dateRange = $request->daterange;
+        $date = explode('-', $dateRange);
+        $from = date('Y-m-d', strtotime($date[0]));
+        $to = date('Y-m-d', strtotime($date[1]));
+        $orders = Order::whereBetween('created_at', [$from, $to])->orderBy('Status','DESC')->paginate(18);;
+        return view('vendor.order_management.order',compact('orders'));
+    }
     //************************ page = oder_management #
 
     //************************ page = customer_management
@@ -989,8 +1019,26 @@ class normalVendorController extends Controller
         $orders = Order::where('customer_id',$customer->id)->get();
         return view('vendor.customer_management.customer_details',compact('customer','temp_orders','orders'));
     }
+    public function searchCustomer(Request $request)
+    {
+        $search = $_GET['search'];
+            if(!empty($search))
+            {
+                $search_result = Customer::where('name','LIKE','%'.$search.'%')->orWhere('email','LIKE','%'.$search.'%')->orWhere('address','LIKE','%'.$search.'%')->orWhere('city','LIKE','%'.$search.'%')->orWhere('phone','LIKE','%'.$search.'%')->get();
+                $search_count = $search_result->count();
+                $count = $search_count.' records found';
+            }
+            else
+            {
+                $search_result = Customer::orderBy('id','ASC')->get();
+                $search_count = $search_result->count();
+                $count = '';
+            }
+        $returnHTML = view('vendor.customer_management.search')->with('search_result', $search_result)->with('search_count', $search_count)->render();
+        return response()->json(array('success' => true, 'table_data'=>$returnHTML,'total_data'=>$count));
+    }
     //************************ page = customer_management #
-
+    //************************ page = contact_management
     public function contact_management()
     {
         $ask_a_question = Contact::where('type','ask_a_question')->orderByDesc("status")->get();
@@ -1038,6 +1086,7 @@ class normalVendorController extends Controller
         ]);
         return redirect()->back();
     }
+<<<<<<< HEAD
 
     public function contact_note_update(Request $request)
     {
@@ -1063,4 +1112,88 @@ class normalVendorController extends Controller
         $returnHTML = view('vendor.contact_management.search_table')->with('search_contacts', $search_contact)->render();
         return response()->json(array('success' => true, 'search_contact'=> $returnHTML ));
     }
+=======
+    //************************ page = contact_management #
+    //************************ page = sales_management
+    public function sales()
+    {
+        $products = Product::orderby('category_id','ASC')->get();
+        $orders = Order::get();
+        foreach($products as $pi => $p)
+        {//products
+            $soldTotal=0;$amountTotal=0; $OffersoldTotal=0;$OfferamountTotal=0;
+            foreach ($orders as $o)
+            {//orders
+                $pid = json_decode($o->product_ids);
+                foreach($pid as $i => $pid)
+                {//product_ids
+                    if($p->id == $pid)
+                    {
+                        $spelling_price = json_decode($o->selling_price);
+                        $quantity = json_decode($o->quantity);
+                        $offer_type = json_decode($o->offer_type);
+                        $offer_percentage = json_decode($o->offer_percentage);
+                        $soldTotal +=  (int)$quantity[$i];
+                        $amountTotal +=  (int)$spelling_price[$i] * $quantity[$i];
+                        if($offer_type[$i] != NULL)
+                        {
+                            $OffersoldTotal +=  (int)$quantity[$i];
+                            $OfferamountTotal +=  (int)$spelling_price[$i] * $quantity[$i];
+                        }
+                        //echo $$soldTotal;
+                    }
+                }
+            }
+            $productSoldTotal[] = $soldTotal;
+            $productAmountTotal[] = $amountTotal;
+            $OfferProductSoldTotal[] = $OffersoldTotal;
+            $OfferProductAmountTotal[] = $OfferamountTotal;
+        }
+        return view('vendor.sales_management.index',compact('products','productSoldTotal','productAmountTotal','OfferProductSoldTotal','OfferProductAmountTotal'));
+    }
+    public function salesReport(Request $request)
+    {
+        $dateRange = $request->daterange;
+        $date = explode('-',$dateRange);
+
+        $from = date('Y-m-d', strtotime($date[0]));
+        $to = date('Y-m-d', strtotime($date[1]));
+        $products = Product::orderby('category_id','ASC')->get();
+        $orders = Order::whereBetween('created_at', [$from, $to])->get();
+        foreach($products as $pi => $p)
+        {//products
+            $soldTotal=0;$amountTotal=0; $OffersoldTotal=0;$OfferamountTotal=0;
+            foreach ($orders as $o)
+            {//orders
+                $pid = json_decode($o->product_ids);
+                foreach($pid as $i => $pid)
+                {//product_ids
+                    if($p->id == $pid)
+                    {
+                        $spelling_price = json_decode($o->selling_price);
+                        $quantity = json_decode($o->quantity);
+                        $offer_type = json_decode($o->offer_type);
+                        $offer_percentage = json_decode($o->offer_percentage);
+                        $soldTotal +=  (int)$quantity[$i];
+                        $amountTotal +=  (int)$spelling_price[$i] * $quantity[$i];
+                        if($offer_type[$i] != NULL)
+                        {
+                            $OffersoldTotal +=  (int)$quantity[$i];
+                            $OfferamountTotal +=  (int)$spelling_price[$i] * $quantity[$i];
+                        }
+                        //echo $$soldTotal;
+                    }
+                }
+            }
+            $productSoldTotal[] = $soldTotal;
+            $productAmountTotal[] = $amountTotal;
+            $OfferProductSoldTotal[] = $OffersoldTotal;
+            $OfferProductAmountTotal[] = $OfferamountTotal;
+        }
+        return view('vendor.sales_management.index',compact('products','productSoldTotal','productAmountTotal','OfferProductSoldTotal','OfferProductAmountTotal'));
+    }
+    //************************ page = sales_management #
+
+
+>>>>>>> rifat01
 }
