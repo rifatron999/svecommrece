@@ -997,8 +997,8 @@ class normalVendorController extends Controller
     {
         $dateRange = $request->daterange;
         $date = explode('-', $dateRange);
-        $from = date('Y-m-d', strtotime($date[0]));
-        $to = date('Y-m-d', strtotime($date[1]));
+        $from = date('Y-m-d 00:00:00', strtotime($date[0]));
+        $to = date('Y-m-d 23:59:59', strtotime($date[1]));
         $orders = Order::whereBetween('created_at', [$from, $to])->orderBy('Status','DESC')->paginate(18);;
         return view('vendor.order_management.order',compact('orders'));
     }
@@ -1152,12 +1152,13 @@ class normalVendorController extends Controller
     public function salesReport(Request $request)
     {
         $dateRange = $request->daterange;
+        //echo $dateRange;
         $date = explode('-',$dateRange);
-
-        $from = date('Y-m-d', strtotime($date[0]));
-        $to = date('Y-m-d', strtotime($date[1]));
+        $from = date('Y-m-d 00:00:00', strtotime($date[0]));
+        $to = date('Y-m-d 23:59:59', strtotime($date[1]));
+        //echo $from."-".$to;
         $products = Product::orderby('category_id','ASC')->get();
-        $orders = Order::whereBetween('created_at', [$from, $to])->get();
+        $orders = Order::whereBetween('created_at', [$from , $to])->get();
         foreach($products as $pi => $p)
         {//products
             $soldTotal=0;$amountTotal=0; $OffersoldTotal=0;$OfferamountTotal=0;
