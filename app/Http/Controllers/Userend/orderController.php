@@ -36,6 +36,32 @@ class orderController extends Controller
             $pro_stock = $pro_id->stock;
             $pro_limit = $pro_id->offer_limit;
 
+            // if new stock is less than 0
+            $product_id = $pro_ids[$i];
+            $product_qty = $quantity[$i];
+            $exact_product = Product::find($product_id);
+            $new_stock = $exact_product->stock - $product_qty;
+            if ($new_stock < 0){
+                if($pro_id->offer_id != null){
+                    if ($request->quantity[$i] > $pro_limit){
+                        $request->validate(
+                            [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_limit,],
+                            [ 'quantity.'.$i.'.max' => 'Cant buy more than '.$pro_limit.' at a time '  ]);
+                    }
+                    elseif ($request->quantity[$i] <= $pro_limit){
+                        $request->validate(
+                            [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
+                            [ 'quantity.'.$i.'.max' => 'Required quantity '.$request->quantity[$i].' is not available in stock'  ]);
+                    }
+                }
+                else{
+                    $request->validate(
+                        [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
+                        [ 'quantity.'.$i.'.max' => 'Required quantity '.$request->quantity[$i].' is not available in stock'  ]);
+                }
+            }
+            // if new stock is less than 0
+            // normal validation for inputs
             if($pro_id->offer_id != null){
                 if ($request->quantity[$i] > $pro_limit){
                     $request->validate(
@@ -53,35 +79,32 @@ class orderController extends Controller
                     [ 'quantity.'.$i => 'required|numeric|min:1|max:'.$pro_stock,],
                     [ 'quantity.'.$i.'.max' => 'Required quantity '.$request->quantity[$i].' is not available in stock'  ]);
             }
-
-
-
-//            testing###########################
-                $product_id = $pro_ids[$i];
-                $product_qty = $quantity[$i];
-                $update = Product::find($product_id);
-                $new_stock = $update->stock - $product_qty;
-                if($new_stock == 0){
-                    $update->update([
-                        'stock' => $new_stock,
-                        'status' => "Out of Stock",
-                    ]);
-                }elseif ($new_stock > 0){
-                    $update->update([
-                        'stock' => $new_stock,
-                    ]);
-                }elseif ($new_stock < 0){
-                    Cart::remove($cart_ids[$i]);
-                    return redirect()->route('cart.index');
-                }
-//                Testing##########################
-
-
+            //normal validation for inputs
 
         }
 
-        return redirect()->route('temp_orders',$user_id);
 
+        for($i=0; $i<count($cart_contents); $i++){
+            // Product quantity decrease ###########################
+            $product_id = $pro_ids[$i];
+            $product_qty = $quantity[$i];
+            $update = Product::find($product_id);
+            $updated_stock = $update->stock - $product_qty;
+            if($updated_stock == 0){
+                $update->update([
+                    'stock' => $updated_stock,
+                    'status' => "Out of Stock",
+                ]);
+
+            }elseif ($updated_stock > 0){
+                $update->update([
+                    'stock' => $updated_stock,
+                ]);
+            }
+            // Product quantity decrease  ##########################
+        }
+
+        return redirect()->route('temp_orders',$user_id);
 
     }
     public function temp_orders($user_id)
